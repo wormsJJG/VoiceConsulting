@@ -1,0 +1,622 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEAF229CAF99500AAE587 /* AppDelegate.swift */; };
+		35EAEAF529CAF99500AAE587 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEAF429CAF99500AAE587 /* SceneDelegate.swift */; };
+		35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEAF629CAF99500AAE587 /* SplashVC.swift */; };
+		35EAEAFC29CAF99600AAE587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35EAEAFB29CAF99600AAE587 /* Assets.xcassets */; };
+		35EAEB0A29CAF99600AAE587 /* VoiceConsultingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB0929CAF99600AAE587 /* VoiceConsultingAppTests.swift */; };
+		35EAEB1429CAF99600AAE587 /* VoiceConsultingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB1329CAF99600AAE587 /* VoiceConsultingAppUITests.swift */; };
+		35EAEB1629CAF99600AAE587 /* VoiceConsultingAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB1529CAF99600AAE587 /* VoiceConsultingAppUITestsLaunchTests.swift */; };
+		35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2429CAFB5600AAE587 /* Cordinator.swift */; };
+		35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */; };
+		35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		35EAEB0629CAF99600AAE587 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35EAEAE729CAF99500AAE587 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35EAEAEE29CAF99500AAE587;
+			remoteInfo = VoiceConsultingApp;
+		};
+		35EAEB1029CAF99600AAE587 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35EAEAE729CAF99500AAE587 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35EAEAEE29CAF99500AAE587;
+			remoteInfo = VoiceConsultingApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		35EAEAEF29CAF99500AAE587 /* VoiceConsultingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceConsultingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		35EAEAF229CAF99500AAE587 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		35EAEAF429CAF99500AAE587 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		35EAEAF629CAF99500AAE587 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		35EAEAFB29CAF99600AAE587 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		35EAEB0029CAF99600AAE587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35EAEB0529CAF99600AAE587 /* VoiceConsultingAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoiceConsultingAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		35EAEB0929CAF99600AAE587 /* VoiceConsultingAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceConsultingAppTests.swift; sourceTree = "<group>"; };
+		35EAEB0F29CAF99600AAE587 /* VoiceConsultingAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoiceConsultingAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		35EAEB1329CAF99600AAE587 /* VoiceConsultingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceConsultingAppUITests.swift; sourceTree = "<group>"; };
+		35EAEB1529CAF99600AAE587 /* VoiceConsultingAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceConsultingAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		35EAEB2429CAFB5600AAE587 /* Cordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cordinator.swift; sourceTree = "<group>"; };
+		35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		35EAEAEC29CAF99500AAE587 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35EAEB0229CAF99600AAE587 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35EAEB0C29CAF99600AAE587 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		35EAEAE629CAF99500AAE587 = {
+			isa = PBXGroup;
+			children = (
+				35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */,
+				35EAEB0829CAF99600AAE587 /* VoiceConsultingAppTests */,
+				35EAEB1229CAF99600AAE587 /* VoiceConsultingAppUITests */,
+				35EAEAF029CAF99500AAE587 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		35EAEAF029CAF99500AAE587 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				35EAEAEF29CAF99500AAE587 /* VoiceConsultingApp.app */,
+				35EAEB0529CAF99600AAE587 /* VoiceConsultingAppTests.xctest */,
+				35EAEB0F29CAF99600AAE587 /* VoiceConsultingAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
+			isa = PBXGroup;
+			children = (
+				35EAEB2729CAFD2D00AAE587 /* Base */,
+				35EAEB2629CAFBAB00AAE587 /* Splash */,
+				35EAEB2329CAFB1000AAE587 /* Helper */,
+				35EAEB2229CAFAC600AAE587 /* Common */,
+			);
+			path = VoiceConsultingApp;
+			sourceTree = "<group>";
+		};
+		35EAEB0829CAF99600AAE587 /* VoiceConsultingAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				35EAEB0929CAF99600AAE587 /* VoiceConsultingAppTests.swift */,
+			);
+			path = VoiceConsultingAppTests;
+			sourceTree = "<group>";
+		};
+		35EAEB1229CAF99600AAE587 /* VoiceConsultingAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				35EAEB1329CAF99600AAE587 /* VoiceConsultingAppUITests.swift */,
+				35EAEB1529CAF99600AAE587 /* VoiceConsultingAppUITestsLaunchTests.swift */,
+			);
+			path = VoiceConsultingAppUITests;
+			sourceTree = "<group>";
+		};
+		35EAEB2229CAFAC600AAE587 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				35EAEAF229CAF99500AAE587 /* AppDelegate.swift */,
+				35EAEAF429CAF99500AAE587 /* SceneDelegate.swift */,
+				35EAEB0029CAF99600AAE587 /* Info.plist */,
+				35EAEAFB29CAF99600AAE587 /* Assets.xcassets */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		35EAEB2329CAFB1000AAE587 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				35EAEB2429CAFB5600AAE587 /* Cordinator.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		35EAEB2629CAFBAB00AAE587 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				35EAEAF629CAF99500AAE587 /* SplashVC.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		35EAEB2729CAFD2D00AAE587 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */,
+				35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		35EAEAEE29CAF99500AAE587 /* VoiceConsultingApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35EAEB1929CAF99600AAE587 /* Build configuration list for PBXNativeTarget "VoiceConsultingApp" */;
+			buildPhases = (
+				35EAEAEB29CAF99500AAE587 /* Sources */,
+				35EAEAEC29CAF99500AAE587 /* Frameworks */,
+				35EAEAED29CAF99500AAE587 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VoiceConsultingApp;
+			productName = VoiceConsultingApp;
+			productReference = 35EAEAEF29CAF99500AAE587 /* VoiceConsultingApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		35EAEB0429CAF99600AAE587 /* VoiceConsultingAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35EAEB1C29CAF99600AAE587 /* Build configuration list for PBXNativeTarget "VoiceConsultingAppTests" */;
+			buildPhases = (
+				35EAEB0129CAF99600AAE587 /* Sources */,
+				35EAEB0229CAF99600AAE587 /* Frameworks */,
+				35EAEB0329CAF99600AAE587 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35EAEB0729CAF99600AAE587 /* PBXTargetDependency */,
+			);
+			name = VoiceConsultingAppTests;
+			productName = VoiceConsultingAppTests;
+			productReference = 35EAEB0529CAF99600AAE587 /* VoiceConsultingAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		35EAEB0E29CAF99600AAE587 /* VoiceConsultingAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35EAEB1F29CAF99600AAE587 /* Build configuration list for PBXNativeTarget "VoiceConsultingAppUITests" */;
+			buildPhases = (
+				35EAEB0B29CAF99600AAE587 /* Sources */,
+				35EAEB0C29CAF99600AAE587 /* Frameworks */,
+				35EAEB0D29CAF99600AAE587 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35EAEB1129CAF99600AAE587 /* PBXTargetDependency */,
+			);
+			name = VoiceConsultingAppUITests;
+			productName = VoiceConsultingAppUITests;
+			productReference = 35EAEB0F29CAF99600AAE587 /* VoiceConsultingAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		35EAEAE729CAF99500AAE587 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					35EAEAEE29CAF99500AAE587 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					35EAEB0429CAF99600AAE587 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 35EAEAEE29CAF99500AAE587;
+					};
+					35EAEB0E29CAF99600AAE587 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 35EAEAEE29CAF99500AAE587;
+					};
+				};
+			};
+			buildConfigurationList = 35EAEAEA29CAF99500AAE587 /* Build configuration list for PBXProject "VoiceConsultingApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 35EAEAE629CAF99500AAE587;
+			productRefGroup = 35EAEAF029CAF99500AAE587 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				35EAEAEE29CAF99500AAE587 /* VoiceConsultingApp */,
+				35EAEB0429CAF99600AAE587 /* VoiceConsultingAppTests */,
+				35EAEB0E29CAF99600AAE587 /* VoiceConsultingAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		35EAEAED29CAF99500AAE587 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35EAEAFC29CAF99600AAE587 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35EAEB0329CAF99600AAE587 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35EAEB0D29CAF99600AAE587 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		35EAEAEB29CAF99500AAE587 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
+				35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */,
+				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
+				35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */,
+				35EAEAF529CAF99500AAE587 /* SceneDelegate.swift in Sources */,
+				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35EAEB0129CAF99600AAE587 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35EAEB0A29CAF99600AAE587 /* VoiceConsultingAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35EAEB0B29CAF99600AAE587 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35EAEB1429CAF99600AAE587 /* VoiceConsultingAppUITests.swift in Sources */,
+				35EAEB1629CAF99600AAE587 /* VoiceConsultingAppUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		35EAEB0729CAF99600AAE587 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35EAEAEE29CAF99500AAE587 /* VoiceConsultingApp */;
+			targetProxy = 35EAEB0629CAF99600AAE587 /* PBXContainerItemProxy */;
+		};
+		35EAEB1129CAF99600AAE587 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35EAEAEE29CAF99500AAE587 /* VoiceConsultingApp */;
+			targetProxy = 35EAEB1029CAF99600AAE587 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		35EAEB1729CAF99600AAE587 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		35EAEB1829CAF99600AAE587 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		35EAEB1A29CAF99600AAE587 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 45K89U54K6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team.com.team.winconsultingapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		35EAEB1B29CAF99600AAE587 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 45K89U54K6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team.com.team.winconsultingapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		35EAEB1D29CAF99600AAE587 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 45K89U54K6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team.com.team.winconsultingapp.VoiceConsultingAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VoiceConsultingApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VoiceConsultingApp";
+			};
+			name = Debug;
+		};
+		35EAEB1E29CAF99600AAE587 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 45K89U54K6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team.com.team.winconsultingapp.VoiceConsultingAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VoiceConsultingApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VoiceConsultingApp";
+			};
+			name = Release;
+		};
+		35EAEB2029CAF99600AAE587 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 45K89U54K6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team.com.team.winconsultingapp.VoiceConsultingAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VoiceConsultingApp;
+			};
+			name = Debug;
+		};
+		35EAEB2129CAF99600AAE587 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 45K89U54K6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team.com.team.winconsultingapp.VoiceConsultingAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VoiceConsultingApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		35EAEAEA29CAF99500AAE587 /* Build configuration list for PBXProject "VoiceConsultingApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35EAEB1729CAF99600AAE587 /* Debug */,
+				35EAEB1829CAF99600AAE587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35EAEB1929CAF99600AAE587 /* Build configuration list for PBXNativeTarget "VoiceConsultingApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35EAEB1A29CAF99600AAE587 /* Debug */,
+				35EAEB1B29CAF99600AAE587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35EAEB1C29CAF99600AAE587 /* Build configuration list for PBXNativeTarget "VoiceConsultingAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35EAEB1D29CAF99600AAE587 /* Debug */,
+				35EAEB1E29CAF99600AAE587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35EAEB1F29CAF99600AAE587 /* Build configuration list for PBXNativeTarget "VoiceConsultingAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35EAEB2029CAF99600AAE587 /* Debug */,
+				35EAEB2129CAF99600AAE587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 35EAEAE729CAF99500AAE587 /* Project object */;
+}
