@@ -1,0 +1,38 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'VoiceConsultingApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for VoiceConsultingApp
+
+pod 'FirebaseAuth', '~> 10.0.0'
+pod 'FirebaseMessaging', '~> 10.0.0'
+pod 'FirebaseStorage', '~> 10.0.0'
+pod 'FirebaseFirestore', '~> 10.0.0'
+pod 'FirebaseFirestoreSwift', '~> 10.0.0'
+pod 'FirebaseRemoteConfig', '~> 10.0.0'
+pod 'GoogleSignIn', '~> 6.2.4'
+pod 'RxSwift'
+pod 'RxCocoa'
+pod 'RxGesture'
+pod 'SwiftLint'
+pod 'SkeletonView'
+pod 'AcknowList'
+pod 'Toast-Swift', '~> 5.0.1' 
+pod 'Kingfisher', '~> 7.0'
+pod 'KakaoSDKAuth'  # 사용자 인증
+pod 'KakaoSDKUser'  # 카카오 로그인, 사용자 관리
+pod 'Then'
+
+  target 'VoiceConsultingAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'VoiceConsultingAppUITests' do
+    # Pods for testing
+  end
+
+end
