@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		15FF145122CCDC3A193DE7DD /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73758EB074927187BF6D96BB /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */; };
 		298085D794FF0792CE7714CE /* Pods_VoiceConsultingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D0B9A074DEA9009AE19745 /* Pods_VoiceConsultingApp.framework */; };
+		359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359933C529D077E50098A0FC /* GoogleService-Info.plist */; };
+		359933C929D07A520098A0FC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933C829D07A520098A0FC /* MainVC.swift */; };
+		359933CB29D07A690098A0FC /* MainV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933CA29D07A690098A0FC /* MainV.swift */; };
+		359933CD29D07A750098A0FC /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933CC29D07A750098A0FC /* MainVM.swift */; };
 		35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E2987B29CBEC2D00847F49 /* SplashV.swift */; };
 		35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E2987D29CBEC5800847F49 /* SplashVM.swift */; };
 		35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEAF229CAF99500AAE587 /* AppDelegate.swift */; };
@@ -46,6 +50,10 @@
 		174FD441555BF452A7BD1D4F /* Pods-VoiceConsultingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp.debug.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		21D0B9A074DEA9009AE19745 /* Pods_VoiceConsultingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23DB66CE8AB2FFC14B4BFA2F /* Pods_VoiceConsultingAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		359933C529D077E50098A0FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		359933C829D07A520098A0FC /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		359933CA29D07A690098A0FC /* MainV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainV.swift; sourceTree = "<group>"; };
+		359933CC29D07A750098A0FC /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
 		35E2987B29CBEC2D00847F49 /* SplashV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashV.swift; sourceTree = "<group>"; };
 		35E2987D29CBEC5800847F49 /* SplashVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVM.swift; sourceTree = "<group>"; };
 		35EAEAEF29CAF99500AAE587 /* VoiceConsultingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceConsultingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +105,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		359933C729D07A270098A0FC /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				359933C829D07A520098A0FC /* MainVC.swift */,
+				359933CA29D07A690098A0FC /* MainV.swift */,
+				359933CC29D07A750098A0FC /* MainVM.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		35EAEAE629CAF99500AAE587 = {
 			isa = PBXGroup;
 			children = (
@@ -122,10 +140,12 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
-				35EAEB2729CAFD2D00AAE587 /* Base */,
-				35EAEB2629CAFBAB00AAE587 /* Splash */,
-				35EAEB2329CAFB1000AAE587 /* Helper */,
+				359933C529D077E50098A0FC /* GoogleService-Info.plist */,
 				35EAEB2229CAFAC600AAE587 /* Common */,
+				35EAEB2329CAFB1000AAE587 /* Helper */,
+				35EAEB2729CAFD2D00AAE587 /* Base */,
+				359933C729D07A270098A0FC /* Main */,
+				35EAEB2629CAFBAB00AAE587 /* Splash */,
 			);
 			path = VoiceConsultingApp;
 			sourceTree = "<group>";
@@ -318,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35EAEAFC29CAF99600AAE587 /* Assets.xcassets in Resources */,
+				359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,10 +470,13 @@
 				35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */,
 				35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */,
 				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
+				359933C929D07A520098A0FC /* MainVC.swift in Sources */,
 				35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */,
 				35EAEAF529CAF99500AAE587 /* SceneDelegate.swift in Sources */,
+				359933CD29D07A750098A0FC /* MainVM.swift in Sources */,
 				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
 				35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */,
+				359933CB29D07A690098A0FC /* MainV.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

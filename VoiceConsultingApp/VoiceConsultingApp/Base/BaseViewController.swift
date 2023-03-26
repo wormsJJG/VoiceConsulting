@@ -12,4 +12,8 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
     }
+    
+    func isHiddenBackButton() {
+        self.navigationItem.hidesBackButton = true
+    }
 }
