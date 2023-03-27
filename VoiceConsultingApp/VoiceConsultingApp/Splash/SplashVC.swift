@@ -21,24 +21,24 @@ class SplashVC: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        userLoginCheck()
         self.viewModel.input.isEnterUser.onNext(())
-        UserLoginCheck()
+ 
     }
 }
 
 extension SplashVC {
     // 유저 검증 (로그인이 되어있는지 안되어 있는지 검증)
-    private func UserLoginCheck() {
+    private func userLoginCheck() {
         self.viewModel.output.isLogin
             .subscribe(onNext: { [weak self] isLogin in
                 if isLogin {
-                    self?.navigationController?.pushViewController(MainVC(), animated: true)
+                    self?.navigationController?.pushViewController(SelectUseTypeVC(), animated: true)
                 } else {
                     print("로그인 안되있음")
                 }
             })
             .disposed(by: self.disposeBag)
-        self.navigationController?.pushViewController(MainVC(), animated: true)
     }
 }
 

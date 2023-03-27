@@ -26,6 +26,7 @@ class SplashVM: BaseViewModel {
     init(input: Input = Input(), output: Output = Output()) {
         self.input = input
         self.output = output
+        inputSubscribe()
     }
     
     //Subscribing

@@ -13,6 +13,9 @@
 		359933C929D07A520098A0FC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933C829D07A520098A0FC /* MainVC.swift */; };
 		359933CB29D07A690098A0FC /* MainV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933CA29D07A690098A0FC /* MainV.swift */; };
 		359933CD29D07A750098A0FC /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933CC29D07A750098A0FC /* MainVM.swift */; };
+		35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */; };
+		35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511A29D1968B00BEA034 /* SelectUseTypeVC.swift */; };
+		35BC511D29D196FB00BEA034 /* SelectUseTypeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511C29D196FB00BEA034 /* SelectUseTypeVM.swift */; };
 		35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E2987B29CBEC2D00847F49 /* SplashV.swift */; };
 		35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E2987D29CBEC5800847F49 /* SplashVM.swift */; };
 		35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEAF229CAF99500AAE587 /* AppDelegate.swift */; };
@@ -54,6 +57,9 @@
 		359933C829D07A520098A0FC /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		359933CA29D07A690098A0FC /* MainV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainV.swift; sourceTree = "<group>"; };
 		359933CC29D07A750098A0FC /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
+		35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeV.swift; sourceTree = "<group>"; };
+		35BC511A29D1968B00BEA034 /* SelectUseTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeVC.swift; sourceTree = "<group>"; };
+		35BC511C29D196FB00BEA034 /* SelectUseTypeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeVM.swift; sourceTree = "<group>"; };
 		35E2987B29CBEC2D00847F49 /* SplashV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashV.swift; sourceTree = "<group>"; };
 		35E2987D29CBEC5800847F49 /* SplashVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVM.swift; sourceTree = "<group>"; };
 		35EAEAEF29CAF99500AAE587 /* VoiceConsultingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceConsultingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +121,16 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		35BC511729D194EB00BEA034 /* SelectUseType */ = {
+			isa = PBXGroup;
+			children = (
+				35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */,
+				35BC511A29D1968B00BEA034 /* SelectUseTypeVC.swift */,
+				35BC511C29D196FB00BEA034 /* SelectUseTypeVM.swift */,
+			);
+			path = SelectUseType;
+			sourceTree = "<group>";
+		};
 		35EAEAE629CAF99500AAE587 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +156,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				35BC511729D194EB00BEA034 /* SelectUseType */,
 				359933C529D077E50098A0FC /* GoogleService-Info.plist */,
 				35EAEB2229CAFAC600AAE587 /* Common */,
 				35EAEB2329CAFB1000AAE587 /* Helper */,
@@ -466,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */,
 				35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */,
@@ -474,8 +492,10 @@
 				35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */,
 				35EAEAF529CAF99500AAE587 /* SceneDelegate.swift in Sources */,
 				359933CD29D07A750098A0FC /* MainVM.swift in Sources */,
+				35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */,
 				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
 				35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */,
+				35BC511D29D196FB00BEA034 /* SelectUseTypeVM.swift in Sources */,
 				359933CB29D07A690098A0FC /* MainV.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
