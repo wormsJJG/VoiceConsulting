@@ -18,9 +18,26 @@ class SelectUseTypeVC: BaseViewController {
     }
     // MARK: - Properties
     private let viewModel = SelectUseTypeVM()
+    private let disposeBag = DisposeBag()
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addButtonAction()
+    }
+}
+// MARK: - Button Action
+extension SelectUseTypeVC {
+    private func addButtonAction() {
+        self.selectUseTypeV.userButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                self?.viewModel.input.selectUseType.onNext(UseType.user)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.selectUseTypeV.counselorButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                self?.viewModel.input.selectUseType.onNext(UseType.counselor)
+            })
+            .disposed(by: self.disposeBag)
     }
 }

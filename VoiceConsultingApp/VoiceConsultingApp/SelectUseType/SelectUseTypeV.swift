@@ -15,14 +15,14 @@ class SelectUseTypeV: UIView {
         $0.text = "사용하실 계정을 선택해주세요"
     }
     
-    private lazy var userButton: UIButton = UIButton().then {
+    lazy var userButton: UIButton = UIButton().then {
         $0.setTitle("사용자", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor.lightGray.cgColor
     }
     
-    private lazy var counselorButton: UIButton = UIButton().then {
+    lazy var counselorButton: UIButton = UIButton().then {
         $0.setTitle("상담사", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.layer.borderWidth = 1.0
