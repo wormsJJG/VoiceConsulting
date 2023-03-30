@@ -16,4 +16,8 @@ class BaseViewController: UIViewController {
     func isHiddenBackButton() {
         self.navigationItem.hidesBackButton = true
     }
+    
+    func isHiddenNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = true
+    }
 }

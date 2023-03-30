@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		15FF145122CCDC3A193DE7DD /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73758EB074927187BF6D96BB /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */; };
 		298085D794FF0792CE7714CE /* Pods_VoiceConsultingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D0B9A074DEA9009AE19745 /* Pods_VoiceConsultingApp.framework */; };
+		3509F82D29D5755800AD880C /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509F82C29D5755800AD880C /* ColorSet.swift */; };
+		355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEC529D5C43D00F9BD5D /* Fonts.swift */; };
+		355EDED329D5C6C600F9BD5D /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */; };
+		355EDED429D5C6C600F9BD5D /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECE29D5C6C500F9BD5D /* NotoSansKR-Thin.otf */; };
+		355EDED529D5C6C600F9BD5D /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECF29D5C6C600F9BD5D /* NotoSansKR-Black.otf */; };
+		355EDED629D5C6C600F9BD5D /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDED029D5C6C600F9BD5D /* NotoSansKR-Bold.otf */; };
+		355EDED729D5C6C600F9BD5D /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDED129D5C6C600F9BD5D /* NotoSansKR-Light.otf */; };
+		355EDED829D5C6C600F9BD5D /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDED229D5C6C600F9BD5D /* NotoSansKR-Medium.otf */; };
+		355EDEDB29D5C98800F9BD5D /* CompleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEDA29D5C98800F9BD5D /* CompleteButton.swift */; };
+		355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEDD29D5CD0300F9BD5D /* SelectCategoryVC.swift */; };
+		355EDEE029D5CD3600F9BD5D /* SelectCategoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEDF29D5CD3600F9BD5D /* SelectCategoryVM.swift */; };
+		355EDEE229D5CD7A00F9BD5D /* SelectCategoryV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEE129D5CD7A00F9BD5D /* SelectCategoryV.swift */; };
 		359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359933C529D077E50098A0FC /* GoogleService-Info.plist */; };
 		359933C929D07A520098A0FC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933C829D07A520098A0FC /* MainVC.swift */; };
 		359933CB29D07A690098A0FC /* MainV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933CA29D07A690098A0FC /* MainV.swift */; };
@@ -53,6 +65,18 @@
 		174FD441555BF452A7BD1D4F /* Pods-VoiceConsultingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp.debug.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		21D0B9A074DEA9009AE19745 /* Pods_VoiceConsultingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23DB66CE8AB2FFC14B4BFA2F /* Pods_VoiceConsultingAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3509F82C29D5755800AD880C /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
+		355EDEC529D5C43D00F9BD5D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		355EDECE29D5C6C500F9BD5D /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
+		355EDECF29D5C6C600F9BD5D /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
+		355EDED029D5C6C600F9BD5D /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
+		355EDED129D5C6C600F9BD5D /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
+		355EDED229D5C6C600F9BD5D /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		355EDEDA29D5C98800F9BD5D /* CompleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteButton.swift; sourceTree = "<group>"; };
+		355EDEDD29D5CD0300F9BD5D /* SelectCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryVC.swift; sourceTree = "<group>"; };
+		355EDEDF29D5CD3600F9BD5D /* SelectCategoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryVM.swift; sourceTree = "<group>"; };
+		355EDEE129D5CD7A00F9BD5D /* SelectCategoryV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryV.swift; sourceTree = "<group>"; };
 		359933C529D077E50098A0FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		359933C829D07A520098A0FC /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		359933CA29D07A690098A0FC /* MainV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainV.swift; sourceTree = "<group>"; };
@@ -111,6 +135,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3509F82B29D5754600AD880C /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				3509F82C29D5755800AD880C /* ColorSet.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		355EDEBE29D5C2B400F9BD5D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				355EDECF29D5C6C600F9BD5D /* NotoSansKR-Black.otf */,
+				355EDED029D5C6C600F9BD5D /* NotoSansKR-Bold.otf */,
+				355EDED129D5C6C600F9BD5D /* NotoSansKR-Light.otf */,
+				355EDED229D5C6C600F9BD5D /* NotoSansKR-Medium.otf */,
+				355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */,
+				355EDECE29D5C6C500F9BD5D /* NotoSansKR-Thin.otf */,
+				355EDEC529D5C43D00F9BD5D /* Fonts.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		355EDED929D5C96B00F9BD5D /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				355EDEDA29D5C98800F9BD5D /* CompleteButton.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		355EDEDC29D5CCE700F9BD5D /* SelectCategory */ = {
+			isa = PBXGroup;
+			children = (
+				355EDEDD29D5CD0300F9BD5D /* SelectCategoryVC.swift */,
+				355EDEDF29D5CD3600F9BD5D /* SelectCategoryVM.swift */,
+				355EDEE129D5CD7A00F9BD5D /* SelectCategoryV.swift */,
+			);
+			path = SelectCategory;
+			sourceTree = "<group>";
+		};
 		359933C729D07A270098A0FC /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +220,10 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				355EDEDC29D5CCE700F9BD5D /* SelectCategory */,
+				355EDED929D5C96B00F9BD5D /* Custom */,
+				355EDEBE29D5C2B400F9BD5D /* Fonts */,
+				3509F82B29D5754600AD880C /* Color */,
 				35BC511729D194EB00BEA034 /* SelectUseType */,
 				359933C529D077E50098A0FC /* GoogleService-Info.plist */,
 				35EAEB2229CAFAC600AAE587 /* Common */,
@@ -354,7 +422,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				355EDED429D5C6C600F9BD5D /* NotoSansKR-Thin.otf in Resources */,
 				35EAEAFC29CAF99600AAE587 /* Assets.xcassets in Resources */,
+				355EDED729D5C6C600F9BD5D /* NotoSansKR-Light.otf in Resources */,
+				355EDED329D5C6C600F9BD5D /* NotoSansKR-Regular.otf in Resources */,
+				355EDED829D5C6C600F9BD5D /* NotoSansKR-Medium.otf in Resources */,
+				355EDED529D5C6C600F9BD5D /* NotoSansKR-Black.otf in Resources */,
+				355EDED629D5C6C600F9BD5D /* NotoSansKR-Bold.otf in Resources */,
 				359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,16 +557,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				355EDEE229D5CD7A00F9BD5D /* SelectCategoryV.swift in Sources */,
+				355EDEE029D5CD3600F9BD5D /* SelectCategoryVM.swift in Sources */,
+				355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */,
 				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */,
 				35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */,
+				3509F82D29D5755800AD880C /* ColorSet.swift in Sources */,
 				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
 				359933C929D07A520098A0FC /* MainVC.swift in Sources */,
+				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
 				35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */,
 				35EAEAF529CAF99500AAE587 /* SceneDelegate.swift in Sources */,
 				359933CD29D07A750098A0FC /* MainVM.swift in Sources */,
 				35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */,
+				355EDEDB29D5C98800F9BD5D /* CompleteButton.swift in Sources */,
 				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
 				35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */,
 				35BC511D29D196FB00BEA034 /* SelectUseTypeVM.swift in Sources */,

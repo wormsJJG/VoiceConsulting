@@ -38,7 +38,6 @@ class SelectUseTypeVM: BaseViewModel {
         input.selectUseType
             .subscribe(onNext: { [weak self] _ in
                 self?.output.isNextButtonEnable.accept(true)
-                print("true")
             })
             .disposed(by: self.disposeBag)
     }

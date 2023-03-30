@@ -12,37 +12,39 @@ import Then
 class SelectUseTypeV: UIView {
     // MARK: - Componet
     private lazy var discritionLabel: UILabel = UILabel().then {
-        $0.text = "사용하실 계정을 선택해주세요"
+        $0.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 20)
+        $0.text = "사용하실 계정을\n선택해주세요"
+        $0.numberOfLines = 2
     }
     
     lazy var userButton: UIButton = UIButton().then {
+        $0.titleLabel?.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 18)
         $0.setTitle("사용자", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(ColorSet.subTextColor, for: .normal)
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.lightGray.cgColor
+        $0.layer.borderColor = ColorSet.nonSelectColor?.cgColor
+        $0.layer.cornerRadius = 20
     }
     
     lazy var counselorButton: UIButton = UIButton().then {
+        $0.titleLabel?.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 18)
         $0.setTitle("상담사", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(ColorSet.subTextColor, for: .normal)
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.lightGray.cgColor
+        $0.layer.borderColor = ColorSet.nonSelectColor?.cgColor
+        $0.layer.cornerRadius = 20
     }
     
     private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [userButton,
-                                                                            counselorButton]).then {
+                                        counselorButton]).then {
         $0.axis = .horizontal
         $0.distribution = .fillEqually
-        $0.spacing = 10
+        $0.spacing = 12
     }
     
-    private lazy var nextButton: UIButton = UIButton().then {
-        $0.setTitle("다음", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.lightGray.cgColor
+    lazy var nextButton: CompleteButton = CompleteButton().then {
+        $0.titleText = "다음"
     }
-    
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,28 +60,46 @@ class SelectUseTypeV: UIView {
         self.addSubview(self.discritionLabel)
         
         self.discritionLabel.snp.makeConstraints { label in
-            label.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(30)
-            label.left.equalTo(self.snp.left).offset(30)
-            label.right.equalTo(self.snp.right).offset(-30)
+            label.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(80)
+            label.left.equalTo(self.snp.left).offset(20)
+            label.right.equalTo(self.snp.right).offset(-20)
         }
         // 선택버튼 스택뷰
         self.addSubview(buttonStackView)
         
         self.buttonStackView.snp.makeConstraints { stackView in
-            stackView.height.equalTo(100)
+            stackView.height.equalTo(92)
             stackView.top.equalTo(self.discritionLabel.snp.bottom).offset(50)
-            stackView.left.equalTo(self.snp.left).offset(30)
-            stackView.right.equalTo(self.snp.right).offset(-30)
+            stackView.left.equalTo(self.snp.left).offset(20)
+            stackView.right.equalTo(self.snp.right).offset(-20)
         }
         // 다음버튼 스택뷰
         self.addSubview(nextButton)
         
         self.nextButton.snp.makeConstraints { button in
-            button.height.equalTo(50)
-            button.left.equalTo(self.snp.left).offset(30)
+            button.height.equalTo(54)
+            button.left.equalTo(self.snp.left).offset(20)
             button.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-            button.right.equalTo(self.snp.right).offset(-30)
+            button.right.equalTo(self.snp.right).offset(-20)
         }
-        
+    }
+    
+    func clickAction(useType: UseType) {
+        switch useType {
+        case .user:
+            if counselorButton.layer.borderColor == ColorSet.mainColor!.cgColor {
+                counselorButton.layer.borderColor = UIColor.lightGray.cgColor
+                counselorButton.setTitleColor(.black, for: .normal)
+            }
+            userButton.layer.borderColor = ColorSet.mainColor?.cgColor
+            userButton.setTitleColor(ColorSet.mainColor, for: .normal)
+        case .counselor:
+            if userButton.layer.borderColor == ColorSet.mainColor!.cgColor {
+                userButton.layer.borderColor = UIColor.lightGray.cgColor
+                userButton.setTitleColor(.black, for: .normal)
+            }
+            counselorButton.layer.borderColor = ColorSet.mainColor?.cgColor
+            counselorButton.setTitleColor(ColorSet.mainColor, for: .normal)
+        }
     }
 }
