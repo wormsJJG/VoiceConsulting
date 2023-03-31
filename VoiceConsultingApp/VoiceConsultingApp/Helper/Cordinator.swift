@@ -15,7 +15,7 @@ class Cordinator {
     }
     
     func start() {
-        let rootVC = SplashVC()
+        let rootVC = LoginVC()
         let navigationRootVC = UINavigationController(rootViewController: rootVC)
         
         window.rootViewController = navigationRootVC
