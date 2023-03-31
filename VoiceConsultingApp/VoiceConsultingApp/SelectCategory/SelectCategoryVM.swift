@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class SelectCategoryVM: BaseViewModel {
     
     struct Input {
-        
+        var userSelectCategoryList: [String] = []
+        var didTapCompleteButton: PublishSubject<Void> = PublishSubject()
     }
     
     struct Output {
@@ -19,10 +22,22 @@ class SelectCategoryVM: BaseViewModel {
     
     var input: Input
     var output: Output
+    var categoryData: [Category] = CategoryManager.shared.data
+    private let disposeBag = DisposeBag()
     
     init(input: Input = Input(),
          output: Output = Output()) {
         self.input = input
         self.output = output
+        inputSubscribe()
+    }
+    
+    private func inputSubscribe() {
+        self.input.didTapCompleteButton
+            .filter { !self.input.userSelectCategoryList.isEmpty }
+            .bind(onNext: { [weak self] _ in
+                print(self!.input.userSelectCategoryList)
+            })
+            .disposed(by: self.disposeBag)
     }
 }

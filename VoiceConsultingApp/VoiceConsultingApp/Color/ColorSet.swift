@@ -12,4 +12,5 @@ class ColorSet {
     static let mainColor = UIColor(named: "MainColor")
     static let nonSelectColor = UIColor(named: "NonSelectColor")
     static let subTextColor = UIColor(named: "SubTextColor")
+    static let subTextColor2 = UIColor(named: "SubTextColor2")
 }

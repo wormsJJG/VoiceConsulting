@@ -11,10 +11,11 @@ import Then
 
 class SelectUseTypeV: UIView {
     // MARK: - Componet
-    private lazy var discritionLabel: UILabel = UILabel().then {
+    private lazy var infomationLabel: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 20)
         $0.text = "사용하실 계정을\n선택해주세요"
         $0.numberOfLines = 2
+        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     lazy var userButton: UIButton = UIButton().then {
@@ -24,6 +25,7 @@ class SelectUseTypeV: UIView {
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = ColorSet.nonSelectColor?.cgColor
         $0.layer.cornerRadius = 20
+        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     lazy var counselorButton: UIButton = UIButton().then {
@@ -33,6 +35,7 @@ class SelectUseTypeV: UIView {
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = ColorSet.nonSelectColor?.cgColor
         $0.layer.cornerRadius = 20
+        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [userButton,
@@ -40,10 +43,12 @@ class SelectUseTypeV: UIView {
         $0.axis = .horizontal
         $0.distribution = .fillEqually
         $0.spacing = 12
+        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     lazy var nextButton: CompleteButton = CompleteButton().then {
         $0.titleText = "다음"
+        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     // MARK: - init
     override init(frame: CGRect) {
@@ -57,9 +62,9 @@ class SelectUseTypeV: UIView {
     // MARK: - Constraint
     private func constraint() {
         // 설명 레이블
-        self.addSubview(self.discritionLabel)
+        self.addSubview(self.infomationLabel)
         
-        self.discritionLabel.snp.makeConstraints { label in
+        self.infomationLabel.snp.makeConstraints { label in
             label.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(80)
             label.left.equalTo(self.snp.left).offset(20)
             label.right.equalTo(self.snp.right).offset(-20)
@@ -69,7 +74,7 @@ class SelectUseTypeV: UIView {
         
         self.buttonStackView.snp.makeConstraints { stackView in
             stackView.height.equalTo(92)
-            stackView.top.equalTo(self.discritionLabel.snp.bottom).offset(50)
+            stackView.top.equalTo(self.infomationLabel.snp.bottom).offset(50)
             stackView.left.equalTo(self.snp.left).offset(20)
             stackView.right.equalTo(self.snp.right).offset(-20)
         }
@@ -79,7 +84,7 @@ class SelectUseTypeV: UIView {
         self.nextButton.snp.makeConstraints { button in
             button.height.equalTo(54)
             button.left.equalTo(self.snp.left).offset(20)
-            button.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            button.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-10)
             button.right.equalTo(self.snp.right).offset(-20)
         }
     }
