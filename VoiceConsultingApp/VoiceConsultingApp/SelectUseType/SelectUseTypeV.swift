@@ -14,6 +14,7 @@ class SelectUseTypeV: UIView {
     private lazy var infomationLabel: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 20)
         $0.text = "사용하실 계정을\n선택해주세요"
+        $0.textColor = ColorSet.mainText
         $0.numberOfLines = 2
         $0.translatesAutoresizingMaskIntoConstraints = false
     }

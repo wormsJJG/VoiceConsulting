@@ -31,6 +31,7 @@ extension LoginVC {
         self.loginV.kakaoLoginButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.viewModel.input.didTapLoginButton.onNext(.kakao)
+                self?.navigationController?.pushViewController(SelectUseTypeVC(), animated: true)
             })
             .disposed(by: self.disposeBag)
         
