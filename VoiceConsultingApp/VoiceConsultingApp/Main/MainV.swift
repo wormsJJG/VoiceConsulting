@@ -11,6 +11,8 @@ import SnapKit
 
 class MainV: UIView {
     
+    lazy var headerView = MainHeaderView()
+    
     lazy var mainList: UITableView = UITableView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -26,13 +28,21 @@ class MainV: UIView {
     
     // MARK: - Constraints
     private func constraint() {
-        self.addSubview(mainList)
+        self.addSubview(headerView)
         
-        self.mainList.snp.makeConstraints { list in
-            list.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-            list.left.equalTo(self.snp.left)
-            list.right.equalTo(self.snp.right)
-            list.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+        self.headerView.snp.makeConstraints { hv in
+            hv.left.equalTo(self.snp.left)
+            hv.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            hv.right.equalTo(self.snp.right)
         }
+        
+//        self.addSubview(mainList)
+//        
+//        self.mainList.snp.makeConstraints { list in
+//            list.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+//            list.left.equalTo(self.snp.left)
+//            list.right.equalTo(self.snp.right)
+//            list.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+//        }
     }
 }

@@ -13,4 +13,5 @@ class AssetImage {
     static let kakaoLogin = "KaKaoLogin"
     static let appleLogin = "AppleLogin"
     static let googleLogin = "GoogleLogin"
+    static let coinIcon = "CoinIcon"
 }

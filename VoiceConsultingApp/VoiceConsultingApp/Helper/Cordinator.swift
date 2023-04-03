@@ -15,7 +15,7 @@ class Cordinator {
     }
     
     func start() {
-        let rootVC = LoginVC()
+        let rootVC = MainVC()
         let navigationRootVC = UINavigationController(rootViewController: rootVC)
         
         window.rootViewController = navigationRootVC

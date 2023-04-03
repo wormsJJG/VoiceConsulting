@@ -23,6 +23,7 @@ class MainVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Main" //임시
+        isHiddenNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
