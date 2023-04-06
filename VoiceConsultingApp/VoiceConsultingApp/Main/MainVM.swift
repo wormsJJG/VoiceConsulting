@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class MainVM: BaseViewModel {
     
@@ -19,6 +21,7 @@ class MainVM: BaseViewModel {
     
     var input: Input
     var output: Output
+    var sectionTitleList = Observable.of(MainListSection.allCases)
     
     init(input: Input = Input(),
          output: Output = Output()) {

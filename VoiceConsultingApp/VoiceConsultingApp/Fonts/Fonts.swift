@@ -14,4 +14,5 @@ class Fonts {
     static let NotoSansKR_Medium = "NotoSansKR-Medium"
     static let NotoSansKR_Regular = "NotoSansKR-Regular"
     static let NotoSansKR_Thin = "NotoSansKR-Thin"
+    static let Inter_Bold = "Inter-Bold"
 }
