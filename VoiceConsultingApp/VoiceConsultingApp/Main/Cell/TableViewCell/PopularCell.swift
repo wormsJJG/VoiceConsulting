@@ -22,10 +22,12 @@ class PopularCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        layout.itemSize = CGSize(width: (UIScreen.main.bounds.width / 2) - 60, height: 220)
+        layout.itemSize = CGSize(width: (UIScreen.main.bounds.width / 2) - 40, height: 220)
+        layout.minimumLineSpacing = 10.0
         
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.register(PopularCounselorCell.self, forCellWithReuseIdentifier: PopularCounselorCell.cellID)
+        list.showsHorizontalScrollIndicator = false
         
         return list
     }()
@@ -71,7 +73,6 @@ class PopularCell: UITableViewCell {
     private func dataBind() {
         self.popularCounselorList
             .bind(to: counselorList.rx.items(cellIdentifier: PopularCounselorCell.cellID, cellType: PopularCounselorCell.self)) { index, counselor, cell in
-                
             }
             .disposed(by: self.disposeBag)
     }

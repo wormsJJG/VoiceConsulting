@@ -22,6 +22,8 @@ class MainV: UIView {
         $0.register(LiveCell.self, forCellReuseIdentifier: LiveCell.cellID)
         $0.register(PopularCell.self, forCellReuseIdentifier: PopularCell.cellID)
         $0.register(FitWellCell.self, forCellReuseIdentifier: FitWellCell.cellID)
+        $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
 

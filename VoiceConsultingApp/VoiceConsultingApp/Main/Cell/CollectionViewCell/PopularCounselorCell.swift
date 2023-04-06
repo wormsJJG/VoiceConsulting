@@ -51,7 +51,7 @@ class PopularCounselorCell: UICollectionViewCell {
     
     lazy var consultationCount: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 12)
-        $0.text = "상담 4회"
+        $0.text = "상담 400회"
         $0.textColor = ColorSet.subTextColor
     }
     
@@ -79,7 +79,8 @@ class PopularCounselorCell: UICollectionViewCell {
     }
     
     private func cellDesign() {
-        
+        textColorChange()
+        setViewShadow(backView: contentView)
     }
     
     private func constraint() {
@@ -108,5 +109,15 @@ class PopularCounselorCell: UICollectionViewCell {
             sv.left.equalTo(self.allStackView.snp.left)
             sv.right.equalTo(self.allStackView.snp.right)
         }
+    }
+    
+    private func textColorChange() {
+        guard let text = self.consultationCount.text else { return }
+        let attributeString = NSMutableAttributedString(string: text)
+
+        attributeString.addAttribute(.foregroundColor, value: ColorSet.mainColor!, range: (text as NSString).range(of: text.filter { $0.isNumber }))
+
+        // myLabel에 방금 만든 속성을 적용합니다.
+        self.consultationCount.attributedText = attributeString
     }
 }

@@ -12,8 +12,22 @@ import SnapKit
 class LiveCounselorCell: UICollectionViewCell {
     static let cellID = "liveCounselorCell"
     // MARK: - View
+    private let thumnailContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+      
+        view.layer.cornerRadius = 34
+        view.layer.borderWidth = 1
+        view.layer.borderColor = ColorSet.mainColor?.cgColor
+        view.layer.masksToBounds = true
+      
+        return view
+    }()
+
     lazy var thumnail: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
+        $0.clipsToBounds = true
         $0.layer.cornerRadius = 30
     }
     
@@ -21,9 +35,10 @@ class LiveCounselorCell: UICollectionViewCell {
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
         $0.textColor = ColorSet.mainText
         $0.text = "김이름 상담사"
+        $0.layer.masksToBounds = true
     }
     
-    lazy var contentStackView: UIStackView = UIStackView(arrangedSubviews: [thumnail, name]).then {
+    lazy var contentStackView: UIStackView = UIStackView(arrangedSubviews: [thumnailContainerView, name]).then {
         $0.axis = .vertical
         $0.spacing = 8
         $0.alignment = .center
@@ -42,14 +57,18 @@ class LiveCounselorCell: UICollectionViewCell {
     
     private func cellDesign() {
         setViewShadow(backView: contentView)
-        self.contentView.layoutIfNeeded()
     }
     
     private func constraint() {
+        self.thumnailContainerView.addSubview(thumnail)
         self.contentView.addSubview(contentStackView)
+        self.thumnailContainerView.snp.makeConstraints { view in
+            view.width.height.equalTo(68)
+        }
         
         self.thumnail.snp.makeConstraints { image in
             image.width.height.equalTo(60)
+            image.center.equalTo(self.thumnailContainerView.snp.center)
         }
         
         self.contentStackView.snp.makeConstraints { sv in

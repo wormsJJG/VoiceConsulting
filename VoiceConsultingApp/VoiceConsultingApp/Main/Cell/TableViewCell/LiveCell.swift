@@ -20,10 +20,12 @@ class LiveCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        layout.itemSize = CGSize(width: (UIScreen.main.bounds.width / 3), height: 140)
+        layout.itemSize = CGSize(width: (UIScreen.main.bounds.width / 3) + 10, height: 140)
+        layout.minimumLineSpacing = 10.0
         
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.register(LiveCounselorCell.self, forCellWithReuseIdentifier: LiveCounselorCell.cellID)
+        list.showsHorizontalScrollIndicator = false
         
         return list
     }()
@@ -69,7 +71,7 @@ class LiveCell: UITableViewCell {
     private func dataBind() {
         self.liveCounselorList
             .bind(to: counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { index, counselor, cell in
-                
+
             }
             .disposed(by: self.disposeBag)
     }

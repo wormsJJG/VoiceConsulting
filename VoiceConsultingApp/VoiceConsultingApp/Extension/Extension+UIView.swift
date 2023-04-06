@@ -10,14 +10,17 @@ import UIKit
 extension UIView {
     
     func setViewShadow(backView: UIView) {
-        backView.layer.masksToBounds = true
+        backView.layer.masksToBounds = false
         backView.layer.cornerRadius = 12
         backView.layer.borderWidth = 0
-
-        layer.shadowColor = UIColor(red: 0.637, green: 0.637, blue: 0.637, alpha: 0.25).cgColor
+        backView.backgroundColor = .white
+    
+                
         layer.masksToBounds = false
         layer.shadowOpacity = 1
-        layer.shadowOffset = CGSize(width: -2, height: 2)
-        layer.shadowRadius = 8
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowRadius = 10
+        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+        layer.shadowRadius = 3
     }
 }

@@ -50,7 +50,7 @@ class FitWellCounselorCell: UICollectionViewCell {
     }
     
     private func cellDesign() {
-        
+        setViewShadow(backView: contentView)
     }
     
     private func constraint() {
