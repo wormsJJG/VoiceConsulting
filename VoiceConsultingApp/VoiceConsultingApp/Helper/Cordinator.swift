@@ -15,10 +15,10 @@ class Cordinator {
     }
     
     func start() {
-        let rootVC = MainVC()
-        let navigationRootVC = UINavigationController(rootViewController: rootVC)
-        
-        window.rootViewController = navigationRootVC
+//        let rootVC = MainVC()
+//        let navigationRootVC = UINavigationController(rootViewController: rootVC)
+            
+        window.rootViewController = CustomTabBarController()
         window.makeKeyAndVisible()
     }
 }

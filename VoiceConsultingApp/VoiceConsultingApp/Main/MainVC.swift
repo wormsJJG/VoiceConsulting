@@ -57,11 +57,16 @@ extension MainVC: UITableViewDelegate {
                         
                         return UITableViewCell()
                     }
+                    
                     liveCounselorCell.header.sectionTitle.text = section.sectionTitle
                     liveCounselorCell.liveCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
+                    
+                    let moreLiveVC = MoreLiveVC()
+                    moreLiveVC.hidesBottomBarWhenPushed = true
+                    
                     liveCounselorCell.header.moreButton.rx.tap
                         .bind(onNext: { [weak self] _ in
-                            self?.navigationController?.pushViewController(MoreLiveVC(), animated: true)
+                            self?.navigationController?.pushViewController(moreLiveVC, animated: true)
                         })
                         .disposed(by: self.disposeBag)
                     
@@ -76,9 +81,13 @@ extension MainVC: UITableViewDelegate {
                     }
                     popularCell.header.sectionTitle.text = section.sectionTitle
                     popularCell.popularCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
+                    
+                    let morePopularVC = MorePopularVC()
+                    morePopularVC.hidesBottomBarWhenPushed = true
+                    
                     popularCell.header.moreButton.rx.tap
                         .bind(onNext: { [weak self] _ in
-                            self?.navigationController?.pushViewController(MorePopularVC(), animated: true)
+                            self?.navigationController?.pushViewController(morePopularVC, animated: true)
                         })
                         .disposed(by: self.disposeBag)
                     
@@ -92,9 +101,13 @@ extension MainVC: UITableViewDelegate {
                     }
                     fitWellCounselorCell.header.sectionTitle.text = section.sectionTitle
                     fitWellCounselorCell.fitWellCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
+                    
+                    let moreFitWellVC = MoreFitWellVC()
+                    moreFitWellVC.hidesBottomBarWhenPushed = true
+                    
                     fitWellCounselorCell.header.moreButton.rx.tap
                         .bind(onNext: { [weak self] _ in
-                            self?.navigationController?.pushViewController(MoreFitWellVC(), animated: true)
+                            self?.navigationController?.pushViewController(moreFitWellVC, animated: true)
                         })
                         .disposed(by: self.disposeBag)
                     

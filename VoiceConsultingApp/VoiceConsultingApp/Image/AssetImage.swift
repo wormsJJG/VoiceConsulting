@@ -18,4 +18,10 @@ class AssetImage {
     static let thumnail = "Thumbnail"
     static let star = "Star"
     static let backButton = "BackButton"
+    static let mainIcon = "MainIcon"
+    static let mainIconFill = "MainIconFill"
+    static let chattingIcon = "ChattingIcon"
+    static let chattingIconFill = "ChattingIconFill"
+    static let myIcon = "MyIcon"
+    static let myIconFill = "MyIconFill"
 }

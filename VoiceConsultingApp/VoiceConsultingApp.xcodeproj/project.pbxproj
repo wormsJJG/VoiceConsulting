@@ -37,6 +37,9 @@
 		354609F729D70DA600FC5ABB /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354609F629D70DA600FC5ABB /* LoginVC.swift */; };
 		354609F929D70DF300FC5ABB /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354609F829D70DF300FC5ABB /* LoginVM.swift */; };
 		354609FD29D70EEB00FC5ABB /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354609FC29D70EEB00FC5ABB /* LoginType.swift */; };
+		354664AF29E425EA0055375F /* ChattingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664AE29E425EA0055375F /* ChattingListVC.swift */; };
+		354664B129E4262D0055375F /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664B029E4262D0055375F /* MyPageVC.swift */; };
+		354664B329E42C1A0055375F /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664B229E42C1A0055375F /* CustomTabBarController.swift */; };
 		355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEC529D5C43D00F9BD5D /* Fonts.swift */; };
 		355EDED329D5C6C600F9BD5D /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */; };
 		355EDED429D5C6C600F9BD5D /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECE29D5C6C500F9BD5D /* NotoSansKR-Thin.otf */; };
@@ -125,6 +128,9 @@
 		354609F629D70DA600FC5ABB /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		354609F829D70DF300FC5ABB /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		354609FC29D70EEB00FC5ABB /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
+		354664AE29E425EA0055375F /* ChattingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListVC.swift; sourceTree = "<group>"; };
+		354664B029E4262D0055375F /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
+		354664B229E42C1A0055375F /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		355EDEC529D5C43D00F9BD5D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		355EDECE29D5C6C500F9BD5D /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
@@ -283,6 +289,22 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		354664AC29E425C50055375F /* ChattingList */ = {
+			isa = PBXGroup;
+			children = (
+				354664AE29E425EA0055375F /* ChattingListVC.swift */,
+			);
+			path = ChattingList;
+			sourceTree = "<group>";
+		};
+		354664AD29E425CD0055375F /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				354664B029E4262D0055375F /* MyPageVC.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		355EDEBE29D5C2B400F9BD5D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +329,7 @@
 				3560437129DEB943001CDA77 /* CounselorBadge.swift */,
 				3560437729DECBFD001CDA77 /* CategoryBlock.swift */,
 				3504E2A729E3A4F2006AEED6 /* MoreHeaderView.swift */,
+				354664B229E42C1A0055375F /* CustomTabBarController.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -391,6 +414,8 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				354664AD29E425CD0055375F /* MyPage */,
+				354664AC29E425C50055375F /* ChattingList */,
 				3504E2A929E3A61F006AEED6 /* More */,
 				3500F74029DC07390080AC4F /* Extension */,
 				354609F329D70D4F00FC5ABB /* Login */,
@@ -744,6 +769,7 @@
 				35277D2329DA8AB9002A2A14 /* LiveCell.swift in Sources */,
 				35277D2729DA8ADA002A2A14 /* FitWellCell.swift in Sources */,
 				355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */,
+				354664AF29E425EA0055375F /* ChattingListVC.swift in Sources */,
 				3504E2B029E3A887006AEED6 /* MoreFitWellVC.swift in Sources */,
 				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
 				35277D2529DA8ACD002A2A14 /* PopularCell.swift in Sources */,
@@ -759,6 +785,7 @@
 				3509F82D29D5755800AD880C /* ColorSet.swift in Sources */,
 				354609F729D70DA600FC5ABB /* LoginVC.swift in Sources */,
 				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
+				354664B329E42C1A0055375F /* CustomTabBarController.swift in Sources */,
 				3504E2B829E3A8C4006AEED6 /* MorePopularV.swift in Sources */,
 				359933C929D07A520098A0FC /* MainVC.swift in Sources */,
 				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
@@ -774,6 +801,7 @@
 				3560437429DEBAD7001CDA77 /* PopularCounselorCell.swift in Sources */,
 				359933CD29D07A750098A0FC /* MainVM.swift in Sources */,
 				354609F229D6F46700FC5ABB /* Category.swift in Sources */,
+				354664B129E4262D0055375F /* MyPageVC.swift in Sources */,
 				35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */,
 				355EDEDB29D5C98800F9BD5D /* CompleteButton.swift in Sources */,
 				354609FD29D70EEB00FC5ABB /* LoginType.swift in Sources */,
