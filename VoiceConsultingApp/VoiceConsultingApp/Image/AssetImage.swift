@@ -17,4 +17,5 @@ class AssetImage {
     static let bannerImage = "Banner"
     static let thumnail = "Thumbnail"
     static let star = "Star"
+    static let backButton = "BackButton"
 }

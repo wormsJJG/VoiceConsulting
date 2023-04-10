@@ -46,8 +46,6 @@ class MainV: UIView {
             hv.right.equalTo(self.snp.right)
         }
         
-        self.addSubview(bannerImage)
-        
         self.addSubview(mainList)
         
         self.mainList.snp.makeConstraints { list in

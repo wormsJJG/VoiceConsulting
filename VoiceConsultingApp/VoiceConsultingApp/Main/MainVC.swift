@@ -59,6 +59,11 @@ extension MainVC: UITableViewDelegate {
                     }
                     liveCounselorCell.header.sectionTitle.text = section.sectionTitle
                     liveCounselorCell.liveCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
+                    liveCounselorCell.header.moreButton.rx.tap
+                        .bind(onNext: { [weak self] _ in
+                            self?.navigationController?.pushViewController(MoreLiveVC(), animated: true)
+                        })
+                        .disposed(by: self.disposeBag)
                     
                     
                     return liveCounselorCell
@@ -71,6 +76,11 @@ extension MainVC: UITableViewDelegate {
                     }
                     popularCell.header.sectionTitle.text = section.sectionTitle
                     popularCell.popularCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
+                    popularCell.header.moreButton.rx.tap
+                        .bind(onNext: { [weak self] _ in
+                            self?.navigationController?.pushViewController(MorePopularVC(), animated: true)
+                        })
+                        .disposed(by: self.disposeBag)
                     
                     return popularCell
                     
@@ -82,6 +92,11 @@ extension MainVC: UITableViewDelegate {
                     }
                     fitWellCounselorCell.header.sectionTitle.text = section.sectionTitle
                     fitWellCounselorCell.fitWellCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
+                    fitWellCounselorCell.header.moreButton.rx.tap
+                        .bind(onNext: { [weak self] _ in
+                            self?.navigationController?.pushViewController(MoreFitWellVC(), animated: true)
+                        })
+                        .disposed(by: self.disposeBag)
                     
                     return fitWellCounselorCell
                 }
