@@ -4,6 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Inter-Medium.ttf</string>
 		<string>Inter-Bold.ttf</string>
 		<string>NotoSansKR-Black.otf</string>
 		<string>NotoSansKR-Bold.otf</string>

@@ -9,6 +9,11 @@ import UIKit
 
 class MyPageVC: BaseViewController {
     // MARK: - Load View
+    private let myPageV = MyPageV()
+    
+    override func loadView() {
+        self.view = myPageV
+    }
     // MARK: - Properties
     // MARK: - Life Cycles
     override func viewDidLoad() {

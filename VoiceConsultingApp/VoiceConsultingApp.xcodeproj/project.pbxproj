@@ -40,6 +40,11 @@
 		354664AF29E425EA0055375F /* ChattingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664AE29E425EA0055375F /* ChattingListVC.swift */; };
 		354664B129E4262D0055375F /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664B029E4262D0055375F /* MyPageVC.swift */; };
 		354664B329E42C1A0055375F /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664B229E42C1A0055375F /* CustomTabBarController.swift */; };
+		354664B529E4359E0055375F /* MyPageV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664B429E4359E0055375F /* MyPageV.swift */; };
+		354664B729E436200055375F /* MyPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664B629E436200055375F /* MyPageHeader.swift */; };
+		354664B929E43ADF0055375F /* BigCoinBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664B829E43ADF0055375F /* BigCoinBlock.swift */; };
+		354664BB29E43FC50055375F /* ServiceCenterBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664BA29E43FC50055375F /* ServiceCenterBlock.swift */; };
+		354664BD29E441130055375F /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 354664BC29E441120055375F /* Inter-Medium.ttf */; };
 		355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEC529D5C43D00F9BD5D /* Fonts.swift */; };
 		355EDED329D5C6C600F9BD5D /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */; };
 		355EDED429D5C6C600F9BD5D /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECE29D5C6C500F9BD5D /* NotoSansKR-Thin.otf */; };
@@ -131,6 +136,11 @@
 		354664AE29E425EA0055375F /* ChattingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListVC.swift; sourceTree = "<group>"; };
 		354664B029E4262D0055375F /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
 		354664B229E42C1A0055375F /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		354664B429E4359E0055375F /* MyPageV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageV.swift; sourceTree = "<group>"; };
+		354664B629E436200055375F /* MyPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeader.swift; sourceTree = "<group>"; };
+		354664B829E43ADF0055375F /* BigCoinBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCoinBlock.swift; sourceTree = "<group>"; };
+		354664BA29E43FC50055375F /* ServiceCenterBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCenterBlock.swift; sourceTree = "<group>"; };
+		354664BC29E441120055375F /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		355EDEC529D5C43D00F9BD5D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		355EDECE29D5C6C500F9BD5D /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
@@ -301,6 +311,8 @@
 			isa = PBXGroup;
 			children = (
 				354664B029E4262D0055375F /* MyPageVC.swift */,
+				354664B429E4359E0055375F /* MyPageV.swift */,
+				354664B629E436200055375F /* MyPageHeader.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -308,6 +320,7 @@
 		355EDEBE29D5C2B400F9BD5D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				354664BC29E441120055375F /* Inter-Medium.ttf */,
 				35277D1929DA73DD002A2A14 /* Inter-Bold.ttf */,
 				355EDECF29D5C6C600F9BD5D /* NotoSansKR-Black.otf */,
 				355EDED029D5C6C600F9BD5D /* NotoSansKR-Bold.otf */,
@@ -330,6 +343,8 @@
 				3560437729DECBFD001CDA77 /* CategoryBlock.swift */,
 				3504E2A729E3A4F2006AEED6 /* MoreHeaderView.swift */,
 				354664B229E42C1A0055375F /* CustomTabBarController.swift */,
+				354664B829E43ADF0055375F /* BigCoinBlock.swift */,
+				354664BA29E43FC50055375F /* ServiceCenterBlock.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -631,6 +646,7 @@
 				355EDED829D5C6C600F9BD5D /* NotoSansKR-Medium.otf in Resources */,
 				355EDED529D5C6C600F9BD5D /* NotoSansKR-Black.otf in Resources */,
 				355EDED629D5C6C600F9BD5D /* NotoSansKR-Bold.otf in Resources */,
+				354664BD29E441130055375F /* Inter-Medium.ttf in Resources */,
 				359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -772,10 +788,12 @@
 				354664AF29E425EA0055375F /* ChattingListVC.swift in Sources */,
 				3504E2B029E3A887006AEED6 /* MoreFitWellVC.swift in Sources */,
 				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
+				354664B929E43ADF0055375F /* BigCoinBlock.swift in Sources */,
 				35277D2529DA8ACD002A2A14 /* PopularCell.swift in Sources */,
 				3504E2A829E3A4F2006AEED6 /* MoreHeaderView.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				3504E2B429E3A8A0006AEED6 /* MoreLiveVC.swift in Sources */,
+				354664BB29E43FC50055375F /* ServiceCenterBlock.swift in Sources */,
 				3560437829DECBFD001CDA77 /* CategoryBlock.swift in Sources */,
 				35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */,
 				354609F529D70D8500FC5ABB /* LoginV.swift in Sources */,
@@ -787,6 +805,7 @@
 				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
 				354664B329E42C1A0055375F /* CustomTabBarController.swift in Sources */,
 				3504E2B829E3A8C4006AEED6 /* MorePopularV.swift in Sources */,
+				354664B529E4359E0055375F /* MyPageV.swift in Sources */,
 				359933C929D07A520098A0FC /* MainVC.swift in Sources */,
 				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
 				3504E2B629E3A8B1006AEED6 /* MoreFitWellV.swift in Sources */,
@@ -799,6 +818,7 @@
 				35EAEAF529CAF99500AAE587 /* SceneDelegate.swift in Sources */,
 				3504E2BA29E3A8CE006AEED6 /* MoreLiveV.swift in Sources */,
 				3560437429DEBAD7001CDA77 /* PopularCounselorCell.swift in Sources */,
+				354664B729E436200055375F /* MyPageHeader.swift in Sources */,
 				359933CD29D07A750098A0FC /* MainVM.swift in Sources */,
 				354609F229D6F46700FC5ABB /* Category.swift in Sources */,
 				354664B129E4262D0055375F /* MyPageVC.swift in Sources */,
