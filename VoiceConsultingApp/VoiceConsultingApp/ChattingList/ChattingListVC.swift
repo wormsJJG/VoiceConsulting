@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 class ChattingListVC: BaseViewController {
     // MARK: - Load View
@@ -21,9 +22,26 @@ class ChattingListVC: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        addCoinBlockTapAction()
         bindTableView()
     }
-    // MARK: - bind tableView
+}
+// MARK: - Touch Action
+extension ChattingListVC {
+    
+    private func addCoinBlockTapAction() {
+        self.chattingListV.header.coinBlock.rx
+            .tapGesture()
+            .when(.recognized)
+            .bind(onNext: { [weak self] _ in
+                self?.didTapCoinBlock()
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - bind tableView
+extension ChattingListVC {
+    
     private func bindTableView() {
         self.viewModel.chatList
             .bind(to: self.chattingListV.chattingList.rx.items(cellIdentifier: ChattingCell.cellID, cellType: ChattingCell.self)) { index, chat, cell in

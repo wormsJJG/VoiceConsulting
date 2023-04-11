@@ -24,7 +24,7 @@ class MoreFitWellVC: BaseViewController {
         super.viewDidLoad()
         self.moreFitWellV.headerView.backButton.rx.tap
             .bind(onNext: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
+                self?.popVC()
             })
             .disposed(by: self.disposeBag)
         dataBind()

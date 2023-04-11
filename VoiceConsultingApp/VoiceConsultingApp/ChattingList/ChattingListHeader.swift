@@ -65,9 +65,7 @@ class ChattingListHeader: UIView {
         
         self.allStackView.snp.makeConstraints { sv in
             sv.left.equalTo(self.snp.left).offset(20)
-//            sv.top.equalTo(self.snp.top).offset(10)
             sv.right.equalTo(self.snp.right).offset(-20)
-//            sv.bottom.equalTo(self.snp.bottom).offset(-10)
             sv.centerY.equalTo(self.snp.centerY)
         }
     }

@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 class MainVC: BaseViewController {
     // MARK: - Load View
@@ -24,10 +25,24 @@ class MainVC: BaseViewController {
         super.viewDidLoad()
         isHiddenNavigationBar()
         bindTableView()
+        addCoinBlockTapAction()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+}
+// MARK: - Touch Action
+extension MainVC {
+    
+    private func addCoinBlockTapAction() {
+        self.mainV.headerView.coinBlock.rx
+            .tapGesture()
+            .when(.recognized)
+            .bind(onNext: { [weak self] _ in
+                self?.didTapCoinBlock()
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - Bind TableView

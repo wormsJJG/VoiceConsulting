@@ -17,7 +17,6 @@ pod 'GoogleSignIn', '~> 6.2.4'
 pod 'RxSwift'
 pod 'RxCocoa'
 pod 'RxGesture'
-pod 'SwiftLint'
 pod 'SnapKit'
 pod 'AcknowList'
 pod 'Toast-Swift', '~> 5.0.1' 
@@ -25,6 +24,8 @@ pod 'Kingfisher', '~> 7.0'
 pod 'KakaoSDKAuth'  # 사용자 인증
 pod 'KakaoSDKUser'  # 카카오 로그인, 사용자 관리
 pod 'Then'
+pod 'Tabman', '~> 3.0'
+pod 'Pageboy', '~> 4.0'
 
   target 'VoiceConsultingAppTests' do
     inherit! :search_paths

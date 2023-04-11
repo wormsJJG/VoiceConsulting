@@ -48,6 +48,10 @@ class MyPageHeader: UIView {
     }
     
     private func constraint() {
+        self.snp.makeConstraints {
+            $0.height.equalTo(54)
+        }
+        
         self.profileImage.snp.makeConstraints { image in
             image.width.height.equalTo(40)
         }
@@ -60,9 +64,8 @@ class MyPageHeader: UIView {
         
         self.allStackView.snp.makeConstraints { sv in
             sv.left.equalTo(self.snp.left).offset(20)
-            sv.top.equalTo(self.snp.top).offset(10)
             sv.right.equalTo(self.snp.right).offset(-20)
-            sv.bottom.equalTo(self.snp.bottom).offset(-10)
+            sv.centerY.equalTo(self.snp.centerY)
         }
     }
 }

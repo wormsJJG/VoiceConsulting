@@ -62,6 +62,10 @@ class PlainHeaderView: UIView {
     }
     
     private func constraint() {
+        self.snp.makeConstraints {
+            $0.height.equalTo(54)
+        }
+        
         self.addSubview(allStackView)
         
         self.allStackView.snp.makeConstraints { sv in
