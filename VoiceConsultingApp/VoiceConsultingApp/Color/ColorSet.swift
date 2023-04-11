@@ -15,4 +15,5 @@ class ColorSet {
     static let subTextColor2 = UIColor(named: "SubTextColor2")
     static let mainText = UIColor(named: "MainText")
     static let line = UIColor(named: "Line")
+    static let date = UIColor(named: "Date")
 }

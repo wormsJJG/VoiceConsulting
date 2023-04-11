@@ -15,6 +15,12 @@ class MyPageV: UIView {
     
     lazy var coinBlock = BigCoinBlock()
     
+    lazy var menuList: UITableView = UITableView().then {
+        $0.register(MenuCell.self, forCellReuseIdentifier: MenuCell.cellID)
+        $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
+    }
+    
     private lazy var serviceCenter = ServiceCenterBlock()
     
     // MARK: - Init
@@ -52,6 +58,15 @@ class MyPageV: UIView {
             block.left.equalTo(self.snp.left).offset(20)
             block.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-20)
             block.right.equalTo(self.snp.right).offset(-20)
+        }
+        
+        self.addSubview(menuList)
+        
+        self.menuList.snp.makeConstraints { list in
+            list.left.equalTo(self.snp.left)
+            list.top.equalTo(self.coinBlock.snp.bottom).offset(15)
+            list.right.equalTo(self.snp.right)
+            list.bottom.equalTo(self.serviceCenter.snp.top)
         }
     }
 }
