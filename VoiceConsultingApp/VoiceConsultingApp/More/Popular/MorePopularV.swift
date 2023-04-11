@@ -10,9 +10,9 @@ import SnapKit
 import Then
 
 class MorePopularV: UIView {
-    lazy var headerView = MoreHeaderView().then {
+    lazy var headerView = PlainHeaderView().then {
         $0.isHiddenRefreshButton = true
-        $0.moreType = .popular
+        $0.headerType = .popular
     }
     
     lazy var counselorList: UITableView = UITableView().then {

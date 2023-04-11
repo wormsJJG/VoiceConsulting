@@ -9,10 +9,10 @@ import UIKit
 import Then
 import SnapKit
 
-class MoreHeaderView: UIView {
-    var moreType: MoreType = .live {
+class PlainHeaderView: UIView {
+    var headerType: HeaderType = .live {
         didSet {
-            self.titleLabel.text = moreType.title
+            self.titleLabel.text = headerType.title
         }
     }
     

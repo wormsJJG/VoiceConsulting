@@ -10,6 +10,18 @@ import Then
 import SnapKit
 
 class CoinBlock: UIView {
+    var isFill: Bool = false {
+        didSet {
+            if isFill {
+                self.coinCount.textColor = ColorSet.mainColor
+                self.layer.borderColor = ColorSet.mainColor?.cgColor
+                self.layer.borderWidth = 1
+                self.backgroundColor = .white
+                self.coinImage.image = UIImage(named: AssetImage.coinIconFill)
+            }
+        }
+    }
+    
     private lazy var coinImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.coinIcon)
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +57,10 @@ class CoinBlock: UIView {
     }
     
     private func constraint() {
+        self.snp.makeConstraints {
+            $0.height.equalTo(36)
+        }
+        
         self.coinImage.snp.makeConstraints { image in
             image.width.height.equalTo(16)
         }

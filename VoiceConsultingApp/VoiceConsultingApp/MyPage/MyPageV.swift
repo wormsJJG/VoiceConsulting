@@ -19,6 +19,7 @@ class MyPageV: UIView {
         $0.register(MenuCell.self, forCellReuseIdentifier: MenuCell.cellID)
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
+        $0.isScrollEnabled = false
     }
     
     private lazy var serviceCenter = ServiceCenterBlock()

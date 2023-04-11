@@ -10,8 +10,8 @@ import Then
 import SnapKit
 
 class MoreLiveV: UIView {
-    lazy var headerView = MoreHeaderView().then {
-        $0.moreType = .live
+    lazy var headerView = PlainHeaderView().then {
+        $0.headerType = .live
     }
     
     lazy var counselorList: UICollectionView = {

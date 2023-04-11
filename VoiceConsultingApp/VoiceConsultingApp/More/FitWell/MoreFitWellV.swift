@@ -10,9 +10,9 @@ import Then
 import SnapKit
 
 class MoreFitWellV: UIView {
-    lazy var headerView = MoreHeaderView().then {
+    lazy var headerView = PlainHeaderView().then {
         $0.isHiddenRefreshButton = true
-        $0.moreType = .fitWell
+        $0.headerType = .fitWell
     }
     
     lazy var counselorList: UITableView = UITableView().then {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MoreType {
+enum HeaderType {
     case live
     case popular
     case fitWell
