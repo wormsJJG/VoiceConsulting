@@ -17,5 +17,5 @@ class ColorSet {
     static let line = UIColor(named: "Line")
     static let date = UIColor(named: "Date")
     static let chattingListHeader = UIColor(named: "ChattingListHeader")
-
+    static let buyButtonBack = UIColor(named: "BuyButtonBack")
 }
