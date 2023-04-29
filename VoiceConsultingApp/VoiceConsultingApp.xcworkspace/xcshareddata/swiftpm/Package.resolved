@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "agoraaudio_ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AgoraIO/AgoraAudio_iOS.git",
+      "state" : {
+        "revision" : "c7de90c93b942fe8b195084774b2ee19adebac69",
+        "version" : "4.1.1"
+      }
+    },
+    {
+      "identity" : "agorachat_ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AgoraIO/AgoraChat_iOS.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "72cb84880b66539632808b8f4d48d53af2ac415d"
+      }
+    },
+    {
+      "identity" : "inputbaraccessoryview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nathantannar4/InputBarAccessoryView",
+      "state" : {
+        "revision" : "039a9cb3ae8c5bc4d39242a6aa688b88023633d3",
+        "version" : "6.2.0"
+      }
+    },
+    {
+      "identity" : "messagekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MessageKit/MessageKit",
+      "state" : {
+        "revision" : "14bfa7eb9f93267c3d7b8cdf58615bba27be672a",
+        "version" : "4.1.1"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -32,4 +32,11 @@ class BaseViewController: UIViewController {
     func popVC() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func moveChatRommVC() {
+        let chatRoom = ChatRoomVC()
+        chatRoom.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(chatRoom, animated: true)
+    }
 }

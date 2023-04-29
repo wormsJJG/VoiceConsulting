@@ -28,7 +28,7 @@ class CoinBlock: UIView {
     }
     
     lazy var coinCount: UILabel = UILabel().then {
-        $0.text = "150,000"
+        $0.text = "1000"
         $0.font = UIFont(name: Fonts.Inter_Bold, size: 16)
         $0.textColor = .white
         $0.translatesAutoresizingMaskIntoConstraints = false

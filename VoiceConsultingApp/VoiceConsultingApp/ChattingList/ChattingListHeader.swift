@@ -50,7 +50,7 @@ class ChattingListHeader: UIView {
     
     private func constraint() {
         self.snp.makeConstraints {
-            $0.height.equalTo(54)
+            $0.height.equalTo(UIApplication.shared.statusBarFrame.height + 54)
         }
         
         self.profileImage.snp.makeConstraints { image in
@@ -66,7 +66,7 @@ class ChattingListHeader: UIView {
         self.allStackView.snp.makeConstraints { sv in
             sv.left.equalTo(self.snp.left).offset(20)
             sv.right.equalTo(self.snp.right).offset(-20)
-            sv.centerY.equalTo(self.snp.centerY)
+            sv.bottom.equalTo(self.snp.bottom).offset(-7)
         }
     }
 

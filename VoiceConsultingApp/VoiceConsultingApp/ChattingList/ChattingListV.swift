@@ -38,7 +38,7 @@ class ChattingListV: UIView {
         
         self.header.snp.makeConstraints { header in
             header.left.equalTo(self.snp.left)
-            header.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            header.top.equalTo(self.snp.top)
             header.right.equalTo(self.snp.right)
         }
         

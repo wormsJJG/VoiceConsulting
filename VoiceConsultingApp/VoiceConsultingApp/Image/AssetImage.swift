@@ -28,4 +28,9 @@ class AssetImage {
     static let right = "Right"
     static let phoneIcon = "Phone"
     static let coinIconFill = "CoinIconFill"
+    static let heart = "Heart"
+    static let heart_Fill = "Heart.Fill"
+    static let menu = "Menu"
+    static let send = "Send"
+    static let plus = "Plus"
 }

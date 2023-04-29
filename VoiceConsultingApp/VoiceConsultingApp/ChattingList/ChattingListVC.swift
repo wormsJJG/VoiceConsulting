@@ -25,6 +25,9 @@ class ChattingListVC: BaseViewController {
         addCoinBlockTapAction()
         bindTableView()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 }
 // MARK: - Touch Action
 extension ChattingListVC {
@@ -40,14 +43,25 @@ extension ChattingListVC {
     }
 }
 // MARK: - bind tableView
-extension ChattingListVC {
+extension ChattingListVC: UICollectionViewDelegate {
     
     private func bindTableView() {
+        self.chattingListV.chattingList.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
         self.viewModel.chatList
             .bind(to: self.chattingListV.chattingList.rx.items(cellIdentifier: ChattingCell.cellID, cellType: ChattingCell.self)) { index, chat, cell in
                 
                 
             }
             .disposed(by: self.disposeBag)
+        
+        self.chattingListV.chattingList.rx.modelSelected(String.self)
+            .bind(onNext: { selectItem in
+                print(selectItem)
+                self.moveChatRommVC()
+            })
+            .disposed(by: self.disposeBag)
+        
     }
 }

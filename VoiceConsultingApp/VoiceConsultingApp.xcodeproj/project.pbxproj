@@ -23,6 +23,13 @@
 		3509F82D29D5755800AD880C /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509F82C29D5755800AD880C /* ColorSet.swift */; };
 		351684E029E9521A00E0CF44 /* BuyCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */; };
 		351684E229E9621F00E0CF44 /* CoinInformationUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684E129E9621F00E0CF44 /* CoinInformationUse.swift */; };
+		351BB87E29FA6C350050105F /* AIAEC in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB87D29FA6C350050105F /* AIAEC */; };
+		351BB88029FA6C350050105F /* AINS in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB87F29FA6C350050105F /* AINS */; };
+		351BB88229FA6C350050105F /* AudioBeauty in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB88129FA6C350050105F /* AudioBeauty */; };
+		351BB88429FA6C350050105F /* DRM in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB88329FA6C350050105F /* DRM */; };
+		351BB88629FA6C350050105F /* RtcBasic in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB88529FA6C350050105F /* RtcBasic */; };
+		351BB88829FA6C350050105F /* SpatialAudio in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB88729FA6C350050105F /* SpatialAudio */; };
+		351BB88A29FA72300050105F /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351BB88929FA72300050105F /* ChatManager.swift */; };
 		35277D1629DA6A66002A2A14 /* CoinBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277D1529DA6A66002A2A14 /* CoinBlock.swift */; };
 		35277D1829DA6BC9002A2A14 /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277D1729DA6BC9002A2A14 /* MainHeaderView.swift */; };
 		35277D1A29DA74B0002A2A14 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35277D1929DA73DD002A2A14 /* Inter-Bold.ttf */; };
@@ -69,6 +76,7 @@
 		3560437429DEBAD7001CDA77 /* PopularCounselorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3560437329DEBAD7001CDA77 /* PopularCounselorCell.swift */; };
 		3560437629DECB6A001CDA77 /* FitWellCounselorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3560437529DECB6A001CDA77 /* FitWellCounselorCell.swift */; };
 		3560437829DECBFD001CDA77 /* CategoryBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3560437729DECBFD001CDA77 /* CategoryBlock.swift */; };
+		35962E8029F9253A0059CF17 /* ChatRoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */; };
 		359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359933C529D077E50098A0FC /* GoogleService-Info.plist */; };
 		359933C929D07A520098A0FC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933C829D07A520098A0FC /* MainVC.swift */; };
 		359933CB29D07A690098A0FC /* MainV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933CA29D07A690098A0FC /* MainV.swift */; };
@@ -83,9 +91,17 @@
 		359D327929E58002005BF86C /* BuyHistoryV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359D327829E58002005BF86C /* BuyHistoryV.swift */; };
 		359D327B29E58230005BF86C /* UseHistoryV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359D327A29E58230005BF86C /* UseHistoryV.swift */; };
 		359D327D29E582C8005BF86C /* UseHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359D327C29E582C8005BF86C /* UseHistoryCell.swift */; };
+		359F7FBA29FD4B7000274108 /* CounselorDetailV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FB929FD4B7000274108 /* CounselorDetailV.swift */; };
+		359F7FBD29FD4CE600274108 /* CounselorDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FBC29FD4CE600274108 /* CounselorDetailVC.swift */; };
 		35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */; };
 		35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511A29D1968B00BEA034 /* SelectUseTypeVC.swift */; };
 		35BC511D29D196FB00BEA034 /* SelectUseTypeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511C29D196FB00BEA034 /* SelectUseTypeVM.swift */; };
+		35C29FF229ECE1830018FE04 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 35C29FF129ECE1830018FE04 /* MessageKit */; };
+		35C29FF529ECE1C30018FE04 /* ChatRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FF429ECE1C30018FE04 /* ChatRoomVC.swift */; };
+		35C29FF829ECF1D60018FE04 /* ChatChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FF729ECF1D60018FE04 /* ChatChannel.swift */; };
+		35C29FFB29ECF2580018FE04 /* ImageMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFA29ECF2580018FE04 /* ImageMediaItem.swift */; };
+		35C29FFD29ECF2A20018FE04 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFC29ECF2A20018FE04 /* Message.swift */; };
+		35C29FFF29ECF3E40018FE04 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFE29ECF3E40018FE04 /* Sender.swift */; };
 		35DECCB829DBD26800DE5BE3 /* LiveCounselorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DECCB729DBD26800DE5BE3 /* LiveCounselorCell.swift */; };
 		35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E2987B29CBEC2D00847F49 /* SplashV.swift */; };
 		35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E2987D29CBEC5800847F49 /* SplashVM.swift */; };
@@ -99,6 +115,7 @@
 		35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2429CAFB5600AAE587 /* Cordinator.swift */; };
 		35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */; };
 		35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */; };
+		35F762FE29FA6BE80076B023 /* AgoraChat in Frameworks */ = {isa = PBXBuildFile; productRef = 35F762FD29FA6BE80076B023 /* AgoraChat */; };
 		A665B67D132FA192727C3CE7 /* Pods_VoiceConsultingAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23DB66CE8AB2FFC14B4BFA2F /* Pods_VoiceConsultingAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -138,6 +155,7 @@
 		3509F82C29D5755800AD880C /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinCell.swift; sourceTree = "<group>"; };
 		351684E129E9621F00E0CF44 /* CoinInformationUse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinInformationUse.swift; sourceTree = "<group>"; };
+		351BB88929FA72300050105F /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		35277D1529DA6A66002A2A14 /* CoinBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinBlock.swift; sourceTree = "<group>"; };
 		35277D1729DA6BC9002A2A14 /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
 		35277D1929DA73DD002A2A14 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
@@ -184,6 +202,7 @@
 		3560437329DEBAD7001CDA77 /* PopularCounselorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCounselorCell.swift; sourceTree = "<group>"; };
 		3560437529DECB6A001CDA77 /* FitWellCounselorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitWellCounselorCell.swift; sourceTree = "<group>"; };
 		3560437729DECBFD001CDA77 /* CategoryBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBlock.swift; sourceTree = "<group>"; };
+		35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomHeader.swift; sourceTree = "<group>"; };
 		359933C529D077E50098A0FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		359933C829D07A520098A0FC /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		359933CA29D07A690098A0FC /* MainV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainV.swift; sourceTree = "<group>"; };
@@ -198,9 +217,16 @@
 		359D327829E58002005BF86C /* BuyHistoryV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyHistoryV.swift; sourceTree = "<group>"; };
 		359D327A29E58230005BF86C /* UseHistoryV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseHistoryV.swift; sourceTree = "<group>"; };
 		359D327C29E582C8005BF86C /* UseHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseHistoryCell.swift; sourceTree = "<group>"; };
+		359F7FB929FD4B7000274108 /* CounselorDetailV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorDetailV.swift; sourceTree = "<group>"; };
+		359F7FBC29FD4CE600274108 /* CounselorDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorDetailVC.swift; sourceTree = "<group>"; };
 		35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeV.swift; sourceTree = "<group>"; };
 		35BC511A29D1968B00BEA034 /* SelectUseTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeVC.swift; sourceTree = "<group>"; };
 		35BC511C29D196FB00BEA034 /* SelectUseTypeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeVM.swift; sourceTree = "<group>"; };
+		35C29FF429ECE1C30018FE04 /* ChatRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomVC.swift; sourceTree = "<group>"; };
+		35C29FF729ECF1D60018FE04 /* ChatChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatChannel.swift; sourceTree = "<group>"; };
+		35C29FFA29ECF2580018FE04 /* ImageMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMediaItem.swift; sourceTree = "<group>"; };
+		35C29FFC29ECF2A20018FE04 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		35C29FFE29ECF3E40018FE04 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		35DECCB729DBD26800DE5BE3 /* LiveCounselorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCounselorCell.swift; sourceTree = "<group>"; };
 		35E2987B29CBEC2D00847F49 /* SplashV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashV.swift; sourceTree = "<group>"; };
 		35E2987D29CBEC5800847F49 /* SplashVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVM.swift; sourceTree = "<group>"; };
@@ -230,7 +256,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				351BB88429FA6C350050105F /* DRM in Frameworks */,
+				351BB87E29FA6C350050105F /* AIAEC in Frameworks */,
+				35F762FE29FA6BE80076B023 /* AgoraChat in Frameworks */,
+				351BB88829FA6C350050105F /* SpatialAudio in Frameworks */,
+				351BB88629FA6C350050105F /* RtcBasic in Frameworks */,
+				351BB88029FA6C350050105F /* AINS in Frameworks */,
+				351BB88229FA6C350050105F /* AudioBeauty in Frameworks */,
 				298085D794FF0792CE7714CE /* Pods_VoiceConsultingApp.framework in Frameworks */,
+				35C29FF229ECE1830018FE04 /* MessageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +440,14 @@
 			path = SelectCategory;
 			sourceTree = "<group>";
 		};
+		357D584529FA0AC000ACFD51 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				351BB88929FA72300050105F /* ChatManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		359933C729D07A270098A0FC /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +511,15 @@
 			path = UseHistory;
 			sourceTree = "<group>";
 		};
+		359F7FB829FD4B3400274108 /* CounselorDetail */ = {
+			isa = PBXGroup;
+			children = (
+				359F7FB929FD4B7000274108 /* CounselorDetailV.swift */,
+				359F7FBC29FD4CE600274108 /* CounselorDetailVC.swift */,
+			);
+			path = CounselorDetail;
+			sourceTree = "<group>";
+		};
 		35BC511729D194EB00BEA034 /* SelectUseType */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +528,34 @@
 				35BC511C29D196FB00BEA034 /* SelectUseTypeVM.swift */,
 			);
 			path = SelectUseType;
+			sourceTree = "<group>";
+		};
+		35C29FF329ECE19F0018FE04 /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				35C29FF429ECE1C30018FE04 /* ChatRoomVC.swift */,
+				35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */,
+			);
+			path = ChatRoom;
+			sourceTree = "<group>";
+		};
+		35C29FF629ECF1BC0018FE04 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35C29FF929ECF2390018FE04 /* Chatting */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35C29FF929ECF2390018FE04 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				35C29FF729ECF1D60018FE04 /* ChatChannel.swift */,
+				35C29FFA29ECF2580018FE04 /* ImageMediaItem.swift */,
+				35C29FFC29ECF2A20018FE04 /* Message.swift */,
+				35C29FFE29ECF3E40018FE04 /* Sender.swift */,
+			);
+			path = Chatting;
 			sourceTree = "<group>";
 		};
 		35DECCB529DBCD7400DE5BE3 /* TableViewCell */ = {
@@ -525,6 +604,10 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				359F7FB829FD4B3400274108 /* CounselorDetail */,
+				357D584529FA0AC000ACFD51 /* Manager */,
+				35C29FF629ECF1BC0018FE04 /* Model */,
+				35C29FF329ECE19F0018FE04 /* ChatRoom */,
 				359D326329E5505D005BF86C /* CoinManagement */,
 				354664AD29E425CD0055375F /* MyPage */,
 				354664AC29E425C50055375F /* ChattingList */,
@@ -644,6 +727,16 @@
 			dependencies = (
 			);
 			name = VoiceConsultingApp;
+			packageProductDependencies = (
+				35C29FF129ECE1830018FE04 /* MessageKit */,
+				35F762FD29FA6BE80076B023 /* AgoraChat */,
+				351BB87D29FA6C350050105F /* AIAEC */,
+				351BB87F29FA6C350050105F /* AINS */,
+				351BB88129FA6C350050105F /* AudioBeauty */,
+				351BB88329FA6C350050105F /* DRM */,
+				351BB88529FA6C350050105F /* RtcBasic */,
+				351BB88729FA6C350050105F /* SpatialAudio */,
+			);
 			productName = VoiceConsultingApp;
 			productReference = 35EAEAEF29CAF99500AAE587 /* VoiceConsultingApp.app */;
 			productType = "com.apple.product-type.application";
@@ -719,6 +812,11 @@
 				Base,
 			);
 			mainGroup = 35EAEAE629CAF99500AAE587;
+			packageReferences = (
+				35C29FF029ECE1830018FE04 /* XCRemoteSwiftPackageReference "MessageKit" */,
+				35F762FC29FA6BE80076B023 /* XCRemoteSwiftPackageReference "AgoraChat_iOS" */,
+				351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */,
+			);
 			productRefGroup = 35EAEAF029CAF99500AAE587 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -896,7 +994,10 @@
 				3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				3504E2B429E3A8A0006AEED6 /* MoreLiveVC.swift in Sources */,
+				35C29FFF29ECF3E40018FE04 /* Sender.swift in Sources */,
 				354664BB29E43FC50055375F /* ServiceCenterBlock.swift in Sources */,
+				359F7FBA29FD4B7000274108 /* CounselorDetailV.swift in Sources */,
+				35C29FF829ECF1D60018FE04 /* ChatChannel.swift in Sources */,
 				3560437829DECBFD001CDA77 /* CategoryBlock.swift in Sources */,
 				35308FAE29E4F5F4008FB343 /* MyPageMenu.swift in Sources */,
 				35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */,
@@ -909,6 +1010,7 @@
 				3509F82D29D5755800AD880C /* ColorSet.swift in Sources */,
 				354609F729D70DA600FC5ABB /* LoginVC.swift in Sources */,
 				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
+				351BB88A29FA72300050105F /* ChatManager.swift in Sources */,
 				354664B329E42C1A0055375F /* CustomTabBarController.swift in Sources */,
 				3504E2B829E3A8C4006AEED6 /* MorePopularV.swift in Sources */,
 				354664B529E4359E0055375F /* MyPageV.swift in Sources */,
@@ -919,11 +1021,14 @@
 				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
 				3504E2B629E3A8B1006AEED6 /* MoreFitWellV.swift in Sources */,
 				3560437229DEB943001CDA77 /* CounselorBadge.swift in Sources */,
+				35C29FFD29ECF2A20018FE04 /* Message.swift in Sources */,
 				35308FB629E50784008FB343 /* ChattingListHeader.swift in Sources */,
 				35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */,
+				35C29FF529ECE1C30018FE04 /* ChatRoomVC.swift in Sources */,
 				35277D1C29DA84E4002A2A14 /* MainListSection.swift in Sources */,
 				351684E029E9521A00E0CF44 /* BuyCoinCell.swift in Sources */,
 				35277D1629DA6A66002A2A14 /* CoinBlock.swift in Sources */,
+				35962E8029F9253A0059CF17 /* ChatRoomHeader.swift in Sources */,
 				35308FB429E503CE008FB343 /* ChattingListV.swift in Sources */,
 				35277D1829DA6BC9002A2A14 /* MainHeaderView.swift in Sources */,
 				354609F929D70DF300FC5ABB /* LoginVM.swift in Sources */,
@@ -935,11 +1040,13 @@
 				359D326529E550AC005BF86C /* CoinManagementVC.swift in Sources */,
 				359933CD29D07A750098A0FC /* MainVM.swift in Sources */,
 				354609F229D6F46700FC5ABB /* Category.swift in Sources */,
+				35C29FFB29ECF2580018FE04 /* ImageMediaItem.swift in Sources */,
 				354664B129E4262D0055375F /* MyPageVC.swift in Sources */,
 				35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */,
 				355EDEDB29D5C98800F9BD5D /* CompleteButton.swift in Sources */,
 				354609FD29D70EEB00FC5ABB /* LoginType.swift in Sources */,
 				354609F029D6F19500FC5ABB /* AssetImage.swift in Sources */,
+				359F7FBD29FD4CE600274108 /* CounselorDetailVC.swift in Sources */,
 				3504E2BC29E3B1B4006AEED6 /* MorePopularCell.swift in Sources */,
 				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
 				354609EC29D6EBA000FC5ABB /* CategoryCell.swift in Sources */,
@@ -1275,6 +1382,76 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AgoraIO/AgoraAudio_iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		35C29FF029ECE1830018FE04 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		35F762FC29FA6BE80076B023 /* XCRemoteSwiftPackageReference "AgoraChat_iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AgoraIO/AgoraChat_iOS.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		351BB87D29FA6C350050105F /* AIAEC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
+			productName = AIAEC;
+		};
+		351BB87F29FA6C350050105F /* AINS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
+			productName = AINS;
+		};
+		351BB88129FA6C350050105F /* AudioBeauty */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
+			productName = AudioBeauty;
+		};
+		351BB88329FA6C350050105F /* DRM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
+			productName = DRM;
+		};
+		351BB88529FA6C350050105F /* RtcBasic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
+			productName = RtcBasic;
+		};
+		351BB88729FA6C350050105F /* SpatialAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
+			productName = SpatialAudio;
+		};
+		35C29FF129ECE1830018FE04 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35C29FF029ECE1830018FE04 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
+		35F762FD29FA6BE80076B023 /* AgoraChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35F762FC29FA6BE80076B023 /* XCRemoteSwiftPackageReference "AgoraChat_iOS" */;
+			productName = AgoraChat;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 35EAEAE729CAF99500AAE587 /* Project object */;
 }
