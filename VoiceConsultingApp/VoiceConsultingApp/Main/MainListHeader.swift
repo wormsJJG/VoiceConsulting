@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import Then
 import SnapKit
+import Then
 
 class MainListHeader: UIView {
     lazy var sectionTitle: UILabel = UILabel().then {

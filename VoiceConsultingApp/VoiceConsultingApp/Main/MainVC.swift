@@ -30,6 +30,29 @@ class MainVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        addNotification()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeNotification()
+    }
+}
+// MARK: - Notification
+extension MainVC {
+    private func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didTapCounselorCell), name: NotificationName.touchCounselorCell, object: nil)
+    }
+    
+    private func removeNotification() {
+        NotificationCenter.default.removeObserver(self, name: NotificationName.touchCounselorCell, object: nil)
+    }
+    
+    @objc private func didTapCounselorCell() {
+        let counselorDetailVC = CounselorDetailVC()
+        counselorDetailVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(counselorDetailVC, animated: true)
     }
 }
 // MARK: - Touch Action

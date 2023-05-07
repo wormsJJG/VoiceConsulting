@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AgoraRtcKit
 
 class ChatManager {
     static let shared = ChatManager()

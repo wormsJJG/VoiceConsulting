@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15FF145122CCDC3A193DE7DD /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73758EB074927187BF6D96BB /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */; };
-		298085D794FF0792CE7714CE /* Pods_VoiceConsultingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D0B9A074DEA9009AE19745 /* Pods_VoiceConsultingApp.framework */; };
+		2C2A78F51687175396EA8B0C /* Pods_VoiceConsultingAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9E06F32FFA15B113F930121 /* Pods_VoiceConsultingAppTests.framework */; };
 		3500F74229DC07770080AC4F /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3500F74129DC07770080AC4F /* Extension+UIView.swift */; };
 		3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504E2A729E3A4F2006AEED6 /* PlainHeaderView.swift */; };
 		3504E2AE29E3A669006AEED6 /* HeaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504E2AD29E3A669006AEED6 /* HeaderType.swift */; };
@@ -23,12 +22,6 @@
 		3509F82D29D5755800AD880C /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509F82C29D5755800AD880C /* ColorSet.swift */; };
 		351684E029E9521A00E0CF44 /* BuyCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */; };
 		351684E229E9621F00E0CF44 /* CoinInformationUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684E129E9621F00E0CF44 /* CoinInformationUse.swift */; };
-		351BB87E29FA6C350050105F /* AIAEC in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB87D29FA6C350050105F /* AIAEC */; };
-		351BB88029FA6C350050105F /* AINS in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB87F29FA6C350050105F /* AINS */; };
-		351BB88229FA6C350050105F /* AudioBeauty in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB88129FA6C350050105F /* AudioBeauty */; };
-		351BB88429FA6C350050105F /* DRM in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB88329FA6C350050105F /* DRM */; };
-		351BB88629FA6C350050105F /* RtcBasic in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB88529FA6C350050105F /* RtcBasic */; };
-		351BB88829FA6C350050105F /* SpatialAudio in Frameworks */ = {isa = PBXBuildFile; productRef = 351BB88729FA6C350050105F /* SpatialAudio */; };
 		351BB88A29FA72300050105F /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351BB88929FA72300050105F /* ChatManager.swift */; };
 		35277D1629DA6A66002A2A14 /* CoinBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277D1529DA6A66002A2A14 /* CoinBlock.swift */; };
 		35277D1829DA6BC9002A2A14 /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277D1729DA6BC9002A2A14 /* MainHeaderView.swift */; };
@@ -46,6 +39,7 @@
 		35308FB629E50784008FB343 /* ChattingListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35308FB529E50784008FB343 /* ChattingListHeader.swift */; };
 		35308FB829E50E2F008FB343 /* ChattingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35308FB729E50E2F008FB343 /* ChattingCell.swift */; };
 		35308FBA29E51126008FB343 /* ChattingListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35308FB929E51126008FB343 /* ChattingListVM.swift */; };
+		35364FDB2A029D7D00C4BC8D /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35364FDA2A029D7D00C4BC8D /* PushManager.swift */; };
 		354609EC29D6EBA000FC5ABB /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354609EB29D6EBA000FC5ABB /* CategoryCell.swift */; };
 		354609F029D6F19500FC5ABB /* AssetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354609EF29D6F19500FC5ABB /* AssetImage.swift */; };
 		354609F229D6F46700FC5ABB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354609F129D6F46700FC5ABB /* Category.swift */; };
@@ -76,6 +70,21 @@
 		3560437429DEBAD7001CDA77 /* PopularCounselorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3560437329DEBAD7001CDA77 /* PopularCounselorCell.swift */; };
 		3560437629DECB6A001CDA77 /* FitWellCounselorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3560437529DECB6A001CDA77 /* FitWellCounselorCell.swift */; };
 		3560437829DECBFD001CDA77 /* CategoryBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3560437729DECBFD001CDA77 /* CategoryBlock.swift */; };
+		356F7BCD2A07770100C536D8 /* InfoSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BCC2A07770100C536D8 /* InfoSectionHeader.swift */; };
+		356F7BCF2A0779AE00C536D8 /* CounselorInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BCE2A0779AE00C536D8 /* CounselorInfoSection.swift */; };
+		356F7BD22A0790E300C536D8 /* AffiliationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BD12A0790E300C536D8 /* AffiliationCell.swift */; };
+		356F7BD42A07920A00C536D8 /* CollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BD32A07920A00C536D8 /* CollectionViewLeftAlignFlowLayout.swift */; };
+		356F7BD72A07934A00C536D8 /* AffiliationContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BD62A07934A00C536D8 /* AffiliationContentCell.swift */; };
+		356F7BD92A0794D500C536D8 /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BD82A0794D500C536D8 /* CertificateCell.swift */; };
+		356F7BDB2A07958F00C536D8 /* CertificateContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BDA2A07958F00C536D8 /* CertificateContentCell.swift */; };
+		356F7BDD2A07ADDF00C536D8 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BDC2A07ADDF00C536D8 /* ReviewCell.swift */; };
+		356F7BDF2A07B47800C536D8 /* Extension+UISCrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BDE2A07B47800C536D8 /* Extension+UISCrollView.swift */; };
+		356F7BE22A07BF4600C536D8 /* PureLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 356F7BE12A07BF4600C536D8 /* PureLayout */; };
+		356F7BE52A07E45600C536D8 /* VoiceRoomV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BE42A07E45600C536D8 /* VoiceRoomV.swift */; };
+		356F7BE82A07E4A000C536D8 /* WriteReviewV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BE72A07E4A000C536D8 /* WriteReviewV.swift */; };
+		35726F322A05F556008E28D0 /* CounselorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F312A05F556008E28D0 /* CounselorManager.swift */; };
+		35726F342A05F7A3008E28D0 /* DateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F332A05F7A3008E28D0 /* DateCustomCell.swift */; };
+		35726F362A066966008E28D0 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F352A066966008E28D0 /* CustomTabBar.swift */; };
 		35962E8029F9253A0059CF17 /* ChatRoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */; };
 		359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359933C529D077E50098A0FC /* GoogleService-Info.plist */; };
 		359933C929D07A520098A0FC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933C829D07A520098A0FC /* MainVC.swift */; };
@@ -93,6 +102,8 @@
 		359D327D29E582C8005BF86C /* UseHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359D327C29E582C8005BF86C /* UseHistoryCell.swift */; };
 		359F7FBA29FD4B7000274108 /* CounselorDetailV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FB929FD4B7000274108 /* CounselorDetailV.swift */; };
 		359F7FBD29FD4CE600274108 /* CounselorDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FBC29FD4CE600274108 /* CounselorDetailVC.swift */; };
+		359F7FBF29FD571000274108 /* CounselorDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FBE29FD571000274108 /* CounselorDetailHeader.swift */; };
+		359F7FC129FD589C00274108 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FC029FD589C00274108 /* NotificationName.swift */; };
 		35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */; };
 		35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511A29D1968B00BEA034 /* SelectUseTypeVC.swift */; };
 		35BC511D29D196FB00BEA034 /* SelectUseTypeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511C29D196FB00BEA034 /* SelectUseTypeVM.swift */; };
@@ -102,6 +113,7 @@
 		35C29FFB29ECF2580018FE04 /* ImageMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFA29ECF2580018FE04 /* ImageMediaItem.swift */; };
 		35C29FFD29ECF2A20018FE04 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFC29ECF2A20018FE04 /* Message.swift */; };
 		35C29FFF29ECF3E40018FE04 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFE29ECF3E40018FE04 /* Sender.swift */; };
+		35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */; };
 		35DECCB829DBD26800DE5BE3 /* LiveCounselorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DECCB729DBD26800DE5BE3 /* LiveCounselorCell.swift */; };
 		35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E2987B29CBEC2D00847F49 /* SplashV.swift */; };
 		35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E2987D29CBEC5800847F49 /* SplashVM.swift */; };
@@ -115,8 +127,8 @@
 		35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2429CAFB5600AAE587 /* Cordinator.swift */; };
 		35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */; };
 		35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */; };
-		35F762FE29FA6BE80076B023 /* AgoraChat in Frameworks */ = {isa = PBXBuildFile; productRef = 35F762FD29FA6BE80076B023 /* AgoraChat */; };
-		A665B67D132FA192727C3CE7 /* Pods_VoiceConsultingAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23DB66CE8AB2FFC14B4BFA2F /* Pods_VoiceConsultingAppTests.framework */; };
+		C55187F2CEC9561FB6C2CD5E /* Pods_VoiceConsultingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF0986E50E658B337C9CCCC /* Pods_VoiceConsultingApp.framework */; };
+		E95B285FCC832419F9742AAF /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF7F3D5479910038BEB4060 /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,10 +149,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		11C6FAD789A814862E5AC563 /* Pods-VoiceConsultingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp.release.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp.release.xcconfig"; sourceTree = "<group>"; };
-		174FD441555BF452A7BD1D4F /* Pods-VoiceConsultingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp.debug.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp.debug.xcconfig"; sourceTree = "<group>"; };
-		21D0B9A074DEA9009AE19745 /* Pods_VoiceConsultingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		23DB66CE8AB2FFC14B4BFA2F /* Pods_VoiceConsultingAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		280AA3B4E8285222635E653A /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp-VoiceConsultingAppUITests.release.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp-VoiceConsultingAppUITests/Pods-VoiceConsultingApp-VoiceConsultingAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3500F74129DC07770080AC4F /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		3504E2A729E3A4F2006AEED6 /* PlainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainHeaderView.swift; sourceTree = "<group>"; };
 		3504E2AD29E3A669006AEED6 /* HeaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderType.swift; sourceTree = "<group>"; };
@@ -172,6 +181,8 @@
 		35308FB529E50784008FB343 /* ChattingListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListHeader.swift; sourceTree = "<group>"; };
 		35308FB729E50E2F008FB343 /* ChattingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingCell.swift; sourceTree = "<group>"; };
 		35308FB929E51126008FB343 /* ChattingListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListVM.swift; sourceTree = "<group>"; };
+		35364FD82A029C5900C4BC8D /* VoiceConsultingApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoiceConsultingApp.entitlements; sourceTree = "<group>"; };
+		35364FDA2A029D7D00C4BC8D /* PushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
 		354609EB29D6EBA000FC5ABB /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		354609EF29D6F19500FC5ABB /* AssetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetImage.swift; sourceTree = "<group>"; };
 		354609F129D6F46700FC5ABB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -202,6 +213,20 @@
 		3560437329DEBAD7001CDA77 /* PopularCounselorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCounselorCell.swift; sourceTree = "<group>"; };
 		3560437529DECB6A001CDA77 /* FitWellCounselorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitWellCounselorCell.swift; sourceTree = "<group>"; };
 		3560437729DECBFD001CDA77 /* CategoryBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBlock.swift; sourceTree = "<group>"; };
+		356F7BCC2A07770100C536D8 /* InfoSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSectionHeader.swift; sourceTree = "<group>"; };
+		356F7BCE2A0779AE00C536D8 /* CounselorInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorInfoSection.swift; sourceTree = "<group>"; };
+		356F7BD12A0790E300C536D8 /* AffiliationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliationCell.swift; sourceTree = "<group>"; };
+		356F7BD32A07920A00C536D8 /* CollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
+		356F7BD62A07934A00C536D8 /* AffiliationContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliationContentCell.swift; sourceTree = "<group>"; };
+		356F7BD82A0794D500C536D8 /* CertificateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCell.swift; sourceTree = "<group>"; };
+		356F7BDA2A07958F00C536D8 /* CertificateContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateContentCell.swift; sourceTree = "<group>"; };
+		356F7BDC2A07ADDF00C536D8 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		356F7BDE2A07B47800C536D8 /* Extension+UISCrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UISCrollView.swift"; sourceTree = "<group>"; };
+		356F7BE42A07E45600C536D8 /* VoiceRoomV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRoomV.swift; sourceTree = "<group>"; };
+		356F7BE72A07E4A000C536D8 /* WriteReviewV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewV.swift; sourceTree = "<group>"; };
+		35726F312A05F556008E28D0 /* CounselorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorManager.swift; sourceTree = "<group>"; };
+		35726F332A05F7A3008E28D0 /* DateCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCustomCell.swift; sourceTree = "<group>"; };
+		35726F352A066966008E28D0 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomHeader.swift; sourceTree = "<group>"; };
 		359933C529D077E50098A0FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		359933C829D07A520098A0FC /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -219,6 +244,8 @@
 		359D327C29E582C8005BF86C /* UseHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseHistoryCell.swift; sourceTree = "<group>"; };
 		359F7FB929FD4B7000274108 /* CounselorDetailV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorDetailV.swift; sourceTree = "<group>"; };
 		359F7FBC29FD4CE600274108 /* CounselorDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorDetailVC.swift; sourceTree = "<group>"; };
+		359F7FBE29FD571000274108 /* CounselorDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorDetailHeader.swift; sourceTree = "<group>"; };
+		359F7FC029FD589C00274108 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeV.swift; sourceTree = "<group>"; };
 		35BC511A29D1968B00BEA034 /* SelectUseTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeVC.swift; sourceTree = "<group>"; };
 		35BC511C29D196FB00BEA034 /* SelectUseTypeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeVM.swift; sourceTree = "<group>"; };
@@ -227,6 +254,7 @@
 		35C29FFA29ECF2580018FE04 /* ImageMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMediaItem.swift; sourceTree = "<group>"; };
 		35C29FFC29ECF2A20018FE04 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		35C29FFE29ECF3E40018FE04 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraPushManager.swift; sourceTree = "<group>"; };
 		35DECCB729DBD26800DE5BE3 /* LiveCounselorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCounselorCell.swift; sourceTree = "<group>"; };
 		35E2987B29CBEC2D00847F49 /* SplashV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashV.swift; sourceTree = "<group>"; };
 		35E2987D29CBEC5800847F49 /* SplashVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVM.swift; sourceTree = "<group>"; };
@@ -244,11 +272,14 @@
 		35EAEB2429CAFB5600AAE587 /* Cordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cordinator.swift; sourceTree = "<group>"; };
 		35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		4CCD1FFD233711E924D3DC95 /* Pods-VoiceConsultingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingAppTests.release.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingAppTests/Pods-VoiceConsultingAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		6D3BF40FAF432A10EB3330E0 /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp-VoiceConsultingAppUITests.release.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp-VoiceConsultingAppUITests/Pods-VoiceConsultingApp-VoiceConsultingAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		73758EB074927187BF6D96BB /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAFCD1EDD26116E7D2CB911B /* Pods-VoiceConsultingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingAppTests.debug.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingAppTests/Pods-VoiceConsultingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D03C10FFF46ABC13E2629FA7 /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp-VoiceConsultingAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp-VoiceConsultingAppUITests/Pods-VoiceConsultingApp-VoiceConsultingAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		54963B7D7EECDF08403A6BEE /* Pods-VoiceConsultingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingAppTests.debug.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingAppTests/Pods-VoiceConsultingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		67229BDF2B9A15D0C717A6B0 /* Pods-VoiceConsultingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingAppTests.release.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingAppTests/Pods-VoiceConsultingAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		6F09A91E4039DACF452A7DBD /* Pods-VoiceConsultingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp.debug.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp.debug.xcconfig"; sourceTree = "<group>"; };
+		7AF0986E50E658B337C9CCCC /* Pods_VoiceConsultingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87F7D338AD2A1886484008B9 /* Pods-VoiceConsultingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp.release.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp.release.xcconfig"; sourceTree = "<group>"; };
+		8DF7F3D5479910038BEB4060 /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9E06F32FFA15B113F930121 /* Pods_VoiceConsultingAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E49DFD15BC527DD6B022803D /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp-VoiceConsultingAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp-VoiceConsultingAppUITests/Pods-VoiceConsultingApp-VoiceConsultingAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,15 +287,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				351BB88429FA6C350050105F /* DRM in Frameworks */,
-				351BB87E29FA6C350050105F /* AIAEC in Frameworks */,
-				35F762FE29FA6BE80076B023 /* AgoraChat in Frameworks */,
-				351BB88829FA6C350050105F /* SpatialAudio in Frameworks */,
-				351BB88629FA6C350050105F /* RtcBasic in Frameworks */,
-				351BB88029FA6C350050105F /* AINS in Frameworks */,
-				351BB88229FA6C350050105F /* AudioBeauty in Frameworks */,
-				298085D794FF0792CE7714CE /* Pods_VoiceConsultingApp.framework in Frameworks */,
+				356F7BE22A07BF4600C536D8 /* PureLayout in Frameworks */,
 				35C29FF229ECE1830018FE04 /* MessageKit in Frameworks */,
+				C55187F2CEC9561FB6C2CD5E /* Pods_VoiceConsultingApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A665B67D132FA192727C3CE7 /* Pods_VoiceConsultingAppTests.framework in Frameworks */,
+				2C2A78F51687175396EA8B0C /* Pods_VoiceConsultingAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,17 +305,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15FF145122CCDC3A193DE7DD /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework in Frameworks */,
+				E95B285FCC832419F9742AAF /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2356EB7068092F2A7730F6DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7AF0986E50E658B337C9CCCC /* Pods_VoiceConsultingApp.framework */,
+				8DF7F3D5479910038BEB4060 /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */,
+				A9E06F32FFA15B113F930121 /* Pods_VoiceConsultingAppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3500F74029DC07390080AC4F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				3500F74129DC07770080AC4F /* Extension+UIView.swift */,
+				356F7BDE2A07B47800C536D8 /* Extension+UISCrollView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -350,6 +386,16 @@
 				35DECCB529DBCD7400DE5BE3 /* TableViewCell */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		35364FD92A029D6A00C4BC8D /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				35364FDA2A029D7D00C4BC8D /* PushManager.swift */,
+				35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */,
+				35726F312A05F556008E28D0 /* CounselorManager.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		354609EE29D6F18600FC5ABB /* Image */ = {
@@ -425,6 +471,9 @@
 				354664B829E43ADF0055375F /* BigCoinBlock.swift */,
 				354664BA29E43FC50055375F /* ServiceCenterBlock.swift */,
 				351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */,
+				35726F332A05F7A3008E28D0 /* DateCustomCell.swift */,
+				35726F352A066966008E28D0 /* CustomTabBar.swift */,
+				356F7BD32A07920A00C536D8 /* CollectionViewLeftAlignFlowLayout.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -438,6 +487,41 @@
 				354609EB29D6EBA000FC5ABB /* CategoryCell.swift */,
 			);
 			path = SelectCategory;
+			sourceTree = "<group>";
+		};
+		356F7BD02A0790AC00C536D8 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				356F7BD12A0790E300C536D8 /* AffiliationCell.swift */,
+				356F7BD82A0794D500C536D8 /* CertificateCell.swift */,
+				356F7BDC2A07ADDF00C536D8 /* ReviewCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		356F7BD52A07931D00C536D8 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				356F7BD62A07934A00C536D8 /* AffiliationContentCell.swift */,
+				356F7BDA2A07958F00C536D8 /* CertificateContentCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		356F7BE32A07E43E00C536D8 /* VoiceRoom */ = {
+			isa = PBXGroup;
+			children = (
+				356F7BE42A07E45600C536D8 /* VoiceRoomV.swift */,
+			);
+			path = VoiceRoom;
+			sourceTree = "<group>";
+		};
+		356F7BE62A07E48700C536D8 /* WiteReview */ = {
+			isa = PBXGroup;
+			children = (
+				356F7BE72A07E4A000C536D8 /* WriteReviewV.swift */,
+			);
+			path = WiteReview;
 			sourceTree = "<group>";
 		};
 		357D584529FA0AC000ACFD51 /* Manager */ = {
@@ -514,8 +598,13 @@
 		359F7FB829FD4B3400274108 /* CounselorDetail */ = {
 			isa = PBXGroup;
 			children = (
+				356F7BD52A07931D00C536D8 /* CollectionViewCell */,
+				356F7BD02A0790AC00C536D8 /* TableViewCell */,
 				359F7FB929FD4B7000274108 /* CounselorDetailV.swift */,
 				359F7FBC29FD4CE600274108 /* CounselorDetailVC.swift */,
+				359F7FBE29FD571000274108 /* CounselorDetailHeader.swift */,
+				356F7BCC2A07770100C536D8 /* InfoSectionHeader.swift */,
+				356F7BCE2A0779AE00C536D8 /* CounselorInfoSection.swift */,
 			);
 			path = CounselorDetail;
 			sourceTree = "<group>";
@@ -542,6 +631,7 @@
 		35C29FF629ECF1BC0018FE04 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				359F7FC029FD589C00274108 /* NotificationName.swift */,
 				35C29FF929ECF2390018FE04 /* Chatting */,
 			);
 			path = Model;
@@ -587,7 +677,7 @@
 				35EAEB1229CAF99600AAE587 /* VoiceConsultingAppUITests */,
 				35EAEAF029CAF99500AAE587 /* Products */,
 				A2722B0AB94D2E44F65F621B /* Pods */,
-				E59C3D9345B3E21B0326C493 /* Frameworks */,
+				2356EB7068092F2A7730F6DB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -604,6 +694,10 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				356F7BE62A07E48700C536D8 /* WiteReview */,
+				356F7BE32A07E43E00C536D8 /* VoiceRoom */,
+				35364FD92A029D6A00C4BC8D /* Notification */,
+				35364FD82A029C5900C4BC8D /* VoiceConsultingApp.entitlements */,
 				359F7FB829FD4B3400274108 /* CounselorDetail */,
 				357D584529FA0AC000ACFD51 /* Manager */,
 				35C29FF629ECF1BC0018FE04 /* Model */,
@@ -689,24 +783,14 @@
 		A2722B0AB94D2E44F65F621B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				174FD441555BF452A7BD1D4F /* Pods-VoiceConsultingApp.debug.xcconfig */,
-				11C6FAD789A814862E5AC563 /* Pods-VoiceConsultingApp.release.xcconfig */,
-				D03C10FFF46ABC13E2629FA7 /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.debug.xcconfig */,
-				6D3BF40FAF432A10EB3330E0 /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.release.xcconfig */,
-				AAFCD1EDD26116E7D2CB911B /* Pods-VoiceConsultingAppTests.debug.xcconfig */,
-				4CCD1FFD233711E924D3DC95 /* Pods-VoiceConsultingAppTests.release.xcconfig */,
+				6F09A91E4039DACF452A7DBD /* Pods-VoiceConsultingApp.debug.xcconfig */,
+				87F7D338AD2A1886484008B9 /* Pods-VoiceConsultingApp.release.xcconfig */,
+				E49DFD15BC527DD6B022803D /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.debug.xcconfig */,
+				280AA3B4E8285222635E653A /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.release.xcconfig */,
+				54963B7D7EECDF08403A6BEE /* Pods-VoiceConsultingAppTests.debug.xcconfig */,
+				67229BDF2B9A15D0C717A6B0 /* Pods-VoiceConsultingAppTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		E59C3D9345B3E21B0326C493 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				21D0B9A074DEA9009AE19745 /* Pods_VoiceConsultingApp.framework */,
-				73758EB074927187BF6D96BB /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */,
-				23DB66CE8AB2FFC14B4BFA2F /* Pods_VoiceConsultingAppTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -716,11 +800,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35EAEB1929CAF99600AAE587 /* Build configuration list for PBXNativeTarget "VoiceConsultingApp" */;
 			buildPhases = (
-				608322C3314E82E6CF81F643 /* [CP] Check Pods Manifest.lock */,
+				416C22B397082C04A16F3202 /* [CP] Check Pods Manifest.lock */,
 				35EAEAEB29CAF99500AAE587 /* Sources */,
 				35EAEAEC29CAF99500AAE587 /* Frameworks */,
 				35EAEAED29CAF99500AAE587 /* Resources */,
-				5E83A83E4F23DEA173A154CE /* [CP] Embed Pods Frameworks */,
+				9846EBF8969F40F2F32BAC95 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -729,13 +813,7 @@
 			name = VoiceConsultingApp;
 			packageProductDependencies = (
 				35C29FF129ECE1830018FE04 /* MessageKit */,
-				35F762FD29FA6BE80076B023 /* AgoraChat */,
-				351BB87D29FA6C350050105F /* AIAEC */,
-				351BB87F29FA6C350050105F /* AINS */,
-				351BB88129FA6C350050105F /* AudioBeauty */,
-				351BB88329FA6C350050105F /* DRM */,
-				351BB88529FA6C350050105F /* RtcBasic */,
-				351BB88729FA6C350050105F /* SpatialAudio */,
+				356F7BE12A07BF4600C536D8 /* PureLayout */,
 			);
 			productName = VoiceConsultingApp;
 			productReference = 35EAEAEF29CAF99500AAE587 /* VoiceConsultingApp.app */;
@@ -745,7 +823,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35EAEB1C29CAF99600AAE587 /* Build configuration list for PBXNativeTarget "VoiceConsultingAppTests" */;
 			buildPhases = (
-				AF96C294EEB22CB30A1EED3B /* [CP] Check Pods Manifest.lock */,
+				1CE7A9E9F200835A31B59994 /* [CP] Check Pods Manifest.lock */,
 				35EAEB0129CAF99600AAE587 /* Sources */,
 				35EAEB0229CAF99600AAE587 /* Frameworks */,
 				35EAEB0329CAF99600AAE587 /* Resources */,
@@ -764,11 +842,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35EAEB1F29CAF99600AAE587 /* Build configuration list for PBXNativeTarget "VoiceConsultingAppUITests" */;
 			buildPhases = (
-				A12EC5E611342FDF6F0C85E5 /* [CP] Check Pods Manifest.lock */,
+				FBBB6E5689714F81895C5BF0 /* [CP] Check Pods Manifest.lock */,
 				35EAEB0B29CAF99600AAE587 /* Sources */,
 				35EAEB0C29CAF99600AAE587 /* Frameworks */,
 				35EAEB0D29CAF99600AAE587 /* Resources */,
-				2CDBC1E1A8186EBBF3A62F80 /* [CP] Embed Pods Frameworks */,
+				E65548730165FDC6253A5A51 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -814,8 +892,7 @@
 			mainGroup = 35EAEAE629CAF99500AAE587;
 			packageReferences = (
 				35C29FF029ECE1830018FE04 /* XCRemoteSwiftPackageReference "MessageKit" */,
-				35F762FC29FA6BE80076B023 /* XCRemoteSwiftPackageReference "AgoraChat_iOS" */,
-				351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */,
+				356F7BE02A07BF4600C536D8 /* XCRemoteSwiftPackageReference "PureLayout" */,
 			);
 			productRefGroup = 35EAEAF029CAF99500AAE587 /* Products */;
 			projectDirPath = "";
@@ -863,85 +940,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2CDBC1E1A8186EBBF3A62F80 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp-VoiceConsultingAppUITests/Pods-VoiceConsultingApp-VoiceConsultingAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp-VoiceConsultingAppUITests/Pods-VoiceConsultingApp-VoiceConsultingAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp-VoiceConsultingAppUITests/Pods-VoiceConsultingApp-VoiceConsultingAppUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5E83A83E4F23DEA173A154CE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		608322C3314E82E6CF81F643 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VoiceConsultingApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A12EC5E611342FDF6F0C85E5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VoiceConsultingApp-VoiceConsultingAppUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AF96C294EEB22CB30A1EED3B /* [CP] Check Pods Manifest.lock */ = {
+		1CE7A9E9F200835A31B59994 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -963,6 +962,84 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		416C22B397082C04A16F3202 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VoiceConsultingApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9846EBF8969F40F2F32BAC95 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E65548730165FDC6253A5A51 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp-VoiceConsultingAppUITests/Pods-VoiceConsultingApp-VoiceConsultingAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp-VoiceConsultingAppUITests/Pods-VoiceConsultingApp-VoiceConsultingAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VoiceConsultingApp-VoiceConsultingAppUITests/Pods-VoiceConsultingApp-VoiceConsultingAppUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBBB6E5689714F81895C5BF0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VoiceConsultingApp-VoiceConsultingAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -971,15 +1048,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				3504E2AE29E3A669006AEED6 /* HeaderType.swift in Sources */,
+				359F7FC129FD589C00274108 /* NotificationName.swift in Sources */,
 				35277D1E29DA8662002A2A14 /* MainListHeader.swift in Sources */,
 				3504E2B229E3A894006AEED6 /* MorePopularVC.swift in Sources */,
 				3500F74229DC07770080AC4F /* Extension+UIView.swift in Sources */,
 				35277D2129DA8A95002A2A14 /* BannerCell.swift in Sources */,
+				356F7BD92A0794D500C536D8 /* CertificateCell.swift in Sources */,
+				356F7BDF2A07B47800C536D8 /* Extension+UISCrollView.swift in Sources */,
 				355EDEE229D5CD7A00F9BD5D /* SelectCategoryV.swift in Sources */,
 				355EDEE029D5CD3600F9BD5D /* SelectCategoryVM.swift in Sources */,
 				35308FB029E4F77A008FB343 /* MyPageVM.swift in Sources */,
 				35277D2329DA8AB9002A2A14 /* LiveCell.swift in Sources */,
+				35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */,
 				35308FBA29E51126008FB343 /* ChattingListVM.swift in Sources */,
+				356F7BCF2A0779AE00C536D8 /* CounselorInfoSection.swift in Sources */,
 				35277D2729DA8ADA002A2A14 /* FitWellCell.swift in Sources */,
 				359D327D29E582C8005BF86C /* UseHistoryCell.swift in Sources */,
 				355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */,
@@ -987,6 +1069,7 @@
 				354664AF29E425EA0055375F /* ChattingListVC.swift in Sources */,
 				3504E2B029E3A887006AEED6 /* MoreFitWellVC.swift in Sources */,
 				359D326729E5514B005BF86C /* CoinManagementV.swift in Sources */,
+				35364FDB2A029D7D00C4BC8D /* PushManager.swift in Sources */,
 				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
 				359D327729E57D4E005BF86C /* BuyHistoryCell.swift in Sources */,
 				354664B929E43ADF0055375F /* BigCoinBlock.swift in Sources */,
@@ -1004,6 +1087,7 @@
 				359D327B29E58230005BF86C /* UseHistoryV.swift in Sources */,
 				354609F529D70D8500FC5ABB /* LoginV.swift in Sources */,
 				359D326E29E57530005BF86C /* UseHistoryVC.swift in Sources */,
+				35726F322A05F556008E28D0 /* CounselorManager.swift in Sources */,
 				35DECCB829DBD26800DE5BE3 /* LiveCounselorCell.swift in Sources */,
 				3560437629DECB6A001CDA77 /* FitWellCounselorCell.swift in Sources */,
 				35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */,
@@ -1018,17 +1102,24 @@
 				359933C929D07A520098A0FC /* MainVC.swift in Sources */,
 				351684E229E9621F00E0CF44 /* CoinInformationUse.swift in Sources */,
 				359D326A29E574FE005BF86C /* BuyCoinVC.swift in Sources */,
+				359F7FBF29FD571000274108 /* CounselorDetailHeader.swift in Sources */,
+				356F7BE82A07E4A000C536D8 /* WriteReviewV.swift in Sources */,
+				356F7BD22A0790E300C536D8 /* AffiliationCell.swift in Sources */,
 				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
 				3504E2B629E3A8B1006AEED6 /* MoreFitWellV.swift in Sources */,
 				3560437229DEB943001CDA77 /* CounselorBadge.swift in Sources */,
+				356F7BCD2A07770100C536D8 /* InfoSectionHeader.swift in Sources */,
 				35C29FFD29ECF2A20018FE04 /* Message.swift in Sources */,
 				35308FB629E50784008FB343 /* ChattingListHeader.swift in Sources */,
+				356F7BDD2A07ADDF00C536D8 /* ReviewCell.swift in Sources */,
 				35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */,
 				35C29FF529ECE1C30018FE04 /* ChatRoomVC.swift in Sources */,
 				35277D1C29DA84E4002A2A14 /* MainListSection.swift in Sources */,
+				356F7BD72A07934A00C536D8 /* AffiliationContentCell.swift in Sources */,
 				351684E029E9521A00E0CF44 /* BuyCoinCell.swift in Sources */,
 				35277D1629DA6A66002A2A14 /* CoinBlock.swift in Sources */,
 				35962E8029F9253A0059CF17 /* ChatRoomHeader.swift in Sources */,
+				356F7BDB2A07958F00C536D8 /* CertificateContentCell.swift in Sources */,
 				35308FB429E503CE008FB343 /* ChattingListV.swift in Sources */,
 				35277D1829DA6BC9002A2A14 /* MainHeaderView.swift in Sources */,
 				354609F929D70DF300FC5ABB /* LoginVM.swift in Sources */,
@@ -1049,12 +1140,16 @@
 				359F7FBD29FD4CE600274108 /* CounselorDetailVC.swift in Sources */,
 				3504E2BC29E3B1B4006AEED6 /* MorePopularCell.swift in Sources */,
 				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
+				35726F342A05F7A3008E28D0 /* DateCustomCell.swift in Sources */,
 				354609EC29D6EBA000FC5ABB /* CategoryCell.swift in Sources */,
 				35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */,
 				35BC511D29D196FB00BEA034 /* SelectUseTypeVM.swift in Sources */,
 				3504E2BE29E3B1C1006AEED6 /* MoreFitWellCell.swift in Sources */,
+				356F7BD42A07920A00C536D8 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
 				359933CB29D07A690098A0FC /* MainV.swift in Sources */,
 				35308FB229E4F83C008FB343 /* MenuCell.swift in Sources */,
+				356F7BE52A07E45600C536D8 /* VoiceRoomV.swift in Sources */,
+				35726F362A066966008E28D0 /* CustomTabBar.swift in Sources */,
 				359D327529E57601005BF86C /* BuyCoinV.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1128,6 +1223,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1142,13 +1238,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -1188,6 +1285,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1196,9 +1294,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1208,24 +1307,27 @@
 		};
 		35EAEB1A29CAF99600AAE587 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 174FD441555BF452A7BD1D4F /* Pods-VoiceConsultingApp.debug.xcconfig */;
+			baseConfigurationReference = 6F09A91E4039DACF452A7DBD /* Pods-VoiceConsultingApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VoiceConsultingApp/VoiceConsultingApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 45K89U54K6;
+				DEVELOPMENT_TEAM = 4D57VYHA4Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.team.winconsultingapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1236,24 +1338,27 @@
 		};
 		35EAEB1B29CAF99600AAE587 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 11C6FAD789A814862E5AC563 /* Pods-VoiceConsultingApp.release.xcconfig */;
+			baseConfigurationReference = 87F7D338AD2A1886484008B9 /* Pods-VoiceConsultingApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VoiceConsultingApp/VoiceConsultingApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 45K89U54K6;
+				DEVELOPMENT_TEAM = 4D57VYHA4Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.team.winconsultingapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1264,7 +1369,7 @@
 		};
 		35EAEB1D29CAF99600AAE587 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAFCD1EDD26116E7D2CB911B /* Pods-VoiceConsultingAppTests.debug.xcconfig */;
+			baseConfigurationReference = 54963B7D7EECDF08403A6BEE /* Pods-VoiceConsultingAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1285,7 +1390,7 @@
 		};
 		35EAEB1E29CAF99600AAE587 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CCD1FFD233711E924D3DC95 /* Pods-VoiceConsultingAppTests.release.xcconfig */;
+			baseConfigurationReference = 67229BDF2B9A15D0C717A6B0 /* Pods-VoiceConsultingAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1306,7 +1411,7 @@
 		};
 		35EAEB2029CAF99600AAE587 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D03C10FFF46ABC13E2629FA7 /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.debug.xcconfig */;
+			baseConfigurationReference = E49DFD15BC527DD6B022803D /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1325,7 +1430,7 @@
 		};
 		35EAEB2129CAF99600AAE587 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D3BF40FAF432A10EB3330E0 /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.release.xcconfig */;
+			baseConfigurationReference = 280AA3B4E8285222635E653A /* Pods-VoiceConsultingApp-VoiceConsultingAppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1384,12 +1489,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */ = {
+		356F7BE02A07BF4600C536D8 /* XCRemoteSwiftPackageReference "PureLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AgoraIO/AgoraAudio_iOS.git";
+			repositoryURL = "https://github.com/PureLayout/PureLayout.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				minimumVersion = 3.0.0;
 			};
 		};
 		35C29FF029ECE1830018FE04 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
@@ -1400,56 +1505,18 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		35F762FC29FA6BE80076B023 /* XCRemoteSwiftPackageReference "AgoraChat_iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AgoraIO/AgoraChat_iOS.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		351BB87D29FA6C350050105F /* AIAEC */ = {
+		356F7BE12A07BF4600C536D8 /* PureLayout */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
-			productName = AIAEC;
-		};
-		351BB87F29FA6C350050105F /* AINS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
-			productName = AINS;
-		};
-		351BB88129FA6C350050105F /* AudioBeauty */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
-			productName = AudioBeauty;
-		};
-		351BB88329FA6C350050105F /* DRM */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
-			productName = DRM;
-		};
-		351BB88529FA6C350050105F /* RtcBasic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
-			productName = RtcBasic;
-		};
-		351BB88729FA6C350050105F /* SpatialAudio */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 351BB87C29FA6C350050105F /* XCRemoteSwiftPackageReference "AgoraAudio_iOS" */;
-			productName = SpatialAudio;
+			package = 356F7BE02A07BF4600C536D8 /* XCRemoteSwiftPackageReference "PureLayout" */;
+			productName = PureLayout;
 		};
 		35C29FF129ECE1830018FE04 /* MessageKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 35C29FF029ECE1830018FE04 /* XCRemoteSwiftPackageReference "MessageKit" */;
 			productName = MessageKit;
-		};
-		35F762FD29FA6BE80076B023 /* AgoraChat */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 35F762FC29FA6BE80076B023 /* XCRemoteSwiftPackageReference "AgoraChat_iOS" */;
-			productName = AgoraChat;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

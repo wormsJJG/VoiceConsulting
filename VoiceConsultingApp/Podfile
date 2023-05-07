@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# platform :ios, '11.0'
 
 target 'VoiceConsultingApp' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -20,12 +20,15 @@ pod 'RxGesture'
 pod 'SnapKit'
 pod 'AcknowList'
 pod 'Toast-Swift', '~> 5.0.1' 
-pod 'Kingfisher', '~> 7.0'
+pod 'Kingfisher'
 pod 'KakaoSDKAuth'  # 사용자 인증
 pod 'KakaoSDKUser'  # 카카오 로그인, 사용자 관리
 pod 'Then'
 pod 'Tabman', '~> 3.0'
 pod 'Pageboy', '~> 4.0'
+pod 'AgoraRtcEngine_iOS'
+pod 'AgoraRtm_iOS'
+pod 'Agora_Chat_iOS'
 
   target 'VoiceConsultingAppTests' do
     inherit! :search_paths

@@ -37,13 +37,13 @@ class LiveCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         constraint()
-        dataBind()
+        bindCollectionView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -67,12 +67,23 @@ class LiveCell: UITableViewCell {
             list.bottom.equalTo(self.contentView.snp.bottom).offset(-10)
         }
     }
+}
     // MARK: - Data bind
-    private func dataBind() {
+extension LiveCell: UICollectionViewDelegate {
+    private func bindCollectionView() {
         self.liveCounselorList
             .bind(to: counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { index, counselor, cell in
 
             }
+            .disposed(by: self.disposeBag)
+        
+        self.counselorList.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
+        self.counselorList.rx.modelSelected(String.self)
+            .bind(onNext: { [weak self] counselor in
+                NotificationCenter.default.post(name: NotificationName.touchCounselorCell, object: nil, userInfo: nil)
+            })
             .disposed(by: self.disposeBag)
     }
 }

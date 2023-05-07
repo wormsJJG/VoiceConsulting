@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import MessageKit
+import AgoraChat
 
 struct Message: MessageType {
     let id: String?
@@ -17,7 +18,11 @@ struct Message: MessageType {
     let content: String
     let sentDate: Date
     let sender: SenderType
+    var custom: String?
     var kind: MessageKind {
+        if let custom {
+            return .custom(custom)
+        }
         if let image = image {
             let mediaItem = ImageMediaItem(image: image)
             return .photo(mediaItem)
@@ -29,8 +34,8 @@ struct Message: MessageType {
     var image: UIImage?
     var downloadURL: URL?
         
-    init(content: String) {
-        sender = Sender(senderId: "any_unique_id", displayName: "displayName(TODO...)")
+    init(content: String, sender: Sender) {
+        self.sender = sender
         self.content = content
         sentDate = Date()
         id = nil
@@ -42,6 +47,13 @@ struct Message: MessageType {
         sentDate = Date()
         content = ""
         id = nil
+    }
+    
+    func customType() -> Message {
+        var message = Message(content: "앙 기모찌", sender: Sender(senderId: "sender", displayName: "display"))
+        message.custom = "custom"
+        
+        return message
     }
 }
 

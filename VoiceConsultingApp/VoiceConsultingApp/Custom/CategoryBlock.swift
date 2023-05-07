@@ -10,6 +10,12 @@ import SnapKit
 import Then
 
 class CategoryBlock: UIView {
+    var category: String = "가족상담" {
+        didSet {
+            self.label.text = category
+        }
+    }
+    
     lazy var label: UILabel = UILabel().then {
         $0.text = "가족상담"
         $0.textColor = ColorSet.mainColor

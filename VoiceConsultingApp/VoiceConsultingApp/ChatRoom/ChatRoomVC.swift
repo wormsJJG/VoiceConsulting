@@ -12,16 +12,15 @@ import RxCocoa
 import RxSwift
 import SnapKit
 import Then
-import AgoraRtcKit
+import AgoraChat
 
-class ChatRoomVC: MessagesViewController, AgoraRtcEngineDelegate {
+class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
     private let headerview = ChatRoomHeader()
     
     lazy var plusButtonItem: InputBarButtonItem = InputBarButtonItem().then {
         $0.setImage(UIImage(named: AssetImage.plus), for: .normal)
     }
     
-    var agoraRtc: AgoraRtcEngineKit!
     let channel: ChatChannel = ChatChannel(name: "김이름 상담사")
     var sender = Sender(senderId: "any_unique_id", displayName: "jake")
     var messages = [Message]()
@@ -34,6 +33,41 @@ class ChatRoomVC: MessagesViewController, AgoraRtcEngineDelegate {
         setMessageCollectionView()
         inputBarDesign()
         addAction()
+        AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
+        self.messagesCollectionView = MessagesCollectionView(frame: .zero, collectionViewLayout: DateMessagesFlowLayout())
+        self.messagesCollectionView.register(DateCustomCell.self)
+    }
+    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
+        for msg in aMessages {
+                    switch msg.swiftBody {
+                    case let .text(content):
+                        print(msg.from)
+                        let message = Message(content: content, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
+                        messages.append(message)
+                        self.messagesCollectionView.reloadData()
+                    default:
+                        break
+                    }
+                }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let messagesDataSource = messagesCollectionView.messagesDataSource else {
+                    fatalError("Ouch. nil data source for messages")
+                }
+                //before checking the messages check if section is reserved for typing otherwise it will cause IndexOutOfBounds error
+                if isSectionReservedForTypingIndicator(indexPath.section){
+                    return super.collectionView(collectionView, cellForItemAt: indexPath)
+                }
+        
+        let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
+                if case .custom = message.kind {
+                    let cell = messagesCollectionView.dequeueReusableCell(DateCustomCell.self, for: indexPath)
+                    cell.configure(with: message, at: indexPath, and: messagesCollectionView, date: "2022-12")
+                    cell.backgroundColor = .red
+                    return cell
+                }
+        return super.collectionView(collectionView, cellForItemAt: indexPath)
     }
     
     private func setDelegates() {
@@ -89,7 +123,7 @@ extension ChatRoomVC: MessagesLayoutDelegate {
     // 말풍선 위 이름 나오는 곳의 height
     func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         
-        return isFromCurrentSender(message: message) ? 0 : 20
+        return isFromCurrentSender(message: message) ? 0 : 0
     }
 }
 // MARK: - MessagesDisplayDelegate
@@ -162,13 +196,18 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     
     //send버튼을 눌렀을떄
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        let message = Message(content: text)
+        let message = Message(content: text, sender: Sender(senderId: "any_unique_id", displayName: "jake"))
             
         sendMessage(message: message)
         inputBar.inputTextView.text.removeAll()
     }
     
     private func sendMessage(message: Message) {
+        let msg = AgoraChatMessage(
+            conversationId: "test", from: AgoraChatClient.shared.currentUsername!,
+            to: "testAdmin", body: .text(content: message.content), ext: nil
+                )
+        AgoraChatClient.shared.chatManager?.send(msg, progress: nil)
         messages.append(message)
         messages.sort()
         

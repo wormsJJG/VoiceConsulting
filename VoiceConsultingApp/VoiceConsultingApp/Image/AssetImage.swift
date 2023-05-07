@@ -33,4 +33,6 @@ class AssetImage {
     static let menu = "Menu"
     static let send = "Send"
     static let plus = "Plus"
+    static let counselorCover = "CounselorCover"
+    static let certificateImage = "CertificateImage"
 }
