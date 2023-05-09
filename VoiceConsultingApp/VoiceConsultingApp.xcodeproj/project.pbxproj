@@ -22,7 +22,12 @@
 		3509F82D29D5755800AD880C /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509F82C29D5755800AD880C /* ColorSet.swift */; };
 		351684E029E9521A00E0CF44 /* BuyCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */; };
 		351684E229E9621F00E0CF44 /* CoinInformationUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684E129E9621F00E0CF44 /* CoinInformationUse.swift */; };
+		35188F672A09FC830040804E /* CounselorField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35188F662A09FC830040804E /* CounselorField.swift */; };
+		35188F6A2A0A01490040804E /* FBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35188F692A0A01490040804E /* FBError.swift */; };
 		351BB88A29FA72300050105F /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351BB88929FA72300050105F /* ChatManager.swift */; };
+		3523AF8B2A09055300D51B8A /* CounselorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523AF8A2A09055300D51B8A /* CounselorInfo.swift */; };
+		3523AF8E2A09079700D51B8A /* FBCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523AF8D2A09079700D51B8A /* FBCollection.swift */; };
+		3523AF902A0908F800D51B8A /* Extenstion+CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523AF8F2A0908F800D51B8A /* Extenstion+CollectionReference.swift */; };
 		35277D1629DA6A66002A2A14 /* CoinBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277D1529DA6A66002A2A14 /* CoinBlock.swift */; };
 		35277D1829DA6BC9002A2A14 /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277D1729DA6BC9002A2A14 /* MainHeaderView.swift */; };
 		35277D1A29DA74B0002A2A14 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35277D1929DA73DD002A2A14 /* Inter-Bold.ttf */; };
@@ -55,6 +60,7 @@
 		354664B929E43ADF0055375F /* BigCoinBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664B829E43ADF0055375F /* BigCoinBlock.swift */; };
 		354664BB29E43FC50055375F /* ServiceCenterBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354664BA29E43FC50055375F /* ServiceCenterBlock.swift */; };
 		354664BD29E441130055375F /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 354664BC29E441120055375F /* Inter-Medium.ttf */; };
+		355CAE592A0A27E500C121BF /* Counselor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355CAE582A0A27E500C121BF /* Counselor.swift */; };
 		355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEC529D5C43D00F9BD5D /* Fonts.swift */; };
 		355EDED329D5C6C600F9BD5D /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */; };
 		355EDED429D5C6C600F9BD5D /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECE29D5C6C500F9BD5D /* NotoSansKR-Thin.otf */; };
@@ -85,6 +91,7 @@
 		35726F322A05F556008E28D0 /* CounselorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F312A05F556008E28D0 /* CounselorManager.swift */; };
 		35726F342A05F7A3008E28D0 /* DateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F332A05F7A3008E28D0 /* DateCustomCell.swift */; };
 		35726F362A066966008E28D0 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F352A066966008E28D0 /* CustomTabBar.swift */; };
+		357D84ED2A0A7196003DB1FC /* LiveCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */; };
 		35962E8029F9253A0059CF17 /* ChatRoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */; };
 		359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359933C529D077E50098A0FC /* GoogleService-Info.plist */; };
 		359933C929D07A520098A0FC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933C829D07A520098A0FC /* MainVC.swift */; };
@@ -164,7 +171,12 @@
 		3509F82C29D5755800AD880C /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinCell.swift; sourceTree = "<group>"; };
 		351684E129E9621F00E0CF44 /* CoinInformationUse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinInformationUse.swift; sourceTree = "<group>"; };
+		35188F662A09FC830040804E /* CounselorField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorField.swift; sourceTree = "<group>"; };
+		35188F692A0A01490040804E /* FBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBError.swift; sourceTree = "<group>"; };
 		351BB88929FA72300050105F /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		3523AF8A2A09055300D51B8A /* CounselorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorInfo.swift; sourceTree = "<group>"; };
+		3523AF8D2A09079700D51B8A /* FBCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBCollection.swift; sourceTree = "<group>"; };
+		3523AF8F2A0908F800D51B8A /* Extenstion+CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extenstion+CollectionReference.swift"; sourceTree = "<group>"; };
 		35277D1529DA6A66002A2A14 /* CoinBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinBlock.swift; sourceTree = "<group>"; };
 		35277D1729DA6BC9002A2A14 /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
 		35277D1929DA73DD002A2A14 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
@@ -198,6 +210,7 @@
 		354664B829E43ADF0055375F /* BigCoinBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCoinBlock.swift; sourceTree = "<group>"; };
 		354664BA29E43FC50055375F /* ServiceCenterBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCenterBlock.swift; sourceTree = "<group>"; };
 		354664BC29E441120055375F /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		355CAE582A0A27E500C121BF /* Counselor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counselor.swift; sourceTree = "<group>"; };
 		355EDEC529D5C43D00F9BD5D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		355EDECE29D5C6C500F9BD5D /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
@@ -227,6 +240,7 @@
 		35726F312A05F556008E28D0 /* CounselorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorManager.swift; sourceTree = "<group>"; };
 		35726F332A05F7A3008E28D0 /* DateCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCustomCell.swift; sourceTree = "<group>"; };
 		35726F352A066966008E28D0 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCellVM.swift; sourceTree = "<group>"; };
 		35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomHeader.swift; sourceTree = "<group>"; };
 		359933C529D077E50098A0FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		359933C829D07A520098A0FC /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -327,6 +341,7 @@
 			children = (
 				3500F74129DC07770080AC4F /* Extension+UIView.swift */,
 				356F7BDE2A07B47800C536D8 /* Extension+UISCrollView.swift */,
+				3523AF8F2A0908F800D51B8A /* Extenstion+CollectionReference.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -377,6 +392,25 @@
 				3509F82C29D5755800AD880C /* ColorSet.swift */,
 			);
 			path = Color;
+			sourceTree = "<group>";
+		};
+		3523AF892A0904DA00D51B8A /* Counselor */ = {
+			isa = PBXGroup;
+			children = (
+				3523AF8A2A09055300D51B8A /* CounselorInfo.swift */,
+				355CAE582A0A27E500C121BF /* Counselor.swift */,
+			);
+			path = Counselor;
+			sourceTree = "<group>";
+		};
+		3523AF8C2A09078200D51B8A /* FireStore */ = {
+			isa = PBXGroup;
+			children = (
+				3523AF8D2A09079700D51B8A /* FBCollection.swift */,
+				35188F662A09FC830040804E /* CounselorField.swift */,
+				35188F692A0A01490040804E /* FBError.swift */,
+			);
+			path = FireStore;
 			sourceTree = "<group>";
 		};
 		35277D1F29DA8A7D002A2A14 /* Cell */ = {
@@ -631,6 +665,8 @@
 		35C29FF629ECF1BC0018FE04 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3523AF8C2A09078200D51B8A /* FireStore */,
+				3523AF892A0904DA00D51B8A /* Counselor */,
 				359F7FC029FD589C00274108 /* NotificationName.swift */,
 				35C29FF929ECF2390018FE04 /* Chatting */,
 			);
@@ -655,6 +691,7 @@
 				35277D2229DA8AB9002A2A14 /* LiveCell.swift */,
 				35277D2429DA8ACD002A2A14 /* PopularCell.swift */,
 				35277D2629DA8ADA002A2A14 /* FitWellCell.swift */,
+				357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1062,10 +1099,12 @@
 				35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */,
 				35308FBA29E51126008FB343 /* ChattingListVM.swift in Sources */,
 				356F7BCF2A0779AE00C536D8 /* CounselorInfoSection.swift in Sources */,
+				3523AF8E2A09079700D51B8A /* FBCollection.swift in Sources */,
 				35277D2729DA8ADA002A2A14 /* FitWellCell.swift in Sources */,
 				359D327D29E582C8005BF86C /* UseHistoryCell.swift in Sources */,
 				355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */,
 				359D326C29E5751D005BF86C /* BuyHistoryVC.swift in Sources */,
+				355CAE592A0A27E500C121BF /* Counselor.swift in Sources */,
 				354664AF29E425EA0055375F /* ChattingListVC.swift in Sources */,
 				3504E2B029E3A887006AEED6 /* MoreFitWellVC.swift in Sources */,
 				359D326729E5514B005BF86C /* CoinManagementV.swift in Sources */,
@@ -1087,6 +1126,7 @@
 				359D327B29E58230005BF86C /* UseHistoryV.swift in Sources */,
 				354609F529D70D8500FC5ABB /* LoginV.swift in Sources */,
 				359D326E29E57530005BF86C /* UseHistoryVC.swift in Sources */,
+				3523AF8B2A09055300D51B8A /* CounselorInfo.swift in Sources */,
 				35726F322A05F556008E28D0 /* CounselorManager.swift in Sources */,
 				35DECCB829DBD26800DE5BE3 /* LiveCounselorCell.swift in Sources */,
 				3560437629DECB6A001CDA77 /* FitWellCounselorCell.swift in Sources */,
@@ -1120,12 +1160,15 @@
 				35277D1629DA6A66002A2A14 /* CoinBlock.swift in Sources */,
 				35962E8029F9253A0059CF17 /* ChatRoomHeader.swift in Sources */,
 				356F7BDB2A07958F00C536D8 /* CertificateContentCell.swift in Sources */,
+				35188F6A2A0A01490040804E /* FBError.swift in Sources */,
 				35308FB429E503CE008FB343 /* ChattingListV.swift in Sources */,
 				35277D1829DA6BC9002A2A14 /* MainHeaderView.swift in Sources */,
+				357D84ED2A0A7196003DB1FC /* LiveCellVM.swift in Sources */,
 				354609F929D70DF300FC5ABB /* LoginVM.swift in Sources */,
 				35EAEAF529CAF99500AAE587 /* SceneDelegate.swift in Sources */,
 				3504E2BA29E3A8CE006AEED6 /* MoreLiveV.swift in Sources */,
 				3560437429DEBAD7001CDA77 /* PopularCounselorCell.swift in Sources */,
+				35188F672A09FC830040804E /* CounselorField.swift in Sources */,
 				35308FB829E50E2F008FB343 /* ChattingCell.swift in Sources */,
 				354664B729E436200055375F /* MyPageHeader.swift in Sources */,
 				359D326529E550AC005BF86C /* CoinManagementVC.swift in Sources */,
@@ -1133,6 +1176,7 @@
 				354609F229D6F46700FC5ABB /* Category.swift in Sources */,
 				35C29FFB29ECF2580018FE04 /* ImageMediaItem.swift in Sources */,
 				354664B129E4262D0055375F /* MyPageVC.swift in Sources */,
+				3523AF902A0908F800D51B8A /* Extenstion+CollectionReference.swift in Sources */,
 				35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */,
 				355EDEDB29D5C98800F9BD5D /* CompleteButton.swift in Sources */,
 				354609FD29D70EEB00FC5ABB /* LoginType.swift in Sources */,

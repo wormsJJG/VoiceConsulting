@@ -35,7 +35,7 @@ class CounselorDetailVC: BaseViewController {
         addDidScrollAction()
         
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         settingImageView()

@@ -30,7 +30,7 @@ class LiveCell: UITableViewCell {
         return list
     }()
     // MARK: - Properties
-    let liveCounselorList: PublishSubject<[String]> = PublishSubject()
+    let onlineCounselorList: PublishSubject<[Counselor]> = PublishSubject()
     private let disposeBag = DisposeBag()
     // MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -71,18 +71,18 @@ class LiveCell: UITableViewCell {
     // MARK: - Data bind
 extension LiveCell: UICollectionViewDelegate {
     private func bindCollectionView() {
-        self.liveCounselorList
-            .bind(to: counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { index, counselor, cell in
-
+        self.onlineCounselorList
+            .bind(to: counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { [weak self] index, counselor, cell in
+                cell.configureCell(counselor: counselor.info)
             }
             .disposed(by: self.disposeBag)
         
         self.counselorList.rx.setDelegate(self)
             .disposed(by: self.disposeBag)
         
-        self.counselorList.rx.modelSelected(String.self)
+        self.counselorList.rx.modelSelected(Counselor.self)
             .bind(onNext: { [weak self] counselor in
-                NotificationCenter.default.post(name: NotificationName.touchCounselorCell, object: nil, userInfo: nil)
+                NotificationCenter.default.post(name: NotificationName.touchCounselorCell, object: nil, userInfo: ["counselor": counselor])
             })
             .disposed(by: self.disposeBag)
     }

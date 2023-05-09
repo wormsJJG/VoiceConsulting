@@ -78,7 +78,7 @@ extension MainVC: UITableViewDelegate {
         self.mainV.mainList.estimatedRowHeight = UITableView.automaticDimension
         
         self.viewModel.sectionTitleList
-            .bind(to: self.mainV.mainList.rx.items) { tableView, row, section in
+            .bind(to: self.mainV.mainList.rx.items) { [weak self] tableView, row, section in
                 switch section {
                     
                 case .banner:
@@ -97,7 +97,6 @@ extension MainVC: UITableViewDelegate {
                     }
                     
                     liveCounselorCell.header.sectionTitle.text = section.sectionTitle
-                    liveCounselorCell.liveCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
                     
                     let moreLiveVC = MoreLiveVC()
                     moreLiveVC.hidesBottomBarWhenPushed = true
@@ -106,8 +105,13 @@ extension MainVC: UITableViewDelegate {
                         .bind(onNext: { [weak self] _ in
                             self?.navigationController?.pushViewController(moreLiveVC, animated: true)
                         })
-                        .disposed(by: self.disposeBag)
+                        .disposed(by: self!.disposeBag)
                     
+                    self?.viewModel.output.onlineCounselorList
+                        .bind(onNext: { [weak self] counselorList in
+                            liveCounselorCell.onlineCounselorList.onNext(counselorList)
+                        })
+                        .disposed(by: self!.disposeBag)
                     
                     return liveCounselorCell
                     
@@ -127,7 +131,7 @@ extension MainVC: UITableViewDelegate {
                         .bind(onNext: { [weak self] _ in
                             self?.navigationController?.pushViewController(morePopularVC, animated: true)
                         })
-                        .disposed(by: self.disposeBag)
+                        .disposed(by: self!.disposeBag)
                     
                     return popularCell
                     
@@ -147,7 +151,7 @@ extension MainVC: UITableViewDelegate {
                         .bind(onNext: { [weak self] _ in
                             self?.navigationController?.pushViewController(moreFitWellVC, animated: true)
                         })
-                        .disposed(by: self.disposeBag)
+                        .disposed(by: self!.disposeBag)
                     
                     return fitWellCounselorCell
                 }

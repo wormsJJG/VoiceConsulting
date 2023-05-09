@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import Kingfisher
 
 class LiveCounselorCell: UICollectionViewCell {
     static let cellID = "liveCounselorCell"
@@ -25,20 +26,20 @@ class LiveCounselorCell: UICollectionViewCell {
         return view
     }()
 
-    lazy var thumnail: UIImageView = UIImageView().then {
+    private lazy var thumnail: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 30
     }
     
-    lazy var name: UILabel = UILabel().then {
+    private lazy var name: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
         $0.textColor = ColorSet.mainText
         $0.text = "김이름 상담사"
         $0.layer.masksToBounds = true
     }
     
-    lazy var contentStackView: UIStackView = UIStackView(arrangedSubviews: [thumnailContainerView, name]).then {
+    private lazy var contentStackView: UIStackView = UIStackView(arrangedSubviews: [thumnailContainerView, name]).then {
         $0.axis = .vertical
         $0.spacing = 8
         $0.alignment = .center
@@ -49,6 +50,12 @@ class LiveCounselorCell: UICollectionViewCell {
         super.init(frame: frame)
         cellDesign()
         constraint()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumnail.image = nil
+        name.text = nil
     }
     
     required init?(coder: NSCoder) {
@@ -73,6 +80,13 @@ class LiveCounselorCell: UICollectionViewCell {
         
         self.contentStackView.snp.makeConstraints { sv in
             sv.center.equalTo(self.contentView.snp.center)
+        }
+    }
+    
+    func configureCell(counselor: CounselorInfo) {
+        thumnail.kf.setImage(with: URL(string: counselor.progileImage))
+        DispatchQueue.main.async {
+            self.name.text = counselor.name
         }
     }
 }

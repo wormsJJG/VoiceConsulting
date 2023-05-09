@@ -34,8 +34,6 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         inputBarDesign()
         addAction()
         AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
-        self.messagesCollectionView = MessagesCollectionView(frame: .zero, collectionViewLayout: DateMessagesFlowLayout())
-        self.messagesCollectionView.register(DateCustomCell.self)
     }
     func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
         for msg in aMessages {
@@ -49,25 +47,6 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
                         break
                     }
                 }
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let messagesDataSource = messagesCollectionView.messagesDataSource else {
-                    fatalError("Ouch. nil data source for messages")
-                }
-                //before checking the messages check if section is reserved for typing otherwise it will cause IndexOutOfBounds error
-                if isSectionReservedForTypingIndicator(indexPath.section){
-                    return super.collectionView(collectionView, cellForItemAt: indexPath)
-                }
-        
-        let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
-                if case .custom = message.kind {
-                    let cell = messagesCollectionView.dequeueReusableCell(DateCustomCell.self, for: indexPath)
-                    cell.configure(with: message, at: indexPath, and: messagesCollectionView, date: "2022-12")
-                    cell.backgroundColor = .red
-                    return cell
-                }
-        return super.collectionView(collectionView, cellForItemAt: indexPath)
     }
     
     private func setDelegates() {

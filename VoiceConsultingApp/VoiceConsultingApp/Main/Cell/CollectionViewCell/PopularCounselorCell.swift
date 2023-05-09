@@ -12,20 +12,20 @@ import SnapKit
 class PopularCounselorCell: UICollectionViewCell {
     static let cellID = "popularCounselorCell"
     // MARK: - View
-    lazy var thumnailImage: UIImageView = UIImageView().then {
+    private lazy var thumnailImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 30
     }
     
     private lazy var badge: CounselorBadge = CounselorBadge()
     
-    lazy var counselorName: UILabel = UILabel().then {
+    private lazy var counselorName: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
         $0.text = "김이름 상담사"
         $0.textColor = ColorSet.mainText
     }
     
-    lazy var introduce: UILabel = UILabel().then {
+    private lazy var introduce: UILabel = UILabel().then {
         $0.textColor = ColorSet.subTextColor
         $0.text = "소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개"
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 12)
@@ -36,7 +36,7 @@ class PopularCounselorCell: UICollectionViewCell {
         $0.image = UIImage(named: AssetImage.star)
     }
     
-    lazy var startCount: UILabel = UILabel().then {
+    private lazy var startCount: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
         $0.text = "5.0"
         $0.textAlignment = .left
@@ -49,7 +49,7 @@ class PopularCounselorCell: UICollectionViewCell {
         $0.distribution = .fillProportionally
     }
     
-    lazy var consultationCount: UILabel = UILabel().then {
+    private lazy var consultationCount: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 12)
         $0.text = "상담 400회"
         $0.textColor = ColorSet.subTextColor
@@ -60,7 +60,7 @@ class PopularCounselorCell: UICollectionViewCell {
         $0.distribution = .equalSpacing
     }
     
-    lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [thumnailImage, badge, counselorName, introduce, footerStackView]).then {
+    private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [thumnailImage, badge, counselorName, introduce, footerStackView]).then {
         
         $0.axis = .vertical
         $0.spacing = 10
@@ -119,5 +119,16 @@ class PopularCounselorCell: UICollectionViewCell {
 
         // myLabel에 방금 만든 속성을 적용합니다.
         self.consultationCount.attributedText = attributeString
+    }
+    
+    func configureCell(counselor: CounselorInfo) {
+        self.thumnailImage.kf.setImage(with: URL(string: counselor.progileImage))
+        DispatchQueue.main.async {
+            self.counselorName.text = counselor.name
+            self.introduce.text = counselor.introduction
+//            self.startCount.text = counselor.startCount
+            self.consultationCount.text = "상담 \(counselor.counsultingCount)회"
+        }
+        
     }
 }
