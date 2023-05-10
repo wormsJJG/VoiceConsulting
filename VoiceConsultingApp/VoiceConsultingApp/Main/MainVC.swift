@@ -27,33 +27,10 @@ class MainVC: BaseViewController {
         bindTableView()
         addCoinBlockTapAction()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        addNotification()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeNotification()
-    }
 }
 // MARK: - Notification
 extension MainVC {
-    private func addNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(didTapCounselorCell), name: NotificationName.touchCounselorCell, object: nil)
-    }
-    
-    private func removeNotification() {
-        NotificationCenter.default.removeObserver(self, name: NotificationName.touchCounselorCell, object: nil)
-    }
-    
-    @objc private func didTapCounselorCell() {
-        let counselorDetailVC = CounselorDetailVC()
-        counselorDetailVC.hidesBottomBarWhenPushed = true
-        
-        self.navigationController?.pushViewController(counselorDetailVC, animated: true)
-    }
+
 }
 // MARK: - Touch Action
 extension MainVC {
@@ -66,6 +43,37 @@ extension MainVC {
                 self?.didTapCoinBlock()
             })
             .disposed(by: self.disposeBag)
+    }
+}
+
+extension MainVC: CellTouchable {
+    func didTouchCell(_ model: Counselor) {
+        let counselorDetailVC = CounselorDetailVC()
+        counselorDetailVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(counselorDetailVC, animated: true)
+    }
+}
+
+extension MainVC: MoreButtonTouchable {
+    func didTouchMoreButton(_ moreType: MoreType) {
+        switch moreType {
+        case .live:
+            let moreLiveVC = MoreLiveVC()
+            moreLiveVC.hidesBottomBarWhenPushed = true
+            
+            self.navigationController?.pushViewController(moreLiveVC, animated: true)
+        case .popular:
+            let morePopularVC = MorePopularVC()
+            morePopularVC.hidesBottomBarWhenPushed = true
+
+            self.navigationController?.pushViewController(morePopularVC, animated: true)
+        case .fitWell:
+            let moreFitWellVC = MoreFitWellVC()
+            moreFitWellVC.hidesBottomBarWhenPushed = true
+            
+            self.navigationController?.pushViewController(moreFitWellVC, animated: true)
+        }
     }
 }
 // MARK: - Bind TableView
@@ -97,21 +105,8 @@ extension MainVC: UITableViewDelegate {
                     }
                     
                     liveCounselorCell.header.sectionTitle.text = section.sectionTitle
-                    
-                    let moreLiveVC = MoreLiveVC()
-                    moreLiveVC.hidesBottomBarWhenPushed = true
-                    
-                    liveCounselorCell.header.moreButton.rx.tap
-                        .bind(onNext: { [weak self] _ in
-                            self?.navigationController?.pushViewController(moreLiveVC, animated: true)
-                        })
-                        .disposed(by: self!.disposeBag)
-                    
-                    self?.viewModel.output.onlineCounselorList
-                        .bind(onNext: { [weak self] counselorList in
-                            liveCounselorCell.onlineCounselorList.onNext(counselorList)
-                        })
-                        .disposed(by: self!.disposeBag)
+                    liveCounselorCell.cellTouchDelegate = self
+                    liveCounselorCell.moreButtonTouchDelegate = self
                     
                     return liveCounselorCell
                     
@@ -123,15 +118,9 @@ extension MainVC: UITableViewDelegate {
                     }
                     popularCell.header.sectionTitle.text = section.sectionTitle
                     popularCell.popularCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
+                    popularCell.delegate = self
                     
-                    let morePopularVC = MorePopularVC()
-                    morePopularVC.hidesBottomBarWhenPushed = true
                     
-                    popularCell.header.moreButton.rx.tap
-                        .bind(onNext: { [weak self] _ in
-                            self?.navigationController?.pushViewController(morePopularVC, animated: true)
-                        })
-                        .disposed(by: self!.disposeBag)
                     
                     return popularCell
                     
@@ -141,17 +130,9 @@ extension MainVC: UITableViewDelegate {
                         
                         return UITableViewCell()
                     }
+                    
                     fitWellCounselorCell.header.sectionTitle.text = section.sectionTitle
                     fitWellCounselorCell.fitWellCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
-                    
-                    let moreFitWellVC = MoreFitWellVC()
-                    moreFitWellVC.hidesBottomBarWhenPushed = true
-                    
-                    fitWellCounselorCell.header.moreButton.rx.tap
-                        .bind(onNext: { [weak self] _ in
-                            self?.navigationController?.pushViewController(moreFitWellVC, animated: true)
-                        })
-                        .disposed(by: self!.disposeBag)
                     
                     return fitWellCounselorCell
                 }

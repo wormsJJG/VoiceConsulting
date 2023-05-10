@@ -34,6 +34,7 @@ class PopularCell: UITableViewCell {
     // MARK: - Properties
     let popularCounselorList: PublishSubject<[String]> = PublishSubject()
     private let disposeBag = DisposeBag()
+    weak var delegate: CellTouchable?
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -69,11 +70,23 @@ class PopularCell: UITableViewCell {
             list.bottom.equalTo(self.contentView.snp.bottom).offset(-10)
         }
     }
-    
+}
+// MARK: - CollectionView
+extension PopularCell: UICollectionViewDelegate {
     private func dataBind() {
         self.popularCounselorList
             .bind(to: counselorList.rx.items(cellIdentifier: PopularCounselorCell.cellID, cellType: PopularCounselorCell.self)) { index, counselor, cell in
             }
             .disposed(by: self.disposeBag)
+        
+        self.counselorList.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
+        self.counselorList.rx.modelSelected(Counselor.self)
+            .bind(onNext: { [weak self] counselor in
+                self?.delegate?.didTouchCell(counselor)
+            })
+            .disposed(by: self.disposeBag)
     }
+
 }

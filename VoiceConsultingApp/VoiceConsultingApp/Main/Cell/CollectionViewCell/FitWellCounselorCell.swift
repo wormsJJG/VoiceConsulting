@@ -12,7 +12,7 @@ import SnapKit
 class FitWellCounselorCell: UICollectionViewCell {
     static let cellID = "fitWellCounselorCell"
     //MARK: - View
-    lazy var thumnailImage: UIImageView = UIImageView().then {
+    lazy var profileImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 30
     }
@@ -32,7 +32,7 @@ class FitWellCounselorCell: UICollectionViewCell {
     
     lazy var categoryBlock: CategoryBlock = CategoryBlock()
     
-    lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [thumnailImage, counselorName, introduce, categoryBlock]).then {
+    lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [profileImage, counselorName, introduce, categoryBlock]).then {
         
         $0.axis = .vertical
         $0.spacing = 10
@@ -54,7 +54,7 @@ class FitWellCounselorCell: UICollectionViewCell {
     }
     
     private func constraint() {
-        thumnailImage.snp.makeConstraints { imageView in
+        profileImage.snp.makeConstraints { imageView in
             imageView.width.height.equalTo(60)
         }
         

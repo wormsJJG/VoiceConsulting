@@ -16,7 +16,7 @@ class MainVM: BaseViewModel {
     }
     
     struct Output {
-        let onlineCounselorList: PublishSubject<[Counselor]> = PublishSubject()
+        
     }
     
     var input: Input
@@ -28,21 +28,5 @@ class MainVM: BaseViewModel {
          output: Output = Output()) {
         self.input = input
         self.output = output
-        getOnlineCounselorList()
-    }
-    
-    private func getOnlineCounselorList() { 
-        CounselorManager.shared.getOnlineCounselorList()
-            .subscribe({ [weak self] event in
-                switch event {
-                case .next(let counselorList):
-                    self?.output.onlineCounselorList.onNext(counselorList)
-                case .error(let error):
-                    print("\(#function) \(error.localizedDescription)")
-                case .completed:
-                    print("onCompleted")
-                }
-            })
-            .disposed(by: self.disposeBag)
     }
 }

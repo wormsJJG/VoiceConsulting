@@ -29,23 +29,40 @@ class LiveCell: UITableViewCell {
         
         return list
     }()
+    
+    private let infomationLabel: UILabel = UILabel().then {
+        $0.text = "현재 가능한 상담사가 없습니다.\n잠시 후 다시 시도해주세요."
+        $0.textColor = ColorSet.subTextColor2
+        $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
+        $0.textAlignment = .center
+        $0.numberOfLines = 2
+    }
     // MARK: - Properties
-    let onlineCounselorList: PublishSubject<[Counselor]> = PublishSubject()
+    private let viewModel = LiveCellVM()
     private let disposeBag = DisposeBag()
+    weak var cellTouchDelegate: CellTouchable?
+    weak var moreButtonTouchDelegate: MoreButtonTouchable?
     // MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         constraint()
         bindCollectionView()
+        emptyData()
+        addTouchAction()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+
+    private func emptyData() {
+        self.viewModel.output.onlineCounselorList
+            .filter { $0.isEmpty }
+            .bind(onNext: { [weak self] _ in
+                self?.counselorList.backgroundView = self?.infomationLabel
+            })
+            .disposed(by: self.disposeBag)
     }
     // MARK: - Constraint
     private func constraint() {
@@ -68,11 +85,27 @@ class LiveCell: UITableViewCell {
         }
     }
 }
-    // MARK: - Data bind
+// MARK: - ButtonTap
+extension LiveCell {
+    private func addTouchAction() {
+        self.header.moreButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                self?.moreButtonTouchDelegate?.didTouchMoreButton(.live)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.header.refreshButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                self?.viewModel.getOnlineCounselorList()
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - Data bind
 extension LiveCell: UICollectionViewDelegate {
     private func bindCollectionView() {
-        self.onlineCounselorList
-            .bind(to: counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { [weak self] index, counselor, cell in
+        self.viewModel.output.onlineCounselorList
+            .bind(to: counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { index, counselor, cell in
                 cell.configureCell(counselor: counselor.info)
             }
             .disposed(by: self.disposeBag)
@@ -82,7 +115,7 @@ extension LiveCell: UICollectionViewDelegate {
         
         self.counselorList.rx.modelSelected(Counselor.self)
             .bind(onNext: { [weak self] counselor in
-                NotificationCenter.default.post(name: NotificationName.touchCounselorCell, object: nil, userInfo: ["counselor": counselor])
+                self?.cellTouchDelegate?.didTouchCell(counselor)
             })
             .disposed(by: self.disposeBag)
     }

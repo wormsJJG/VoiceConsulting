@@ -13,7 +13,7 @@ import Kingfisher
 class LiveCounselorCell: UICollectionViewCell {
     static let cellID = "liveCounselorCell"
     // MARK: - View
-    private let thumnailContainerView: UIView = {
+    private let profileContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +26,7 @@ class LiveCounselorCell: UICollectionViewCell {
         return view
     }()
 
-    private lazy var thumnail: UIImageView = UIImageView().then {
+    private lazy var profileImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 30
@@ -39,7 +39,7 @@ class LiveCounselorCell: UICollectionViewCell {
         $0.layer.masksToBounds = true
     }
     
-    private lazy var contentStackView: UIStackView = UIStackView(arrangedSubviews: [thumnailContainerView, name]).then {
+    private lazy var contentStackView: UIStackView = UIStackView(arrangedSubviews: [profileContainerView, name]).then {
         $0.axis = .vertical
         $0.spacing = 8
         $0.alignment = .center
@@ -54,7 +54,7 @@ class LiveCounselorCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        thumnail.image = nil
+        profileImage.image = nil
         name.text = nil
     }
     
@@ -67,15 +67,15 @@ class LiveCounselorCell: UICollectionViewCell {
     }
     
     private func constraint() {
-        self.thumnailContainerView.addSubview(thumnail)
+        self.profileContainerView.addSubview(profileImage)
         self.contentView.addSubview(contentStackView)
-        self.thumnailContainerView.snp.makeConstraints { view in
+        self.profileContainerView.snp.makeConstraints { view in
             view.width.height.equalTo(68)
         }
         
-        self.thumnail.snp.makeConstraints { image in
+        self.profileImage.snp.makeConstraints { image in
             image.width.height.equalTo(60)
-            image.center.equalTo(self.thumnailContainerView.snp.center)
+            image.center.equalTo(self.profileContainerView.snp.center)
         }
         
         self.contentStackView.snp.makeConstraints { sv in
@@ -84,7 +84,7 @@ class LiveCounselorCell: UICollectionViewCell {
     }
     
     func configureCell(counselor: CounselorInfo) {
-        thumnail.kf.setImage(with: URL(string: counselor.progileImage))
+        profileImage.kf.setImage(with: URL(string: counselor.profileImage))
         DispatchQueue.main.async {
             self.name.text = counselor.name
         }

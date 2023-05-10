@@ -12,7 +12,7 @@ import SnapKit
 class PopularCounselorCell: UICollectionViewCell {
     static let cellID = "popularCounselorCell"
     // MARK: - View
-    private lazy var thumnailImage: UIImageView = UIImageView().then {
+    private lazy var profileImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 30
     }
@@ -60,7 +60,7 @@ class PopularCounselorCell: UICollectionViewCell {
         $0.distribution = .equalSpacing
     }
     
-    private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [thumnailImage, badge, counselorName, introduce, footerStackView]).then {
+    private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [profileImage, badge, counselorName, introduce, footerStackView]).then {
         
         $0.axis = .vertical
         $0.spacing = 10
@@ -84,7 +84,7 @@ class PopularCounselorCell: UICollectionViewCell {
     }
     
     private func constraint() {
-        thumnailImage.snp.makeConstraints { imageView in
+        profileImage.snp.makeConstraints { imageView in
             imageView.width.height.equalTo(60)
         }
         
@@ -122,10 +122,10 @@ class PopularCounselorCell: UICollectionViewCell {
     }
     
     func configureCell(counselor: CounselorInfo) {
-        self.thumnailImage.kf.setImage(with: URL(string: counselor.progileImage))
+        self.profileImage.kf.setImage(with: URL(string: counselor.profileImage))
         DispatchQueue.main.async {
             self.counselorName.text = counselor.name
-            self.introduce.text = counselor.introduction
+            self.introduce.text = counselor.shortIntroduction
 //            self.startCount.text = counselor.startCount
             self.consultationCount.text = "상담 \(counselor.counsultingCount)회"
         }
