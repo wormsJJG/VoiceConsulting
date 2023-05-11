@@ -25,6 +25,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
     var sender = Sender(senderId: "any_unique_id", displayName: "jake")
     var messages = [Message]()
     private let disposeBag = DisposeBag()
+    private lazy var customMessagesSizeCalculator = RequestTranscationSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +35,15 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         inputBarDesign()
         addAction()
         AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
+        messagesCollectionView.register(RequestTransactionCell.self)
     }
     func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
         for msg in aMessages {
                     switch msg.swiftBody {
                     case let .text(content):
                         print(msg.from)
-                        let message = Message(content: content, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
+                        var message = Message(content: content, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
+                        message.custom = "asdasd"
                         messages.append(message)
                         self.messagesCollectionView.reloadData()
                     default:
@@ -74,6 +77,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
             })
             .disposed(by: self.disposeBag)
     }
+    
 }
 
 // MARK: - MessagesDataSource
@@ -89,6 +93,12 @@ extension ChatRoomVC: MessagesDataSource {
     func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {
         return messages.count
     }
+    func customCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell {
+        let cell = messagesCollectionView.dequeueReusableCell(RequestTransactionCell.self, for: indexPath)
+        cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: customMessagesSizeCalculator)
+        
+        return cell
+    }
 }
 
 // MARK: - MessagesLayoutDelegate
@@ -103,6 +113,10 @@ extension ChatRoomVC: MessagesLayoutDelegate {
     func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         
         return isFromCurrentSender(message: message) ? 0 : 0
+    }
+    
+    func customCellSizeCalculator(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CellSizeCalculator {
+        customMessagesSizeCalculator
     }
 }
 // MARK: - MessagesDisplayDelegate

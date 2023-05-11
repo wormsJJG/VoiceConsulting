@@ -20,6 +20,9 @@
 		3504E2BC29E3B1B4006AEED6 /* MorePopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504E2BB29E3B1B4006AEED6 /* MorePopularCell.swift */; };
 		3504E2BE29E3B1C1006AEED6 /* MoreFitWellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504E2BD29E3B1C1006AEED6 /* MoreFitWellCell.swift */; };
 		3509F82D29D5755800AD880C /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509F82C29D5755800AD880C /* ColorSet.swift */; };
+		350C6DCA2A0CF68D00332581 /* RequestTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350C6DC92A0CF68D00332581 /* RequestTransactionCell.swift */; };
+		350C6DCD2A0D171F00332581 /* CustomMessageContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350C6DCC2A0D171F00332581 /* CustomMessageContentCell.swift */; };
+		350C6DD02A0D2C0300332581 /* CustomLayoutSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350C6DCF2A0D2C0300332581 /* CustomLayoutSizeCalculator.swift */; };
 		351684E029E9521A00E0CF44 /* BuyCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */; };
 		351684E229E9621F00E0CF44 /* CoinInformationUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684E129E9621F00E0CF44 /* CoinInformationUse.swift */; };
 		35188F672A09FC830040804E /* CounselorField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35188F662A09FC830040804E /* CounselorField.swift */; };
@@ -172,6 +175,9 @@
 		3504E2BB29E3B1B4006AEED6 /* MorePopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MorePopularCell.swift; path = VoiceConsultingApp/More/FitWell/MorePopularCell.swift; sourceTree = SOURCE_ROOT; };
 		3504E2BD29E3B1C1006AEED6 /* MoreFitWellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreFitWellCell.swift; sourceTree = "<group>"; };
 		3509F82C29D5755800AD880C /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
+		350C6DC92A0CF68D00332581 /* RequestTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTransactionCell.swift; sourceTree = "<group>"; };
+		350C6DCC2A0D171F00332581 /* CustomMessageContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageContentCell.swift; sourceTree = "<group>"; };
+		350C6DCF2A0D2C0300332581 /* CustomLayoutSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayoutSizeCalculator.swift; sourceTree = "<group>"; };
 		351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinCell.swift; sourceTree = "<group>"; };
 		351684E129E9621F00E0CF44 /* CoinInformationUse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinInformationUse.swift; sourceTree = "<group>"; };
 		35188F662A09FC830040804E /* CounselorField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorField.swift; sourceTree = "<group>"; };
@@ -398,6 +404,31 @@
 				3509F82C29D5755800AD880C /* ColorSet.swift */,
 			);
 			path = Color;
+			sourceTree = "<group>";
+		};
+		350C6DC82A0CF65700332581 /* SystemCell */ = {
+			isa = PBXGroup;
+			children = (
+				350C6DC92A0CF68D00332581 /* RequestTransactionCell.swift */,
+			);
+			path = SystemCell;
+			sourceTree = "<group>";
+		};
+		350C6DCB2A0D170000332581 /* MessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				350C6DCE2A0D2BE600332581 /* CellSizeCalculator */,
+				350C6DCC2A0D171F00332581 /* CustomMessageContentCell.swift */,
+			);
+			path = MessageCell;
+			sourceTree = "<group>";
+		};
+		350C6DCE2A0D2BE600332581 /* CellSizeCalculator */ = {
+			isa = PBXGroup;
+			children = (
+				350C6DCF2A0D2C0300332581 /* CustomLayoutSizeCalculator.swift */,
+			);
+			path = CellSizeCalculator;
 			sourceTree = "<group>";
 		};
 		3523AF892A0904DA00D51B8A /* Counselor */ = {
@@ -679,6 +710,7 @@
 		35C29FF329ECE19F0018FE04 /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
+				350C6DC82A0CF65700332581 /* SystemCell */,
 				35C29FF429ECE1C30018FE04 /* ChatRoomVC.swift */,
 				35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */,
 			);
@@ -755,6 +787,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				350C6DCB2A0D170000332581 /* MessageCell */,
 				354B73C72A0B885400651EF9 /* Protocol */,
 				356F7BE62A07E48700C536D8 /* WiteReview */,
 				356F7BE32A07E43E00C536D8 /* VoiceRoom */,
@@ -1124,6 +1157,7 @@
 				35308FB029E4F77A008FB343 /* MyPageVM.swift in Sources */,
 				35277D2329DA8AB9002A2A14 /* LiveCell.swift in Sources */,
 				35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */,
+				350C6DCD2A0D171F00332581 /* CustomMessageContentCell.swift in Sources */,
 				35308FBA29E51126008FB343 /* ChattingListVM.swift in Sources */,
 				356F7BCF2A0779AE00C536D8 /* CounselorInfoSection.swift in Sources */,
 				3523AF8E2A09079700D51B8A /* FBCollection.swift in Sources */,
@@ -1150,6 +1184,7 @@
 				3560437829DECBFD001CDA77 /* CategoryBlock.swift in Sources */,
 				35308FAE29E4F5F4008FB343 /* MyPageMenu.swift in Sources */,
 				35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */,
+				350C6DD02A0D2C0300332581 /* CustomLayoutSizeCalculator.swift in Sources */,
 				359D327B29E58230005BF86C /* UseHistoryV.swift in Sources */,
 				354B73CD2A0BAEB200651EF9 /* MoreButtonTouchable.swift in Sources */,
 				354609F529D70D8500FC5ABB /* LoginV.swift in Sources */,
@@ -1176,6 +1211,7 @@
 				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
 				3504E2B629E3A8B1006AEED6 /* MoreFitWellV.swift in Sources */,
 				3560437229DEB943001CDA77 /* CounselorBadge.swift in Sources */,
+				350C6DCA2A0CF68D00332581 /* RequestTransactionCell.swift in Sources */,
 				356F7BCD2A07770100C536D8 /* InfoSectionHeader.swift in Sources */,
 				35C29FFD29ECF2A20018FE04 /* Message.swift in Sources */,
 				35308FB629E50784008FB343 /* ChattingListHeader.swift in Sources */,
