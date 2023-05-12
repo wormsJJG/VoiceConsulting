@@ -26,6 +26,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
     var messages = [Message]()
     private let disposeBag = DisposeBag()
     private lazy var customMessagesSizeCalculator = RequestTranscationSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
+    private lazy var customTextMessagesSizeCalculator = CustomTextLayoutSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,23 +35,24 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         setMessageCollectionView()
         inputBarDesign()
         addAction()
-        AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
+//        AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
         messagesCollectionView.register(RequestTransactionCell.self)
+        messagesCollectionView.register(CustomTextMessageCell.self)
     }
-    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
-        for msg in aMessages {
-                    switch msg.swiftBody {
-                    case let .text(content):
-                        print(msg.from)
-                        var message = Message(content: content, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
-                        message.custom = "asdasd"
-                        messages.append(message)
-                        self.messagesCollectionView.reloadData()
-                    default:
-                        break
-                    }
-                }
-    }
+//    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
+//        for msg in aMessages {
+//                    switch msg.swiftBody {
+//                    case let .text(content):
+//                        print(msg.from)
+//                        var message = Message(content: content, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
+//                        message.custom = "asdasd"
+//                        messages.append(message)
+//                        self.messagesCollectionView.reloadData()
+//                    default:
+//                        break
+//                    }
+//                }
+//    }
     
     private func setDelegates() {
         messagesCollectionView.messagesDataSource = self
@@ -77,7 +79,6 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
             })
             .disposed(by: self.disposeBag)
     }
-    
 }
 
 // MARK: - MessagesDataSource
@@ -93,10 +94,25 @@ extension ChatRoomVC: MessagesDataSource {
     func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {
         return messages.count
     }
+    
     func customCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell {
         let cell = messagesCollectionView.dequeueReusableCell(RequestTransactionCell.self, for: indexPath)
         cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: customMessagesSizeCalculator)
-        
+
+        return cell
+    }
+
+    func textCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell? {
+        let cell = messagesCollectionView.dequeueReusableCell(
+          CustomTextMessageCell.self,
+          for: indexPath)
+        cell.configure(
+          with: message,
+          at: indexPath,
+          in: messagesCollectionView,
+          dataSource: self,
+          and: customTextMessagesSizeCalculator)
+
         return cell
     }
 }
@@ -117,6 +133,15 @@ extension ChatRoomVC: MessagesLayoutDelegate {
     
     func customCellSizeCalculator(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CellSizeCalculator {
         customMessagesSizeCalculator
+    }
+    
+    func textCellSizeCalculator(
+      for _: MessageType,
+      at _: IndexPath,
+      in _: MessagesCollectionView)
+      -> CellSizeCalculator?
+    {
+      customTextMessagesSizeCalculator
     }
 }
 // MARK: - MessagesDisplayDelegate
@@ -189,18 +214,18 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     
     //send버튼을 눌렀을떄
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        let message = Message(content: text, sender: Sender(senderId: "any_unique_id", displayName: "jake"))
-            
+        var message = Message(content: text, sender: Sender(senderId: "any_unique_id", displayName: "jake"))
+        message.custom = "asd"
         sendMessage(message: message)
         inputBar.inputTextView.text.removeAll()
     }
     
     private func sendMessage(message: Message) {
-        let msg = AgoraChatMessage(
-            conversationId: "test", from: AgoraChatClient.shared.currentUsername!,
-            to: "testAdmin", body: .text(content: message.content), ext: nil
-                )
-        AgoraChatClient.shared.chatManager?.send(msg, progress: nil)
+//        let msg = AgoraChatMessage(
+//            conversationId: "test", from: AgoraChatClient.shared.currentUsername!,
+//            to: "testAdmin", body: .text(content: message.content), ext: nil
+//                )
+//        AgoraChatClient.shared.chatManager?.send(msg, progress: nil)
         messages.append(message)
         messages.sort()
         

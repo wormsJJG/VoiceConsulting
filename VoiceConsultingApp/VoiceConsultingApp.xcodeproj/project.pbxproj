@@ -40,6 +40,9 @@
 		35277D2329DA8AB9002A2A14 /* LiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277D2229DA8AB9002A2A14 /* LiveCell.swift */; };
 		35277D2529DA8ACD002A2A14 /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277D2429DA8ACD002A2A14 /* PopularCell.swift */; };
 		35277D2729DA8ADA002A2A14 /* FitWellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277D2629DA8ADA002A2A14 /* FitWellCell.swift */; };
+		35289C5E2A0E031900D2B3C5 /* CustomTextLayoutSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35289C5D2A0E031900D2B3C5 /* CustomTextLayoutSizeCalculator.swift */; };
+		35289C602A0E038800D2B3C5 /* CustomTextMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35289C5F2A0E038800D2B3C5 /* CustomTextMessageCell.swift */; };
+		35289C632A0E192000D2B3C5 /* RequestTransactionSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35289C622A0E192000D2B3C5 /* RequestTransactionSizeCalculator.swift */; };
 		35308FAE29E4F5F4008FB343 /* MyPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35308FAD29E4F5F4008FB343 /* MyPageMenu.swift */; };
 		35308FB029E4F77A008FB343 /* MyPageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35308FAF29E4F77A008FB343 /* MyPageVM.swift */; };
 		35308FB229E4F83C008FB343 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35308FB129E4F83C008FB343 /* MenuCell.swift */; };
@@ -195,6 +198,9 @@
 		35277D2229DA8AB9002A2A14 /* LiveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCell.swift; sourceTree = "<group>"; };
 		35277D2429DA8ACD002A2A14 /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
 		35277D2629DA8ADA002A2A14 /* FitWellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitWellCell.swift; sourceTree = "<group>"; };
+		35289C5D2A0E031900D2B3C5 /* CustomTextLayoutSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextLayoutSizeCalculator.swift; sourceTree = "<group>"; };
+		35289C5F2A0E038800D2B3C5 /* CustomTextMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextMessageCell.swift; sourceTree = "<group>"; };
+		35289C622A0E192000D2B3C5 /* RequestTransactionSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTransactionSizeCalculator.swift; sourceTree = "<group>"; };
 		35308FAD29E4F5F4008FB343 /* MyPageMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMenu.swift; sourceTree = "<group>"; };
 		35308FAF29E4F77A008FB343 /* MyPageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVM.swift; sourceTree = "<group>"; };
 		35308FB129E4F83C008FB343 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
@@ -409,7 +415,6 @@
 		350C6DC82A0CF65700332581 /* SystemCell */ = {
 			isa = PBXGroup;
 			children = (
-				350C6DC92A0CF68D00332581 /* RequestTransactionCell.swift */,
 			);
 			path = SystemCell;
 			sourceTree = "<group>";
@@ -417,18 +422,11 @@
 		350C6DCB2A0D170000332581 /* MessageCell */ = {
 			isa = PBXGroup;
 			children = (
-				350C6DCE2A0D2BE600332581 /* CellSizeCalculator */,
-				350C6DCC2A0D171F00332581 /* CustomMessageContentCell.swift */,
+				35289C652A0E198A00D2B3C5 /* Text */,
+				35289C642A0E194200D2B3C5 /* Base */,
+				35289C612A0E18F800D2B3C5 /* RequestTransaction */,
 			);
 			path = MessageCell;
-			sourceTree = "<group>";
-		};
-		350C6DCE2A0D2BE600332581 /* CellSizeCalculator */ = {
-			isa = PBXGroup;
-			children = (
-				350C6DCF2A0D2C0300332581 /* CustomLayoutSizeCalculator.swift */,
-			);
-			path = CellSizeCalculator;
 			sourceTree = "<group>";
 		};
 		3523AF892A0904DA00D51B8A /* Counselor */ = {
@@ -457,6 +455,33 @@
 				35DECCB529DBCD7400DE5BE3 /* TableViewCell */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		35289C612A0E18F800D2B3C5 /* RequestTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				350C6DC92A0CF68D00332581 /* RequestTransactionCell.swift */,
+				35289C622A0E192000D2B3C5 /* RequestTransactionSizeCalculator.swift */,
+			);
+			path = RequestTransaction;
+			sourceTree = "<group>";
+		};
+		35289C642A0E194200D2B3C5 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				350C6DCF2A0D2C0300332581 /* CustomLayoutSizeCalculator.swift */,
+				350C6DCC2A0D171F00332581 /* CustomMessageContentCell.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		35289C652A0E198A00D2B3C5 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				35289C5D2A0E031900D2B3C5 /* CustomTextLayoutSizeCalculator.swift */,
+				35289C5F2A0E038800D2B3C5 /* CustomTextMessageCell.swift */,
+			);
+			path = Text;
 			sourceTree = "<group>";
 		};
 		35364FD92A029D6A00C4BC8D /* Notification */ = {
@@ -1155,6 +1180,7 @@
 				355EDEE229D5CD7A00F9BD5D /* SelectCategoryV.swift in Sources */,
 				355EDEE029D5CD3600F9BD5D /* SelectCategoryVM.swift in Sources */,
 				35308FB029E4F77A008FB343 /* MyPageVM.swift in Sources */,
+				35289C632A0E192000D2B3C5 /* RequestTransactionSizeCalculator.swift in Sources */,
 				35277D2329DA8AB9002A2A14 /* LiveCell.swift in Sources */,
 				35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */,
 				350C6DCD2A0D171F00332581 /* CustomMessageContentCell.swift in Sources */,
@@ -1172,6 +1198,7 @@
 				35364FDB2A029D7D00C4BC8D /* PushManager.swift in Sources */,
 				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
 				359D327729E57D4E005BF86C /* BuyHistoryCell.swift in Sources */,
+				35289C602A0E038800D2B3C5 /* CustomTextMessageCell.swift in Sources */,
 				354664B929E43ADF0055375F /* BigCoinBlock.swift in Sources */,
 				35277D2529DA8ACD002A2A14 /* PopularCell.swift in Sources */,
 				3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */,
@@ -1256,6 +1283,7 @@
 				356F7BD42A07920A00C536D8 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
 				359933CB29D07A690098A0FC /* MainV.swift in Sources */,
 				35308FB229E4F83C008FB343 /* MenuCell.swift in Sources */,
+				35289C5E2A0E031900D2B3C5 /* CustomTextLayoutSizeCalculator.swift in Sources */,
 				356F7BE52A07E45600C536D8 /* VoiceRoomV.swift in Sources */,
 				35726F362A066966008E28D0 /* CustomTabBar.swift in Sources */,
 				359D327529E57601005BF86C /* BuyCoinV.swift in Sources */,

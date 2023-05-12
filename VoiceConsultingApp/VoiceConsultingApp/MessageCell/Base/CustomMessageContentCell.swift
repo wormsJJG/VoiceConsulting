@@ -13,6 +13,8 @@ class CustomMessageContentCell: MessageCollectionViewCell {
     // MARK: - Properties
     weak var delegate: MessageCellDelegate?
     // MARK: - View
+    var profileView = AvatarView()
+    
     var messageContainerView: UIView = UIView().then {
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
@@ -53,6 +55,7 @@ class CustomMessageContentCell: MessageCollectionViewCell {
     }
     // MARK: - setupSubviews()
     func setupSubviews() {
+        contentView.addSubview(profileView)
         contentView.addSubview(cellTopLabel)
         contentView.addSubview(messageContainerView)
         contentView.addSubview(cellDateLabel)

@@ -10,13 +10,6 @@ import SnapKit
 import Then
 import MessageKit
 
-class RequestTranscationSizeCalculator: CustomLayoutSizeCalculator {
-    var messageContainerViewFrame = CGRect(x: 0, y: 0, width: 160, height: 151)
-    override func messageContainerSize(for _: MessageType, at _: IndexPath) -> CGSize {
-        return CGSize(width: 160, height: 151)
-    }
-}
-
 class RequestTransactionCell: CustomMessageContentCell {
     private let requestTypeDetail: UILabel = UILabel().then {
         $0.text = "거래 요청 메세지"
@@ -61,8 +54,8 @@ class RequestTransactionCell: CustomMessageContentCell {
     }
     
     override func prepareForReuse() {
-        requestInfo.text = nil
-        requestTypeDetail.text = nil
+//        requestInfo.text = nil
+//        requestTypeDetail.text = nil
     }
     
     override func setupSubviews() {
@@ -87,6 +80,7 @@ class RequestTransactionCell: CustomMessageContentCell {
     override func configure(with message: MessageType, at indexPath: IndexPath, in messageCollectionView: MessagesCollectionView, dataSource: MessagesDataSource, and sizeCalculator: CustomLayoutSizeCalculator) {
         super.configure(with: message, at: indexPath, in: messageCollectionView, dataSource: dataSource, and: sizeCalculator)
         let calculator = sizeCalculator as? RequestTranscationSizeCalculator
-        self.messageContainerView.frame = calculator!.messageContainerViewFrame
+        allStackView.frame = calculator?.requestContentFrame(for: message, at: indexPath) ?? .zero
+        self.messageContainerView.backgroundColor = .white
     }
 }

@@ -19,12 +19,12 @@ class CustomLayoutSizeCalculator: CellSizeCalculator {
 
   // MARK: Internal
 
-  var cellTopLabelVerticalPadding: CGFloat = 32
-  var cellTopLabelHorizontalPadding: CGFloat = 32
-  var cellMessageContainerHorizontalPadding: CGFloat = 48
+  var cellTopLabelVerticalPadding: CGFloat = 22
+  var cellTopLabelHorizontalPadding: CGFloat = 22
+  var cellMessageContainerHorizontalPadding: CGFloat = 40
   var cellMessageContainerExtraSpacing: CGFloat = 16
-  var cellMessageContentVerticalPadding: CGFloat = 16
-  var cellMessageContentHorizontalPadding: CGFloat = 16
+  var cellMessageContentVerticalPadding: CGFloat = 20
+  var cellMessageContentHorizontalPadding: CGFloat = 20
   var cellDateLabelHorizontalPadding: CGFloat = 24
   var cellDateLabelBottomPadding: CGFloat = 8
 
@@ -166,11 +166,9 @@ class CustomLayoutSizeCalculator: CellSizeCalculator {
       for: message,
       at: indexPath)
     let width = labelSize.width +
-      cellMessageContentHorizontalPadding +
-      cellDateLabelHorizontalPadding
+      cellMessageContentHorizontalPadding
     let height = labelSize.height +
-      cellMessageContentVerticalPadding +
-      cellDateLabelBottomPadding
+      cellMessageContentVerticalPadding
 
     return CGSize(
       width: width,
