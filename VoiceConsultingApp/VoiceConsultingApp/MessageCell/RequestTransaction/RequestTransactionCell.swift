@@ -39,6 +39,7 @@ class RequestTransactionCell: CustomMessageContentCell {
     private lazy var labelStackView: UIStackView = UIStackView(arrangedSubviews: [requestTypeDetail, requestInfo]).then {
         $0.axis = .vertical
         $0.alignment = .leading
+        $0.distribution = .fillProportionally
         $0.spacing = 10
     }
     
@@ -46,14 +47,6 @@ class RequestTransactionCell: CustomMessageContentCell {
         $0.axis = .vertical
         $0.distribution = .fill
         $0.spacing = 20
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func prepareForReuse() {
@@ -64,14 +57,14 @@ class RequestTransactionCell: CustomMessageContentCell {
     override func setupSubviews() {
         super.setupSubviews()
         self.messageContainerView.addSubview(allStackView)
-        layoutIfNeeded()
     }
     
     override func configure(with message: MessageType, at indexPath: IndexPath, in messageCollectionView: MessagesCollectionView, dataSource: MessagesDataSource, and sizeCalculator: CustomLayoutSizeCalculator) {
         super.configure(with: message, at: indexPath, in: messageCollectionView, dataSource: dataSource, and: sizeCalculator)
         let calculator = sizeCalculator as? RequestTranscationSizeCalculator
-        allStackView.frame = calculator?.requestContentFrame(for: message, at: indexPath) ?? .zero
         paymentButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        allStackView.frame = calculator?.requestContentFrame(for: message, at: indexPath) ?? .zero
+        
         self.messageContainerView.backgroundColor = .white
     }
 }

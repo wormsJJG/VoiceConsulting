@@ -207,8 +207,16 @@ extension ChatRoomVC: MessagesDisplayDelegate {
         formatter.dateFormat = "yyyy년 M월 d일 EEEE"
         formatter.locale = Locale(identifier: "ko_KR")
         let dateString = formatter.string(from: message.sentDate)
-        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont(name: Fonts.NotoSansKR_Regular, size: 12)!])
-//        return nil
+        let attributeString = NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont(name: Fonts.NotoSansKR_Regular, size: 12)!])
+        if messages.count == 1 {
+            return attributeString
+        } else {
+            if Calendar.current.isDateInToday(messages[indexPath.row].sentDate) {
+                return nil
+            } else {
+                return attributeString
+            }
+        }
     }
 }
 // MARK: - InputBarAccessoryViewDelegate

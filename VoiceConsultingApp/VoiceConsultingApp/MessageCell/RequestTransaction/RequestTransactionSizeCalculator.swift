@@ -21,9 +21,9 @@ class RequestTranscationSizeCalculator: CustomLayoutSizeCalculator {
         
         return CGSize(width: width, height: height)
     }
-    
+
     func requestContentSize(for message: MessageType, at _: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 141)
+        return CGSize(width: 150, height: 140)
     }
     
     func requestContentFrame(for message: MessageType, at indexPath: IndexPath) -> CGRect {
