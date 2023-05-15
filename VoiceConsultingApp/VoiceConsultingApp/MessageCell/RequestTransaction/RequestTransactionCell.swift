@@ -11,10 +11,13 @@ import Then
 import MessageKit
 
 class RequestTransactionCell: CustomMessageContentCell {
-    private let requestTypeDetail: UILabel = UILabel().then {
+    private let requestTypeDetail: PaddingLabel = PaddingLabel(padding: UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6)).then {
         $0.text = "거래 요청 메세지"
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 12)
         $0.textColor = ColorSet.mainColor
+        $0.backgroundColor = ColorSet.requestLabelBack
+        $0.layer.cornerRadius = 4
+        $0.clipsToBounds = true
     }
     
     private let requestInfo: UILabel = UILabel().then {
@@ -60,27 +63,15 @@ class RequestTransactionCell: CustomMessageContentCell {
     
     override func setupSubviews() {
         super.setupSubviews()
-        constraint()
-    }
-    
-    private func constraint() {
         self.messageContainerView.addSubview(allStackView)
-        self.paymentButton.snp.makeConstraints {
-            $0.height.equalTo(40)
-        }
-        
-        self.allStackView.snp.makeConstraints {
-            $0.left.equalTo(self.messageContainerView.snp.left).offset(10)
-            $0.top.equalTo(self.messageContainerView.snp.top).offset(10)
-            $0.right.equalTo(self.messageContainerView.snp.right).offset(-10)
-            $0.bottom.equalTo(self.messageContainerView.snp.bottom).offset(-10)
-        }
+        layoutIfNeeded()
     }
     
     override func configure(with message: MessageType, at indexPath: IndexPath, in messageCollectionView: MessagesCollectionView, dataSource: MessagesDataSource, and sizeCalculator: CustomLayoutSizeCalculator) {
         super.configure(with: message, at: indexPath, in: messageCollectionView, dataSource: dataSource, and: sizeCalculator)
         let calculator = sizeCalculator as? RequestTranscationSizeCalculator
         allStackView.frame = calculator?.requestContentFrame(for: message, at: indexPath) ?? .zero
+        paymentButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         self.messageContainerView.backgroundColor = .white
     }
 }

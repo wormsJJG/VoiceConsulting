@@ -100,6 +100,7 @@
 		35726F322A05F556008E28D0 /* CounselorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F312A05F556008E28D0 /* CounselorManager.swift */; };
 		35726F342A05F7A3008E28D0 /* DateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F332A05F7A3008E28D0 /* DateCustomCell.swift */; };
 		35726F362A066966008E28D0 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F352A066966008E28D0 /* CustomTabBar.swift */; };
+		357810682A0E401500AE8EC8 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357810672A0E401500AE8EC8 /* PaddingLabel.swift */; };
 		357D84ED2A0A7196003DB1FC /* LiveCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */; };
 		35962E8029F9253A0059CF17 /* ChatRoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */; };
 		359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359933C529D077E50098A0FC /* GoogleService-Info.plist */; };
@@ -258,6 +259,7 @@
 		35726F312A05F556008E28D0 /* CounselorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorManager.swift; sourceTree = "<group>"; };
 		35726F332A05F7A3008E28D0 /* DateCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCustomCell.swift; sourceTree = "<group>"; };
 		35726F352A066966008E28D0 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		357810672A0E401500AE8EC8 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCellVM.swift; sourceTree = "<group>"; };
 		35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomHeader.swift; sourceTree = "<group>"; };
 		359933C529D077E50098A0FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -410,13 +412,6 @@
 				3509F82C29D5755800AD880C /* ColorSet.swift */,
 			);
 			path = Color;
-			sourceTree = "<group>";
-		};
-		350C6DC82A0CF65700332581 /* SystemCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SystemCell;
 			sourceTree = "<group>";
 		};
 		350C6DCB2A0D170000332581 /* MessageCell */ = {
@@ -587,6 +582,7 @@
 				35726F332A05F7A3008E28D0 /* DateCustomCell.swift */,
 				35726F352A066966008E28D0 /* CustomTabBar.swift */,
 				356F7BD32A07920A00C536D8 /* CollectionViewLeftAlignFlowLayout.swift */,
+				357810672A0E401500AE8EC8 /* PaddingLabel.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -735,7 +731,6 @@
 		35C29FF329ECE19F0018FE04 /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
-				350C6DC82A0CF65700332581 /* SystemCell */,
 				35C29FF429ECE1C30018FE04 /* ChatRoomVC.swift */,
 				35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */,
 			);
@@ -1254,6 +1249,7 @@
 				35188F6A2A0A01490040804E /* FBError.swift in Sources */,
 				35308FB429E503CE008FB343 /* ChattingListV.swift in Sources */,
 				35277D1829DA6BC9002A2A14 /* MainHeaderView.swift in Sources */,
+				357810682A0E401500AE8EC8 /* PaddingLabel.swift in Sources */,
 				357D84ED2A0A7196003DB1FC /* LiveCellVM.swift in Sources */,
 				354609F929D70DF300FC5ABB /* LoginVM.swift in Sources */,
 				35EAEAF529CAF99500AAE587 /* SceneDelegate.swift in Sources */,

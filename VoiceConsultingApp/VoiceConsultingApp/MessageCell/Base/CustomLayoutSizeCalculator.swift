@@ -19,14 +19,17 @@ class CustomLayoutSizeCalculator: CellSizeCalculator {
 
   // MARK: Internal
 
-  var cellTopLabelVerticalPadding: CGFloat = 22
-  var cellTopLabelHorizontalPadding: CGFloat = 22
-  var cellMessageContainerHorizontalPadding: CGFloat = 40
-  var cellMessageContainerExtraSpacing: CGFloat = 16
-  var cellMessageContentVerticalPadding: CGFloat = 20
-  var cellMessageContentHorizontalPadding: CGFloat = 20
-  var cellDateLabelHorizontalPadding: CGFloat = 24
-  var cellDateLabelBottomPadding: CGFloat = 8
+    var cellTopLabelVerticalPadding: CGFloat = 44
+    var cellTopLabelHorizontalPadding: CGFloat = 22
+    var cellMessageContainerHorizontalPadding: CGFloat = 40
+    var cellMessageContainerExtraSpacing: CGFloat = 50 // 최소 여백
+    var cellMessageContentVerticalPadding: CGFloat = 20
+    var cellMessageContentHorizontalPadding: CGFloat = 20
+    var cellDateLabelHorizontalPadding: CGFloat = 24
+    var cellDateLabelBottomPadding: CGFloat = 8
+    var cellMessageContainerDateSpacing: CGFloat = 6
+    var cellProfileHorizontialSpacing: CGFloat = 20 //왼쪽 벽과 프로필 간격
+    var profileMessageContainerSpacing: CGFloat = 10 //프로필과 메세지 컨테이너 간격
 
   var messagesLayout: MessagesCollectionViewFlowLayout {
     layout as! MessagesCollectionViewFlowLayout
@@ -63,13 +66,28 @@ class CustomLayoutSizeCalculator: CellSizeCalculator {
     cellTopLabelSize(
       for: message,
       at: indexPath).height +
-      cellMessageBottomLabelSize(
-        for: message,
-        at: indexPath).height +
       messageContainerSize(
         for: message,
         at: indexPath).height
   }
+    // MARK: - ProfileView
+    
+    func profileViewSize(for message: MessageType, at indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 40, height: 40)
+    }
+    
+    func profileViewFrame(for message: MessageType, at indexPath: IndexPath) -> CGRect {
+        let y: CGFloat
+        let cellTopLabelSize = cellTopLabelSize(for: message, at: indexPath)
+        if cellTopLabelSize == .zero {
+            y = 0
+        } else {
+            y = cellTopLabelSize.height
+        }
+        let origin = CGPoint(x: cellProfileHorizontialSpacing, y: y)
+        let size = profileViewSize(for: message, at: indexPath)
+        return CGRect(origin: origin, size: size)
+    }
 
   // MARK: - Top cell Label
 
@@ -116,7 +134,7 @@ class CustomLayoutSizeCalculator: CellSizeCalculator {
       size: size)
   }
 
-  func cellMessageBottomLabelSize(
+  func cellDateLabelSize(
     for message: MessageType,
     at indexPath: IndexPath)
     -> CGSize
@@ -128,29 +146,46 @@ class CustomLayoutSizeCalculator: CellSizeCalculator {
     {
       return .zero
     }
-    let maxWidth = messageContainerMaxWidth - cellDateLabelHorizontalPadding
+    let maxWidth = messageContainerMaxWidth - cellMessageContainerDateSpacing
 
     return attributedText.size(consideringWidth: maxWidth)
   }
 
-  func cellMessageBottomLabelFrame(
+  func cellDateLabelFrame(
     for message: MessageType,
-    at indexPath: IndexPath)
+    at indexPath: IndexPath,
+    fromCurrentSender: Bool)
     -> CGRect
   {
-    let messageContainerSize = messageContainerSize(
+      let profileWidth = profileViewSize(for: message, at: indexPath).width
+      let messageContainerSize = messageContainerSize(
       for: message,
       at: indexPath)
-    let labelSize = cellMessageBottomLabelSize(
+      let labelSize = cellDateLabelSize(
       for: message,
       at: indexPath)
-    let x = messageContainerSize.width - labelSize.width - (cellDateLabelHorizontalPadding / 2)
-    let y = messageContainerSize.height - labelSize.height - cellDateLabelBottomPadding
-    let origin = CGPoint(
+      let messageContainerX = messagesLayout.itemWidth - (messageContainerSize.width + 20) //MessageContainer의 X좌표
+      let x: CGFloat
+      let y: CGFloat
+      let cellTopLabelSize = cellTopLabelSize(for: message, at: indexPath)
+
+      if fromCurrentSender {
+          x = (messageContainerX - labelSize.width) - cellMessageContainerDateSpacing //DateLabel의 X좌표
+      } else {
+          x = cellProfileHorizontialSpacing + profileWidth + profileMessageContainerSpacing + messageContainerSize.width + 6
+      }
+      
+      if cellTopLabelSize == .zero {
+          y = messageContainerSize.height - labelSize.height
+      } else {
+          y = messageContainerSize.height - labelSize.height + cellTopLabelSize.height
+      }
+      
+      let origin = CGPoint(
       x: x,
       y: y)
 
-    return CGRect(
+      return CGRect(
       origin: origin,
       size: labelSize)
   }
@@ -162,13 +197,8 @@ class CustomLayoutSizeCalculator: CellSizeCalculator {
     at indexPath: IndexPath)
     -> CGSize
   {
-    let labelSize = cellMessageBottomLabelSize(
-      for: message,
-      at: indexPath)
-    let width = labelSize.width +
-      cellMessageContentHorizontalPadding
-    let height = labelSize.height +
-      cellMessageContentVerticalPadding
+    let width = cellMessageContentHorizontalPadding
+    let height = cellMessageContentVerticalPadding
 
     return CGSize(
       width: width,
@@ -181,6 +211,7 @@ class CustomLayoutSizeCalculator: CellSizeCalculator {
     fromCurrentSender: Bool)
     -> CGRect
   {
+      let profileWidth = profileViewSize(for: message, at: indexPath).width
     let y = cellTopLabelSize(
       for: message,
       at: indexPath).height
@@ -195,7 +226,7 @@ class CustomLayoutSizeCalculator: CellSizeCalculator {
       origin = CGPoint(x: x, y: y)
     } else {
       origin = CGPoint(
-        x: cellMessageContainerHorizontalPadding / 2,
+        x: cellProfileHorizontialSpacing + profileWidth + profileMessageContainerSpacing,
         y: y)
     }
 

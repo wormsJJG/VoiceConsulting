@@ -28,6 +28,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
     private lazy var customMessagesSizeCalculator = RequestTranscationSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     private lazy var customTextMessagesSizeCalculator = CustomTextLayoutSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     
+// MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -190,6 +191,25 @@ extension ChatRoomVC: MessagesDisplayDelegate {
             avatarView.backgroundColor = ColorSet.chatRoomBack
         }
     }
+    
+    func messageBottomLabelAttributedText(for message: MessageType, at _: IndexPath) -> NSAttributedString? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "a hh:mm"
+        formatter.locale = Locale(identifier: "ko_KR")
+        let dateString = formatter.string(from: message.sentDate)
+        return NSAttributedString(
+        string: dateString,
+        attributes: [NSAttributedString.Key.font: UIFont(name: Fonts.NotoSansKR_Regular, size: 12)!])
+    }
+    
+    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 M월 d일 EEEE"
+        formatter.locale = Locale(identifier: "ko_KR")
+        let dateString = formatter.string(from: message.sentDate)
+        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont(name: Fonts.NotoSansKR_Regular, size: 12)!])
+//        return nil
+    }
 }
 // MARK: - InputBarAccessoryViewDelegate
 extension ChatRoomVC: InputBarAccessoryViewDelegate {
@@ -214,8 +234,10 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     
     //send버튼을 눌렀을떄
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        var message = Message(content: text, sender: Sender(senderId: "any_unique_id", displayName: "jake"))
-        message.custom = "asd"
+        var message = Message(content: text, sender: Sender(senderId: "any_unique_i", displayName: "jake"))
+        if message.content == "거래 요청 메세지" {
+            message.custom = "asd"
+        }
         sendMessage(message: message)
         inputBar.inputTextView.text.removeAll()
     }

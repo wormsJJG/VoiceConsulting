@@ -13,7 +13,7 @@ class CustomTextMessageCell: CustomMessageContentCell {
   var messageLabel: UILabel = {
     let label = UILabel()
     label.numberOfLines = 0
-    label.font = UIFont.preferredFont(forTextStyle: .body)
+      label.font = UIFont(name: Fonts.NotoSansKR_Regular, size: 14)
 
     return label
   }()

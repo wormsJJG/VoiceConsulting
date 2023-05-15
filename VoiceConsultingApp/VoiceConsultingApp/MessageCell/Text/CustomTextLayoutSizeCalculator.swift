@@ -51,10 +51,10 @@ class CustomTextLayoutSizeCalculator: CustomLayoutSizeCalculator {
       fatalError("messageLabelSize received unhandled MessageDataType: \(message.kind)")
     }
 
-    let maxWidth = messageContainerMaxWidth -
+      let maxWidth: CGFloat = messageContainerMaxWidth -
       cellMessageContentHorizontalPadding -
-      cellMessageContainerRightSpacing
-
+      70
+      
     return attributedText.size(consideringWidth: maxWidth)
   }
 
