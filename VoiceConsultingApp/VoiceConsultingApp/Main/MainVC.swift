@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 class MainVC: BaseViewController {
     // MARK: - Load View
@@ -24,10 +25,55 @@ class MainVC: BaseViewController {
         super.viewDidLoad()
         isHiddenNavigationBar()
         bindTableView()
+        addCoinBlockTapAction()
     }
+}
+// MARK: - Notification
+extension MainVC {
+
+}
+// MARK: - Touch Action
+extension MainVC {
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    private func addCoinBlockTapAction() {
+        self.mainV.headerView.coinBlock.rx
+            .tapGesture()
+            .when(.recognized)
+            .bind(onNext: { [weak self] _ in
+                self?.didTapCoinBlock()
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+
+extension MainVC: CellTouchable {
+    func didTouchCell(_ model: Counselor) {
+        let counselorDetailVC = CounselorDetailVC()
+        counselorDetailVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(counselorDetailVC, animated: true)
+    }
+}
+
+extension MainVC: MoreButtonTouchable {
+    func didTouchMoreButton(_ moreType: MoreType) {
+        switch moreType {
+        case .live:
+            let moreLiveVC = MoreLiveVC()
+            moreLiveVC.hidesBottomBarWhenPushed = true
+            
+            self.navigationController?.pushViewController(moreLiveVC, animated: true)
+        case .popular:
+            let morePopularVC = MorePopularVC()
+            morePopularVC.hidesBottomBarWhenPushed = true
+
+            self.navigationController?.pushViewController(morePopularVC, animated: true)
+        case .fitWell:
+            let moreFitWellVC = MoreFitWellVC()
+            moreFitWellVC.hidesBottomBarWhenPushed = true
+            
+            self.navigationController?.pushViewController(moreFitWellVC, animated: true)
+        }
     }
 }
 // MARK: - Bind TableView
@@ -40,7 +86,7 @@ extension MainVC: UITableViewDelegate {
         self.mainV.mainList.estimatedRowHeight = UITableView.automaticDimension
         
         self.viewModel.sectionTitleList
-            .bind(to: self.mainV.mainList.rx.items) { tableView, row, section in
+            .bind(to: self.mainV.mainList.rx.items) { [weak self] tableView, row, section in
                 switch section {
                     
                 case .banner:
@@ -57,9 +103,10 @@ extension MainVC: UITableViewDelegate {
                         
                         return UITableViewCell()
                     }
-                    liveCounselorCell.header.sectionTitle.text = section.sectionTitle
-                    liveCounselorCell.liveCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
                     
+                    liveCounselorCell.header.sectionTitle.text = section.sectionTitle
+                    liveCounselorCell.cellTouchDelegate = self
+                    liveCounselorCell.moreButtonTouchDelegate = self
                     
                     return liveCounselorCell
                     
@@ -71,6 +118,9 @@ extension MainVC: UITableViewDelegate {
                     }
                     popularCell.header.sectionTitle.text = section.sectionTitle
                     popularCell.popularCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
+                    popularCell.delegate = self
+                    
+                    
                     
                     return popularCell
                     
@@ -80,6 +130,7 @@ extension MainVC: UITableViewDelegate {
                         
                         return UITableViewCell()
                     }
+                    
                     fitWellCounselorCell.header.sectionTitle.text = section.sectionTitle
                     fitWellCounselorCell.fitWellCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
                     

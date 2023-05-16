@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import Then
 import SnapKit
+import Then
 
 class MainListHeader: UIView {
     lazy var sectionTitle: UILabel = UILabel().then {
@@ -54,6 +54,10 @@ class MainListHeader: UIView {
     }
     
     private func constraint() {
+        self.snp.makeConstraints {
+            $0.height.equalTo(54)
+        }
+        
         self.addSubview(allStackView)
         
         self.allStackView.snp.makeConstraints { sv in

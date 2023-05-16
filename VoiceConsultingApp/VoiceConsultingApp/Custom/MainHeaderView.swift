@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class MainHeaderView: UIView {
     lazy var coinBlock: CoinBlock = CoinBlock()

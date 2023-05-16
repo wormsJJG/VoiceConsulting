@@ -11,6 +11,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        isHiddenNavigationBar()
     }
     
     func isHiddenBackButton() {
@@ -19,5 +20,23 @@ class BaseViewController: UIViewController {
     
     func isHiddenNavigationBar() {
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    func didTapCoinBlock() {
+        let coinManagementVC = CoinManagementVC()
+        coinManagementVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(coinManagementVC, animated: true)
+    }
+    
+    func popVC() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func moveChatRommVC() {
+        let chatRoom = ChatRoomVC()
+        chatRoom.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(chatRoom, animated: true)
     }
 }

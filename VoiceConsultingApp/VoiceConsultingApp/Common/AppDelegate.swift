@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseCore
+import UserNotifications
+import AgoraChat
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure() // For Firebase
-
+        PushManager.shared.registerForPushNotifications()
+        UNUserNotificationCenter.current().delegate = self
+        AgoraPushManager.shared.initAgoraChatOptions()
         return true
       }
 
@@ -26,5 +30,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         
     }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let token = tokenParts.joined()
+        AgoraPushManager.shared.registerForRemoteNotifications(deviceToken: deviceToken)
+        print("Device Token: \(token)")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
+    }
 }
-
+// MARK: - Push Noti
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print(notification.request.identifier)
+        completionHandler([.alert, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print(response.notification.request.identifier)
+    }
+}

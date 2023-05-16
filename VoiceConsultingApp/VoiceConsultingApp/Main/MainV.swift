@@ -24,7 +24,6 @@ class MainV: UIView {
         $0.register(FitWellCell.self, forCellReuseIdentifier: FitWellCell.cellID)
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
 
     override init(frame: CGRect) {
@@ -45,8 +44,6 @@ class MainV: UIView {
             hv.top.equalTo(self.safeAreaLayoutGuide.snp.top)
             hv.right.equalTo(self.snp.right)
         }
-        
-        self.addSubview(bannerImage)
         
         self.addSubview(mainList)
         
