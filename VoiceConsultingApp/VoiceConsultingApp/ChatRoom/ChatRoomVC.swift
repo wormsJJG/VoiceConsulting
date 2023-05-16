@@ -146,7 +146,15 @@ extension ChatRoomVC: MessagesLayoutDelegate {
     }
     
     func customCellSizeCalculator(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CellSizeCalculator {
-        requestTranscationSizeCalculator
+        if let msg = message as? Message {
+            switch msg.systemMessage! {
+            case .requestTranscation:
+                return requestTranscationSizeCalculator
+            case .transactionCompleted:
+                return transcationCompletedSizeCalculator
+            }
+        }
+        return customTextMessagesSizeCalculator
     }
     
     func textCellSizeCalculator(
