@@ -10,4 +10,5 @@ import Foundation
 enum SystemMessageType {
     case requestTranscation
     case transactionCompleted
+    case endConsultation
 }

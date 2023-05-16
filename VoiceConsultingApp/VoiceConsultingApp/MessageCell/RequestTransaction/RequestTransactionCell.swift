@@ -12,7 +12,7 @@ import MessageKit
 
 class RequestTransactionCell: CustomMessageContentCell {
     private let requestTypeDetail: PaddingLabel = PaddingLabel(padding: UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6)).then {
-        $0.text = "거래 요청 메세지"
+        $0.text = "거래 요청 메시지"
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 12)
         $0.textColor = ColorSet.mainColor
         $0.backgroundColor = ColorSet.requestLabelBack

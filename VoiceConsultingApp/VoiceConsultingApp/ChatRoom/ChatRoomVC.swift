@@ -28,6 +28,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
     private lazy var requestTranscationSizeCalculator = RequestTranscationSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     private lazy var customTextMessagesSizeCalculator = CustomTextLayoutSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     private lazy var transcationCompletedSizeCalculator = TransactionCompletedSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
+    private lazy var endConsultationSizeCalculator = EndConsultationSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     
 // MARK: - Life Cycles
     override func viewDidLoad() {
@@ -41,6 +42,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         messagesCollectionView.register(RequestTransactionCell.self)
         messagesCollectionView.register(CustomTextMessageCell.self)
         messagesCollectionView.register(TransactionCompletedCell.self)
+        messagesCollectionView.register(EndConsultationCell.self)
     }
 //    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
 //        for msg in aMessages {
@@ -111,6 +113,11 @@ extension ChatRoomVC: MessagesDataSource {
                 cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: transcationCompletedSizeCalculator)
                 
                 return cell
+            case .endConsultation:
+                let cell = messagesCollectionView.dequeueReusableCell(EndConsultationCell.self, for: indexPath)
+                cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: endConsultationSizeCalculator)
+
+                return cell
             }
         }
         return UICollectionViewCell()
@@ -152,6 +159,8 @@ extension ChatRoomVC: MessagesLayoutDelegate {
                 return requestTranscationSizeCalculator
             case .transactionCompleted:
                 return transcationCompletedSizeCalculator
+            case .endConsultation:
+                return endConsultationSizeCalculator
             }
         }
         return customTextMessagesSizeCalculator
@@ -264,11 +273,15 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     //send버튼을 눌렀을떄
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         var message = Message(content: text, sender: Sender(senderId: "any_unique_i", displayName: "jake"))
+        
         if message.content == "거래 요청 메세지" {
             message.systemMessage = .requestTranscation
         } else if message.content == "거래 완료 메세지" {
             message.systemMessage = .transactionCompleted
+        } else if message.content == "상담 종료 메세지" {
+            message.systemMessage = .endConsultation
         }
+        
         sendMessage(message: message)
         inputBar.inputTextView.text.removeAll()
     }

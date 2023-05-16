@@ -122,6 +122,8 @@
 		359F7FBF29FD571000274108 /* CounselorDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FBE29FD571000274108 /* CounselorDetailHeader.swift */; };
 		359F7FC129FD589C00274108 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FC029FD589C00274108 /* NotificationName.swift */; };
 		35A63F642A1322910058C92D /* SystemMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F632A1322910058C92D /* SystemMessageType.swift */; };
+		35A63F672A132FD50058C92D /* EndConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F662A132FD50058C92D /* EndConsultationCell.swift */; };
+		35A63F692A132FE30058C92D /* EndConsultationSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F682A132FE30058C92D /* EndConsultationSizeCalculator.swift */; };
 		35BC05332A1263F400E312C8 /* TransactionCompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC05322A1263F400E312C8 /* TransactionCompletedCell.swift */; };
 		35BC05352A12640200E312C8 /* TransactionCompletedSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC05342A12640200E312C8 /* TransactionCompletedSizeCalculator.swift */; };
 		35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */; };
@@ -284,6 +286,8 @@
 		359F7FBE29FD571000274108 /* CounselorDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorDetailHeader.swift; sourceTree = "<group>"; };
 		359F7FC029FD589C00274108 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		35A63F632A1322910058C92D /* SystemMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageType.swift; sourceTree = "<group>"; };
+		35A63F662A132FD50058C92D /* EndConsultationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndConsultationCell.swift; sourceTree = "<group>"; };
+		35A63F682A132FE30058C92D /* EndConsultationSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndConsultationSizeCalculator.swift; sourceTree = "<group>"; };
 		35BC05322A1263F400E312C8 /* TransactionCompletedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCompletedCell.swift; sourceTree = "<group>"; };
 		35BC05342A12640200E312C8 /* TransactionCompletedSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCompletedSizeCalculator.swift; sourceTree = "<group>"; };
 		35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeV.swift; sourceTree = "<group>"; };
@@ -423,6 +427,7 @@
 		350C6DCB2A0D170000332581 /* MessageCell */ = {
 			isa = PBXGroup;
 			children = (
+				35A63F652A132FB40058C92D /* EndConsultation  */,
 				35BC05312A12639600E312C8 /* TransactionCompleted */,
 				35289C652A0E198A00D2B3C5 /* Text */,
 				35289C642A0E194200D2B3C5 /* Base */,
@@ -723,6 +728,15 @@
 				356F7BCE2A0779AE00C536D8 /* CounselorInfoSection.swift */,
 			);
 			path = CounselorDetail;
+			sourceTree = "<group>";
+		};
+		35A63F652A132FB40058C92D /* EndConsultation  */ = {
+			isa = PBXGroup;
+			children = (
+				35A63F662A132FD50058C92D /* EndConsultationCell.swift */,
+				35A63F682A132FE30058C92D /* EndConsultationSizeCalculator.swift */,
+			);
+			path = "EndConsultation ";
 			sourceTree = "<group>";
 		};
 		35BC05312A12639600E312C8 /* TransactionCompleted */ = {
@@ -1220,6 +1234,7 @@
 				35C29FFF29ECF3E40018FE04 /* Sender.swift in Sources */,
 				354664BB29E43FC50055375F /* ServiceCenterBlock.swift in Sources */,
 				359F7FBA29FD4B7000274108 /* CounselorDetailV.swift in Sources */,
+				35A63F672A132FD50058C92D /* EndConsultationCell.swift in Sources */,
 				35C29FF829ECF1D60018FE04 /* ChatChannel.swift in Sources */,
 				3560437829DECBFD001CDA77 /* CategoryBlock.swift in Sources */,
 				35308FAE29E4F5F4008FB343 /* MyPageMenu.swift in Sources */,
@@ -1251,6 +1266,7 @@
 				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
 				3504E2B629E3A8B1006AEED6 /* MoreFitWellV.swift in Sources */,
 				3560437229DEB943001CDA77 /* CounselorBadge.swift in Sources */,
+				35A63F692A132FE30058C92D /* EndConsultationSizeCalculator.swift in Sources */,
 				350C6DCA2A0CF68D00332581 /* RequestTransactionCell.swift in Sources */,
 				356F7BCD2A07770100C536D8 /* InfoSectionHeader.swift in Sources */,
 				35C29FFD29ECF2A20018FE04 /* Message.swift in Sources */,
