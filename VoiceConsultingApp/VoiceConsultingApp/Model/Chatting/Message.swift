@@ -18,10 +18,10 @@ struct Message: MessageType {
     let content: String
     let sentDate: Date
     let sender: SenderType
-    var custom: String?
+    var systemMessage: SystemMessageType?
     var kind: MessageKind {
-        if let custom {
-            return .custom(custom)
+        if let systemMessage {
+            return .custom(systemMessage)
         }
         if let image = image {
             let mediaItem = ImageMediaItem(image: image)
@@ -49,12 +49,12 @@ struct Message: MessageType {
         id = nil
     }
     
-    func customType() -> Message {
-        var message = Message(content: "앙 기모찌", sender: Sender(senderId: "sender", displayName: "display"))
-        message.custom = "custom"
-        
-        return message
-    }
+//    func customType() -> Message {
+//        var message = Message(content: "앙 기모찌", sender: Sender(senderId: "sender", displayName: "display"))
+//        message.custom = "custom"
+//        
+//        return message
+//    }
 }
 
 extension Message: Comparable {

@@ -121,6 +121,7 @@
 		359F7FBD29FD4CE600274108 /* CounselorDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FBC29FD4CE600274108 /* CounselorDetailVC.swift */; };
 		359F7FBF29FD571000274108 /* CounselorDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FBE29FD571000274108 /* CounselorDetailHeader.swift */; };
 		359F7FC129FD589C00274108 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F7FC029FD589C00274108 /* NotificationName.swift */; };
+		35A63F642A1322910058C92D /* SystemMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F632A1322910058C92D /* SystemMessageType.swift */; };
 		35BC05332A1263F400E312C8 /* TransactionCompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC05322A1263F400E312C8 /* TransactionCompletedCell.swift */; };
 		35BC05352A12640200E312C8 /* TransactionCompletedSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC05342A12640200E312C8 /* TransactionCompletedSizeCalculator.swift */; };
 		35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */; };
@@ -282,6 +283,7 @@
 		359F7FBC29FD4CE600274108 /* CounselorDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorDetailVC.swift; sourceTree = "<group>"; };
 		359F7FBE29FD571000274108 /* CounselorDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorDetailHeader.swift; sourceTree = "<group>"; };
 		359F7FC029FD589C00274108 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
+		35A63F632A1322910058C92D /* SystemMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageType.swift; sourceTree = "<group>"; };
 		35BC05322A1263F400E312C8 /* TransactionCompletedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCompletedCell.swift; sourceTree = "<group>"; };
 		35BC05342A12640200E312C8 /* TransactionCompletedSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCompletedSizeCalculator.swift; sourceTree = "<group>"; };
 		35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeV.swift; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 				35C29FFA29ECF2580018FE04 /* ImageMediaItem.swift */,
 				35C29FFC29ECF2A20018FE04 /* Message.swift */,
 				35C29FFE29ECF3E40018FE04 /* Sender.swift */,
+				35A63F632A1322910058C92D /* SystemMessageType.swift */,
 			);
 			path = Chatting;
 			sourceTree = "<group>";
@@ -1280,6 +1283,7 @@
 				35C29FFB29ECF2580018FE04 /* ImageMediaItem.swift in Sources */,
 				354664B129E4262D0055375F /* MyPageVC.swift in Sources */,
 				3523AF902A0908F800D51B8A /* Extenstion+CollectionReference.swift in Sources */,
+				35A63F642A1322910058C92D /* SystemMessageType.swift in Sources */,
 				35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */,
 				355EDEDB29D5C98800F9BD5D /* CompleteButton.swift in Sources */,
 				354609FD29D70EEB00FC5ABB /* LoginType.swift in Sources */,

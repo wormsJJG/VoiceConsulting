@@ -25,8 +25,9 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
     var sender = Sender(senderId: "any_unique_id", displayName: "jake")
     var messages = [Message]()
     private let disposeBag = DisposeBag()
-    private lazy var customMessagesSizeCalculator = RequestTranscationSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
+    private lazy var requestTranscationSizeCalculator = RequestTranscationSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     private lazy var customTextMessagesSizeCalculator = CustomTextLayoutSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
+    private lazy var transcationCompletedSizeCalculator = TransactionCompletedSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     
 // MARK: - Life Cycles
     override func viewDidLoad() {
@@ -39,6 +40,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
 //        AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
         messagesCollectionView.register(RequestTransactionCell.self)
         messagesCollectionView.register(CustomTextMessageCell.self)
+        messagesCollectionView.register(TransactionCompletedCell.self)
     }
 //    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
 //        for msg in aMessages {
@@ -97,10 +99,21 @@ extension ChatRoomVC: MessagesDataSource {
     }
     
     func customCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell {
-        let cell = messagesCollectionView.dequeueReusableCell(RequestTransactionCell.self, for: indexPath)
-        cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: customMessagesSizeCalculator)
-
-        return cell
+        if let msg = message as? Message {
+            switch msg.systemMessage! {
+            case .requestTranscation:
+                let cell = messagesCollectionView.dequeueReusableCell(RequestTransactionCell.self, for: indexPath)
+                cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: requestTranscationSizeCalculator)
+                
+                return cell
+            case .transactionCompleted:
+                let cell = messagesCollectionView.dequeueReusableCell(TransactionCompletedCell.self, for: indexPath)
+                cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: transcationCompletedSizeCalculator)
+                
+                return cell
+            }
+        }
+        return UICollectionViewCell()
     }
 
     func textCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell? {
@@ -133,7 +146,7 @@ extension ChatRoomVC: MessagesLayoutDelegate {
     }
     
     func customCellSizeCalculator(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CellSizeCalculator {
-        customMessagesSizeCalculator
+        requestTranscationSizeCalculator
     }
     
     func textCellSizeCalculator(
@@ -244,7 +257,9 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         var message = Message(content: text, sender: Sender(senderId: "any_unique_i", displayName: "jake"))
         if message.content == "거래 요청 메세지" {
-            message.custom = "asd"
+            message.systemMessage = .requestTranscation
+        } else if message.content == "거래 완료 메세지" {
+            message.systemMessage = .transactionCompleted
         }
         sendMessage(message: message)
         inputBar.inputTextView.text.removeAll()
