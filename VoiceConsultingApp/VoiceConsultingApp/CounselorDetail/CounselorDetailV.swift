@@ -19,7 +19,7 @@ class CounselorDetailV: UIView {
         $0.backgroundColor = .white
     }
     
-    private lazy var contentView: UIView = UIView()
+    lazy var contentView: UIView = UIView()
     
     let startConsultButton: UIButton = UIButton().then {
         $0.backgroundColor = ColorSet.mainColor
@@ -27,15 +27,6 @@ class CounselorDetailV: UIView {
         $0.titleLabel?.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 16)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 10
-    }
-    
-    lazy var imageScrollView: UIScrollView = UIScrollView().then {
-        $0.isPagingEnabled = true
-        $0.showsHorizontalScrollIndicator = false
-    }
-        
-    let imagePageControl: UIPageControl = UIPageControl().then {
-        $0.currentPage = 0
     }
     
     let profileimage: UIImageView = UIImageView().then {
@@ -48,20 +39,10 @@ class CounselorDetailV: UIView {
         $0.textColor = ColorSet.mainText
     }
     
-    let categoryBlock: CategoryBlock = CategoryBlock().then {
-        $0.category = "가족상담"
-    }
-    
-    private lazy var rightStackView: UIStackView = UIStackView(arrangedSubviews: [counselorName, categoryBlock]).then {
-        $0.axis = .vertical
-        $0.spacing = 6
-        $0.alignment = .leading
-    }
-    
-    private lazy var topStackView: UIStackView = UIStackView(arrangedSubviews: [profileimage, rightStackView]).then {
+    private lazy var topStackView: UIStackView = UIStackView(arrangedSubviews: [profileimage, counselorName]).then {
         $0.axis = .horizontal
         $0.spacing = 10
-        $0.alignment = .leading
+        $0.alignment = .center
     }
     
     let introduce: UILabel = UILabel().then {
@@ -79,6 +60,14 @@ class CounselorDetailV: UIView {
     
     let tapView: CustomTabBar = CustomTabBar().then {
         $0.selectItem = .introduce
+        $0.backgroundColor = .white
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    let stikyTapView: CustomTabBar = CustomTabBar().then {
+        $0.selectItem = .introduce
+        $0.isHidden = true
+        $0.backgroundColor = .white
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -97,6 +86,7 @@ class CounselorDetailV: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         constraint()
+        heightC = infoList.autoSetDimension(.height, toSize: 20)
     }
     
     required init?(coder: NSCoder) {
@@ -137,29 +127,7 @@ class CounselorDetailV: UIView {
             contentView.width.equalTo(self.scrollView.snp.width)
         }
         
-        self.contentView.addSubview(imageScrollView)
-        
-        self.imageScrollView.snp.makeConstraints {
-            $0.height.equalTo(160)
-            $0.left.equalTo(self.contentView.snp.left)
-            $0.top.equalTo(self.contentView.snp.top)
-            $0.right.equalTo(self.contentView.snp.right)
-        }
-        
-        self.contentView.addSubview(imagePageControl)
-        
-        imagePageControl.snp.makeConstraints {
-            $0.bottom.equalTo(self.imageScrollView.snp.bottom).offset(-10)
-            $0.centerX.equalTo(self.imageScrollView.snp.centerX)
-        }
-
-        
         self.contentView.addSubview(allStackView)
-        
-        self.categoryBlock.snp.makeConstraints {
-            $0.width.equalTo(self.categoryBlock.label.snp.width).offset(12)
-            $0.height.equalTo(self.categoryBlock.label.snp.height).offset(6)
-        }
         
         profileimage.snp.makeConstraints {
             $0.width.height.equalTo(50)
@@ -167,7 +135,7 @@ class CounselorDetailV: UIView {
         
         self.allStackView.snp.makeConstraints {
             $0.left.equalTo(self.contentView.snp.left).offset(20)
-            $0.top.equalTo(self.imageScrollView.snp.bottom).offset(20)
+            $0.top.equalTo(self.contentView.snp.top).offset(20)
             $0.right.equalTo(self.contentView.snp.right).offset(-20)
         }
         
@@ -187,6 +155,15 @@ class CounselorDetailV: UIView {
             $0.top.equalTo(self.tapView.snp.bottom)
             $0.right.equalTo(self.contentView.snp.right)
             $0.bottom.equalTo(self.contentView.snp.bottom)
+        }
+        
+        self.contentView.addSubview(stikyTapView)
+        
+        stikyTapView.snp.makeConstraints {
+            $0.height.equalTo(43)
+            $0.top.equalTo(self.header.snp.bottom)
+            $0.left.equalTo(self.contentView.snp.left)
+            $0.right.equalTo(self.contentView.snp.right)
         }
     }
 }

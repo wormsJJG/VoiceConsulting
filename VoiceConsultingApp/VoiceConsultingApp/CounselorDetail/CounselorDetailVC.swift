@@ -30,25 +30,29 @@ class CounselorDetailVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        self.counselorDetailV.heightC = self.counselorDetailV.infoList.autoSetDimension(.height, toSize: 20)
         addAction()
-        addDidScrollAction()
-        
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        settingImageView()
         self.counselorDetailV.heightC.constant = self.counselorDetailV.infoList.contentSize.height
+        print(self.counselorDetailV.infoList.contentSize.height)
+        print(self.counselorDetailV.scrollView.frame.height)
         self.view.setNeedsLayout()
-
     }
     // MARK: - setDelegates
     private func setDelegates() {
-        self.counselorDetailV.imageScrollView.delegate = self
         self.counselorDetailV.tapView.delegate = self
         self.counselorDetailV.infoList.delegate = self
         self.counselorDetailV.infoList.dataSource = self
+        self.counselorDetailV.scrollView.delegate = self
+    }
+}
+extension CounselorDetailVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // TapView가 가려지는 타이밍을 계산
+        let shouldShowSticky = scrollView.contentOffset.y >= self.counselorDetailV.tapView.frame.minY
+        self.counselorDetailV.stikyTapView.isHidden = !shouldShowSticky
     }
 }
 extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
@@ -63,7 +67,7 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
         case CounselorInfoSection.certificate.section:
             return 1
         case CounselorInfoSection.review.section:
-            return 10
+            return 20
 
         default:
             return 0
@@ -140,23 +144,6 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
 }
-// MARK: - Setting ImageScrollView
-extension CounselorDetailVC {
-    
-    private func settingImageView() {
-        for (index, imageView) in imageViews.enumerated() {
-                imageView.contentMode = .scaleToFill
-            imageView.frame = CGRect(x: CGFloat(index) * self.counselorDetailV.imageScrollView.bounds.width,
-                                         y: 0,
-                                         width: self.counselorDetailV.imageScrollView.bounds.width,
-                                         height: self.counselorDetailV.imageScrollView.bounds.height)
-            self.counselorDetailV.imageScrollView.addSubview(imageView)
-            }
-        self.counselorDetailV.imageScrollView.contentSize = CGSize(width: self.counselorDetailV.imageScrollView.bounds.width * CGFloat(imageViews.count),
-                                            height: self.counselorDetailV.imageScrollView.bounds.height)
-        self.counselorDetailV.imagePageControl.numberOfPages = imageViews.count
-    }
-}
 // MARK: - CustomTabbar
 extension CounselorDetailVC: CustomTabDelegate {
     func didSelectItem(_ item: CustomTabItem) {
@@ -185,22 +172,6 @@ extension CounselorDetailVC {
         counselorDetailV.header.backButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.popVC()
-            })
-            .disposed(by: self.disposeBag)
-    }
-}
-// MARK: - imageScroll
-extension CounselorDetailVC: UIScrollViewDelegate {
-    
-    private func setPageControlSelectedPage(currentPage:Int) {
-        self.counselorDetailV.imagePageControl.currentPage = currentPage
-    }
-    
-    private func addDidScrollAction() {
-        self.counselorDetailV.imageScrollView.rx.didScroll
-            .bind(onNext: { [weak self] _ in
-                let value = (self?.counselorDetailV.imageScrollView.contentOffset.x)!/(self?.counselorDetailV.imageScrollView.frame.size.width)!
-                self?.setPageControlSelectedPage(currentPage: Int(round(value)))
             })
             .disposed(by: self.disposeBag)
     }

@@ -34,13 +34,19 @@ class PopularCell: UITableViewCell {
     // MARK: - Properties
     let popularCounselorList: PublishSubject<[String]> = PublishSubject()
     private let disposeBag = DisposeBag()
-    weak var delegate: CellTouchable?
+    weak var cellTouchDelegate: CellTouchable?
+    weak var moreButtonTouchDelegate: MoreButtonTouchable?
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         constraint()
         dataBind()
+        header.moreButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.moreButtonTouchDelegate?.didTouchMoreButton(.popular)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     required init?(coder: NSCoder) {
@@ -84,9 +90,8 @@ extension PopularCell: UICollectionViewDelegate {
         
         self.counselorList.rx.modelSelected(Counselor.self)
             .bind(onNext: { [weak self] counselor in
-                self?.delegate?.didTouchCell(counselor)
+                self?.cellTouchDelegate?.didTouchCell(counselor)
             })
             .disposed(by: self.disposeBag)
     }
-
 }
