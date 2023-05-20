@@ -25,34 +25,43 @@ class CounselorDetailVC: BaseViewController {
     private let disposeBag = DisposeBag()
     var imageViews = [UIImageView(image: UIImage(named: AssetImage.counselorCover)), UIImageView(image: UIImage(named: AssetImage.counselorCover)), UIImageView(image: UIImage(named: AssetImage.counselorCover))]
     let section = CounselorInfoSection.allCases
-    
+    let targetIndexPath = IndexPath(row: 0, section: 1) // 스티키 뷰로 사용할 특정 셀의 IndexPath
     // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
         addAction()
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.counselorDetailV.heightC.constant = self.counselorDetailV.infoList.contentSize.height
-        print(self.counselorDetailV.infoList.contentSize.height)
-        print(self.counselorDetailV.scrollView.frame.height)
-        self.view.setNeedsLayout()
-    }
     // MARK: - setDelegates
     private func setDelegates() {
-        self.counselorDetailV.tapView.delegate = self
         self.counselorDetailV.infoList.delegate = self
         self.counselorDetailV.infoList.dataSource = self
-        self.counselorDetailV.scrollView.delegate = self
+        self.counselorDetailV.stikyTapView.delegate = self
     }
 }
 extension CounselorDetailVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // TapView가 가려지는 타이밍을 계산
-        let shouldShowSticky = scrollView.contentOffset.y >= self.counselorDetailV.tapView.frame.minY
-        self.counselorDetailV.stikyTapView.isHidden = !shouldShowSticky
+        let indexPathsForVisibleRows = self.counselorDetailV.infoList.indexPathsForVisibleRows
+
+        // 셀이 보이는지 확인
+        let stikyTapIsHidden = indexPathsForVisibleRows?.contains { indexPath in
+            return indexPath.section == CounselorInfoSection.tapView.section && indexPath.row == 0
+        } ?? false
+        
+        let reviewShow = indexPathsForVisibleRows?.contains { indexPath in
+            return indexPath.section == CounselorInfoSection.review.section && indexPath.row == 2
+        } ?? false
+
+        self.counselorDetailV.stikyTapView.isHidden = stikyTapIsHidden
+        
+        if !stikyTapIsHidden {
+            if reviewShow {
+                self.counselorDetailV.stikyTapView.selectItem = .review
+            } else {
+                self.counselorDetailV.stikyTapView.selectItem = .introduce
+            }
+        }
     }
 }
 extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
@@ -62,20 +71,52 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case CounselorInfoSection.affiliation.section:
+        case CounselorInfoSection.category.section :
             return 1
-        case CounselorInfoSection.certificate.section:
+        case CounselorInfoSection.profile.section :
             return 1
-        case CounselorInfoSection.review.section:
-            return 20
-
+        case CounselorInfoSection.tapView.section :
+            return 1
+        case CounselorInfoSection.affiliation.section :
+            return 1
+        case CounselorInfoSection.certificate.section :
+            return 1
+        case CounselorInfoSection.detailIntrodution.section :
+            return 1
+        case CounselorInfoSection.review.section :
+            return 10
+            
         default:
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case CounselorInfoSection.category.section :
+            guard let categoryCell = tableView.dequeueReusableCell(withIdentifier: CategoryTVCell.cellID, for: indexPath) as? CategoryTVCell else {
+                return UITableViewCell()
+            }
+            categoryCell.categoryList.onNext(["", "", "", "", "", "", "", "", ""])
+            
+            return categoryCell
+        case CounselorInfoSection.profile.section :
+            guard let profileCell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.cellID, for: indexPath) as? ProfileCell else {
+                
+                return UITableViewCell()
+            }
+            
+            return profileCell
+        case CounselorInfoSection.tapView.section :
+            
+            guard let tapViewCell = tableView.dequeueReusableCell(withIdentifier: TapViewCell.cellID, for: indexPath) as? TapViewCell else {
+                
+                return UITableViewCell()
+            }
+            tapViewCell.tapView.delegate = self
+            
+            return tapViewCell
+        case CounselorInfoSection.affiliation.section :
             
             guard let affiliationCell = tableView.dequeueReusableCell(withIdentifier: AffiliationCell.cellID, for: indexPath) as? AffiliationCell else {
                 
@@ -85,7 +126,7 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
             affiliationCell.affiliationList.onNext(["", "", "", ""])
             
             return affiliationCell
-        } else if indexPath.section == 1 {
+        case CounselorInfoSection.certificate.section :
             
             guard let certificateCell = tableView.dequeueReusableCell(withIdentifier: CertificateCell.cellID, for: indexPath) as? CertificateCell else {
                 
@@ -95,7 +136,15 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
             certificateCell.certificateImageList.onNext(["", "", "", ""])
             
             return certificateCell
-        } else {
+        case CounselorInfoSection.detailIntrodution.section :
+            
+            guard let detailInfoCell = tableView.dequeueReusableCell(withIdentifier: DetailIntrodutionCell.cellID, for: indexPath) as? DetailIntrodutionCell else {
+                
+                return UITableViewCell()
+            }
+            
+            return detailInfoCell
+        default :
             
             guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewCell.cellID, for: indexPath) as? ReviewCell else {
                 
@@ -108,6 +157,15 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
+        case CounselorInfoSection.category.section :
+            
+            guard let categoryHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: InfoSectionHeader.headerID) as? InfoSectionHeader else {
+                return nil
+            }
+            
+            categoryHeader.sectionTitle = CounselorInfoSection.category.title
+            
+            return categoryHeader
         case CounselorInfoSection.affiliation.section:
             
             guard let affiliationHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: InfoSectionHeader.headerID) as? InfoSectionHeader else {
@@ -126,6 +184,15 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
             certificateHeader.sectionTitle = CounselorInfoSection.certificate.title
             
             return certificateHeader
+        case CounselorInfoSection.detailIntrodution.section:
+            guard let detailIntrodutionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: InfoSectionHeader.headerID) as? InfoSectionHeader else {
+                return nil
+            }
+            
+            detailIntrodutionHeader.sectionTitle = CounselorInfoSection.detailIntrodution.title
+            
+            return detailIntrodutionHeader
+            
         case CounselorInfoSection.review.section:
             
             guard let reviewHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: InfoSectionHeader.headerID) as? InfoSectionHeader else {
@@ -140,6 +207,14 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 || section == 1 {
+            return 0
+        } else {
+            return 20
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -149,11 +224,17 @@ extension CounselorDetailVC: CustomTabDelegate {
     func didSelectItem(_ item: CustomTabItem) {
         switch item {
         case .introduce:
-            self.counselorDetailV.scrollView.scroll(to: .top)
-            self.counselorDetailV.infoList.scroll(to: .top)
+            scrollToProfile()
+            self.counselorDetailV.stikyTapView.selectItem = .introduce
         case .review:
-            self.counselorDetailV.scrollView.scroll(to: .bottom)
             scrollToReviewSection()
+            self.counselorDetailV.stikyTapView.selectItem = .review
+        }
+    }
+    
+    private func scrollToProfile() {
+        DispatchQueue.main.async {
+            self.counselorDetailV.infoList.scroll(to: .top)
         }
     }
     

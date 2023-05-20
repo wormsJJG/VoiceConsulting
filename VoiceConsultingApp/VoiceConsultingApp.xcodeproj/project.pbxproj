@@ -23,8 +23,13 @@
 		350C6DCA2A0CF68D00332581 /* RequestTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350C6DC92A0CF68D00332581 /* RequestTransactionCell.swift */; };
 		350C6DCD2A0D171F00332581 /* CustomMessageContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350C6DCC2A0D171F00332581 /* CustomMessageContentCell.swift */; };
 		350C6DD02A0D2C0300332581 /* CustomLayoutSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350C6DCF2A0D2C0300332581 /* CustomLayoutSizeCalculator.swift */; };
+		350CA2222A18BC8100B1756C /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350CA2212A18BC8100B1756C /* ProfileCell.swift */; };
+		350CA2242A18BCA500B1756C /* TapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350CA2232A18BCA500B1756C /* TapViewCell.swift */; };
+		350CA2272A19089500B1756C /* CategoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350CA2262A19089500B1756C /* CategoryTVCell.swift */; };
+		350CA2292A190A4B00B1756C /* CategoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350CA2282A190A4B00B1756C /* CategoryCVCell.swift */; };
 		351684E029E9521A00E0CF44 /* BuyCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */; };
 		351684E229E9621F00E0CF44 /* CoinInformationUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684E129E9621F00E0CF44 /* CoinInformationUse.swift */; };
+		351793052A1746E9004EE7ED /* DetailIntrodutionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351793042A1746E9004EE7ED /* DetailIntrodutionCell.swift */; };
 		35188F672A09FC830040804E /* CounselorField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35188F662A09FC830040804E /* CounselorField.swift */; };
 		35188F6A2A0A01490040804E /* FBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35188F692A0A01490040804E /* FBError.swift */; };
 		351BB88A29FA72300050105F /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351BB88929FA72300050105F /* ChatManager.swift */; };
@@ -187,8 +192,13 @@
 		350C6DC92A0CF68D00332581 /* RequestTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTransactionCell.swift; sourceTree = "<group>"; };
 		350C6DCC2A0D171F00332581 /* CustomMessageContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageContentCell.swift; sourceTree = "<group>"; };
 		350C6DCF2A0D2C0300332581 /* CustomLayoutSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayoutSizeCalculator.swift; sourceTree = "<group>"; };
+		350CA2212A18BC8100B1756C /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		350CA2232A18BCA500B1756C /* TapViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapViewCell.swift; sourceTree = "<group>"; };
+		350CA2262A19089500B1756C /* CategoryTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVCell.swift; sourceTree = "<group>"; };
+		350CA2282A190A4B00B1756C /* CategoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCVCell.swift; sourceTree = "<group>"; };
 		351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinCell.swift; sourceTree = "<group>"; };
 		351684E129E9621F00E0CF44 /* CoinInformationUse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinInformationUse.swift; sourceTree = "<group>"; };
+		351793042A1746E9004EE7ED /* DetailIntrodutionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIntrodutionCell.swift; sourceTree = "<group>"; };
 		35188F662A09FC830040804E /* CounselorField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorField.swift; sourceTree = "<group>"; };
 		35188F692A0A01490040804E /* FBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBError.swift; sourceTree = "<group>"; };
 		351BB88929FA72300050105F /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
@@ -616,6 +626,10 @@
 				356F7BD12A0790E300C536D8 /* AffiliationCell.swift */,
 				356F7BD82A0794D500C536D8 /* CertificateCell.swift */,
 				356F7BDC2A07ADDF00C536D8 /* ReviewCell.swift */,
+				351793042A1746E9004EE7ED /* DetailIntrodutionCell.swift */,
+				350CA2212A18BC8100B1756C /* ProfileCell.swift */,
+				350CA2232A18BCA500B1756C /* TapViewCell.swift */,
+				350CA2262A19089500B1756C /* CategoryTVCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -625,6 +639,7 @@
 			children = (
 				356F7BD62A07934A00C536D8 /* AffiliationContentCell.swift */,
 				356F7BDA2A07958F00C536D8 /* CertificateContentCell.swift */,
+				350CA2282A190A4B00B1756C /* CategoryCVCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -1220,6 +1235,7 @@
 				355CAE592A0A27E500C121BF /* Counselor.swift in Sources */,
 				354664AF29E425EA0055375F /* ChattingListVC.swift in Sources */,
 				3504E2B029E3A887006AEED6 /* MoreFitWellVC.swift in Sources */,
+				350CA2242A18BCA500B1756C /* TapViewCell.swift in Sources */,
 				359D326729E5514B005BF86C /* CoinManagementV.swift in Sources */,
 				35364FDB2A029D7D00C4BC8D /* PushManager.swift in Sources */,
 				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
@@ -1231,6 +1247,7 @@
 				3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				3504E2B429E3A8A0006AEED6 /* MoreLiveVC.swift in Sources */,
+				350CA2272A19089500B1756C /* CategoryTVCell.swift in Sources */,
 				35C29FFF29ECF3E40018FE04 /* Sender.swift in Sources */,
 				354664BB29E43FC50055375F /* ServiceCenterBlock.swift in Sources */,
 				359F7FBA29FD4B7000274108 /* CounselorDetailV.swift in Sources */,
@@ -1254,6 +1271,7 @@
 				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
 				351BB88A29FA72300050105F /* ChatManager.swift in Sources */,
 				354664B329E42C1A0055375F /* CustomTabBarController.swift in Sources */,
+				350CA2222A18BC8100B1756C /* ProfileCell.swift in Sources */,
 				3504E2B829E3A8C4006AEED6 /* MorePopularV.swift in Sources */,
 				354664B529E4359E0055375F /* MyPageV.swift in Sources */,
 				359D327929E58002005BF86C /* BuyHistoryV.swift in Sources */,
@@ -1265,6 +1283,7 @@
 				356F7BD22A0790E300C536D8 /* AffiliationCell.swift in Sources */,
 				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
 				3504E2B629E3A8B1006AEED6 /* MoreFitWellV.swift in Sources */,
+				350CA2292A190A4B00B1756C /* CategoryCVCell.swift in Sources */,
 				3560437229DEB943001CDA77 /* CounselorBadge.swift in Sources */,
 				35A63F692A132FE30058C92D /* EndConsultationSizeCalculator.swift in Sources */,
 				350C6DCA2A0CF68D00332581 /* RequestTransactionCell.swift in Sources */,
@@ -1306,6 +1325,7 @@
 				354609F029D6F19500FC5ABB /* AssetImage.swift in Sources */,
 				359F7FBD29FD4CE600274108 /* CounselorDetailVC.swift in Sources */,
 				3504E2BC29E3B1B4006AEED6 /* MorePopularCell.swift in Sources */,
+				351793052A1746E9004EE7ED /* DetailIntrodutionCell.swift in Sources */,
 				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
 				35726F342A05F7A3008E28D0 /* DateCustomCell.swift in Sources */,
 				354609EC29D6EBA000FC5ABB /* CategoryCell.swift in Sources */,

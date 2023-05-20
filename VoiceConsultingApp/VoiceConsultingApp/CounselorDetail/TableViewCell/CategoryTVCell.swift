@@ -1,24 +1,24 @@
 //
-//  AffiliationCell.swift
+//  CategoryTVCell.swift
 //  VoiceConsultingApp
 //
-//  Created by 정재근 on 2023/05/07.
+//  Created by 정재근 on 2023/05/20.
 //
 
 import UIKit
-import Then
 import SnapKit
-import RxCocoa
+import Then
 import RxSwift
+import RxCocoa
 
-class AffiliationCell: UITableViewCell {
-    static let cellID = "affiliation"
+class CategoryTVCell: UITableViewCell {
+    static let cellID = "CategoryTVCell"
     
-    let affiliationList: PublishSubject<[String]> = PublishSubject()
+    let categoryList: PublishSubject<[String]> = PublishSubject()
     private let disposeBag = DisposeBag()
     
-    private let contentList: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewLeftAlignFlowLayout()).then {
-        $0.register(AffiliationContentCell.self, forCellWithReuseIdentifier: AffiliationContentCell.cellID)
+    private let categoryCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewLeftAlignFlowLayout()).then {
+        $0.register(CategoryCVCell.self, forCellWithReuseIdentifier: CategoryCVCell.cellID)
         $0.showsHorizontalScrollIndicator = false
     }
     
@@ -28,11 +28,12 @@ class AffiliationCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.selectionStyle = .none
-        if let flowLayout = contentList.collectionViewLayout as? UICollectionViewFlowLayout {
+        if let flowLayout = categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
                 flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
-        self.contentView.addSubview(contentList)
+        self.contentView.addSubview(categoryCollectionView)
         
         self.contentView.addSubview(line)
         
@@ -43,7 +44,7 @@ class AffiliationCell: UITableViewCell {
             $0.right.equalTo(self.contentView.snp.right).offset(-20)
         }
         
-        self.contentList.snp.makeConstraints {
+        self.categoryCollectionView.snp.makeConstraints {
             $0.height.equalTo(50)
             $0.left.equalTo(self.contentView.snp.left)
             $0.top.equalTo(self.contentView.snp.top).offset(3)
@@ -59,7 +60,7 @@ class AffiliationCell: UITableViewCell {
     }
     
     private func bindList() {
-        self.affiliationList.bind(to: self.contentList.rx.items(cellIdentifier: AffiliationContentCell.cellID, cellType: AffiliationContentCell.self)) { [weak self] index, affiliation, cell in
+        self.categoryList.bind(to: self.categoryCollectionView.rx.items(cellIdentifier: CategoryCVCell.cellID, cellType: CategoryCVCell.self)) { [weak self] index, category, cell in
             
         }
         .disposed(by: self.disposeBag)
