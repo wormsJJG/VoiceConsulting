@@ -71,9 +71,9 @@ extension MyPageVC: UITableViewDelegate {
                 case .consultingHistory:
                     print("상담 내역")
                 case .termsOfUse:
-                    print("이용약관")
+                    self?.moveTermsVC(type: .termsOfUse)
                 case .privacyPolicy:
-                    print("개인정보 처리방침")
+                    self?.moveTermsVC(type: .privacyPolicy)
                 case .openSourceLib:
                     self?.moveOpenSourceLicense()
                 case .alarmOnOff:

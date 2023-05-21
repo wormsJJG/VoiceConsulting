@@ -78,6 +78,9 @@
 		354F49272A1A664700D71E3D /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49262A1A664700D71E3D /* AlertVC.swift */; };
 		354F49292A1A678900D71E3D /* AlertContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49282A1A678900D71E3D /* AlertContentCell.swift */; };
 		354F495F2A1A73E300D71E3D /* Pods-VoiceConsultingApp-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 354F495E2A1A73E300D71E3D /* Pods-VoiceConsultingApp-acknowledgements.plist */; };
+		354F49622A1A750800D71E3D /* TermsV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49612A1A750800D71E3D /* TermsV.swift */; };
+		354F49642A1A772C00D71E3D /* TermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49632A1A772C00D71E3D /* TermsVC.swift */; };
+		354F49662A1A785B00D71E3D /* TermsContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49652A1A785B00D71E3D /* TermsContent.swift */; };
 		355CAE592A0A27E500C121BF /* Counselor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355CAE582A0A27E500C121BF /* Counselor.swift */; };
 		355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEC529D5C43D00F9BD5D /* Fonts.swift */; };
 		355EDED329D5C6C600F9BD5D /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */; };
@@ -252,6 +255,9 @@
 		354F49262A1A664700D71E3D /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		354F49282A1A678900D71E3D /* AlertContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContentCell.swift; sourceTree = "<group>"; };
 		354F495E2A1A73E300D71E3D /* Pods-VoiceConsultingApp-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-VoiceConsultingApp-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
+		354F49612A1A750800D71E3D /* TermsV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsV.swift; sourceTree = "<group>"; };
+		354F49632A1A772C00D71E3D /* TermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsVC.swift; sourceTree = "<group>"; };
+		354F49652A1A785B00D71E3D /* TermsContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsContent.swift; sourceTree = "<group>"; };
 		355CAE582A0A27E500C121BF /* Counselor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counselor.swift; sourceTree = "<group>"; };
 		355EDEC529D5C43D00F9BD5D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -590,6 +596,16 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		354F49602A1A74B400D71E3D /* Terms  */ = {
+			isa = PBXGroup;
+			children = (
+				354F49612A1A750800D71E3D /* TermsV.swift */,
+				354F49632A1A772C00D71E3D /* TermsVC.swift */,
+				354F49652A1A785B00D71E3D /* TermsContent.swift */,
+			);
+			path = "Terms ";
+			sourceTree = "<group>";
+		};
 		355EDEBE29D5C2B400F9BD5D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -871,6 +887,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				354F49602A1A74B400D71E3D /* Terms  */,
 				354F495E2A1A73E300D71E3D /* Pods-VoiceConsultingApp-acknowledgements.plist */,
 				354F49232A1A661C00D71E3D /* Alert */,
 				350C6DCB2A0D170000332581 /* MessageCell */,
@@ -1319,7 +1336,9 @@
 				356F7BD72A07934A00C536D8 /* AffiliationContentCell.swift in Sources */,
 				351684E029E9521A00E0CF44 /* BuyCoinCell.swift in Sources */,
 				35277D1629DA6A66002A2A14 /* CoinBlock.swift in Sources */,
+				354F49622A1A750800D71E3D /* TermsV.swift in Sources */,
 				35962E8029F9253A0059CF17 /* ChatRoomHeader.swift in Sources */,
+				354F49642A1A772C00D71E3D /* TermsVC.swift in Sources */,
 				356F7BDB2A07958F00C536D8 /* CertificateContentCell.swift in Sources */,
 				35188F6A2A0A01490040804E /* FBError.swift in Sources */,
 				35308FB429E503CE008FB343 /* ChattingListV.swift in Sources */,
@@ -1349,6 +1368,7 @@
 				354609F029D6F19500FC5ABB /* AssetImage.swift in Sources */,
 				359F7FBD29FD4CE600274108 /* CounselorDetailVC.swift in Sources */,
 				3504E2BC29E3B1B4006AEED6 /* MorePopularCell.swift in Sources */,
+				354F49662A1A785B00D71E3D /* TermsContent.swift in Sources */,
 				351793052A1746E9004EE7ED /* DetailIntrodutionCell.swift in Sources */,
 				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
 				35726F342A05F7A3008E28D0 /* DateCustomCell.swift in Sources */,

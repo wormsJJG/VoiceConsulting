@@ -13,6 +13,8 @@ enum HeaderType {
     case fitWell
     case coinManagement
     case alert
+    case termsOfUse
+    case privacyPolicy
     
     var title: String {
         switch self {
@@ -26,6 +28,10 @@ enum HeaderType {
             return "코인관리"
         case .alert:
             return "알림"
+        case .termsOfUse:
+            return "이용약관"
+        case .privacyPolicy:
+            return "개인정보 처리방침"
         }
     }
 }

@@ -56,4 +56,11 @@ class BaseViewController: UIViewController {
         acknowList.title = "오픈소스 라이브러리"
         navigationController?.pushViewController(acknowList, animated: true)
     }
+    
+    func moveTermsVC(type: HeaderType) {
+        let termsVC = TermsVC()
+        termsVC.type = type
+        termsVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(termsVC, animated: true)
+    }
 }
