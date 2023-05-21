@@ -37,7 +37,7 @@ extension ChattingListVC {
             .tapGesture()
             .when(.recognized)
             .bind(onNext: { [weak self] _ in
-                self?.didTapCoinBlock()
+                self?.moveCoinManagementVC()
             })
             .disposed(by: self.disposeBag)
     }

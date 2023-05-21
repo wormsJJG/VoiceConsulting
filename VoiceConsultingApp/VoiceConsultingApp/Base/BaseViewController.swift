@@ -22,7 +22,7 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    func didTapCoinBlock() {
+    func moveCoinManagementVC() {
         let coinManagementVC = CoinManagementVC()
         coinManagementVC.hidesBottomBarWhenPushed = true
         
@@ -38,5 +38,12 @@ class BaseViewController: UIViewController {
         chatRoom.hidesBottomBarWhenPushed = true
         
         self.navigationController?.pushViewController(chatRoom, animated: true)
+    }
+    
+    func moveAlertVC() {
+        let alertVC = AlertVC()
+        alertVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(alertVC, animated: true)
     }
 }

@@ -23,19 +23,25 @@ class MyPageVC: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        addCoinBlockTapAction()
+        addTapAction()
         bindTableView()
     }
 }
 // MARK: - Touch Action
 extension MyPageVC {
     
-    private func addCoinBlockTapAction() {
+    private func addTapAction() {
         self.myPageV.coinBlock.rx
             .tapGesture()
             .when(.recognized)
             .bind(onNext: { [weak self] _ in
-                self?.didTapCoinBlock()
+                self?.moveCoinManagementVC()
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.myPageV.header.alarmButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                self?.moveAlertVC()
             })
             .disposed(by: self.disposeBag)
     }

@@ -74,6 +74,9 @@
 		354B73C92A0B88AA00651EF9 /* CellTouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354B73C82A0B88AA00651EF9 /* CellTouchable.swift */; };
 		354B73CB2A0B92BC00651EF9 /* NillLiveCounselorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354B73CA2A0B92BC00651EF9 /* NillLiveCounselorCell.swift */; };
 		354B73CD2A0BAEB200651EF9 /* MoreButtonTouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354B73CC2A0BAEB200651EF9 /* MoreButtonTouchable.swift */; };
+		354F49252A1A663100D71E3D /* AlertV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49242A1A663100D71E3D /* AlertV.swift */; };
+		354F49272A1A664700D71E3D /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49262A1A664700D71E3D /* AlertVC.swift */; };
+		354F49292A1A678900D71E3D /* AlertContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49282A1A678900D71E3D /* AlertContentCell.swift */; };
 		355CAE592A0A27E500C121BF /* Counselor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355CAE582A0A27E500C121BF /* Counselor.swift */; };
 		355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEC529D5C43D00F9BD5D /* Fonts.swift */; };
 		355EDED329D5C6C600F9BD5D /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */; };
@@ -244,6 +247,9 @@
 		354B73C82A0B88AA00651EF9 /* CellTouchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTouchable.swift; sourceTree = "<group>"; };
 		354B73CA2A0B92BC00651EF9 /* NillLiveCounselorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NillLiveCounselorCell.swift; sourceTree = "<group>"; };
 		354B73CC2A0BAEB200651EF9 /* MoreButtonTouchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButtonTouchable.swift; sourceTree = "<group>"; };
+		354F49242A1A663100D71E3D /* AlertV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertV.swift; sourceTree = "<group>"; };
+		354F49262A1A664700D71E3D /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
+		354F49282A1A678900D71E3D /* AlertContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContentCell.swift; sourceTree = "<group>"; };
 		355CAE582A0A27E500C121BF /* Counselor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counselor.swift; sourceTree = "<group>"; };
 		355EDEC529D5C43D00F9BD5D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -572,6 +578,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		354F49232A1A661C00D71E3D /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				354F49242A1A663100D71E3D /* AlertV.swift */,
+				354F49262A1A664700D71E3D /* AlertVC.swift */,
+				354F49282A1A678900D71E3D /* AlertContentCell.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		355EDEBE29D5C2B400F9BD5D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -853,6 +869,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				354F49232A1A661C00D71E3D /* Alert */,
 				350C6DCB2A0D170000332581 /* MessageCell */,
 				354B73C72A0B885400651EF9 /* Protocol */,
 				356F7BE62A07E48700C536D8 /* WiteReview */,
@@ -1293,6 +1310,7 @@
 				356F7BDD2A07ADDF00C536D8 /* ReviewCell.swift in Sources */,
 				35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */,
 				35C29FF529ECE1C30018FE04 /* ChatRoomVC.swift in Sources */,
+				354F49252A1A663100D71E3D /* AlertV.swift in Sources */,
 				35277D1C29DA84E4002A2A14 /* MainListSection.swift in Sources */,
 				356F7BD72A07934A00C536D8 /* AffiliationContentCell.swift in Sources */,
 				351684E029E9521A00E0CF44 /* BuyCoinCell.swift in Sources */,
@@ -1317,7 +1335,9 @@
 				354609F229D6F46700FC5ABB /* Category.swift in Sources */,
 				35C29FFB29ECF2580018FE04 /* ImageMediaItem.swift in Sources */,
 				354664B129E4262D0055375F /* MyPageVC.swift in Sources */,
+				354F49292A1A678900D71E3D /* AlertContentCell.swift in Sources */,
 				3523AF902A0908F800D51B8A /* Extenstion+CollectionReference.swift in Sources */,
+				354F49272A1A664700D71E3D /* AlertVC.swift in Sources */,
 				35A63F642A1322910058C92D /* SystemMessageType.swift in Sources */,
 				35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */,
 				355EDEDB29D5C98800F9BD5D /* CompleteButton.swift in Sources */,
