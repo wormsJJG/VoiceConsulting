@@ -26,6 +26,12 @@ class MyPageVC: BaseViewController {
         addTapAction()
         bindTableView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 오픈소스 라이브러리를 갔다오면 바 히든이 풀려서 다시 해줌
+        isHiddenNavigationBar()
+    }
 }
 // MARK: - Touch Action
 extension MyPageVC {
@@ -47,11 +53,37 @@ extension MyPageVC {
     }
 }
 // MARK: - Bind TableView
-extension MyPageVC {
+extension MyPageVC: UITableViewDelegate {
     private func bindTableView() {
         viewModel.menu.bind(to: self.myPageV.menuList.rx.items(cellIdentifier: MenuCell.cellID, cellType: MenuCell.self)) { index, menu, cell in
             cell.configure(menuType: menu)
         }
         .disposed(by: self.disposeBag)
+        
+        self.myPageV.menuList.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
+        self.myPageV.menuList.rx.modelSelected(MypageMenu.self)
+            .bind(onNext: { [weak self] menu in
+                switch menu {
+                case .heartCounselor:
+                    print("찜한 상담사")
+                case .consultingHistory:
+                    print("상담 내역")
+                case .termsOfUse:
+                    print("이용약관")
+                case .privacyPolicy:
+                    print("개인정보 처리방침")
+                case .openSourceLib:
+                    self?.moveOpenSourceLicense()
+                case .alarmOnOff:
+                    print("알림")
+                case .logOut:
+                    print("로그아웃")
+                case .OutOfService:
+                    print("회원탈퇴")
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }

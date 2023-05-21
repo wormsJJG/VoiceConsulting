@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AcknowList
 
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
@@ -45,5 +46,14 @@ class BaseViewController: UIViewController {
         alertVC.hidesBottomBarWhenPushed = true
         
         self.navigationController?.pushViewController(alertVC, animated: true)
+    }
+    
+    func moveOpenSourceLicense(){
+        let acknowList = AcknowListViewController(fileNamed: "Pods-VoiceConsultingApp-acknowledgements")
+        // 오픈소스 라이선스 VC 이동할떄 네비게이션바가 없으면 돌아올 방법이 없어서 네비게이션 바의 hidden을 false 한다.
+        self.navigationController?.navigationBar.isHidden = false
+        acknowList.hidesBottomBarWhenPushed = true
+        acknowList.title = "오픈소스 라이브러리"
+        navigationController?.pushViewController(acknowList, animated: true)
     }
 }
