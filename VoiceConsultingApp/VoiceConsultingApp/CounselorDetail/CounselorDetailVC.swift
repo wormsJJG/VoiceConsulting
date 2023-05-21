@@ -50,7 +50,8 @@ extension CounselorDetailVC: UIScrollViewDelegate {
         } ?? false
         
         let reviewShow = indexPathsForVisibleRows?.contains { indexPath in
-            return indexPath.section == CounselorInfoSection.review.section && indexPath.row == 2
+            return indexPath.section == CounselorInfoSection.review.section && indexPath.row == 2 ||
+            indexPath.section == CounselorInfoSection.review.section && indexPath.row > 2
         } ?? false
 
         self.counselorDetailV.stikyTapView.isHidden = stikyTapIsHidden
@@ -59,6 +60,7 @@ extension CounselorDetailVC: UIScrollViewDelegate {
             if reviewShow {
                 self.counselorDetailV.stikyTapView.selectItem = .review
             } else {
+                self.counselorDetailV.stikyTapView.selectItem = .review
                 self.counselorDetailV.stikyTapView.selectItem = .introduce
             }
         }
