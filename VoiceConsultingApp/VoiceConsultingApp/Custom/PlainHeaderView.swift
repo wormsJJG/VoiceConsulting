@@ -24,7 +24,7 @@ class PlainHeaderView: UIView {
         }
     }
     
-    lazy var backButton: UIButton = UIButton().then {
+    lazy var backButton: BaseButton = BaseButton().then {
         $0.setImage(UIImage(named: AssetImage.backButton), for: .normal)
         $0.setTitle(nil, for: .normal)
     }

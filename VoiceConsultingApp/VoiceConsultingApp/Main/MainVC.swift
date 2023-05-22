@@ -40,7 +40,7 @@ extension MainVC {
             .tapGesture()
             .when(.recognized)
             .bind(onNext: { [weak self] _ in
-                self?.didTapCoinBlock()
+                self?.moveCoinManagementVC(start: 0)
             })
             .disposed(by: self.disposeBag)
     }
@@ -118,7 +118,8 @@ extension MainVC: UITableViewDelegate {
                     }
                     popularCell.header.sectionTitle.text = section.sectionTitle
                     popularCell.popularCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
-                    popularCell.delegate = self
+                    popularCell.cellTouchDelegate = self
+                    popularCell.moreButtonTouchDelegate = self
                     
                     
                     
@@ -133,6 +134,8 @@ extension MainVC: UITableViewDelegate {
                     
                     fitWellCounselorCell.header.sectionTitle.text = section.sectionTitle
                     fitWellCounselorCell.fitWellCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
+                    fitWellCounselorCell.cellTouchDelegate = self
+                    fitWellCounselorCell.moreButtonTouchDelegate = self
                     
                     return fitWellCounselorCell
                 }

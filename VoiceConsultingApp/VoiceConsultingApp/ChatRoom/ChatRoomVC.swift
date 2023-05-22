@@ -38,33 +38,28 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         setMessageCollectionView()
         inputBarDesign()
         addAction()
-//        AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
-        messagesCollectionView.register(RequestTransactionCell.self)
-        messagesCollectionView.register(CustomTextMessageCell.self)
-        messagesCollectionView.register(TransactionCompletedCell.self)
-        messagesCollectionView.register(EndConsultationCell.self)
     }
-//    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
-//        for msg in aMessages {
-//                    switch msg.swiftBody {
-//                    case let .text(content):
-//                        print(msg.from)
-//                        var message = Message(content: content, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
-//                        message.custom = "asdasd"
-//                        messages.append(message)
-//                        self.messagesCollectionView.reloadData()
-//                    default:
-//                        break
-//                    }
-//                }
-//    }
+    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
+        for msg in aMessages {
+            switch msg.swiftBody {
+            case let .text(content):
+                print(msg.from)
+                var message = Message(content: content, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
+                messages.append(message)
+                self.messagesCollectionView.reloadData()
+            default:
+                break
+            }
+        }
+    }
     
     private func setDelegates() {
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-        
+        AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
         messageInputBar.delegate = self
+        self.headerview.heartButton.delegate = self
     }
     
     private func constraints() {
@@ -83,6 +78,12 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
                 self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - didTapHeartButton
+extension ChatRoomVC: HeartButtonDelegate {
+    func didTapHeartButton(didTap: Bool) {
+        print(didTap)
     }
 }
 
@@ -180,6 +181,10 @@ extension ChatRoomVC: MessagesDisplayDelegate {
     private func setMessageCollectionView() {
         self.messagesCollectionView.backgroundColor = ColorSet.chatRoomBack
         additionalSafeAreaInsets = UIEdgeInsets(top: 54 + 20, left: 0, bottom: 0, right: 0)
+        messagesCollectionView.register(RequestTransactionCell.self)
+        messagesCollectionView.register(CustomTextMessageCell.self)
+        messagesCollectionView.register(TransactionCompletedCell.self)
+        messagesCollectionView.register(EndConsultationCell.self)
     }
     // 말풍선의 배경 색상
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
@@ -272,7 +277,7 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     
     //send버튼을 눌렀을떄
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        var message = Message(content: text, sender: Sender(senderId: "any_unique_i", displayName: "jake"))
+        var message = Message(content: text, sender: Sender(senderId: "any_unique_id", displayName: "jake"))
         
         if message.content == "거래 요청 메세지" {
             message.systemMessage = .requestTranscation
@@ -287,11 +292,11 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     }
     
     private func sendMessage(message: Message) {
-//        let msg = AgoraChatMessage(
-//            conversationId: "test", from: AgoraChatClient.shared.currentUsername!,
-//            to: "testAdmin", body: .text(content: message.content), ext: nil
-//                )
-//        AgoraChatClient.shared.chatManager?.send(msg, progress: nil)
+        let msg = AgoraChatMessage(
+            conversationId: "test", from: AgoraChatClient.shared.currentUsername!,
+            to: "worms0627", body: .text(content: message.content), ext: nil
+                )
+        AgoraChatClient.shared.chatManager?.send(msg, progress: nil)
         messages.append(message)
         messages.sort()
         

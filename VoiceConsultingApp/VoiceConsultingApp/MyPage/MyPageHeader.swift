@@ -21,7 +21,7 @@ class MyPageHeader: UIView {
         $0.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 16)
     }
     
-    private lazy var alarmButton: UIButton = UIButton().then {
+    lazy var alarmButton: UIButton = UIButton().then {
         $0.setImage(UIImage(named: AssetImage.alarmIcon), for: .normal)
         $0.setTitle(nil, for: .normal)
     }

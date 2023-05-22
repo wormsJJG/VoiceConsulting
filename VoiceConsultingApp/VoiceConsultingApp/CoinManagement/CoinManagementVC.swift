@@ -22,6 +22,7 @@ class CoinManagementVC: TabmanViewController {
     // MARK: - Properties
     private let viewController = [BuyCoinVC(), BuyHistoryVC(), UseHistoryVC()]
     private let disposeBag = DisposeBag()
+    var startIndex: Int = 0
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +76,11 @@ extension CoinManagementVC: PageboyViewControllerDataSource, TMBarDataSource {
     }
 
     func defaultPage(for pageboyViewController: Pageboy.PageboyViewController) -> Pageboy.PageboyViewController.Page? {
-        return nil
+        if startIndex == 2 {
+            return .at(index: startIndex)
+        } else {
+            return .at(index: 0)
+        }
     }
 }
 // MARK: - Add Tap Action

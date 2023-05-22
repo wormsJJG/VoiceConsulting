@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class CounselorDetailHeader: UIView {
     
-    let backButton: UIButton = UIButton().then {
+    let backButton: BaseButton = BaseButton().then {
         $0.setImage(UIImage(named: AssetImage.backButton), for: .normal)
     }
     
@@ -25,9 +27,7 @@ class CounselorDetailHeader: UIView {
         $0.alignment = .center
     }
     
-    let heartButton: UIButton = UIButton().then {
-        $0.setImage(UIImage(named: AssetImage.heart), for: .normal)
-    }
+    let heartButton: HeartButton = HeartButton()
     
     private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [leftStackView, heartButton]).then {
         $0.axis = .horizontal

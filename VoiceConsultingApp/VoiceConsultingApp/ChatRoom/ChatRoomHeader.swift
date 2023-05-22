@@ -11,7 +11,7 @@ import SnapKit
 
 class ChatRoomHeader: UIView {
     
-    let backButton: UIButton = UIButton().then {
+    let backButton: BaseButton = BaseButton().then {
         $0.setImage(UIImage(named: AssetImage.backButton), for: .normal)
     }
     
@@ -31,9 +31,7 @@ class ChatRoomHeader: UIView {
         $0.isFill = false
     }
     
-    let heartButton: UIButton = UIButton().then {
-        $0.setImage(UIImage(named: AssetImage.heart), for: .normal)
-    }
+    let heartButton: HeartButton = HeartButton()
     
     let menuButton: UIButton = UIButton().then {
         $0.setImage(UIImage(named: AssetImage.menu), for: .normal)

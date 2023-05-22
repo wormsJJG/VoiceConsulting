@@ -34,6 +34,8 @@ class FitWellCell: UITableViewCell {
     
     // MARK: - Properties
     let fitWellCounselorList: PublishSubject<[String]> = PublishSubject()
+    weak var cellTouchDelegate: CellTouchable?
+    weak var moreButtonTouchDelegate: MoreButtonTouchable?
     private let disposeBag = DisposeBag()
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,6 +43,11 @@ class FitWellCell: UITableViewCell {
         self.selectionStyle = .none
         constraint()
         dataBind()
+        header.moreButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.moreButtonTouchDelegate?.didTouchMoreButton(.fitWell)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     required init?(coder: NSCoder) {

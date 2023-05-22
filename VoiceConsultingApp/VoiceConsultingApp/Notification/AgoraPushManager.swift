@@ -16,7 +16,8 @@ class AgoraPushManager: NSObject, AgoraChatManagerDelegate, AgoraChatClientDeleg
         options.apnsCertName = "com.team.winconsultingapp"
         
         AgoraChatClient.shared.initializeSDK(with: options)
-        AgoraChatClient.shared.login(withUsername: "worms0627", password: "worms1837@")
+        AgoraChatClient.shared.logout(true)
+        AgoraChatClient.shared.login(withUsername: "jaegeun0627", password: "worms1837@")
         print("UserID:::: \(AgoraChatClient.shared.currentUsername)")
     }
     
