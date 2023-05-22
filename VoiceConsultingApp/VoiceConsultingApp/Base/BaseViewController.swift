@@ -23,9 +23,10 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    func moveCoinManagementVC() {
+    func moveCoinManagementVC(start: Int) {
         let coinManagementVC = CoinManagementVC()
         coinManagementVC.hidesBottomBarWhenPushed = true
+        coinManagementVC.startIndex = start
         
         self.navigationController?.pushViewController(coinManagementVC, animated: true)
     }

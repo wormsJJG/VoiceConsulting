@@ -41,7 +41,7 @@ extension MyPageVC {
             .tapGesture()
             .when(.recognized)
             .bind(onNext: { [weak self] _ in
-                self?.moveCoinManagementVC()
+                self?.moveCoinManagementVC(start: 0)
             })
             .disposed(by: self.disposeBag)
         
@@ -69,7 +69,7 @@ extension MyPageVC: UITableViewDelegate {
                 case .heartCounselor:
                     print("찜한 상담사")
                 case .consultingHistory:
-                    print("상담 내역")
+                    self?.moveCoinManagementVC(start: 2)
                 case .termsOfUse:
                     self?.moveTermsVC(type: .termsOfUse)
                 case .privacyPolicy:

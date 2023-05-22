@@ -40,7 +40,7 @@ extension MainVC {
             .tapGesture()
             .when(.recognized)
             .bind(onNext: { [weak self] _ in
-                self?.moveCoinManagementVC()
+                self?.moveCoinManagementVC(start: 0)
             })
             .disposed(by: self.disposeBag)
     }
