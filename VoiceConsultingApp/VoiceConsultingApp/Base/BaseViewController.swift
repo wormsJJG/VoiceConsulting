@@ -64,4 +64,10 @@ class BaseViewController: UIViewController {
         termsVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(termsVC, animated: true)
     }
+    
+    func moveHeartCounselorVC() {
+        let heartCounselorVC = HeartCounselorVC()
+        heartCounselorVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(heartCounselorVC, animated: true)
+    }
 }

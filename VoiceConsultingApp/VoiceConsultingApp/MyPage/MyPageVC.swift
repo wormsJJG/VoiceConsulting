@@ -67,7 +67,7 @@ extension MyPageVC: UITableViewDelegate {
             .bind(onNext: { [weak self] menu in
                 switch menu {
                 case .heartCounselor:
-                    print("찜한 상담사")
+                    self?.moveHeartCounselorVC()
                 case .consultingHistory:
                     self?.moveCoinManagementVC(start: 2)
                 case .termsOfUse:

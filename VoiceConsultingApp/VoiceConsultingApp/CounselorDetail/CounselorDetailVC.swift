@@ -37,6 +37,7 @@ class CounselorDetailVC: BaseViewController {
         self.counselorDetailV.infoList.delegate = self
         self.counselorDetailV.infoList.dataSource = self
         self.counselorDetailV.stikyTapView.delegate = self
+        self.counselorDetailV.header.heartButton.delegate = self
     }
 }
 extension CounselorDetailVC: UIScrollViewDelegate {
@@ -257,5 +258,11 @@ extension CounselorDetailVC {
                 self?.popVC()
             })
             .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - didTapHeartButton
+extension CounselorDetailVC: HeartButtonDelegate {
+    func didTapHeartButton(didTap: Bool) {
+        print(didTap)
     }
 }

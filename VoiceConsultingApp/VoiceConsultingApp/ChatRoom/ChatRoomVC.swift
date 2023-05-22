@@ -59,6 +59,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         messagesCollectionView.messagesDisplayDelegate = self
         AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
         messageInputBar.delegate = self
+        self.headerview.heartButton.delegate = self
     }
     
     private func constraints() {
@@ -77,6 +78,12 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
                 self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - didTapHeartButton
+extension ChatRoomVC: HeartButtonDelegate {
+    func didTapHeartButton(didTap: Bool) {
+        print(didTap)
     }
 }
 

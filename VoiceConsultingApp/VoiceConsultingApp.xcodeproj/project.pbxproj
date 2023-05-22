@@ -136,6 +136,11 @@
 		35A63F642A1322910058C92D /* SystemMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F632A1322910058C92D /* SystemMessageType.swift */; };
 		35A63F672A132FD50058C92D /* EndConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F662A132FD50058C92D /* EndConsultationCell.swift */; };
 		35A63F692A132FE30058C92D /* EndConsultationSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F682A132FE30058C92D /* EndConsultationSizeCalculator.swift */; };
+		35B15B7F2A1B0953004345F3 /* HeartCounselorV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B15B7E2A1B0953004345F3 /* HeartCounselorV.swift */; };
+		35B15B812A1B0B30004345F3 /* HeartCounselorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B15B802A1B0B30004345F3 /* HeartCounselorCell.swift */; };
+		35B15B832A1B0D2D004345F3 /* HeartCounselorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B15B822A1B0D2D004345F3 /* HeartCounselorVC.swift */; };
+		35B15B852A1B14F1004345F3 /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B15B842A1B14F1004345F3 /* HeartButton.swift */; };
+		35B15B872A1B158E004345F3 /* HeartButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B15B862A1B158E004345F3 /* HeartButtonDelegate.swift */; };
 		35BC05332A1263F400E312C8 /* TransactionCompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC05322A1263F400E312C8 /* TransactionCompletedCell.swift */; };
 		35BC05352A12640200E312C8 /* TransactionCompletedSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC05342A12640200E312C8 /* TransactionCompletedSizeCalculator.swift */; };
 		35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */; };
@@ -312,6 +317,11 @@
 		35A63F632A1322910058C92D /* SystemMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageType.swift; sourceTree = "<group>"; };
 		35A63F662A132FD50058C92D /* EndConsultationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndConsultationCell.swift; sourceTree = "<group>"; };
 		35A63F682A132FE30058C92D /* EndConsultationSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndConsultationSizeCalculator.swift; sourceTree = "<group>"; };
+		35B15B7E2A1B0953004345F3 /* HeartCounselorV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartCounselorV.swift; sourceTree = "<group>"; };
+		35B15B802A1B0B30004345F3 /* HeartCounselorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartCounselorCell.swift; sourceTree = "<group>"; };
+		35B15B822A1B0D2D004345F3 /* HeartCounselorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartCounselorVC.swift; sourceTree = "<group>"; };
+		35B15B842A1B14F1004345F3 /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
+		35B15B862A1B158E004345F3 /* HeartButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButtonDelegate.swift; sourceTree = "<group>"; };
 		35BC05322A1263F400E312C8 /* TransactionCompletedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCompletedCell.swift; sourceTree = "<group>"; };
 		35BC05342A12640200E312C8 /* TransactionCompletedSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCompletedSizeCalculator.swift; sourceTree = "<group>"; };
 		35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeV.swift; sourceTree = "<group>"; };
@@ -574,6 +584,7 @@
 			children = (
 				354B73C82A0B88AA00651EF9 /* CellTouchable.swift */,
 				354B73CC2A0BAEB200651EF9 /* MoreButtonTouchable.swift */,
+				35B15B862A1B158E004345F3 /* HeartButtonDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -639,6 +650,7 @@
 				35726F352A066966008E28D0 /* CustomTabBar.swift */,
 				356F7BD32A07920A00C536D8 /* CollectionViewLeftAlignFlowLayout.swift */,
 				357810672A0E401500AE8EC8 /* PaddingLabel.swift */,
+				35B15B842A1B14F1004345F3 /* HeartButton.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -788,6 +800,16 @@
 			path = "EndConsultation ";
 			sourceTree = "<group>";
 		};
+		35B15B7D2A1B0939004345F3 /* HeartCounselorList */ = {
+			isa = PBXGroup;
+			children = (
+				35B15B7E2A1B0953004345F3 /* HeartCounselorV.swift */,
+				35B15B802A1B0B30004345F3 /* HeartCounselorCell.swift */,
+				35B15B822A1B0D2D004345F3 /* HeartCounselorVC.swift */,
+			);
+			path = HeartCounselorList;
+			sourceTree = "<group>";
+		};
 		35BC05312A12639600E312C8 /* TransactionCompleted */ = {
 			isa = PBXGroup;
 			children = (
@@ -887,6 +909,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				35B15B7D2A1B0939004345F3 /* HeartCounselorList */,
 				354F49602A1A74B400D71E3D /* Terms  */,
 				354F495E2A1A73E300D71E3D /* Pods-VoiceConsultingApp-acknowledgements.plist */,
 				354F49232A1A661C00D71E3D /* Alert */,
@@ -1291,6 +1314,7 @@
 				359F7FBA29FD4B7000274108 /* CounselorDetailV.swift in Sources */,
 				35A63F672A132FD50058C92D /* EndConsultationCell.swift in Sources */,
 				35C29FF829ECF1D60018FE04 /* ChatChannel.swift in Sources */,
+				35B15B872A1B158E004345F3 /* HeartButtonDelegate.swift in Sources */,
 				3560437829DECBFD001CDA77 /* CategoryBlock.swift in Sources */,
 				35308FAE29E4F5F4008FB343 /* MyPageMenu.swift in Sources */,
 				35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */,
@@ -1302,6 +1326,7 @@
 				3523AF8B2A09055300D51B8A /* CounselorInfo.swift in Sources */,
 				35726F322A05F556008E28D0 /* CounselorManager.swift in Sources */,
 				35DECCB829DBD26800DE5BE3 /* LiveCounselorCell.swift in Sources */,
+				35B15B832A1B0D2D004345F3 /* HeartCounselorVC.swift in Sources */,
 				3560437629DECB6A001CDA77 /* FitWellCounselorCell.swift in Sources */,
 				35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */,
 				3509F82D29D5755800AD880C /* ColorSet.swift in Sources */,
@@ -1322,6 +1347,7 @@
 				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
 				3504E2B629E3A8B1006AEED6 /* MoreFitWellV.swift in Sources */,
 				350CA2292A190A4B00B1756C /* CategoryCVCell.swift in Sources */,
+				35B15B852A1B14F1004345F3 /* HeartButton.swift in Sources */,
 				3560437229DEB943001CDA77 /* CounselorBadge.swift in Sources */,
 				35A63F692A132FE30058C92D /* EndConsultationSizeCalculator.swift in Sources */,
 				350C6DCA2A0CF68D00332581 /* RequestTransactionCell.swift in Sources */,
@@ -1331,6 +1357,7 @@
 				356F7BDD2A07ADDF00C536D8 /* ReviewCell.swift in Sources */,
 				35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */,
 				35C29FF529ECE1C30018FE04 /* ChatRoomVC.swift in Sources */,
+				35B15B812A1B0B30004345F3 /* HeartCounselorCell.swift in Sources */,
 				354F49252A1A663100D71E3D /* AlertV.swift in Sources */,
 				35277D1C29DA84E4002A2A14 /* MainListSection.swift in Sources */,
 				356F7BD72A07934A00C536D8 /* AffiliationContentCell.swift in Sources */,
@@ -1372,6 +1399,7 @@
 				351793052A1746E9004EE7ED /* DetailIntrodutionCell.swift in Sources */,
 				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
 				35726F342A05F7A3008E28D0 /* DateCustomCell.swift in Sources */,
+				35B15B7F2A1B0953004345F3 /* HeartCounselorV.swift in Sources */,
 				354609EC29D6EBA000FC5ABB /* CategoryCell.swift in Sources */,
 				35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */,
 				35BC511D29D196FB00BEA034 /* SelectUseTypeVM.swift in Sources */,
