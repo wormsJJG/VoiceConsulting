@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class CounselorDetailHeader: UIView {
     
-    let backButton: UIButton = UIButton().then {
+    let backButton: BaseButton = BaseButton().then {
         $0.setImage(UIImage(named: AssetImage.backButton), for: .normal)
     }
     
