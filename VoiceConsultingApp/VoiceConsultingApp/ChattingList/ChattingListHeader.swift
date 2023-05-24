@@ -50,7 +50,8 @@ class ChattingListHeader: UIView {
     
     private func constraint() {
         self.snp.makeConstraints {
-            $0.height.equalTo(UIApplication.shared.statusBarFrame.height + 54)
+            //상태바에 + 6 해야 실제 상태바 높이
+            $0.height.equalTo(UIApplication.shared.statusBarFrame.height + 6 + 54)
         }
         
         self.profileImage.snp.makeConstraints { image in
