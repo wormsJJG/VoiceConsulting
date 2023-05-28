@@ -35,4 +35,6 @@ class AssetImage {
     static let plus = "Plus"
     static let counselorCover = "CounselorCover"
     static let certificateImage = "CertificateImage"
+    static let emptyStar = "EmptyStar"
+    static let fillStar = "Fill_Star"
 }

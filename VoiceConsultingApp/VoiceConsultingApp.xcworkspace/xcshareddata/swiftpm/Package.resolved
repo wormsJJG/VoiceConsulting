@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "cosmos",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/Cosmos.git",
+      "state" : {
+        "revision" : "cce521e734d0090494bd4afab5fd2e2f2465c1af",
+        "version" : "23.0.0"
+      }
+    },
+    {
       "identity" : "inputbaraccessoryview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nathantannar4/InputBarAccessoryView",
@@ -16,15 +25,6 @@
       "state" : {
         "revision" : "14bfa7eb9f93267c3d7b8cdf58615bba27be672a",
         "version" : "4.1.1"
-      }
-    },
-    {
-      "identity" : "purelayout",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/PureLayout/PureLayout.git",
-      "state" : {
-        "revision" : "5561683c96dc49b023c1299bfe4f6fbeed5f8199",
-        "version" : "3.1.9"
       }
     }
   ],

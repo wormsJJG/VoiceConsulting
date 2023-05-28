@@ -10,7 +10,6 @@ import RxCocoa
 import RxSwift
 import RxGesture
 import Tabman
-import PureLayout
 
 class CounselorDetailVC: BaseViewController {
     // MARK: - Load View

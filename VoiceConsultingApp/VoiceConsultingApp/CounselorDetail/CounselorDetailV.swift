@@ -8,7 +8,6 @@
 import UIKit
 import Then
 import SnapKit
-import PureLayout
 
 class CounselorDetailV: UIView {
     let header: CounselorDetailHeader = CounselorDetailHeader()
