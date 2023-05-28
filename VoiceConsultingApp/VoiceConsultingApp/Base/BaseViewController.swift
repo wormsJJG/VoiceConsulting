@@ -14,6 +14,7 @@ class BaseViewController: UIViewController {
         self.view.backgroundColor = .white
         isHiddenNavigationBar()
     }
+    // MARK: - Util
     
     func isHiddenBackButton() {
         self.navigationItem.hidesBackButton = true
@@ -22,6 +23,7 @@ class BaseViewController: UIViewController {
     func isHiddenNavigationBar() {
         self.navigationController?.navigationBar.isHidden = true
     }
+    // MARK: - MoveView
     
     func moveCoinManagementVC(start: Int) {
         let coinManagementVC = CoinManagementVC()
@@ -71,6 +73,25 @@ class BaseViewController: UIViewController {
         navigationController?.pushViewController(heartCounselorVC, animated: true)
     }
     
+    func showLogoutPopUp() {
+        let popUp = LogoutPopUpVC()
+        
+        popUp.hidesBottomBarWhenPushed = true
+        popUp.modalPresentationStyle = .overFullScreen
+        popUp.modalTransitionStyle = .crossDissolve
+        self.present(popUp, animated: true, completion: nil)
+    }
+    
+    func showDeleteAccountPopUp() {
+        let popUp = DeleteAccountPopUpVC()
+        
+        popUp.hidesBottomBarWhenPushed = true
+        popUp.modalPresentationStyle = .overFullScreen
+        popUp.modalTransitionStyle = .crossDissolve
+        self.present(popUp, animated: true, completion: nil)
+    }
+    
+    // MARK: - KeyBoard
     func setKeyboardObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         

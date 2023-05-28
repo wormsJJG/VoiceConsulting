@@ -92,9 +92,9 @@ extension MyPageVC: UITableViewDelegate {
                 case .alarmOnOff:
                     print("알림")
                 case .logOut:
-                    print("로그아웃")
+                    self?.showLogoutPopUp()
                 case .OutOfService:
-                    print("회원탈퇴")
+                    self?.showDeleteAccountPopUp()
                 }
             })
             .disposed(by: self.disposeBag)
