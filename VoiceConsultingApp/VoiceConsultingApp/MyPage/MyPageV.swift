@@ -116,7 +116,7 @@ class MyPageV: UIView {
             list.left.equalTo(self.snp.left)
             list.top.equalTo(self.line.snp.bottom)
             list.right.equalTo(self.snp.right)
-            list.bottom.equalTo(self.serviceCenter.snp.top)
+            list.bottom.equalTo(self.serviceCenter.snp.top).offset(-20)
         }
     }
 }
