@@ -10,32 +10,16 @@ import Then
 import SnapKit
 
 class MyPageHeader: UIView {
-    lazy var profileImage: UIImageView = UIImageView().then {
-        $0.image = UIImage(named: AssetImage.thumnail)
-        $0.layer.cornerRadius = 20.0
-    }
-    
-    lazy var name: UILabel = UILabel().then {
-        $0.text = "박고민"
-        $0.textColor = ColorSet.mainText
-        $0.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 16)
-    }
-    
-    lazy var alarmButton: UIButton = UIButton().then {
+
+    lazy var alarmButton: BaseButton = BaseButton().then {
         $0.setImage(UIImage(named: AssetImage.alarmIcon), for: .normal)
         $0.setTitle(nil, for: .normal)
     }
     
-    private lazy var leftStackView: UIStackView = UIStackView(arrangedSubviews: [profileImage, name]).then {
-        $0.axis = .horizontal
-        $0.spacing = 10
-        $0.alignment = .center
-    }
-    
-    private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [leftStackView, alarmButton]).then {
-        $0.axis = .horizontal
-        $0.distribution = .equalSpacing
-        $0.alignment = .center
+    lazy var editAccountButton: BaseButton = BaseButton().then {
+        $0.setTitle("계정 설정", for: .normal)
+        $0.setTitleColor(ColorSet.mainText, for: .normal)
+        $0.titleLabel?.font = UIFont(name: Fonts.NotoSansKR_Regular, size: 16)
     }
 
     override init(frame: CGRect) {
@@ -52,20 +36,22 @@ class MyPageHeader: UIView {
             $0.height.equalTo(54)
         }
         
-        self.profileImage.snp.makeConstraints { image in
-            image.width.height.equalTo(40)
-        }
-        
         self.alarmButton.snp.makeConstraints { button in
             button.width.height.equalTo(24)
         }
         
-        self.addSubview(allStackView)
+        self.addSubview(alarmButton)
         
-        self.allStackView.snp.makeConstraints { sv in
-            sv.left.equalTo(self.snp.left).offset(20)
-            sv.right.equalTo(self.snp.right).offset(-20)
-            sv.centerY.equalTo(self.snp.centerY)
+        alarmButton.snp.makeConstraints {
+            $0.left.equalTo(self.snp.left).offset(20)
+            $0.centerY.equalTo(self.snp.centerY)
+        }
+        
+        self.addSubview(editAccountButton)
+        
+        editAccountButton.snp.makeConstraints {
+            $0.right.equalTo(self.snp.right).offset(-20)
+            $0.centerY.equalTo(self.snp.centerY)
         }
     }
 }

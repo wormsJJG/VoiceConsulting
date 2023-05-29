@@ -32,21 +32,21 @@ class PopularCounselorCell: UICollectionViewCell {
         $0.numberOfLines = 2
     }
     
-    private lazy var star: UIImageView = UIImageView().then {
-        $0.image = UIImage(named: AssetImage.star)
+    private lazy var heartImage: UIImageView = UIImageView().then {
+        $0.image = UIImage(named: AssetImage.heart_Fill)
     }
     
     private lazy var startCount: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
-        $0.text = "5.0"
-        $0.textAlignment = .left
-        $0.textColor = ColorSet.mainText
+        $0.text = "40"
+        $0.textColor = ColorSet.mainColor
     }
     
-    private lazy var starStackView: UIStackView = UIStackView(arrangedSubviews: [star, startCount]).then {
+    private lazy var heartStackView: UIStackView = UIStackView(arrangedSubviews: [heartImage, startCount]).then {
         $0.axis = .horizontal
         $0.spacing = 4
-        $0.distribution = .fillProportionally
+        $0.distribution = .fill
+        $0.alignment = .center
     }
     
     private lazy var consultationCount: UILabel = UILabel().then {
@@ -55,7 +55,7 @@ class PopularCounselorCell: UICollectionViewCell {
         $0.textColor = ColorSet.subTextColor
     }
     
-    private lazy var footerStackView: UIStackView = UIStackView(arrangedSubviews: [starStackView, consultationCount]).then {
+    private lazy var footerStackView: UIStackView = UIStackView(arrangedSubviews: [heartStackView, consultationCount]).then {
         $0.axis = .horizontal
         $0.distribution = .equalSpacing
     }
@@ -93,7 +93,7 @@ class PopularCounselorCell: UICollectionViewCell {
             badge.height.equalTo(self.badge.label.snp.height).offset(6)
         }
         
-        star.snp.makeConstraints { star in
+        heartImage.snp.makeConstraints { star in
             star.width.height.equalTo(14)
         }
         

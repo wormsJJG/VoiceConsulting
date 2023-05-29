@@ -57,6 +57,19 @@ extension MyPageVC: UITableViewDelegate {
     private func bindTableView() {
         viewModel.menu.bind(to: self.myPageV.menuList.rx.items(cellIdentifier: MenuCell.cellID, cellType: MenuCell.self)) { index, menu, cell in
             cell.configure(menuType: menu)
+            
+            if menu == MypageMenu.alarmOnOff {
+                UNUserNotificationCenter.current().getNotificationSettings { settings in
+                    DispatchQueue.main.async {
+                        switch settings.alertSetting {
+                        case .enabled:
+                            cell.toggle.isOn = true
+                        default:
+                            cell.toggle.isOn = false
+                        }
+                    }
+                }
+            }
         }
         .disposed(by: self.disposeBag)
         
@@ -79,9 +92,9 @@ extension MyPageVC: UITableViewDelegate {
                 case .alarmOnOff:
                     print("알림")
                 case .logOut:
-                    print("로그아웃")
+                    self?.showLogoutPopUp()
                 case .OutOfService:
-                    print("회원탈퇴")
+                    self?.showDeleteAccountPopUp()
                 }
             })
             .disposed(by: self.disposeBag)

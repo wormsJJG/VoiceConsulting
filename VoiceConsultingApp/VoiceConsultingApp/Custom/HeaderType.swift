@@ -16,6 +16,7 @@ enum HeaderType {
     case termsOfUse
     case privacyPolicy
     case heartCounselor
+    case review
     
     var title: String {
         switch self {
@@ -35,6 +36,8 @@ enum HeaderType {
             return "개인정보 처리방침"
         case .heartCounselor:
             return "찜한 상담사"
+        case .review:
+            return "리뷰 작성"
         }
     }
 }

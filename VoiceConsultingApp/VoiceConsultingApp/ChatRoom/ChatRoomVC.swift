@@ -117,7 +117,9 @@ extension ChatRoomVC: MessagesDataSource {
             case .endConsultation:
                 let cell = messagesCollectionView.dequeueReusableCell(EndConsultationCell.self, for: indexPath)
                 cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: endConsultationSizeCalculator)
+                cell.systemMessageDelegate = self
 
+                
                 return cell
             }
         }
@@ -296,10 +298,33 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
             conversationId: "test", from: AgoraChatClient.shared.currentUsername!,
             to: "worms0627", body: .text(content: message.content), ext: nil
                 )
+//        let message = Agora
+        
         AgoraChatClient.shared.chatManager?.send(msg, progress: nil)
         messages.append(message)
         messages.sort()
         
         messagesCollectionView.reloadData()
+    }
+}
+
+extension ChatRoomVC: MessageButtonTouchable {
+    func didTapButton(_ systemMessageType: SystemMessageType) {
+        switch systemMessageType {
+        case .requestTranscation:
+            print("거래 요청")
+        case .transactionCompleted:
+            print("결제 완료")
+        case .endConsultation:
+            self.messageInputBar.endEditing(true)
+            self.moveWriteReviewVC()
+        }
+    }
+    
+    private func moveWriteReviewVC() {
+        let writeReviewVC = WriteReviewVC()
+        writeReviewVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(writeReviewVC, animated: true)
     }
 }
