@@ -15,7 +15,8 @@ enum MypageMenu: CaseIterable {
     case openSourceLib
     case alarmOnOff
     case logOut
-    case OutOfService
+    case outOfService
+    case callNumber
     
     var title: String {
         switch self {
@@ -33,8 +34,10 @@ enum MypageMenu: CaseIterable {
             return "알림"
         case .logOut:
             return "로그아웃"
-        case .OutOfService:
+        case .outOfService:
             return "회원탈퇴"
+        case .callNumber:
+            return ""
         }
     }
     
@@ -54,8 +57,10 @@ enum MypageMenu: CaseIterable {
             return 5
         case .logOut:
             return 6
-        case .OutOfService:
+        case .outOfService:
             return 7
+        case .callNumber:
+            return 8
         }
     }
 }

@@ -55,16 +55,11 @@ class MenuCell: UITableViewCell {
         
         if menuType == .alarmOnOff {
             self.toggle.isHidden = false
-        }
-        
-        if menuType == .logOut {
+        } else if menuType == .logOut {
             self.title.textColor = ColorSet.subTextColor
-        }
-        
-        if menuType == .OutOfService {
+        } else if menuType == .outOfService {
             self.title.textColor = ColorSet.date
             self.title.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
-            
             self.title.attributedText = NSMutableAttributedString(string: "회원탈퇴", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.kern: -1])
         }
     }
