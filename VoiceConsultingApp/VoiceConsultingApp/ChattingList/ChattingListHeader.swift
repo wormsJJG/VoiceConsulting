@@ -49,9 +49,18 @@ class ChattingListHeader: UIView {
     }
     
     private func constraint() {
+        var statusHeight: CGFloat = 0.0
+        
+        if #available(iOS 13.0, *) {
+            let window = UIApplication.shared.windows.first
+            statusHeight = window?.safeAreaInsets.top ?? 0
+        } else if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            statusHeight = window?.safeAreaInsets.top ?? 0
+        }
+        
         self.snp.makeConstraints {
-            //상태바에 + 6 해야 실제 상태바 높이
-            $0.height.equalTo(UIApplication.shared.statusBarFrame.height + 6 + 54)
+            $0.height.equalTo(statusHeight + 54)
         }
         
         self.profileImage.snp.makeConstraints { image in

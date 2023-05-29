@@ -11,6 +11,7 @@ import Then
 import SnapKit
 
 class PopUpVC: UIViewController {
+    
     private let backgroundColor =
     UIColor(red: 0.108, green: 0.108, blue: 0.108, alpha: 1)
         
@@ -134,6 +135,7 @@ class PopUpVC: UIViewController {
     
     // MARK: - Open Func
     open func setUpSubView() {
+        
         self.view.addSubview(popUpView)
         self.popUpView.addSubview(allStackView)
     }
@@ -162,10 +164,12 @@ class PopUpVC: UIViewController {
     }
     
     open func setPopUp() {
+        
         self.cancelButton.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
     } //Use Make PopUp
     
     @objc open func cancelAction() {
+        
         dismiss(animated: false)
     }
 }
