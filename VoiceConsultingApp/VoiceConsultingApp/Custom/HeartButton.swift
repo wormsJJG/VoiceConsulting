@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeartButton: UIButton {
+class HeartButton: BaseButton {
     weak var delegate: HeartButtonDelegate?
     
     var didTap: Bool = false {
@@ -19,6 +19,7 @@ class HeartButton: UIButton {
             }
         }
     }
+    
     var fill: Bool = false
     
     override func draw(_ rect: CGRect) {
