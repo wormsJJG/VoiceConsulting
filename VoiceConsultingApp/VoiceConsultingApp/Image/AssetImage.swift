@@ -37,4 +37,7 @@ class AssetImage {
     static let certificateImage = "CertificateImage"
     static let emptyStar = "EmptyStar"
     static let fillStar = "Fill_Star"
+    static let albumIcon = "AlbumIcon"
+    static let cameraIcon = "CameraIcon"
+    static let cancelIcon = "CancelIcon"
 }

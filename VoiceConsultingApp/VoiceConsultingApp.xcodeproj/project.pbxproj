@@ -108,6 +108,7 @@
 		356F7BDF2A07B47800C536D8 /* Extension+UISCrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BDE2A07B47800C536D8 /* Extension+UISCrollView.swift */; };
 		356F7BE52A07E45600C536D8 /* VoiceRoomV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BE42A07E45600C536D8 /* VoiceRoomV.swift */; };
 		356F7BE82A07E4A000C536D8 /* WriteReviewV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BE72A07E4A000C536D8 /* WriteReviewV.swift */; };
+		3570FE2B2A26415700A9A9C1 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570FE2A2A26415700A9A9C1 /* CustomInputView.swift */; };
 		35726F322A05F556008E28D0 /* CounselorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F312A05F556008E28D0 /* CounselorManager.swift */; };
 		35726F342A05F7A3008E28D0 /* DateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F332A05F7A3008E28D0 /* DateCustomCell.swift */; };
 		35726F362A066966008E28D0 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F352A066966008E28D0 /* CustomTabBar.swift */; };
@@ -299,6 +300,7 @@
 		356F7BDE2A07B47800C536D8 /* Extension+UISCrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UISCrollView.swift"; sourceTree = "<group>"; };
 		356F7BE42A07E45600C536D8 /* VoiceRoomV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRoomV.swift; sourceTree = "<group>"; };
 		356F7BE72A07E4A000C536D8 /* WriteReviewV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewV.swift; sourceTree = "<group>"; };
+		3570FE2A2A26415700A9A9C1 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		35726F312A05F556008E28D0 /* CounselorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorManager.swift; sourceTree = "<group>"; };
 		35726F332A05F7A3008E28D0 /* DateCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCustomCell.swift; sourceTree = "<group>"; };
 		35726F352A066966008E28D0 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -876,6 +878,7 @@
 			children = (
 				35C29FF429ECE1C30018FE04 /* ChatRoomVC.swift */,
 				35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */,
+				3570FE2A2A26415700A9A9C1 /* CustomInputView.swift */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";
@@ -1381,6 +1384,7 @@
 				351BB88A29FA72300050105F /* ChatManager.swift in Sources */,
 				354664B329E42C1A0055375F /* CustomTabBarController.swift in Sources */,
 				350CA2222A18BC8100B1756C /* ProfileCell.swift in Sources */,
+				3570FE2B2A26415700A9A9C1 /* CustomInputView.swift in Sources */,
 				3504E2B829E3A8C4006AEED6 /* MorePopularV.swift in Sources */,
 				354664B529E4359E0055375F /* MyPageV.swift in Sources */,
 				359D327929E58002005BF86C /* BuyHistoryV.swift in Sources */,

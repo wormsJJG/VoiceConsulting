@@ -16,15 +16,20 @@ import AgoraChat
 
 class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
     private let headerview = ChatRoomHeader()
+    private let customInputView = CustomInputView()
     
     lazy var plusButtonItem: InputBarButtonItem = InputBarButtonItem().then {
         $0.setImage(UIImage(named: AssetImage.plus), for: .normal)
+        $0.addTarget(self, action: #selector(didTapPlusButtonItem), for: .touchUpInside)
     }
     
+    var isCustomInputView: Bool = false
     let channel: ChatChannel = ChatChannel(name: "김이름 상담사")
     var sender = Sender(senderId: "any_unique_id", displayName: "jake")
     var messages = [Message]()
     private let disposeBag = DisposeBag()
+    
+    
     private lazy var requestTranscationSizeCalculator = RequestTranscationSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     private lazy var customTextMessagesSizeCalculator = CustomTextLayoutSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     private lazy var transcationCompletedSizeCalculator = TransactionCompletedSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
@@ -258,6 +263,27 @@ extension ChatRoomVC: MessagesDisplayDelegate {
 }
 // MARK: - InputBarAccessoryViewDelegate
 extension ChatRoomVC: InputBarAccessoryViewDelegate {
+    
+    @objc private func didTapPlusButtonItem() {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            if !self!.isCustomInputView {
+                
+                self?.messageInputBar.inputTextView.inputView = self?.customInputView
+                self?.plusButtonItem.setImage(UIImage(named: AssetImage.cancelIcon), for: .normal)
+            } else {
+                self?.messageInputBar.inputTextView.inputView = nil
+                self?.plusButtonItem.setImage(UIImage(named: AssetImage.plus), for: .normal)
+            }
+            
+            self?.messageInputBar.inputTextView.reloadInputViews()
+            self?.messageInputBar.inputTextView.becomeFirstResponder()
+            
+            self?.isCustomInputView = !self!.isCustomInputView
+        }
+    }
+    
     private func inputBarDesign() {
         messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
         messageInputBar.rightStackView.alignment = .center
