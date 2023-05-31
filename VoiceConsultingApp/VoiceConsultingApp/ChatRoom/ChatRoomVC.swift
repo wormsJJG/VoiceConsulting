@@ -64,7 +64,8 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         messagesCollectionView.messagesDisplayDelegate = self
         AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
         messageInputBar.delegate = self
-        self.headerview.heartButton.delegate = self
+        headerview.heartButton.delegate = self
+        customInputView.delegate = self
     }
     
     private func constraints() {
@@ -181,6 +182,12 @@ extension ChatRoomVC: MessagesLayoutDelegate {
       -> CellSizeCalculator?
     {
       customTextMessagesSizeCalculator
+    }
+}
+// MARK: - InputViewDelegate
+extension ChatRoomVC: CustomInputViewDelegate {
+    func didTapMenuButton(selectMenu: InputViewMenuType) {
+        print(selectMenu)
     }
 }
 // MARK: - MessagesDisplayDelegate

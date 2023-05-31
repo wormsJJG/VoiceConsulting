@@ -9,7 +9,18 @@ import UIKit
 import Then
 import SnapKit
 
+enum InputViewMenuType {
+    case album
+    case camera
+}
+
+protocol CustomInputViewDelegate: AnyObject {
+    func didTapMenuButton(selectMenu: InputViewMenuType)
+}
+
 class CustomInputView: UIInputView {
+    
+    weak var delegate: CustomInputViewDelegate?
     
     private let albumButton: UIButton = UIButton().then {
         $0.setImage(UIImage(named: AssetImage.albumIcon), for: .normal)
@@ -73,6 +84,8 @@ class CustomInputView: UIInputView {
     private func configureView() {
         self.backgroundColor = .white
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.albumButton.addTarget(self, action: #selector(didTapAlbumButton), for: .touchUpInside)
+        self.cameraButton.addTarget(self, action: #selector(didTapCameraButton), for: .touchUpInside)
     }
     
     private func constraints() {
@@ -89,5 +102,13 @@ class CustomInputView: UIInputView {
         self.allStackView.snp.makeConstraints {
             $0.center.equalTo(self.snp.center)
         }
+    }
+    
+    @objc private func didTapAlbumButton() {
+        delegate?.didTapMenuButton(selectMenu: .album)
+    }
+    
+    @objc private func didTapCameraButton() {
+        delegate?.didTapMenuButton(selectMenu: .camera)
     }
 }
