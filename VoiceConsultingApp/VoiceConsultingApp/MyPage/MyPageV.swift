@@ -47,8 +47,11 @@ class MyPageV: UIView {
     
     lazy var menuList: UITableView = UITableView().then {
         $0.register(MenuCell.self, forCellReuseIdentifier: MenuCell.cellID)
+        $0.register(ServiceCenterCell.self, forCellReuseIdentifier: ServiceCenterCell.cellID)
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
+        $0.rowHeight = UITableView.automaticDimension
+        $0.estimatedRowHeight = UITableView.automaticDimension
     }
     
     private lazy var serviceCenter = ServiceCenterBlock()
@@ -101,22 +104,13 @@ class MyPageV: UIView {
             $0.right.equalTo(self.snp.right)
         }
         
-        self.addSubview(serviceCenter)
-        
-        self.serviceCenter.snp.makeConstraints { block in
-            block.height.equalTo(50)
-            block.left.equalTo(self.snp.left).offset(20)
-            block.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-20)
-            block.right.equalTo(self.snp.right).offset(-20)
-        }
-        
         self.addSubview(menuList)
         
         self.menuList.snp.makeConstraints { list in
             list.left.equalTo(self.snp.left)
             list.top.equalTo(self.line.snp.bottom)
             list.right.equalTo(self.snp.right)
-            list.bottom.equalTo(self.serviceCenter.snp.top)
+            list.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
     }
 }

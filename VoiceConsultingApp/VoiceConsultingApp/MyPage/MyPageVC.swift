@@ -55,20 +55,35 @@ extension MyPageVC {
 // MARK: - Bind TableView
 extension MyPageVC: UITableViewDelegate {
     private func bindTableView() {
-        viewModel.menu.bind(to: self.myPageV.menuList.rx.items(cellIdentifier: MenuCell.cellID, cellType: MenuCell.self)) { index, menu, cell in
-            cell.configure(menuType: menu)
-            
-            if menu == MypageMenu.alarmOnOff {
-                UNUserNotificationCenter.current().getNotificationSettings { settings in
-                    DispatchQueue.main.async {
-                        switch settings.alertSetting {
-                        case .enabled:
-                            cell.toggle.isOn = true
-                        default:
-                            cell.toggle.isOn = false
+        viewModel.menu.bind(to: self.myPageV.menuList.rx.items) { tableView, row, menu in
+            if menu == .callNumber {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCenterCell.cellID) as? ServiceCenterCell else {
+                    
+                    return UITableViewCell()
+                }
+                
+                return cell
+            } else {
+                
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.cellID) as? MenuCell else {
+                    
+                    return UITableViewCell()
+                }
+                
+                cell.configure(menuType: menu)
+                if menu == MypageMenu.alarmOnOff {
+                    UNUserNotificationCenter.current().getNotificationSettings { settings in
+                        DispatchQueue.main.async {
+                            switch settings.alertSetting {
+                            case .enabled:
+                                cell.toggle.isOn = true
+                            default:
+                                cell.toggle.isOn = false
+                            }
                         }
                     }
                 }
+                return cell
             }
         }
         .disposed(by: self.disposeBag)
@@ -93,8 +108,10 @@ extension MyPageVC: UITableViewDelegate {
                     print("알림")
                 case .logOut:
                     self?.showLogoutPopUp()
-                case .OutOfService:
+                case .outOfService:
                     self?.showDeleteAccountPopUp()
+                case .callNumber:
+                    print("callNumber")
                 }
             })
             .disposed(by: self.disposeBag)
