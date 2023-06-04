@@ -4,6 +4,10 @@
 <dict>
 	<key></key>
 	<string></string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict/>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Inter-Medium.ttf</string>

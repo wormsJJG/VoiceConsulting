@@ -96,7 +96,7 @@ extension LiveCell {
         
         self.header.refreshButton.rx.tap
             .bind(onNext: { [weak self] _ in
-                self?.viewModel.getOnlineCounselorList()
+                self?.viewModel.input.refreshTrigger.onNext(())
             })
             .disposed(by: self.disposeBag)
     }
