@@ -27,7 +27,9 @@ class CounselorDetailHeader: UIView {
         $0.alignment = .center
     }
     
-    let heartButton: HeartButton = HeartButton()
+    let heartButton: HeartButton = HeartButton().then {
+        $0.isEnabled = Config.isUser
+    }
     
     private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [leftStackView, heartButton]).then {
         $0.axis = .horizontal

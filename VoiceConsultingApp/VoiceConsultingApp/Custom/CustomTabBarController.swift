@@ -8,11 +8,7 @@
 import UIKit
 
 class CustomTabBarController: UITabBarController {
-    var defaultIndex = 0 {
-        didSet {
-            self.selectedIndex = defaultIndex
-        }
-    }
+    var defaultIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()

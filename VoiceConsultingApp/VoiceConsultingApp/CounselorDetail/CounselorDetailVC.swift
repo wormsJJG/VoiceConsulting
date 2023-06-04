@@ -257,6 +257,12 @@ extension CounselorDetailVC {
                 self?.popVC()
             })
             .disposed(by: self.disposeBag)
+        
+        counselorDetailV.startConsultButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                print("상담하기")
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - didTapHeartButton

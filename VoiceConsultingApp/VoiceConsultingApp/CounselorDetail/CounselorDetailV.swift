@@ -18,6 +18,7 @@ class CounselorDetailV: UIView {
         $0.titleLabel?.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 16)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 10
+        $0.isEnabled = Config.isUser
     }
     
     let stikyTapView: CustomTabBar = CustomTabBar().then {

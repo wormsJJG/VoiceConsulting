@@ -13,7 +13,6 @@
 		3504CC712A2C79D500952D84 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3504CC702A2C79D500952D84 /* Realm */; };
 		3504CC732A2C79D500952D84 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3504CC722A2C79D500952D84 /* RealmSwift */; };
 		3504CC752A2C7C4900952D84 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504CC742A2C7C4900952D84 /* RealmManager.swift */; };
-		3504CC772A2C7DCA00952D84 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504CC762A2C7DCA00952D84 /* UserData.swift */; };
 		3504CC792A2C806E00952D84 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504CC782A2C806E00952D84 /* FirebaseAuthManager.swift */; };
 		3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504E2A729E3A4F2006AEED6 /* PlainHeaderView.swift */; };
 		3504E2AE29E3A669006AEED6 /* HeaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504E2AD29E3A669006AEED6 /* HeaderType.swift */; };
@@ -44,6 +43,7 @@
 		351E93F42A2CAA2B00C598C3 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 351E93F32A2CAA2B00C598C3 /* GoogleSignInSwift */; };
 		351E93F82A2CCC4F00C598C3 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E93F72A2CCC4F00C598C3 /* AuthError.swift */; };
 		351E93FA2A2CD6CA00C598C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351E93F92A2CD6CA00C598C3 /* LaunchScreen.storyboard */; };
+		351E93FC2A2CDE4B00C598C3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E93FB2A2CDE4B00C598C3 /* Config.swift */; };
 		3523AF8B2A09055300D51B8A /* CounselorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523AF8A2A09055300D51B8A /* CounselorInfo.swift */; };
 		3523AF8E2A09079700D51B8A /* FBCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523AF8D2A09079700D51B8A /* FBCollection.swift */; };
 		3523AF902A0908F800D51B8A /* Extenstion+CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523AF8F2A0908F800D51B8A /* Extenstion+CollectionReference.swift */; };
@@ -212,7 +212,6 @@
 		07716390FB7502C28588E7B4 /* Pods-VoiceConsultingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp.release.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp.release.xcconfig"; sourceTree = "<group>"; };
 		3500F74129DC07770080AC4F /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		3504CC742A2C7C4900952D84 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		3504CC762A2C7DCA00952D84 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		3504CC782A2C806E00952D84 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		3504E2A729E3A4F2006AEED6 /* PlainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainHeaderView.swift; sourceTree = "<group>"; };
 		3504E2AD29E3A669006AEED6 /* HeaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderType.swift; sourceTree = "<group>"; };
@@ -241,6 +240,7 @@
 		351E93EE2A2CA2BE00C598C3 /* GoogleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInManager.swift; sourceTree = "<group>"; };
 		351E93F72A2CCC4F00C598C3 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		351E93F92A2CD6CA00C598C3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		351E93FB2A2CDE4B00C598C3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		3523AF8A2A09055300D51B8A /* CounselorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorInfo.swift; sourceTree = "<group>"; };
 		3523AF8D2A09079700D51B8A /* FBCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBCollection.swift; sourceTree = "<group>"; };
 		3523AF8F2A0908F800D51B8A /* Extenstion+CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extenstion+CollectionReference.swift"; sourceTree = "<group>"; };
@@ -911,7 +911,7 @@
 				3523AF892A0904DA00D51B8A /* Counselor */,
 				359F7FC029FD589C00274108 /* NotificationName.swift */,
 				35C29FF929ECF2390018FE04 /* Chatting */,
-				3504CC762A2C7DCA00952D84 /* UserData.swift */,
+				351E93FB2A2CDE4B00C598C3 /* Config.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1373,7 +1373,6 @@
 				35308FB029E4F77A008FB343 /* MyPageVM.swift in Sources */,
 				35289C632A0E192000D2B3C5 /* RequestTransactionSizeCalculator.swift in Sources */,
 				35277D2329DA8AB9002A2A14 /* LiveCell.swift in Sources */,
-				3504CC772A2C7DCA00952D84 /* UserData.swift in Sources */,
 				35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */,
 				350C6DCD2A0D171F00332581 /* CustomMessageContentCell.swift in Sources */,
 				35308FBA29E51126008FB343 /* ChattingListVM.swift in Sources */,
@@ -1443,6 +1442,7 @@
 				3504E2B629E3A8B1006AEED6 /* MoreFitWellV.swift in Sources */,
 				350CA2292A190A4B00B1756C /* CategoryCVCell.swift in Sources */,
 				35B15B852A1B14F1004345F3 /* HeartButton.swift in Sources */,
+				351E93FC2A2CDE4B00C598C3 /* Config.swift in Sources */,
 				3560437229DEB943001CDA77 /* CounselorBadge.swift in Sources */,
 				35A63F692A132FE30058C92D /* EndConsultationSizeCalculator.swift in Sources */,
 				350C6DCA2A0CF68D00332581 /* RequestTransactionCell.swift in Sources */,
