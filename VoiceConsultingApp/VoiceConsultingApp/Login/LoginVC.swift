@@ -44,6 +44,22 @@ extension LoginVC {
         self.loginV.googleLoginButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.viewModel.input.didTapLoginButton.onNext(.google)
+                self?.googleLogin()
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+
+extension LoginVC {
+    // GoogleLogin은 viewController를 넘겨야해서 VC에 함수
+    private func googleLogin() {
+        GoogleSignInManager.shared.signIn(viewController: self)
+            .subscribe(onNext: { [weak self] authResult in
+                if let authResult {
+                    print(authResult.user.uid)
+                } else {
+                    print("optional AuthResult")
+                }
             })
             .disposed(by: self.disposeBag)
     }

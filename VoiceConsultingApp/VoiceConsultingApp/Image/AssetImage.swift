@@ -24,7 +24,7 @@ class AssetImage {
     static let chattingIconFill = "ChattingIconFill"
     static let myIcon = "MyIcon"
     static let myIconFill = "MyIconFill"
-    static let alarmIcon = "AlarmICon"
+    static let alarmIcon = "AlarmIcon"
     static let right = "Right"
     static let phoneIcon = "Phone"
     static let coinIconFill = "CoinIconFill"

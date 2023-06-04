@@ -74,7 +74,7 @@ extension SelectCategoryVC {
         self.selectCategoryV.completeButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.viewModel.input.didTapCompleteButton.onNext(())
-                self?.navigationController?.pushViewController(MainVC(), animated: true)
+                self?.navigationController?.pushViewController(CustomTabBarController(), animated: true)
             })
             .disposed(by: self.disposeBag)
     }
