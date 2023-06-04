@@ -11,7 +11,7 @@ import RxSwift
 class LiveCellVM: BaseViewModel {
     
     struct Input {
-        
+        let refreshTrigger: PublishSubject<Void> = PublishSubject()
     }
     
     struct Output {
@@ -26,6 +26,13 @@ class LiveCellVM: BaseViewModel {
         self.input = input
         self.output = output
         getOnlineCounselorList()
+    }
+    
+    private func inputSubscribe() {
+        self.input.refreshTrigger.subscribe(onNext: { [weak self] _ in
+            self?.getOnlineCounselorList()
+        })
+        .disposed(by: self.disposeBag)
     }
     
     func getOnlineCounselorList() {

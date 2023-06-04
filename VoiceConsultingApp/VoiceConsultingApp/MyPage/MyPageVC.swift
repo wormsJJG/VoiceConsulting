@@ -25,12 +25,25 @@ class MyPageVC: BaseViewController {
         super.viewDidLoad()
         addTapAction()
         bindTableView()
+        dataBind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // 오픈소스 라이브러리를 갔다오면 바 히든이 풀려서 다시 해줌
         isHiddenNavigationBar()
+    }
+}
+// MARK: - bindData
+
+extension MyPageVC {
+    
+    private func dataBind() {
+        DispatchQueue.main.async {
+            self.myPageV.name.text = Config.name
+            //프로필 코드
+            //보유 코인
+        }
     }
 }
 // MARK: - Touch Action

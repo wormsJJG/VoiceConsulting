@@ -11,7 +11,9 @@ import SnapKit
 
 class MyPageV: UIView {
     // MARK: - View
-    lazy var header = MyPageHeader()
+    lazy var header = MyPageHeader().then {
+        $0.editAccountButton.isHidden = Config.isUser
+    }
     
     lazy var profileImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
@@ -19,13 +21,13 @@ class MyPageV: UIView {
     }
     
     lazy var name: UILabel = UILabel().then {
-        $0.text = "박고민"
+        $0.text = "name"
         $0.textColor = ColorSet.mainText
         $0.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 16)
     }
     
     let userTypeView: UserTypeView = UserTypeView().then {
-        $0.isUser = true
+        $0.isUser = Config.isUser
     }
     
     private lazy var nameUserTypeStackView: UIStackView = UIStackView(arrangedSubviews: [userTypeView, name]).then {
