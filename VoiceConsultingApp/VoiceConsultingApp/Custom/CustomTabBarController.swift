@@ -8,12 +8,10 @@
 import UIKit
 
 class CustomTabBarController: UITabBarController {
-    var defaultIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.selectedIndex = defaultIndex
     }
 }
 
@@ -27,6 +25,12 @@ extension CustomTabBarController {
         self.setViewControllers([main, chattingList, myPage], animated: true)
         self.tabBar.selectedImageTintColor = ColorSet.mainColor
         self.tabBar.unselectedItemTintColor = ColorSet.subTextColor2
+        
+        if Config.isUser {
+            self.selectedIndex = 0
+        } else {
+            self.selectedIndex = 2
+        }
         
         if let items = self.tabBar.items {
             items[0].image = UIImage(named: AssetImage.mainIconFill)
