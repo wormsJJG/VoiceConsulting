@@ -15,12 +15,12 @@ class MypageVM: BaseViewModel {
     }
     
     struct Output {
-        
+        var userMenu = Observable.just(MypageUserMenu.allCases)
+        var counselorMenu = Observable.just(MypageCounselorMenu.allCases)
     }
     
     var input: Input
     var output: Output
-    var menu = Observable.just(MypageMenu.allCases)
     
     init(input: Input = Input(),
          output: Output = Output()) {
