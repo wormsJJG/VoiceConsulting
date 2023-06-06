@@ -16,15 +16,7 @@ class Cordinator {
     }
     
     func start() {
-
-        if FirebaseAuthManager.shared.isLogin {
-            
-            window.rootViewController = CustomTabBarController()
-        } else {
-            
-            let loginVC = UINavigationController(rootViewController: LoginVC())
-            window.rootViewController = loginVC
-        }
+        window.rootViewController = UINavigationController(rootViewController: SplashVC())
         
         window.makeKeyAndVisible()
     }

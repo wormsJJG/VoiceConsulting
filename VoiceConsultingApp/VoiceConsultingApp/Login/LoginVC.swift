@@ -56,7 +56,8 @@ extension LoginVC {
         GoogleSignInManager.shared.signIn(viewController: self)
             .subscribe(onNext: { [weak self] authResult in
                 if let authResult {
-                    print(authResult.user.uid)
+                    Config.name = authResult.user.displayName ?? "error"
+                    self?.moveSelectUseTypeVC()
                 } else {
                     print("optional AuthResult")
                 }

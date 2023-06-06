@@ -50,10 +50,24 @@ class MenuCell: UITableViewCell {
         }
     }
     
-    func configure(menuType: MypageMenu) {
+    func configureUser(menuType: MypageUserMenu) {
         self.title.text = menuType.title
         
         if menuType == .alarmOnOff {
+            self.toggle.isHidden = false
+        } else if menuType == .logOut {
+            self.title.textColor = ColorSet.subTextColor
+        } else if menuType == .outOfService {
+            self.title.textColor = ColorSet.date
+            self.title.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
+            self.title.attributedText = NSMutableAttributedString(string: "회원탈퇴", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.kern: -1])
+        }
+    }
+    
+    func configureCounselor(menuType: MypageCounselorMenu) {
+        self.title.text = menuType.title
+        
+        if menuType == .alarmOnOff || menuType == .isOnlineOnOff {
             self.toggle.isHidden = false
         } else if menuType == .logOut {
             self.title.textColor = ColorSet.subTextColor

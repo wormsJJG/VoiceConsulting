@@ -10,5 +10,5 @@ import Foundation
 class Config {
     public static var profileUrlString: String?
     public static var name: String = "정재근"
-    public static var isUser: Bool = true
+    public static var isUser: Bool = false
 }

@@ -15,8 +15,16 @@ import Then
 import AgoraChat
 
 class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
-    private let headerview = ChatRoomHeader()
+    private let headerview = ChatRoomHeader().then {
+        
+        $0.coinBlock.isHidden = !Config.isUser
+        $0.heartButton.isHidden = !Config.isUser
+    }
     private let customInputView = CustomInputView()
+    private let requestView = RequestPaymentView().then {
+        
+        $0.isHidden = Config.isUser
+    }
     
     lazy var plusButtonItem: InputBarButtonItem = InputBarButtonItem().then {
         $0.setImage(UIImage(named: AssetImage.plus), for: .normal)
@@ -72,9 +80,18 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         self.view.addSubview(headerview)
         
         self.headerview.snp.makeConstraints {
-            $0.left.equalTo(self.messagesCollectionView.snp.left)
-            $0.top.equalTo(self.messagesCollectionView.snp.top)
-            $0.right.equalTo(self.messagesCollectionView.snp.right)
+            $0.left.equalTo(self.view.snp.left)
+            $0.top.equalTo(self.view.snp.top)
+            $0.right.equalTo(self.view.snp.right)
+        }
+        
+        self.view.addSubview(requestView)
+        
+        requestView.snp.makeConstraints {
+            $0.height.equalTo(66)
+            $0.left.equalTo(self.view.snp.left)
+            $0.top.equalTo(self.headerview.snp.bottom)
+            $0.right.equalTo(self.view.snp.right)
         }
     }
     
@@ -194,7 +211,7 @@ extension ChatRoomVC: CustomInputViewDelegate {
 extension ChatRoomVC: MessagesDisplayDelegate {
     private func setMessageCollectionView() {
         self.messagesCollectionView.backgroundColor = ColorSet.chatRoomBack
-        additionalSafeAreaInsets = UIEdgeInsets(top: 54 + 20, left: 0, bottom: 0, right: 0)
+        additionalSafeAreaInsets = UIEdgeInsets(top: 120, left: 0, bottom: 0, right: 0)
         messagesCollectionView.register(RequestTransactionCell.self)
         messagesCollectionView.register(CustomTextMessageCell.self)
         messagesCollectionView.register(TransactionCompletedCell.self)

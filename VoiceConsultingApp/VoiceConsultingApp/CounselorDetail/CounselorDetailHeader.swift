@@ -28,13 +28,7 @@ class CounselorDetailHeader: UIView {
     }
     
     let heartButton: HeartButton = HeartButton().then {
-        $0.isEnabled = Config.isUser
-    }
-    
-    private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [leftStackView, heartButton]).then {
-        $0.axis = .horizontal
-        $0.alignment = .center
-        $0.distribution = .equalSpacing
+        $0.isHidden = !Config.isUser
     }
 
     override init(frame: CGRect) {
@@ -52,12 +46,18 @@ class CounselorDetailHeader: UIView {
             $0.height.equalTo(54)
         }
     
-        self.addSubview(allStackView)
+        self.addSubview(leftStackView)
         
-        self.allStackView.snp.makeConstraints { sv in
-            sv.left.equalTo(self.snp.left).offset(20)
-            sv.centerY.equalTo(self.snp.centerY)
-            sv.right.equalTo(self.snp.right).offset(-20)
+        self.leftStackView.snp.makeConstraints {
+            $0.left.equalTo(self.snp.left).offset(20)
+            $0.centerY.equalTo(self.snp.centerY)
+        }
+        
+        self.addSubview(heartButton)
+        
+        self.heartButton.snp.makeConstraints {
+            $0.right.equalTo(self.snp.right).offset(-20)
+            $0.centerY.equalTo(self.snp.centerY)
         }
     }
 }

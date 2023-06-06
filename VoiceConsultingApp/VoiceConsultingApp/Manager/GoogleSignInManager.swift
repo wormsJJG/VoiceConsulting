@@ -32,7 +32,6 @@ class GoogleSignInManager {
                             
                             event.onError(error)
                         } else {
-                            
                             event.onNext(authResult)
                             event.onCompleted()
                         }

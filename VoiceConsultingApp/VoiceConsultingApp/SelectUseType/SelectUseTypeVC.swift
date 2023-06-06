@@ -22,13 +22,31 @@ class SelectUseTypeVC: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        outputSubscribe()
         addButtonAction()
         isHiddenNavigationBar()
     }
 }
+// MARK: -
+extension SelectUseTypeVC {
+    
+    private func outputSubscribe() {
+        
+        self.viewModel.output.isSuccess
+            .bind(onNext: { [weak self] isSuccess in
+                if isSuccess {
+                    self?.moveSelectCategoryVC()
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+
 // MARK: - Button Action
 extension SelectUseTypeVC {
+    
     private func addButtonAction() {
+        
         self.selectUseTypeV.userButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.viewModel.input.selectUseType.onNext(UseType.user)
@@ -54,8 +72,8 @@ extension SelectUseTypeVC {
             .disposed(by: self.disposeBag)
         
         self.selectUseTypeV.nextButton.rx.tap
-            .bind(onNext: {
-                self.navigationController?.pushViewController(SelectCategoryVC(), animated: true)
+            .bind(onNext: { [weak self] _ in
+                self?.viewModel.input.didTapNextButton.onNext(self!.selectUseTypeV.isUser)
             })
             .disposed(by: self.disposeBag)
     }

@@ -34,7 +34,7 @@ class SplashVM: BaseViewModel {
         input.isEnterUser
             .subscribe(onNext: { [weak self] _ in
                 // 로그인 검사
-                self?.output.isLogin.onNext(true)
+                self?.output.isLogin.onNext(FirebaseAuthManager.shared.isLogin)
             })
             .disposed(by: self.disposeBag)
     }

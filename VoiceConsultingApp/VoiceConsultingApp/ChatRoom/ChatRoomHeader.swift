@@ -28,12 +28,12 @@ class ChatRoomHeader: UIView {
     }
     
     let coinBlock: CoinBlock = CoinBlock().then {
-        $0.isFill = false
+        $0.isFill = true
     }
     
     let heartButton: HeartButton = HeartButton()
     
-    let menuButton: UIButton = UIButton().then {
+    let menuButton: BaseButton = BaseButton().then {
         $0.setImage(UIImage(named: AssetImage.menu), for: .normal)
     }
     
@@ -41,12 +41,6 @@ class ChatRoomHeader: UIView {
         $0.axis = .horizontal
         $0.spacing = 20
         $0.alignment = .center
-    }
-    
-    private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [leftStackView, rightStackView]).then {
-        $0.axis = .horizontal
-        $0.alignment = .center
-        $0.distribution = .equalSpacing
     }
 
     override init(frame: CGRect) {
@@ -73,13 +67,19 @@ class ChatRoomHeader: UIView {
         self.snp.makeConstraints {
             $0.height.equalTo(statusHeight + 54)
         }
-    
-        self.addSubview(allStackView)
         
-        self.allStackView.snp.makeConstraints { sv in
-            sv.left.equalTo(self.snp.left).offset(20)
-            sv.bottom.equalTo(self.snp.bottom).offset(-9)
-            sv.right.equalTo(self.snp.right).offset(-20)
+        self.addSubview(rightStackView)
+        
+        rightStackView.snp.makeConstraints {
+            $0.right.equalTo(self.snp.right).offset(-20)
+            $0.bottom.equalTo(self.snp.bottom).offset(-9)
+        }
+
+        self.addSubview(leftStackView)
+        
+        leftStackView.snp.makeConstraints {
+            $0.left.equalTo(self.snp.left).offset(20)
+            $0.centerY.equalTo(self.rightStackView.snp.centerY)
         }
     }
 }

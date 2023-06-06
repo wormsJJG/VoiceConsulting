@@ -39,7 +39,6 @@ class CoinManagementV: UIView {
         
         self.tapView.snp.makeConstraints { view in
             view.height.equalTo(43)
-            
             view.left.equalTo(self.snp.left)
             view.top.equalTo(self.header.snp.bottom)
             view.right.equalTo(self.snp.right)

@@ -67,8 +67,17 @@ extension MyPageVC {
 }
 // MARK: - Bind TableView
 extension MyPageVC: UITableViewDelegate {
+    
     private func bindTableView() {
-        viewModel.menu.bind(to: self.myPageV.menuList.rx.items) { tableView, row, menu in
+        if Config.isUser {
+            bindUserTableView()
+        } else {
+            bindCounselorTableView()
+        }
+    }
+    // MARK: - User
+    private func bindUserTableView() {
+        viewModel.output.userMenu.bind(to: self.myPageV.menuList.rx.items) { tableView, row, menu in
             if menu == .callNumber {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCenterCell.cellID) as? ServiceCenterCell else {
                     
@@ -83,8 +92,9 @@ extension MyPageVC: UITableViewDelegate {
                     return UITableViewCell()
                 }
                 
-                cell.configure(menuType: menu)
-                if menu == MypageMenu.alarmOnOff {
+                cell.configureUser(menuType: menu)
+                
+                if menu == MypageUserMenu.alarmOnOff {
                     UNUserNotificationCenter.current().getNotificationSettings { settings in
                         DispatchQueue.main.async {
                             switch settings.alertSetting {
@@ -104,7 +114,7 @@ extension MyPageVC: UITableViewDelegate {
         self.myPageV.menuList.rx.setDelegate(self)
             .disposed(by: self.disposeBag)
         
-        self.myPageV.menuList.rx.modelSelected(MypageMenu.self)
+        self.myPageV.menuList.rx.modelSelected(MypageUserMenu.self)
             .bind(onNext: { [weak self] menu in
                 switch menu {
                 case .heartCounselor:
@@ -125,6 +135,74 @@ extension MyPageVC: UITableViewDelegate {
                     self?.showDeleteAccountPopUp()
                 case .callNumber:
                     print("callNumber")
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func bindCounselorTableView() {
+        
+        viewModel.output.counselorMenu.bind(to: self.myPageV.menuList.rx.items) { tableView, row, menu in
+            if menu == .callNumber {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCenterCell.cellID) as? ServiceCenterCell else {
+                    
+                    return UITableViewCell()
+                }
+                
+                return cell
+            } else {
+                
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.cellID) as? MenuCell else {
+                    
+                    return UITableViewCell()
+                }
+                
+                cell.configureCounselor(menuType: menu)
+                if menu == MypageCounselorMenu.alarmOnOff {
+                    UNUserNotificationCenter.current().getNotificationSettings { settings in
+                        DispatchQueue.main.async {
+                            switch settings.alertSetting {
+                            case .enabled:
+                                cell.toggle.isOn = true
+                            default:
+                                cell.toggle.isOn = false
+                            }
+                        }
+                    }
+                }
+                return cell
+            }
+        }
+        .disposed(by: self.disposeBag)
+        
+        self.myPageV.menuList.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
+        self.myPageV.menuList.rx.modelSelected(MypageCounselorMenu.self)
+            .bind(onNext: { [weak self] menu in
+                
+                switch menu {
+                
+                case .showProfile:
+                    print("프로필 보기")
+                case .revenueManagement:
+                    print("수익관리")
+                case .termsOfUse:
+                    self?.moveTermsVC(type: .termsOfUse)
+                case .privacyPolicy:
+                    self?.moveTermsVC(type: .privacyPolicy)
+                case .openSourceLib:
+                    self?.moveOpenSourceLicense()
+                case .alarmOnOff:
+                    print("알림")
+                case .isOnlineOnOff:
+                    print("즉상가")
+                case .logOut:
+                    self?.showLogoutPopUp()
+                case .outOfService:
+                    self?.showDeleteAccountPopUp()
+                case .callNumber:
+                    print("고객센터")
                 }
             })
             .disposed(by: self.disposeBag)

@@ -254,15 +254,30 @@ extension CounselorDetailVC {
     private func addAction() {
         counselorDetailV.header.backButton.rx.tap
             .bind(onNext: { [weak self] _ in
+                
                 self?.popVC()
             })
             .disposed(by: self.disposeBag)
         
         counselorDetailV.startConsultButton.rx.tap
             .bind(onNext: { [weak self] _ in
-                print("상담하기")
+                
+                if Config.isUser {
+                    print("상담하기")
+                } else {
+                    self?.showPopUp()
+                }
             })
             .disposed(by: self.disposeBag)
+    }
+    
+    func showPopUp() {
+        let popUp = OneButtonNoActionPopUpVC()
+        
+        popUp.hidesBottomBarWhenPushed = true
+        popUp.modalPresentationStyle = .overFullScreen
+        popUp.modalTransitionStyle = .crossDissolve
+        self.present(popUp, animated: true, completion: nil)
     }
 }
 // MARK: - didTapHeartButton

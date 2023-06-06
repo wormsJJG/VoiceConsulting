@@ -11,6 +11,8 @@ import Then
 
 class SelectUseTypeV: UIView {
     // MARK: - Componet
+    var isUser: Bool = true
+    
     private lazy var infomationLabel: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 20)
         $0.text = "사용하실 계정을\n선택해주세요"
@@ -99,6 +101,7 @@ class SelectUseTypeV: UIView {
             }
             userButton.layer.borderColor = ColorSet.mainColor?.cgColor
             userButton.setTitleColor(ColorSet.mainColor, for: .normal)
+            self.isUser = true
         case .counselor:
             if userButton.layer.borderColor == ColorSet.mainColor!.cgColor {
                 userButton.layer.borderColor = UIColor.lightGray.cgColor
@@ -106,6 +109,7 @@ class SelectUseTypeV: UIView {
             }
             counselorButton.layer.borderColor = ColorSet.mainColor?.cgColor
             counselorButton.setTitleColor(ColorSet.mainColor, for: .normal)
+            self.isUser = false
         }
     }
 }

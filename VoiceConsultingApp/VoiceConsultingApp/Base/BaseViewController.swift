@@ -25,6 +25,30 @@ class BaseViewController: UIViewController {
     }
     // MARK: - MoveView
     
+    func moveMain() {
+        let mainVC = CustomTabBarController()
+        
+        self.navigationController?.pushViewController(mainVC, animated: true)
+    }
+    
+    func moveLoginVC() {
+        let loginVC = LoginVC()
+        
+        self.navigationController?.pushViewController(loginVC, animated: true)
+    }
+    
+    func moveSelectCategoryVC() {
+        let selectCategoryVC = SelectCategoryVC()
+        
+        self.navigationController?.pushViewController(selectCategoryVC, animated: true)
+    }
+    
+    func moveSelectUseTypeVC() {
+        let selectUseTypeVC = SelectUseTypeVC()
+        
+        self.navigationController?.pushViewController(selectUseTypeVC, animated: true)
+    }
+    
     func moveCoinManagementVC(start: Int) {
         let coinManagementVC = CoinManagementVC()
         coinManagementVC.hidesBottomBarWhenPushed = true
