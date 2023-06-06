@@ -23,7 +23,6 @@ class SplashVC: BaseViewController {
         super.viewDidLoad()
         userLoginCheck()
         self.viewModel.input.isEnterUser.onNext(())
- 
     }
 }
 
@@ -33,9 +32,36 @@ extension SplashVC {
         self.viewModel.output.isLogin
             .subscribe(onNext: { [weak self] isLogin in
                 if isLogin {
-                    self?.navigationController?.pushViewController(SelectUseTypeVC(), animated: true)
+                    self?.userDataCheck()
                 } else {
-                    print("로그인 안되있음")
+                    
+                    self?.moveLoginVC()
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    // 유저 데이터 유무 체크 유저가 회원가입 도중 중단했을경우를 생각
+    private func userDataCheck() {
+        
+        UserManager.shared.getCurrentUserData()
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let user):
+                    Config.name = user.name
+                    Config.isUser = user.isUser
+                    
+                    if user.categoryList == nil {
+                        self?.moveSelectCategoryVC()
+                    } else {
+                        self?.moveMain()
+                    }
+                case .error(let error):
+                    print("유저 데이터를 못가져오는거임 네트워크가 없거나 로그인만 해두고 컬렉션엔 데이터가 없음.")
+                    print(error.localizedDescription)
+                case .completed:
+                    print("completed")
                 }
             })
             .disposed(by: self.disposeBag)

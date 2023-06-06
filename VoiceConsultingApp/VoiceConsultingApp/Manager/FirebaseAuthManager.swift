@@ -12,10 +12,34 @@ class FirebaseAuthManager {
     static let shared = FirebaseAuthManager()
     
     var isLogin: Bool {
+        
         guard Auth.auth().currentUser != nil else {
+            
             return false
         }
         
         return true
+    }
+    
+    func getUserUid() -> String? {
+        if isLogin {
+            
+            return Auth.auth().currentUser!.uid
+        }
+        
+        return nil
+    }
+    
+    func logout() {
+        
+        let auth = Auth.auth()
+        
+        do {
+            
+            try auth.signOut()
+        } catch {
+            
+            print(error.localizedDescription)
+        }
     }
 }

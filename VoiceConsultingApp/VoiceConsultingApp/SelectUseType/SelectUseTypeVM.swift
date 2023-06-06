@@ -17,10 +17,12 @@ enum UseType {
 class SelectUseTypeVM: BaseViewModel {
     struct Input {
         let selectUseType: PublishSubject<UseType> = PublishSubject()
+        let didTapNextButton: PublishSubject<Bool> = PublishSubject()
     }
     
     struct Output {
         let isNextButtonEnable: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+        let isSuccess: PublishSubject<Bool> = PublishSubject()
     }
     
     var input: Input
@@ -40,5 +42,34 @@ class SelectUseTypeVM: BaseViewModel {
                 self?.output.isNextButtonEnable.accept(true)
             })
             .disposed(by: self.disposeBag)
+        
+        input.didTapNextButton
+            .subscribe(onNext: { [weak self] isUser in
+                self?.createUser(isUser: isUser)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func createUser(isUser: Bool) {
+        let uid = FirebaseAuthManager.shared.getUserUid()
+        
+        if let uid {
+            UserManager.shared.createUser(uid: uid, name: Config.name, isUser: isUser)
+                .subscribe( { [weak self] event in
+                    
+                    switch event {
+                        
+                    case .next():
+                        self?.output.isSuccess.onNext(true)
+                    case .error(let error):
+                        print(error.localizedDescription)
+                        self?.output.isSuccess.onNext(false)
+                    case .completed:
+                        print("completed")
+                    }
+                })
+                .disposed(by: self.disposeBag)
+        }
+        
     }
 }

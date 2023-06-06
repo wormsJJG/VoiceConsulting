@@ -9,6 +9,7 @@ import Foundation
 
 enum AuthError: Error {
     case optionalAuthResult
+    case noCurrentUser
 }
 
 extension AuthError: LocalizedError {
@@ -16,6 +17,8 @@ extension AuthError: LocalizedError {
         switch self {
         case .optionalAuthResult:
             return "로그인 요청에 값이 없습니다."
+        case .noCurrentUser:
+            return "로그인 기록이 없습니다."
         }
     }
 }

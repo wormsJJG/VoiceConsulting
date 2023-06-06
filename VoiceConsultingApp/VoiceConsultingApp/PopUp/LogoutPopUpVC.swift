@@ -15,5 +15,17 @@ class LogoutPopUpVC: PopUpVC {
         self.isHiddenContentLabel = true
         self.cancelButtonTitle = "취소"
         self.doneButtonTitle = "네"
+        self.doneButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+    }
+    
+    @objc private func logout() {
+        FirebaseAuthManager.shared.logout()
+        moveLoginVC()
+    }
+    
+    private func moveLoginVC() {
+        let loginVC = LoginVC()
+        
+        self.navigationController?.pushViewController(loginVC, animated: true)
     }
 }
