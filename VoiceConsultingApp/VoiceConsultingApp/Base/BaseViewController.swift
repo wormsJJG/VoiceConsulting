@@ -25,6 +25,12 @@ class BaseViewController: UIViewController {
     }
     // MARK: - MoveView
     
+    func moveSplashVC() {
+        let splashVC = SplashVC()
+        
+        self.navigationController?.pushViewController(splashVC, animated: true)
+    }
+    
     func moveMain() {
         let mainVC = CustomTabBarController()
         

@@ -8,7 +8,7 @@
 import Foundation
 
 struct User: Codable {
-    var isUser: Bool
+    var isUser: Bool?
     var name: String
     var categoryList: [String]?
     var isOnline: Bool?
@@ -21,7 +21,7 @@ struct User: Codable {
     var coinCount: Int
     var consultingCount: Int?
     
-    init(isUser: Bool,
+    init(isUser: Bool? = nil,
          name: String,
          categoryList: [String]? = nil,
          isOnline: Bool? = nil,

@@ -50,15 +50,22 @@ extension SplashVC {
                     
                 case .next(let user):
                     Config.name = user.name
-                    Config.isUser = user.isUser
                     
-                    if user.categoryList == nil {
+                    if user.isUser == nil {
+                        self?.moveSelectUseTypeVC()
+                    } else if user.categoryList == nil {
+                        
+                        Config.isUser = user.isUser!
                         self?.moveSelectCategoryVC()
                     } else {
+                        
+                        Config.isUser = user.isUser!
                         self?.moveMain()
                     }
+                    
                 case .error(let error):
-                    print("유저 데이터를 못가져오는거임 네트워크가 없거나 로그인만 해두고 컬렉션엔 데이터가 없음.")
+                    
+                    self?.moveLoginVC()
                     print(error.localizedDescription)
                 case .completed:
                     print("completed")
