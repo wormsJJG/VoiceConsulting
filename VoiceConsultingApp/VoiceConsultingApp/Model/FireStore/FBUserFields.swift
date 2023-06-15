@@ -8,7 +8,8 @@
 import Foundation
 
 enum FBUserFields: String {
-    case name = "name"
-    case isUser = "isUser"
+    case name
+    case isUser
+    case categoryList
 }
 

@@ -24,6 +24,7 @@ class SelectCategoryVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindCategoryList()
+        bindOutput()
         addCompleteButtonAction()
     }
 }
@@ -77,13 +78,33 @@ extension SelectCategoryVC: UICollectionViewDelegateFlowLayout {
 }
 // MARK: - button Action
 extension SelectCategoryVC {
+    
     private func addCompleteButtonAction() {
+        
         self.selectCategoryV.completeButton.rx.tap
             .bind(onNext: { [weak self] _ in
+                
                 self?.viewModel.input.didTapCompleteButton.onNext(())
-                self?.navigationController?.pushViewController(CustomTabBarController(), animated: true)
             })
             .disposed(by: self.disposeBag)
     }
 }
-
+// MARK: - Output Bind
+extension SelectCategoryVC {
+    
+    private func bindOutput() {
+        
+        self.viewModel.output.completion
+            .bind(onNext: { [weak self] error in
+                
+                if let error {
+                    
+                    print(error)
+                } else {
+                    
+                    self?.moveMain()
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+}

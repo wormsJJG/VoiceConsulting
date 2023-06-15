@@ -89,6 +89,28 @@ class UserManager {
             return Disposables.create()
         }
     }
+    // MARK: - SelectCategory
+    func addCategory(categoryList: [String]) -> Observable<Void> {
+        return Observable.create { event in
+            
+            if let uid = FirebaseAuthManager.shared.getUserUid() {
+                
+                self.db.collection(FBCollection.user.rawValue)
+                    .document(uid).setData([FBUserFields.categoryList.rawValue: categoryList], merge: true) { error in
+                        
+                        if let error {
+                            
+                            event.onError(error)
+                        } else {
+                            
+                            event.onNext(())
+                            event.onCompleted()
+                        }
+                    }
+            }
+            return Disposables.create()
+        }
+    }
     // MARK: - createUser
     func createUser(uid: String, name: String, isUser: Bool) -> Observable<Void> {
         

@@ -101,10 +101,9 @@ class PopularCounselorCell: UICollectionViewCell {
         self.contentView.addSubview(allStackView)
         
         self.allStackView.snp.makeConstraints { stackView in
-//            stackView.center.equalTo(self.contentView.snp.center)
-//            stackView.left.equalTo(self.contentView.snp.left).offset(16)
-//            stackView.right.equalTo(self.contentView.snp.right).offset(-16)
-            stackView.edges.equalTo(contentView.snp.edges).inset(UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
+            stackView.center.equalTo(self.contentView.snp.center)
+            stackView.left.equalTo(self.contentView.snp.left).offset(16)
+            stackView.right.equalTo(self.contentView.snp.right).offset(-16)
         }
         
         self.footerStackView.snp.makeConstraints { sv in
