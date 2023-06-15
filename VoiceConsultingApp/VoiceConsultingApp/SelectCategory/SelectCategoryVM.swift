@@ -17,12 +17,11 @@ class SelectCategoryVM: BaseViewModel {
     }
     
     struct Output {
-        let categoryList: PublishSubject<[Category]> = PublishSubject()
+        let categoryList: PublishSubject<[CategoryType]> = PublishSubject()
     }
     
     var input: Input
     var output: Output
-    var categoryData: [Category] = CategoryManager.shared.data
     private let disposeBag = DisposeBag()
     
     init(input: Input = Input(),
@@ -30,6 +29,7 @@ class SelectCategoryVM: BaseViewModel {
         self.input = input
         self.output = output
         inputSubscribe()
+        getCategoryList()
     }
     
     private func inputSubscribe() {
@@ -48,7 +48,12 @@ class SelectCategoryVM: BaseViewModel {
                 
                 switch event {
                     
-                    
+                case .next(let categoryList):
+                    self?.output.categoryList.onNext(categoryList)
+                case .error(let error):
+                    print(error)
+                case .completed:
+                    print("onCompleted")
                 }
             })
             .disposed(by: self.disposeBag)

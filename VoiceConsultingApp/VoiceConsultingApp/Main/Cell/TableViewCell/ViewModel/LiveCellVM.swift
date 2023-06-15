@@ -39,13 +39,18 @@ class LiveCellVM: BaseViewModel {
     func getOnlineCounselorList() {
         CounselorManager.shared.getOnlineCounselorList(with: 10)
             .subscribe({ [weak self] event in
+                
                 switch event {
+                    
                 case .next(let counselorList):
+                    
                     self?.output.onlineCounselorList.onNext(counselorList)
                 case .error(let error):
+                    
                     print("\(#function) \(error.localizedDescription)")
                     self?.output.onlineCounselorList.onNext([])
                 case .completed:
+                    
                     print("onCompleted")
                 }
             })

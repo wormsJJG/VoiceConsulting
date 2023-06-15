@@ -30,29 +30,35 @@ class SelectCategoryVC: BaseViewController {
 // MARK: - CategoryList Bind, Cell FlowLayout
 extension SelectCategoryVC: UICollectionViewDelegateFlowLayout {
     private func bindCategoryList() {
+        
         selectCategoryV.categoryList.rx.setDelegate(self)
             .disposed(by: self.disposeBag)
         // DataSource
-        Observable.of(viewModel.categoryData)
+        viewModel.output.categoryList
             .bind(to: self.selectCategoryV.categoryList.rx.items(cellIdentifier: CategoryCell.cellID, cellType: CategoryCell.self)) { index, category, cell in
+                
                 cell.configure(category: category)
             }
             .disposed(by: self.disposeBag)
         // Data Logic - select, deselect
         self.selectCategoryV.categoryList.rx
-            .modelSelected(Category.self)
-            .map { $0.title }
-            .subscribe(onNext: { [weak self] selectCategory in
-                if let index = self?.viewModel.input.userSelectCategoryList.firstIndex(of: selectCategory) {
+            .modelSelected(CategoryType.self)
+            .map { $0.modelId }
+            .subscribe(onNext: { [weak self] modelId in
+                
+                if let index = self?.viewModel.input.userSelectCategoryList.firstIndex(of: modelId) {
+                    
                     self?.viewModel.input.userSelectCategoryList.remove(at: index)
                 } else {
-                    self?.viewModel.input.userSelectCategoryList.append(selectCategory)
+                    
+                    self?.viewModel.input.userSelectCategoryList.append(modelId)
                 }
             })
             .disposed(by: self.disposeBag)
         // UI - select, deselect
         self.selectCategoryV.categoryList.rx.itemSelected
             .bind(onNext: { [weak self] indexPath in
+                
                 let cell = self?.selectCategoryV.categoryList.cellForItem(at: indexPath) as! CategoryCell
                 cell.isChecked = !cell.isChecked
             })
@@ -61,6 +67,7 @@ extension SelectCategoryVC: UICollectionViewDelegateFlowLayout {
     
     //cell Width height
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let margin: CGFloat = 40
         let width: CGFloat = collectionView.bounds.width - margin
         let height: CGFloat = 116
