@@ -117,7 +117,6 @@ extension MainVC: UITableViewDelegate {
                         return UITableViewCell()
                     }
                     popularCell.header.sectionTitle.text = section.sectionTitle
-                    popularCell.popularCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
                     popularCell.cellTouchDelegate = self
                     popularCell.moreButtonTouchDelegate = self
                     
@@ -133,7 +132,6 @@ extension MainVC: UITableViewDelegate {
                     }
                     
                     fitWellCounselorCell.header.sectionTitle.text = section.sectionTitle
-                    fitWellCounselorCell.fitWellCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
                     fitWellCounselorCell.cellTouchDelegate = self
                     fitWellCounselorCell.moreButtonTouchDelegate = self
                     

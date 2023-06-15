@@ -15,6 +15,7 @@ class PopularCounselorCell: UICollectionViewCell {
     private lazy var profileImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 30
+        $0.clipsToBounds = true
     }
     
     private lazy var badge: CounselorBadge = CounselorBadge()
@@ -36,13 +37,13 @@ class PopularCounselorCell: UICollectionViewCell {
         $0.image = UIImage(named: AssetImage.heart_Fill)
     }
     
-    private lazy var startCount: UILabel = UILabel().then {
+    private lazy var heartCountLabel: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
         $0.text = "40"
         $0.textColor = ColorSet.mainColor
     }
     
-    private lazy var heartStackView: UIStackView = UIStackView(arrangedSubviews: [heartImage, startCount]).then {
+    private lazy var heartStackView: UIStackView = UIStackView(arrangedSubviews: [heartImage, heartCountLabel]).then {
         $0.axis = .horizontal
         $0.spacing = 4
         $0.distribution = .fill
@@ -90,7 +91,7 @@ class PopularCounselorCell: UICollectionViewCell {
         
         badge.snp.makeConstraints { badge in
             badge.width.equalTo(self.badge.label.snp.width).offset(12)
-            badge.height.equalTo(self.badge.label.snp.height).offset(6)
+            badge.height.equalTo(23)
         }
         
         heartImage.snp.makeConstraints { star in
@@ -100,9 +101,10 @@ class PopularCounselorCell: UICollectionViewCell {
         self.contentView.addSubview(allStackView)
         
         self.allStackView.snp.makeConstraints { stackView in
-            stackView.center.equalTo(self.contentView.snp.center)
-            stackView.left.equalTo(self.contentView.snp.left).offset(16)
-            stackView.right.equalTo(self.contentView.snp.right).offset(-16)
+//            stackView.center.equalTo(self.contentView.snp.center)
+//            stackView.left.equalTo(self.contentView.snp.left).offset(16)
+//            stackView.right.equalTo(self.contentView.snp.right).offset(-16)
+            stackView.edges.equalTo(contentView.snp.edges).inset(UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
         }
         
         self.footerStackView.snp.makeConstraints { sv in
@@ -121,14 +123,14 @@ class PopularCounselorCell: UICollectionViewCell {
         self.consultationCount.attributedText = attributeString
     }
     
-    func configureCell(counselor: CounselorInfo) {
-        self.profileImage.kf.setImage(with: URL(string: counselor.profileImage))
-        DispatchQueue.main.async {
-            self.counselorName.text = counselor.name
-            self.introduce.text = counselor.shortIntroduction
-//            self.startCount.text = counselor.startCount
-            self.consultationCount.text = "상담 \(counselor.counsultingCount)회"
+    func configureCell(in counselor: CounselorInfo) {
+        self.profileImage.kf.setImage(with: URL(string: counselor.profileImageUrl))
+        DispatchQueue.main.async { [weak self] in
+            self?.counselorName.text = counselor.name
+            self?.introduce.text = counselor.introduction
+            self?.heartCountLabel.text = "\(counselor.heartCount)"
+            self?.consultationCount.text = "상담 \(counselor.consultingCount)회"
+            self?.textColorChange()
         }
-        
     }
 }

@@ -30,19 +30,21 @@ class LiveCellVM: BaseViewModel {
     
     private func inputSubscribe() {
         self.input.refreshTrigger.subscribe(onNext: { [weak self] _ in
+            
             self?.getOnlineCounselorList()
         })
         .disposed(by: self.disposeBag)
     }
     
     func getOnlineCounselorList() {
-        CounselorManager.shared.getOnlineCounselorList()
+        CounselorManager.shared.getOnlineCounselorList(with: 10)
             .subscribe({ [weak self] event in
                 switch event {
                 case .next(let counselorList):
                     self?.output.onlineCounselorList.onNext(counselorList)
                 case .error(let error):
                     print("\(#function) \(error.localizedDescription)")
+                    self?.output.onlineCounselorList.onNext([])
                 case .completed:
                     print("onCompleted")
                 }

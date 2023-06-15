@@ -83,8 +83,8 @@ class LiveCounselorCell: UICollectionViewCell {
         }
     }
     
-    func configureCell(counselor: CounselorInfo) {
-        profileImage.kf.setImage(with: URL(string: counselor.profileImage))
+    func configureCell(in counselor: CounselorInfo) {
+        profileImage.kf.setImage(with: URL(string: counselor.profileImageUrl))
         DispatchQueue.main.async {
             self.name.text = counselor.name
         }

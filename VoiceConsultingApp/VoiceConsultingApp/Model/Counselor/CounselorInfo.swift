@@ -9,30 +9,34 @@ import Foundation
 
 struct CounselorInfo: Codable {
     var name: String
-    var category: [String]
-    var company: [String]
-    var profileImage: String
-    var counsultingCount: Int
-    var heart: Int
+    var categoryList: [String]
+    var profileImageUrl: String
+    var consultingCount: Int
+    var heartCount: Int
     var isHidden: Bool
     var phoneNumber: String
     var isOnline: Bool
-    var reviewPoint: Double
-    var shortIntroduction: String
-    var longIntroduction: String
+    var coin: Int
+    var platform: String
+    var affiliationList: [String]
+    var licenseImages: [String]
+    var introduction: String
+    var reviewPoint: Double?
+    var fcmToken: String?
     
-    init(name: String, category: [String], company: [String], profileImage: String, shortIntroduction: String, longIntroduction: String, phoneNumber: String) {
+    init(name: String, categoryList: [String], affiliationList: [String], licenseImages: [String], profileImageUrl: String, introduction: String, phoneNumber: String) {
         self.name = name
-        self.category = category
-        self.company = company
-        self.profileImage = profileImage
-        self.shortIntroduction = shortIntroduction
-        self.longIntroduction = longIntroduction
-        self.counsultingCount = 0
-        self.heart = 0
-        self.isHidden = true
+        self.categoryList = categoryList
+        self.profileImageUrl = profileImageUrl
+        self.introduction = introduction
+        self.affiliationList = affiliationList
+        self.licenseImages = licenseImages
         self.phoneNumber = phoneNumber
+        self.heartCount = 0
+        self.coin = 0
+        self.platform = "apple"
+        self.isHidden = true
+        self.consultingCount = 0
         self.isOnline = false
-        self.reviewPoint = 0.0
     }
 }

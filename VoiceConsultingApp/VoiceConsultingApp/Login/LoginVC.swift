@@ -91,7 +91,7 @@ extension LoginVC {
                 switch event {
                     
                 case .next():
-                    self?.moveSplashVC()
+                    self?.moveSelectUseTypeVC()
                 case .error(let error):
                     print(error.localizedDescription)
                 case .completed:

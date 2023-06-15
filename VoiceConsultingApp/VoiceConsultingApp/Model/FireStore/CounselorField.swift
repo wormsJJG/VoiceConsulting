@@ -9,14 +9,15 @@ import Foundation
 
 enum CounselorField: String {
     case name
-    case category
-    case company
-    case progileImage
+    case categoryList
+    case affiliationList
+    case progileImageUrl
     case introduction
     case counsultingCount
-    case heart
+    case heartCount
     case isHidden
     case phoneNumber
     case isOnline
-    case coverImages
+    case licenseImages
+    case platform
 }

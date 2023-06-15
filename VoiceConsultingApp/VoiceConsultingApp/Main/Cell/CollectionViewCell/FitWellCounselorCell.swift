@@ -15,6 +15,7 @@ class FitWellCounselorCell: UICollectionViewCell {
     lazy var profileImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 30
+        $0.clipsToBounds = true
     }
     
     lazy var counselorName: UILabel = UILabel().then {
@@ -69,6 +70,16 @@ class FitWellCounselorCell: UICollectionViewCell {
             stackView.center.equalTo(self.contentView.snp.center)
             stackView.left.equalTo(self.contentView.snp.left).offset(16)
             stackView.right.equalTo(self.contentView.snp.right).offset(-16)
+        }
+    }
+    
+    func configureCell(in counselor: CounselorInfo) {
+        
+        self.profileImage.kf.setImage(with: URL(string: counselor.profileImageUrl))
+        DispatchQueue.main.async { [weak self] in
+            self?.counselorName.text = counselor.name
+            self?.introduce.text = counselor.introduction
+            self?.categoryBlock.category = counselor.categoryList[Int.random(in: 0...counselor.categoryList.count-1)]
         }
     }
 }

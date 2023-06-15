@@ -17,7 +17,7 @@ class SelectCategoryVM: BaseViewModel {
     }
     
     struct Output {
-        
+        let categoryList: PublishSubject<[Category]> = PublishSubject()
     }
     
     var input: Input
@@ -37,6 +37,19 @@ class SelectCategoryVM: BaseViewModel {
             .filter { !self.input.userSelectCategoryList.isEmpty }
             .bind(onNext: { [weak self] _ in
                 print(self!.input.userSelectCategoryList)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func getCategoryList() {
+        
+        CategoryManager.shared.getCategoryList()
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                    
+                }
             })
             .disposed(by: self.disposeBag)
     }
