@@ -25,6 +25,7 @@ class LiveCellVM: BaseViewModel {
     init(input: Input = Input(), output: Output = Output()) {
         self.input = input
         self.output = output
+        inputSubscribe()
         getOnlineCounselorList()
     }
     

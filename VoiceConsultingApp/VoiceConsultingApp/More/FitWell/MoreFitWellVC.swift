@@ -18,24 +18,30 @@ class MoreFitWellVC: BaseViewController {
     }
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    let liveCounselorList: PublishSubject<[String]> = PublishSubject()
+    private let viewModel = MoreFitWellVM()
     // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addAction()
+        dataBind()
+    }
+    // MARK: - data bind
+    private func dataBind() {
+        self.viewModel.output.fitWellCounselorList
+            .bind(to: moreFitWellV.counselorList.rx.items(cellIdentifier: MoreFitWellCell.cellID, cellType: MoreFitWellCell.self)) { index, counselor, cell in
+                
+                cell.configureCell(in: counselor.info)
+            }
+            .disposed(by: self.disposeBag)
+    }
+    // MARK: - AddAction
+    private func addAction() {
+        
         self.moreFitWellV.headerView.backButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.popVC()
             })
-            .disposed(by: self.disposeBag)
-        dataBind()
-        liveCounselorList.onNext(["", "", "", "", "", "", "", "", "", ""])
-    }
-    // MARK: - data bind
-    private func dataBind() {
-        self.liveCounselorList
-            .bind(to: moreFitWellV.counselorList.rx.items(cellIdentifier: MoreFitWellCell.cellID, cellType: MoreFitWellCell.self)) { index, counselor, cell in
-
-            }
             .disposed(by: self.disposeBag)
     }
 }

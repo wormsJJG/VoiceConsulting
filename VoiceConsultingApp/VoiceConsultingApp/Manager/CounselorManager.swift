@@ -146,7 +146,6 @@ class CounselorManager {
                         }
                     }
                         
-                    self.lastSnapShot = snapShot.documents.last
                     event.onNext(counselorList)
                     event.onCompleted()
                 }

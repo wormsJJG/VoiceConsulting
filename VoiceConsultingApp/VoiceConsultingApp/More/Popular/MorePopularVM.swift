@@ -15,7 +15,7 @@ class MorePopularVM: BaseViewModel {
     }
     
     struct Output {
-        
+        let popularCounselorList: PublishSubject<[Counselor]> = PublishSubject()
     }
     
     var input: Input
@@ -28,9 +28,28 @@ class MorePopularVM: BaseViewModel {
         self.input = input
         self.output = output
         inputSubscribe()
+        getPopularCounselorList()
     }
     
     private func inputSubscribe() {
         
+    }
+    
+    private func getPopularCounselorList() {
+        
+        CounselorManager.shared.getPopularCounselorList(with: 10)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let counselorList):
+                    self?.output.popularCounselorList.onNext(counselorList)
+                case .error(let error):
+                    print(error)
+                case .completed:
+                    print("onCompleted")
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }

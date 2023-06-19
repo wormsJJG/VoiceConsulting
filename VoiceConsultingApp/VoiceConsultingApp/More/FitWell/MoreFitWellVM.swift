@@ -15,7 +15,7 @@ class MoreFitWellVM: BaseViewModel {
     }
     
     struct Output {
-        
+        let fitWellCounselorList: PublishSubject<[Counselor]> = PublishSubject()
     }
     
     var input: Input
@@ -28,9 +28,28 @@ class MoreFitWellVM: BaseViewModel {
         self.input = input
         self.output = output
         inputSubscribe()
+        getFitWellCounselorList()
     }
     
     private func inputSubscribe() {
         
+    }
+    
+    private func getFitWellCounselorList() {
+        
+        CounselorManager.shared.getFitWellCounselorList(with: 10)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let counselorList):
+                    self?.output.fitWellCounselorList.onNext(counselorList)
+                case .error(let error):
+                    print(error)
+                case .completed:
+                    print("onCompleted")
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }

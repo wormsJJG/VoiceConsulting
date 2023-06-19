@@ -11,11 +11,11 @@ import RxSwift
 class MoreLiveVM: BaseViewModel {
     
     struct Input {
-        
+        let refreshTrigger: PublishSubject<Void> = PublishSubject()
     }
     
     struct Output {
-        
+        let onlineCounselorList: PublishSubject<[Counselor]> = PublishSubject()
     }
     
     var input: Input
@@ -28,9 +28,35 @@ class MoreLiveVM: BaseViewModel {
         self.input = input
         self.output = output
         inputSubscribe()
+        getOnlineCounselorList()
     }
     
     private func inputSubscribe() {
-        
+        self.input.refreshTrigger.subscribe(onNext: { [weak self] _ in
+            
+            self?.getOnlineCounselorList()
+        })
+        .disposed(by: self.disposeBag)
+    }
+    
+    func getOnlineCounselorList() {
+        CounselorManager.shared.getOnlineCounselorList(with: 20)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let counselorList):
+                    
+                    self?.output.onlineCounselorList.onNext(counselorList)
+                case .error(let error):
+                    
+                    print("\(#function) \(error.localizedDescription)")
+                    self?.output.onlineCounselorList.onNext([])
+                case .completed:
+                    
+                    print("onCompleted")
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }

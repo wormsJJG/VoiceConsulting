@@ -18,24 +18,30 @@ class MoreLiveVC: BaseViewController {
     }
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    let liveCounselorList: PublishSubject<[String]> = PublishSubject()
+    private let viewModel = MoreLiveVM()
     // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addAction()
+        dataBind()
+    }
+    // MARK: - dataBind
+    private func dataBind() {
+        self.viewModel.output.onlineCounselorList
+            .bind(to: moreLiveV.counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { index, counselor, cell in
+                
+                cell.configureCell(in: counselor.info)
+            }
+            .disposed(by: self.disposeBag)
+    }
+    // MARK: - AddAction
+    private func addAction() {
+        
         self.moreLiveV.headerView.backButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.popVC()
             })
-            .disposed(by: self.disposeBag)
-        dataBind()
-        liveCounselorList.onNext(["", "", "", "", "", "", "", "", "", ""])
-    }
-    // MARK: - dataBind
-    private func dataBind() {
-        self.liveCounselorList
-            .bind(to: moreLiveV.counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { index, counselor, cell in
-
-            }
             .disposed(by: self.disposeBag)
     }
 }
