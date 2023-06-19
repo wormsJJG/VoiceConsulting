@@ -8,12 +8,15 @@
 import UIKit
 import SnapKit
 import Then
+import Kingfisher
 
 class ProfileCell: UITableViewCell {
     static let cellID = "profileCell"
     
     let profileimage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 25
     }
     
     let counselorName: UILabel = UILabel().then {
@@ -28,14 +31,14 @@ class ProfileCell: UITableViewCell {
         $0.alignment = .center
     }
     
-    let introduce: UILabel = UILabel().then {
+    let introduceLabel: UILabel = UILabel().then {
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
         $0.textColor = ColorSet.subTextColor
         $0.numberOfLines = 2
         $0.text = "소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소개소"
     }
     
-    private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [topStackView, introduce]).then {
+    private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [topStackView, introduceLabel]).then {
         $0.axis = .vertical
         $0.spacing = 20
         $0.alignment = .leading
@@ -62,4 +65,10 @@ class ProfileCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureCell(profileUrl: String, name: String, introduce: String) {
+        
+        profileimage.kf.setImage(with: URL(string: profileUrl))
+        counselorName.text = name
+        introduceLabel.text = introduce
+    }
 }

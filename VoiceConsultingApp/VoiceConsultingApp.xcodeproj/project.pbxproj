@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -130,6 +130,10 @@
 		35726F342A05F7A3008E28D0 /* DateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F332A05F7A3008E28D0 /* DateCustomCell.swift */; };
 		35726F362A066966008E28D0 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F352A066966008E28D0 /* CustomTabBar.swift */; };
 		357810682A0E401500AE8EC8 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357810672A0E401500AE8EC8 /* PaddingLabel.swift */; };
+		357C78AE2A407A4A00B1849D /* Extension+Rx+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357C78AD2A407A4A00B1849D /* Extension+Rx+ScrollView.swift */; };
+		357C78B02A407D6500B1849D /* MoreFitWellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357C78AF2A407D6500B1849D /* MoreFitWellVM.swift */; };
+		357C78B22A407E0B00B1849D /* MorePopularVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357C78B12A407E0B00B1849D /* MorePopularVM.swift */; };
+		357C78B42A407E3C00B1849D /* MoreLiveVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357C78B32A407E3C00B1849D /* MoreLiveVM.swift */; };
 		357D4A1C2A2E0D98000052D1 /* OneButtonNoActionPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1B2A2E0D98000052D1 /* OneButtonNoActionPopUpVC.swift */; };
 		357D4A1E2A2E0F77000052D1 /* MypageCounselorMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1D2A2E0F77000052D1 /* MypageCounselorMenu.swift */; };
 		357D4A202A2E1382000052D1 /* RequestPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */; };
@@ -139,6 +143,7 @@
 		358609EA2A20D89A000DF83B /* MessageButtonTouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358609E92A20D89A000DF83B /* MessageButtonTouchable.swift */; };
 		358EF07F2A24E706001324A6 /* UserTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF07E2A24E706001324A6 /* UserTypeView.swift */; };
 		358EF0812A25118E001324A6 /* ServiceCenterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF0802A25118E001324A6 /* ServiceCenterCell.swift */; };
+		3595B1562A40268500AE717D /* CounselorDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B1552A40268500AE717D /* CounselorDetailVM.swift */; };
 		35962E8029F9253A0059CF17 /* ChatRoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */; };
 		359638BC2A2391B600808EA0 /* StarScorePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359638BB2A2391B600808EA0 /* StarScorePicker.swift */; };
 		359638BF2A23954300808EA0 /* LogoutPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359638BE2A23954300808EA0 /* LogoutPopUpVC.swift */; };
@@ -338,6 +343,10 @@
 		35726F332A05F7A3008E28D0 /* DateCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCustomCell.swift; sourceTree = "<group>"; };
 		35726F352A066966008E28D0 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		357810672A0E401500AE8EC8 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		357C78AD2A407A4A00B1849D /* Extension+Rx+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Rx+ScrollView.swift"; sourceTree = "<group>"; };
+		357C78AF2A407D6500B1849D /* MoreFitWellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreFitWellVM.swift; sourceTree = "<group>"; };
+		357C78B12A407E0B00B1849D /* MorePopularVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePopularVM.swift; sourceTree = "<group>"; };
+		357C78B32A407E3C00B1849D /* MoreLiveVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreLiveVM.swift; sourceTree = "<group>"; };
 		357D4A1B2A2E0D98000052D1 /* OneButtonNoActionPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneButtonNoActionPopUpVC.swift; sourceTree = "<group>"; };
 		357D4A1D2A2E0F77000052D1 /* MypageCounselorMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageCounselorMenu.swift; sourceTree = "<group>"; };
 		357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPaymentView.swift; sourceTree = "<group>"; };
@@ -346,6 +355,7 @@
 		358609E92A20D89A000DF83B /* MessageButtonTouchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageButtonTouchable.swift; sourceTree = "<group>"; };
 		358EF07E2A24E706001324A6 /* UserTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeView.swift; sourceTree = "<group>"; };
 		358EF0802A25118E001324A6 /* ServiceCenterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCenterCell.swift; sourceTree = "<group>"; };
+		3595B1552A40268500AE717D /* CounselorDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorDetailVM.swift; sourceTree = "<group>"; };
 		35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomHeader.swift; sourceTree = "<group>"; };
 		359638BB2A2391B600808EA0 /* StarScorePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarScorePicker.swift; sourceTree = "<group>"; };
 		359638BE2A23954300808EA0 /* LogoutPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutPopUpVC.swift; sourceTree = "<group>"; };
@@ -457,6 +467,7 @@
 				356F7BDE2A07B47800C536D8 /* Extension+UISCrollView.swift */,
 				3523AF8F2A0908F800D51B8A /* Extenstion+CollectionReference.swift */,
 				350AFE172A3ADB2300FF3514 /* Extension+UICollectionView.swift */,
+				357C78AD2A407A4A00B1849D /* Extension+Rx+ScrollView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -476,6 +487,7 @@
 			children = (
 				3504E2B329E3A8A0006AEED6 /* MoreLiveVC.swift */,
 				3504E2B929E3A8CE006AEED6 /* MoreLiveV.swift */,
+				357C78B32A407E3C00B1849D /* MoreLiveVM.swift */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -486,6 +498,7 @@
 				3504E2B129E3A894006AEED6 /* MorePopularVC.swift */,
 				3504E2B729E3A8C4006AEED6 /* MorePopularV.swift */,
 				3504E2BB29E3B1B4006AEED6 /* MorePopularCell.swift */,
+				357C78B12A407E0B00B1849D /* MorePopularVM.swift */,
 			);
 			path = Popular;
 			sourceTree = "<group>";
@@ -496,6 +509,7 @@
 				3504E2AF29E3A887006AEED6 /* MoreFitWellVC.swift */,
 				3504E2B529E3A8B1006AEED6 /* MoreFitWellV.swift */,
 				3504E2BD29E3B1C1006AEED6 /* MoreFitWellCell.swift */,
+				357C78AF2A407D6500B1849D /* MoreFitWellVM.swift */,
 			);
 			path = FitWell;
 			sourceTree = "<group>";
@@ -882,6 +896,7 @@
 				359F7FBE29FD571000274108 /* CounselorDetailHeader.swift */,
 				356F7BCC2A07770100C536D8 /* InfoSectionHeader.swift */,
 				356F7BCE2A0779AE00C536D8 /* CounselorInfoSection.swift */,
+				3595B1552A40268500AE717D /* CounselorDetailVM.swift */,
 			);
 			path = CounselorDetail;
 			sourceTree = "<group>";
@@ -1217,7 +1232,7 @@
 				};
 			};
 			buildConfigurationList = 35EAEAEA29CAF99500AAE587 /* Build configuration list for PBXProject "VoiceConsultingApp" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1395,6 +1410,7 @@
 				3500F74229DC07770080AC4F /* Extension+UIView.swift in Sources */,
 				354B73C92A0B88AA00651EF9 /* CellTouchable.swift in Sources */,
 				35277D2129DA8A95002A2A14 /* BannerCell.swift in Sources */,
+				357C78B42A407E3C00B1849D /* MoreLiveVM.swift in Sources */,
 				356F7BD92A0794D500C536D8 /* CertificateCell.swift in Sources */,
 				350AFE222A3B10F400FF3514 /* CategoryField.swift in Sources */,
 				356F7BDF2A07B47800C536D8 /* Extension+UISCrollView.swift in Sources */,
@@ -1407,6 +1423,7 @@
 				350C6DCD2A0D171F00332581 /* CustomMessageContentCell.swift in Sources */,
 				35308FBA29E51126008FB343 /* ChattingListVM.swift in Sources */,
 				350AFE182A3ADB2300FF3514 /* Extension+UICollectionView.swift in Sources */,
+				357C78B02A407D6500B1849D /* MoreFitWellVM.swift in Sources */,
 				356F7BCF2A0779AE00C536D8 /* CounselorInfoSection.swift in Sources */,
 				3523AF8E2A09079700D51B8A /* FBCollection.swift in Sources */,
 				35277D2729DA8ADA002A2A14 /* FitWellCell.swift in Sources */,
@@ -1428,6 +1445,7 @@
 				35277D2529DA8ACD002A2A14 /* PopularCell.swift in Sources */,
 				3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */,
 				357D4A1E2A2E0F77000052D1 /* MypageCounselorMenu.swift in Sources */,
+				357C78AE2A407A4A00B1849D /* Extension+Rx+ScrollView.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				3504E2B429E3A8A0006AEED6 /* MoreLiveVC.swift in Sources */,
 				350CA2272A19089500B1756C /* CategoryTVCell.swift in Sources */,
@@ -1476,6 +1494,7 @@
 				356F7BD22A0790E300C536D8 /* AffiliationCell.swift in Sources */,
 				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
 				3504E2B629E3A8B1006AEED6 /* MoreFitWellV.swift in Sources */,
+				3595B1562A40268500AE717D /* CounselorDetailVM.swift in Sources */,
 				350CA2292A190A4B00B1756C /* CategoryCVCell.swift in Sources */,
 				35B15B852A1B14F1004345F3 /* HeartButton.swift in Sources */,
 				351E93FC2A2CDE4B00C598C3 /* Config.swift in Sources */,
@@ -1534,6 +1553,7 @@
 				354F49662A1A785B00D71E3D /* TermsContent.swift in Sources */,
 				351793052A1746E9004EE7ED /* DetailIntrodutionCell.swift in Sources */,
 				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
+				357C78B22A407E0B00B1849D /* MorePopularVM.swift in Sources */,
 				350AFE1E2A3B057C00FF3514 /* CategoryManager.swift in Sources */,
 				359638BC2A2391B600808EA0 /* StarScorePicker.swift in Sources */,
 				351E93F82A2CCC4F00C598C3 /* AuthError.swift in Sources */,

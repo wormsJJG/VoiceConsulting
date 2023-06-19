@@ -14,6 +14,10 @@ class CounselorManager {
     static let shared = CounselorManager()
     private let db = Firestore.firestore().collection(FBCollection.counselor.rawValue)
     
+    private var onlineLastSnapShot: QueryDocumentSnapshot?
+    private var popularLastSnapShot: QueryDocumentSnapshot?
+    private var fitWellLastSnapShot: QueryDocumentSnapshot?
+    
     private let disposeBag = DisposeBag()
     // MARK: - init 접근 제어
     private init() {
@@ -141,13 +145,34 @@ class CounselorManager {
                             event.onError(error)
                         }
                     }
+                        
+                    self.lastSnapShot = snapShot.documents.last
                     event.onNext(counselorList)
                     event.onCompleted()
                 }
             return Disposables.create()
         }
     }
-    
+    // MARK: - getCounselor
+    func getCounselor(in uid: String) -> Observable<Counselor> {
+        
+        return Observable.create { event in
+            
+            let ref = self.db.document(uid)
+            ref.getDocument(as: CounselorInfo.self, completion: { result in
+                switch result {
+                case .success(let counselorInfo):
+                    
+                    let counselor = Counselor(uid: uid, info: counselorInfo)
+                    event.onNext(counselor)
+                    event.onCompleted()
+                case .failure(let error):
+                    event.onError(error)
+                }
+            })
+            return Disposables.create()
+        }
+    }
     // MARK: - TestFunc
     func createMockData() {
         

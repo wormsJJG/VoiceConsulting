@@ -22,12 +22,12 @@ class CounselorDetailVC: BaseViewController {
     }
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    var imageViews = [UIImageView(image: UIImage(named: AssetImage.counselorCover)), UIImageView(image: UIImage(named: AssetImage.counselorCover)), UIImageView(image: UIImage(named: AssetImage.counselorCover))]
-    let section = CounselorInfoSection.allCases
-    let targetIndexPath = IndexPath(row: 0, section: 1) // 스티키 뷰로 사용할 특정 셀의 IndexPath
+    private let viewModel = CounselorDetailVM()
+    
     // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        outputSubscribe()
         setDelegates()
         addAction()
     }
@@ -37,6 +37,22 @@ class CounselorDetailVC: BaseViewController {
         self.counselorDetailV.infoList.dataSource = self
         self.counselorDetailV.stikyTapView.delegate = self
         self.counselorDetailV.header.heartButton.delegate = self
+    }
+    // MARK: - Output SubScribe
+    private func outputSubscribe() {
+        
+        viewModel.output.reloadTrigger
+            .subscribe(onNext: { [weak self] _ in
+                    
+                self?.counselorDetailV.header.counselorLabel.text = self?.viewModel.output.counselor!.info.name
+                self?.counselorDetailV.infoList.reloadData()
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    func setCounselorUid(uid: String) {
+        
+        viewModel.input.getDataTrigger.onNext(uid)
     }
 }
 extension CounselorDetailVC: UIScrollViewDelegate {
@@ -68,7 +84,7 @@ extension CounselorDetailVC: UIScrollViewDelegate {
 }
 extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return section.count
+        return viewModel.output.section.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,7 +115,7 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
             guard let categoryCell = tableView.dequeueReusableCell(withIdentifier: CategoryTVCell.cellID, for: indexPath) as? CategoryTVCell else {
                 return UITableViewCell()
             }
-            categoryCell.categoryList.onNext(["", "", "", "", "", "", "", "", ""])
+            categoryCell.categoryList.onNext(self.viewModel.output.counselor?.info.categoryList ?? [])
             
             return categoryCell
         case CounselorInfoSection.profile.section :
@@ -107,6 +123,9 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
                 
                 return UITableViewCell()
             }
+            profileCell.configureCell(profileUrl: self.viewModel.output.counselor?.info.profileImageUrl ?? "",
+                                      name: self.viewModel.output.counselor?.info.name ?? "",
+                                      introduce: self.viewModel.output.counselor?.info.introduction ?? "")
             
             return profileCell
         case CounselorInfoSection.tapView.section :
@@ -125,7 +144,7 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            affiliationCell.affiliationList.onNext(["", "", "", ""])
+            affiliationCell.affiliationList.onNext(self.viewModel.output.counselor?.info.affiliationList ?? [])
             
             return affiliationCell
         case CounselorInfoSection.certificate.section :
@@ -135,7 +154,7 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            certificateCell.certificateImageList.onNext(["", "", "", ""])
+            certificateCell.certificateImageList.onNext(self.viewModel.output.counselor?.info.licenseImages ?? [])
             
             return certificateCell
         case CounselorInfoSection.detailIntrodution.section :
@@ -144,6 +163,8 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
                 
                 return UITableViewCell()
             }
+            
+            detailInfoCell.configureCell(in: self.viewModel.output.counselor?.info.introduction ?? "")
             
             return detailInfoCell
         default :

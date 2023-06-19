@@ -49,6 +49,7 @@ extension MainVC {
 extension MainVC: CellTouchable {
     func didTouchCell(_ model: Counselor) {
         let counselorDetailVC = CounselorDetailVC()
+        counselorDetailVC.setCounselorUid(uid: model.uid)
         counselorDetailVC.hidesBottomBarWhenPushed = true
         
         self.navigationController?.pushViewController(counselorDetailVC, animated: true)

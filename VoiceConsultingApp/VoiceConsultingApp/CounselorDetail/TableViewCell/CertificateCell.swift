@@ -66,8 +66,9 @@ class CertificateCell: UITableViewCell {
     }
     
     private func bindList() {
-        self.certificateImageList.bind(to: self.contentList.rx.items(cellIdentifier: CertificateContentCell.cellID, cellType: CertificateContentCell.self)) { [weak self] index, affiliation, cell in
+        self.certificateImageList.bind(to: self.contentList.rx.items(cellIdentifier: CertificateContentCell.cellID, cellType: CertificateContentCell.self)) { [weak self] index, certificateImageUrl, cell in
             
+            cell.configureCell(in: certificateImageUrl)
         }
         .disposed(by: self.disposeBag)
     }

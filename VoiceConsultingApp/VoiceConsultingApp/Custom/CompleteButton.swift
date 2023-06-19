@@ -28,5 +28,4 @@ class CompleteButton: UIButton {
             self.layer.cornerRadius = 10
         }
     }
-
 }
