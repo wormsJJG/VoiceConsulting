@@ -63,6 +63,15 @@ class BaseViewController: UIViewController {
         self.navigationController?.pushViewController(coinManagementVC, animated: true)
     }
     
+    func moveCounselorDetailVC(in counselorUid: String) {
+        
+        let counselorDetailVC = CounselorDetailVC()
+        counselorDetailVC.setCounselorUid(uid: counselorUid)
+        counselorDetailVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(counselorDetailVC, animated: true)
+    }
+    
     func popVC() {
         self.navigationController?.popViewController(animated: true)
     }

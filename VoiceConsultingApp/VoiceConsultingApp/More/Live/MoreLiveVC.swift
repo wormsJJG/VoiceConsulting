@@ -26,21 +26,36 @@ class MoreLiveVC: BaseViewController {
         addAction()
         dataBind()
     }
-    // MARK: - dataBind
-    private func dataBind() {
-        self.viewModel.output.onlineCounselorList
-            .bind(to: moreLiveV.counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { index, counselor, cell in
-                
-                cell.configureCell(in: counselor.info)
-            }
-            .disposed(by: self.disposeBag)
-    }
+    
     // MARK: - AddAction
     private func addAction() {
         
         self.moreLiveV.headerView.backButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.popVC()
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - DataBind
+extension MoreLiveVC: UITableViewDelegate {
+    
+    private func dataBind() {
+        
+        self.viewModel.output.onlineCounselorList
+            .bind(to: moreLiveV.counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { index, counselor, cell in
+                
+                cell.configureCell(in: counselor.info)
+            }
+            .disposed(by: self.disposeBag)
+        
+        self.moreLiveV.counselorList.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
+        self.moreLiveV.counselorList.rx.modelSelected(Counselor.self)
+            .bind(onNext: { [weak self] counselor in
+                
+                self?.moveCounselorDetailVC(in: counselor.uid)
             })
             .disposed(by: self.disposeBag)
     }

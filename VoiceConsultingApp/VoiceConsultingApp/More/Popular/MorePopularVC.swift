@@ -27,7 +27,19 @@ class MorePopularVC: BaseViewController {
         addAction()
         dataBind()
     }
-    // MARK: - data bind
+    // MARK: - AddAction
+    private func addAction() {
+        
+        self.morePopularV.headerView.backButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                self?.popVC()
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - DataBind
+extension MorePopularVC: UITableViewDelegate {
+    
     private func dataBind() {
         self.viewModel.output.popularCounselorList
             .bind(to: morePopularV.counselorList.rx.items(cellIdentifier: MorePopularCell.cellID, cellType: MorePopularCell.self)) { index, counselor, cell in
@@ -35,13 +47,14 @@ class MorePopularVC: BaseViewController {
                 cell.configureCell(in: counselor.info)
             }
             .disposed(by: self.disposeBag)
-    }
-    // MARK: - AddAction
-    private func addAction() {
         
-        self.morePopularV.headerView.backButton.rx.tap
-            .bind(onNext: { [weak self] _ in
-                self?.popVC()
+        self.morePopularV.counselorList.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
+        self.morePopularV.counselorList.rx.modelSelected(Counselor.self)
+            .bind(onNext: { [weak self] counselor in
+                
+                self?.moveCounselorDetailVC(in: counselor.uid)
             })
             .disposed(by: self.disposeBag)
     }

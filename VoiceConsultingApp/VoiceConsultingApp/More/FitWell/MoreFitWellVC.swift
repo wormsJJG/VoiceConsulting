@@ -26,7 +26,19 @@ class MoreFitWellVC: BaseViewController {
         addAction()
         dataBind()
     }
-    // MARK: - data bind
+    // MARK: - AddAction
+    private func addAction() {
+        
+        self.moreFitWellV.headerView.backButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                self?.popVC()
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - Data bind
+extension MoreFitWellVC: UITableViewDelegate {
+    
     private func dataBind() {
         self.viewModel.output.fitWellCounselorList
             .bind(to: moreFitWellV.counselorList.rx.items(cellIdentifier: MoreFitWellCell.cellID, cellType: MoreFitWellCell.self)) { index, counselor, cell in
@@ -34,13 +46,14 @@ class MoreFitWellVC: BaseViewController {
                 cell.configureCell(in: counselor.info)
             }
             .disposed(by: self.disposeBag)
-    }
-    // MARK: - AddAction
-    private func addAction() {
         
-        self.moreFitWellV.headerView.backButton.rx.tap
-            .bind(onNext: { [weak self] _ in
-                self?.popVC()
+        self.moreFitWellV.counselorList.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
+        self.moreFitWellV.counselorList.rx.modelSelected(Counselor.self)
+            .bind(onNext: { [weak self] counselor in
+                
+                self?.moveCounselorDetailVC(in: counselor.uid)
             })
             .disposed(by: self.disposeBag)
     }

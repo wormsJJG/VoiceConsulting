@@ -49,6 +49,8 @@ class MoreFitWellCell: UITableViewCell {
     // MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.selectionStyle = .none
         constraint()
     }
     
