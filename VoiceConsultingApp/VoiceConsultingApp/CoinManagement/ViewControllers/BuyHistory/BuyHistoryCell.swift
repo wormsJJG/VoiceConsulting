@@ -62,4 +62,30 @@ class BuyHistoryCell: UITableViewCell {
             sv.bottom.equalTo(self.contentView.snp.bottom).offset(-20)
         }
     }
+    
+    func configureCell(in content: BuyCoinHistory) {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.coinCountLabel.text = "코인 \(content.coin)개 구매"
+            self?.priceLabel.text = "\(self!.formatCurrency(content.moneyPayment))원"
+            self?.dateLabel.text = self?.convertToDateString(content.createAt)
+        }
+    }
+    
+    func convertToDateString(_ timestamp: Int) -> String {
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        return dateFormatter.string(from: date)
+    }
+    
+    func formatCurrency(_ value: Int) -> String {
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.groupingSeparator = ","
+        return numberFormatter.string(from: NSNumber(value: value)) ?? ""
+    }
 }

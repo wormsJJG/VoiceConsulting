@@ -129,6 +129,7 @@ class MorePopularCell: UITableViewCell {
     }
     
     func configureCell(in counselorInfo: CounselorInfo) {
+        
         self.thumnailImage.kf.setImage(with: URL(string: counselorInfo.profileImageUrl))
         DispatchQueue.main.async { [weak self] in
             

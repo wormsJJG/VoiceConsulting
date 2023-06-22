@@ -18,18 +18,29 @@ class BuyHistoryVC: BaseViewController {
     }
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let buyHistoryList = Observable.just(["", "", "", "", "", "", "", "", "", ""])
+    private let viewModel = BuyHistoryVM()
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         bindTableView()
+        self.viewModel.input.viewDidLoadTrigger.onNext(())
     }
 }
 extension BuyHistoryVC {
     private func bindTableView() {
-        self.buyHistoryList
+        
+        self.viewModel.output.buyCoinHistoryList
+            .filter { $0.count == 0 }
+            .bind(onNext: { [weak self] _ in
+
+                    self?.buyHistoryV.emptyLabel.isHidden = false
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.viewModel.output.buyCoinHistoryList
             .bind(to: self.buyHistoryV.buyHistoryList.rx.items(cellIdentifier: BuyHistoryCell.cellID, cellType: BuyHistoryCell.self)) { index, history, cell in
                 
+                cell.configureCell(in: history)
             }
             .disposed(by: self.disposeBag)
     }
