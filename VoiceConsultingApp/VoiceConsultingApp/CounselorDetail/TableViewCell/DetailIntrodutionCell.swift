@@ -49,4 +49,8 @@ class DetailIntrodutionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureCell(in introdution: String) {
+        
+        detailIntrodutionLabel.text = introdution
+    }
 }

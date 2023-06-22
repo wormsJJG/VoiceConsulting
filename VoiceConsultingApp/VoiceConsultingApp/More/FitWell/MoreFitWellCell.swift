@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Kingfisher
 
 class MoreFitWellCell: UITableViewCell {
     static let cellID = "MoreFitWellCell"
@@ -15,6 +16,7 @@ class MoreFitWellCell: UITableViewCell {
     lazy var thumnailImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 40
+        $0.clipsToBounds = true
     }
     
     lazy var counselorName: UILabel = UILabel().then {
@@ -47,6 +49,8 @@ class MoreFitWellCell: UITableViewCell {
     // MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.selectionStyle = .none
         constraint()
     }
     
@@ -75,6 +79,17 @@ class MoreFitWellCell: UITableViewCell {
             sv.top.equalTo(self.contentView.snp.top).offset(20)
             sv.right.equalTo(self.contentView.snp.right).offset(-20)
             sv.bottom.equalTo(self.contentView.snp.bottom).offset(-20)
+        }
+    }
+    // MARK: - configureCell
+    func configureCell(in counselorInfo: CounselorInfo) {
+        
+        thumnailImage.kf.setImage(with: URL(string: counselorInfo.profileImageUrl))
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.counselorName.text = counselorInfo.name
+            self?.introduce.text = counselorInfo.introduction
+            self?.categoryBlock.category = counselorInfo.categoryList[Int.random(in: 0...counselorInfo.categoryList.count - 1)]
         }
     }
 }

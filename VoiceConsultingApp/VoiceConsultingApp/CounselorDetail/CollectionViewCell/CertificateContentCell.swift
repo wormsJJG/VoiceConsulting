@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import Kingfisher
 
 class CertificateContentCell: UICollectionViewCell {
     static let cellID = "certificateContent"
@@ -32,5 +33,10 @@ class CertificateContentCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureCell(in certificateImageUrl: String) {
+        
+        certificateImage.kf.setImage(with: URL(string: certificateImageUrl))
     }
 }

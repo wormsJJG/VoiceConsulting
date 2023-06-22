@@ -33,7 +33,7 @@ class FitWellCell: UITableViewCell {
     }()
     
     // MARK: - Properties
-    let fitWellCounselorList: PublishSubject<[String]> = PublishSubject()
+    private let viewModel = FitWellCellVM()
     weak var cellTouchDelegate: CellTouchable?
     weak var moreButtonTouchDelegate: MoreButtonTouchable?
     private let disposeBag = DisposeBag()
@@ -79,9 +79,18 @@ class FitWellCell: UITableViewCell {
     }
     
     private func dataBind() {
-        self.fitWellCounselorList
+        self.viewModel.output.fitWellCounselorList
             .bind(to: counselorList.rx.items(cellIdentifier: FitWellCounselorCell.cellID, cellType: FitWellCounselorCell.self)) { index, counselor, cell in
+                
+                cell.configureCell(in: counselor.info)
             }
+            .disposed(by: self.disposeBag)
+        
+        self.counselorList.rx.modelSelected(Counselor.self)
+            .bind(onNext: { [weak self] counselor in
+                
+                self?.cellTouchDelegate?.didTouchCell(counselor)
+            })
             .disposed(by: self.disposeBag)
     }
 }

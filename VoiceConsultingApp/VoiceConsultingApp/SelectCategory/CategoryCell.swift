@@ -64,9 +64,9 @@ class CategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(category: Category) {
-        self.titleLabel.text = category.title
-        self.contentLabel.text = category.content
+    func configure(category: CategoryType) {
+        self.titleLabel.text = category.categoryNameKr
+        self.contentLabel.text = category.categoryDetailKr
         self.layer.cornerRadius = 10
     }
     

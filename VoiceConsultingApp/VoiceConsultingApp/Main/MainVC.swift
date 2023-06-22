@@ -48,10 +48,8 @@ extension MainVC {
 
 extension MainVC: CellTouchable {
     func didTouchCell(_ model: Counselor) {
-        let counselorDetailVC = CounselorDetailVC()
-        counselorDetailVC.hidesBottomBarWhenPushed = true
         
-        self.navigationController?.pushViewController(counselorDetailVC, animated: true)
+        self.moveCounselorDetailVC(in: model.uid)
     }
 }
 
@@ -117,7 +115,6 @@ extension MainVC: UITableViewDelegate {
                         return UITableViewCell()
                     }
                     popularCell.header.sectionTitle.text = section.sectionTitle
-                    popularCell.popularCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
                     popularCell.cellTouchDelegate = self
                     popularCell.moreButtonTouchDelegate = self
                     
@@ -133,7 +130,6 @@ extension MainVC: UITableViewDelegate {
                     }
                     
                     fitWellCounselorCell.header.sectionTitle.text = section.sectionTitle
-                    fitWellCounselorCell.fitWellCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
                     fitWellCounselorCell.cellTouchDelegate = self
                     fitWellCounselorCell.moreButtonTouchDelegate = self
                     

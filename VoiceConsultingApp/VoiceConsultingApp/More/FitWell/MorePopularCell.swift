@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Kingfisher
 
 class MorePopularCell: UITableViewCell {
     static let cellID = "MorePopularCell"
@@ -15,6 +16,7 @@ class MorePopularCell: UITableViewCell {
     lazy var thumnailImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 40
+        $0.clipsToBounds = true
     }
     
     private lazy var badge: CounselorBadge = CounselorBadge()
@@ -79,8 +81,9 @@ class MorePopularCell: UITableViewCell {
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.selectionStyle = .none
         constraint()
-        textColorChange()
     }
     
     required init?(coder: NSCoder) {
@@ -123,5 +126,18 @@ class MorePopularCell: UITableViewCell {
 
         // myLabel에 방금 만든 속성을 적용합니다.
         self.consultationCount.attributedText = attributeString
+    }
+    
+    func configureCell(in counselorInfo: CounselorInfo) {
+        
+        self.thumnailImage.kf.setImage(with: URL(string: counselorInfo.profileImageUrl))
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.counselorName.text = counselorInfo.name
+            self?.introduce.text = counselorInfo.introduction
+            self?.heartCount.text = "\(counselorInfo.heartCount)"
+            self?.consultationCount.text = "상담\(counselorInfo.consultingCount)회"
+            self?.textColorChange()
+        }
     }
 }

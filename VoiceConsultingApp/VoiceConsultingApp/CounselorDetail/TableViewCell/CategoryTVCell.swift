@@ -62,6 +62,7 @@ class CategoryTVCell: UITableViewCell {
     private func bindList() {
         self.categoryList.bind(to: self.categoryCollectionView.rx.items(cellIdentifier: CategoryCVCell.cellID, cellType: CategoryCVCell.self)) { [weak self] index, category, cell in
             
+            cell.configureCell(in: category)
         }
         .disposed(by: self.disposeBag)
     }

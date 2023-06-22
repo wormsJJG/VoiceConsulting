@@ -32,7 +32,7 @@ class PopularCell: UITableViewCell {
         return list
     }()
     // MARK: - Properties
-    let popularCounselorList: PublishSubject<[String]> = PublishSubject()
+    private let viewModel = PopularCellVM()
     private let disposeBag = DisposeBag()
     weak var cellTouchDelegate: CellTouchable?
     weak var moreButtonTouchDelegate: MoreButtonTouchable?
@@ -80,8 +80,10 @@ class PopularCell: UITableViewCell {
 // MARK: - CollectionView
 extension PopularCell: UICollectionViewDelegate {
     private func dataBind() {
-        self.popularCounselorList
+        self.viewModel.output.popularCounselorList
             .bind(to: counselorList.rx.items(cellIdentifier: PopularCounselorCell.cellID, cellType: PopularCounselorCell.self)) { index, counselor, cell in
+                
+                cell.configureCell(in: counselor.info)
             }
             .disposed(by: self.disposeBag)
         
@@ -90,6 +92,7 @@ extension PopularCell: UICollectionViewDelegate {
         
         self.counselorList.rx.modelSelected(Counselor.self)
             .bind(onNext: { [weak self] counselor in
+                
                 self?.cellTouchDelegate?.didTouchCell(counselor)
             })
             .disposed(by: self.disposeBag)

@@ -61,6 +61,7 @@ class AffiliationCell: UITableViewCell {
     private func bindList() {
         self.affiliationList.bind(to: self.contentList.rx.items(cellIdentifier: AffiliationContentCell.cellID, cellType: AffiliationContentCell.self)) { [weak self] index, affiliation, cell in
             
+            cell.configureCell(in: affiliation)
         }
         .disposed(by: self.disposeBag)
     }

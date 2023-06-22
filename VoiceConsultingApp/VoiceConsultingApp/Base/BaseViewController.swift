@@ -25,6 +25,12 @@ class BaseViewController: UIViewController {
     }
     // MARK: - MoveView
     
+    func moveSplashVC() {
+        let splashVC = SplashVC()
+        
+        self.navigationController?.pushViewController(splashVC, animated: true)
+    }
+    
     func moveMain() {
         let mainVC = CustomTabBarController()
         
@@ -55,6 +61,15 @@ class BaseViewController: UIViewController {
         coinManagementVC.startIndex = start
         
         self.navigationController?.pushViewController(coinManagementVC, animated: true)
+    }
+    
+    func moveCounselorDetailVC(in counselorUid: String) {
+        
+        let counselorDetailVC = CounselorDetailVC()
+        counselorDetailVC.setCounselorUid(uid: counselorUid)
+        counselorDetailVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(counselorDetailVC, animated: true)
     }
     
     func popVC() {

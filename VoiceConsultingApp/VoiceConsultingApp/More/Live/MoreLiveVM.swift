@@ -1,14 +1,14 @@
 //
-//  LiveCellVM.swift
+//  MoreLiveVM.swift
 //  VoiceConsultingApp
 //
-//  Created by 정재근 on 2023/05/09.
+//  Created by 정재근 on 2023/06/19.
 //
 
 import Foundation
 import RxSwift
 
-class LiveCellVM: BaseViewModel {
+class MoreLiveVM: BaseViewModel {
     
     struct Input {
         let refreshTrigger: PublishSubject<Void> = PublishSubject()
@@ -22,7 +22,9 @@ class LiveCellVM: BaseViewModel {
     var output: Output
     private let disposeBag = DisposeBag()
     
-    init(input: Input = Input(), output: Output = Output()) {
+    init(input: Input = Input(),
+         output: Output = Output()) {
+        
         self.input = input
         self.output = output
         inputSubscribe()
@@ -38,7 +40,7 @@ class LiveCellVM: BaseViewModel {
     }
     
     func getOnlineCounselorList() {
-        CounselorManager.shared.getOnlineCounselorList(with: 10)
+        CounselorManager.shared.getOnlineCounselorList(with: 20)
             .subscribe({ [weak self] event in
                 
                 switch event {

@@ -17,12 +17,12 @@ class SelectCategoryVM: BaseViewModel {
     }
     
     struct Output {
-        
+        let categoryList: PublishSubject<[CategoryType]> = PublishSubject()
+        let completion: PublishSubject<Error?> = PublishSubject()
     }
     
     var input: Input
     var output: Output
-    var categoryData: [Category] = CategoryManager.shared.data
     private let disposeBag = DisposeBag()
     
     init(input: Input = Input(),
@@ -30,13 +30,50 @@ class SelectCategoryVM: BaseViewModel {
         self.input = input
         self.output = output
         inputSubscribe()
+        getCategoryList()
     }
     
     private func inputSubscribe() {
         self.input.didTapCompleteButton
             .filter { !self.input.userSelectCategoryList.isEmpty }
             .bind(onNext: { [weak self] _ in
-                print(self!.input.userSelectCategoryList)
+                self?.addCategoryList()
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func getCategoryList() {
+        
+        CategoryManager.shared.getCategoryList()
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let categoryList):
+                    self?.output.categoryList.onNext(categoryList)
+                case .error(let error):
+                    print(error)
+                case .completed:
+                    print("onCompleted")
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func addCategoryList() {
+        
+        UserManager.shared.addCategory(categoryList: input.userSelectCategoryList)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(_):
+                    self?.output.completion.onNext(nil)
+                case .error(let error):
+                    self?.output.completion.onNext(error)
+                case .completed:
+                    print("onCompleted")
+                }
             })
             .disposed(by: self.disposeBag)
     }
