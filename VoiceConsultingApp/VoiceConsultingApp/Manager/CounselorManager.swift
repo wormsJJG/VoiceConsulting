@@ -59,7 +59,7 @@ class CounselorManager {
                     }
                     
                     guard let snapshot = querySnapshot else {
-                        event.onError(FBError.nilQuerySnapshot)
+                        event.onError(FBError.nilSnapshot)
                         return
                     }
                     
@@ -93,7 +93,7 @@ class CounselorManager {
                     }
                     
                     guard let snapshot = querySnapshot else {
-                        event.onError(FBError.nilQuerySnapshot)
+                        event.onError(FBError.nilSnapshot)
                         return
                     }
                     
@@ -130,7 +130,7 @@ class CounselorManager {
                     
                     guard let snapshot = querySnapshot else {
                         
-                        event.onError(FBError.nilQuerySnapshot)
+                        event.onError(FBError.nilSnapshot)
                         return
                     }
                     

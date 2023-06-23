@@ -13,13 +13,13 @@ import FirebaseFirestoreSwift
 class CategoryManager {
     
     static let shared = CategoryManager()
-    private let db = Firestore.firestore()
+    private let db = Firestore.firestore().collection(FBCollection.category.rawValue)
     
     func getCategoryList() -> Observable<[CategoryType]> {
 
         return Observable.create { event in
             
-            self.db.collection(FBCollection.category.rawValue)
+            self.db
                 .order(by: CategoryField.modelId.rawValue, descending: false)
                 .getDocuments() { querySnapshot, error in
                     if let error = error {
@@ -29,7 +29,7 @@ class CategoryManager {
                     
                     guard let snapshot = querySnapshot else {
                         
-                        event.onError(FBError.nilQuerySnapshot)
+                        event.onError(FBError.nilSnapshot)
                         return
                     }
                     
@@ -49,6 +49,28 @@ class CategoryManager {
                     event.onNext(categoryList)
                     event.onCompleted()
                 }
+            return Disposables.create()
+        }
+    }
+    
+    func convertToCategoryName(in categoryId: String) -> Observable<String> {
+        
+        return Observable.create { event in
+            
+            self.db
+                .document(categoryId)
+                .getDocument(as: CategoryType.self) { result in
+                    
+                    switch result {
+                        
+                    case .success(let category):
+                        event.onNext(category.categoryNameKr)
+                        event.onCompleted()
+                    case .failure(let error):
+                        event.onError(error)
+                    }
+                }
+                        
             return Disposables.create()
         }
     }

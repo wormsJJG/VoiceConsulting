@@ -32,7 +32,7 @@ class BuyCoinHistoryManager {
                         
                         guard let snapshot = querySnapshot else {
                             
-                            event.onError(FBError.nilQuerySnapshot)
+                            event.onError(FBError.nilSnapshot)
                             return
                         }
                         

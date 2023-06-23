@@ -8,12 +8,14 @@
 import UIKit
 import Then
 import SnapKit
+import RxSwift
 
 class CategoryCVCell: UICollectionViewCell {
     static let cellID = "CategoryCVCell"
+    private let disposeBag = DisposeBag()
     
     let categoryLabel: UILabel = UILabel().then {
-        $0.text = "가족상담"
+        $0.text = "카테고리"
         $0.textColor = ColorSet.mainColor
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
     }
@@ -28,10 +30,8 @@ class CategoryCVCell: UICollectionViewCell {
         self.contentView.addSubview(categoryLabel)
         
         self.categoryLabel.snp.makeConstraints {
-            $0.left.equalTo(self.contentView.snp.left).offset(10)
-            $0.top.equalTo(self.contentView.snp.top).offset(6)
-            $0.right.equalTo(self.contentView.snp.right).offset(-10)
-            $0.bottom.equalTo(self.contentView.snp.bottom).offset(-6)
+            
+            $0.edges.equalTo(contentView.snp.edges).inset(UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10))
         }
     }
     
@@ -39,8 +39,11 @@ class CategoryCVCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(in category: String) {
+    func configureCell(in categoryName: String) {
         
-        self.categoryLabel.text = category
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.categoryLabel.text = categoryName
+        }
     }
 }

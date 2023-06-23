@@ -8,11 +8,16 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
 
 class CategoryBlock: UIView {
-    var category: String = "가족상담" {
+    private let disposeBag = DisposeBag()
+    
+    var categoryId: String = "가족상담" {
+        
         didSet {
-            self.label.text = category
+            
+            convertToCategoryName(in: categoryId)
         }
     }
     
@@ -44,5 +49,27 @@ class CategoryBlock: UIView {
         label.snp.makeConstraints { label in
             label.center.equalTo(self.snp.center)
         }
+    }
+    
+    func convertToCategoryName(in id: String) {
+
+        CategoryManager.shared.convertToCategoryName(in: id)
+            .observe(on: MainScheduler.instance)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let categoryName):
+                    
+                    self?.label.text = categoryName
+                case .error(let error):
+                    
+                    print(error)
+                case .completed:
+                    
+                    print("completed")
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }

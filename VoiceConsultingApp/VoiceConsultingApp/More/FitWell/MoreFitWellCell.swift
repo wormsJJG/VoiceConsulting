@@ -85,11 +85,11 @@ class MoreFitWellCell: UITableViewCell {
     func configureCell(in counselorInfo: CounselorInfo) {
         
         thumnailImage.kf.setImage(with: URL(string: counselorInfo.profileImageUrl))
+        self.categoryBlock.categoryId = counselorInfo.categoryList[Int.random(in: 0...counselorInfo.categoryList.count - 1)]
         DispatchQueue.main.async { [weak self] in
             
             self?.counselorName.text = counselorInfo.name
             self?.introduce.text = counselorInfo.introduction
-            self?.categoryBlock.category = counselorInfo.categoryList[Int.random(in: 0...counselorInfo.categoryList.count - 1)]
         }
     }
 }

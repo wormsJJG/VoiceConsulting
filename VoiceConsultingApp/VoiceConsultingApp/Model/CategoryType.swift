@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias CategoryList = [CategoryType]
+
 struct CategoryType: Codable {
     
     var categoryDetailEn: String

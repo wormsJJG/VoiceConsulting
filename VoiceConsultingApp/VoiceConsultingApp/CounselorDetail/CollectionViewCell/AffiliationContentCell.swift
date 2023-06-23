@@ -27,10 +27,8 @@ class AffiliationContentCell: UICollectionViewCell {
         self.contentView.addSubview(affiliationLabel)
         
         self.affiliationLabel.snp.makeConstraints {
-            $0.left.equalTo(self.contentView.snp.left).offset(10)
-            $0.top.equalTo(self.contentView.snp.top).offset(6)
-            $0.right.equalTo(self.contentView.snp.right).offset(-10)
-            $0.bottom.equalTo(self.contentView.snp.bottom).offset(-6)
+            
+            $0.edges.equalTo(contentView.snp.edges).inset(UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10))
         }
     }
     

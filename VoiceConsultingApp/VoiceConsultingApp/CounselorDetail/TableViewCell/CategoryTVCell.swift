@@ -60,9 +60,26 @@ class CategoryTVCell: UITableViewCell {
     }
     
     private func bindList() {
-        self.categoryList.bind(to: self.categoryCollectionView.rx.items(cellIdentifier: CategoryCVCell.cellID, cellType: CategoryCVCell.self)) { [weak self] index, category, cell in
+        self.categoryList.bind(to: self.categoryCollectionView.rx.items(cellIdentifier: CategoryCVCell.cellID, cellType: CategoryCVCell.self)) { [weak self] index, categoryId, cell in
             
-            cell.configureCell(in: category)
+            CategoryManager.shared.convertToCategoryName(in: categoryId)
+                .subscribe({ event in
+                    
+                    switch event {
+                        
+                    case .next(let categoryName):
+                        
+                        cell.configureCell(in: categoryName)
+                        cell.layoutIfNeeded()
+                    case .error(let error):
+                        
+                        print(error)
+                    case .completed:
+                        
+                        print("completed")
+                    }
+                })
+                .disposed(by: self!.disposeBag)
         }
         .disposed(by: self.disposeBag)
     }

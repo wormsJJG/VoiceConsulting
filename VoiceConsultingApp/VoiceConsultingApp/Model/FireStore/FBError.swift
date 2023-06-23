@@ -8,11 +8,11 @@
 import Foundation
 
 enum FBError: Error, LocalizedError {
-    case nilQuerySnapshot
+    case nilSnapshot
     
     var errorDescription: String {
         switch self {
-        case .nilQuerySnapshot:
+        case .nilSnapshot:
             return "쿼리 스냅샷이 없습니다."
         }
     }

@@ -8,9 +8,11 @@
 import UIKit
 import Then
 import SnapKit
+import RxSwift
 
 class FitWellCounselorCell: UICollectionViewCell {
     static let cellID = "fitWellCounselorCell"
+    private let disposeBag = DisposeBag()
     //MARK: - View
     lazy var profileImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
@@ -76,10 +78,10 @@ class FitWellCounselorCell: UICollectionViewCell {
     func configureCell(in counselor: CounselorInfo) {
         
         self.profileImage.kf.setImage(with: URL(string: counselor.profileImageUrl))
+        self.categoryBlock.categoryId = counselor.categoryList[Int.random(in: 0...counselor.categoryList.count-1)]
         DispatchQueue.main.async { [weak self] in
             self?.counselorName.text = counselor.name
             self?.introduce.text = counselor.introduction
-            self?.categoryBlock.category = counselor.categoryList[Int.random(in: 0...counselor.categoryList.count-1)]
         }
     }
 }
