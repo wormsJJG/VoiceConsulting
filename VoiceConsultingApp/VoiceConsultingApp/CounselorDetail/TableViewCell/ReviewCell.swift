@@ -79,4 +79,21 @@ class ReviewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configureCell(in review: Review) {
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.startCount.text = "\(review.score)"
+            self?.dateLabel.text = self?.convertCreateAtToString(review.createAt)
+            self?.reviewLabel.text = review.content
+        }
+    }
+    
+    func convertCreateAtToString(_ timestamp: Int) -> String {
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        return dateFormatter.string(from: date)
+    }
 }

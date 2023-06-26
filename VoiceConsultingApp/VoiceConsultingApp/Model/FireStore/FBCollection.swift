@@ -12,4 +12,5 @@ enum FBCollection: String {
     case user = "User"
     case category = "MasterCategory"
     case buyCoin = "BuyCoin"
+    case review = "Review"
 }
