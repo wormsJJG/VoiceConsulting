@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 
 class CategoryManager {
     
+    static var categoryData: CategoryList?
     static let shared = CategoryManager()
     private let db = Firestore.firestore().collection(FBCollection.category.rawValue)
     
@@ -73,5 +74,20 @@ class CategoryManager {
                         
             return Disposables.create()
         }
+    }
+    
+    func convertIdToName(in id: String) -> String {
+        
+        guard let categoryList = CategoryManager.categoryData else {
+            
+            return "noData"
+        }
+        
+        guard let category = categoryList.filter({ $0.modelId == id }).first else {
+            
+            return "noData"
+        }
+        
+        return category.categoryNameKr
     }
 }

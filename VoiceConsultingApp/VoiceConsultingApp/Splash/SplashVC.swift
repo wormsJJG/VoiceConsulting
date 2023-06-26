@@ -60,6 +60,7 @@ extension SplashVC {
                     } else {
                         
                         Config.isUser = user.isUser!
+                        self?.viewModel.saveCategory()
                         self?.moveMain()
                     }
                     

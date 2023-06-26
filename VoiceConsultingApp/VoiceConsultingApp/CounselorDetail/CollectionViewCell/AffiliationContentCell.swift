@@ -37,7 +37,7 @@ class AffiliationContentCell: UICollectionViewCell {
     }
     
     func configureCell(in affiliation: String) {
-        
+            
         self.affiliationLabel.text = affiliation
     }
 }

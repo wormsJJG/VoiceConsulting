@@ -40,10 +40,7 @@ class CategoryCVCell: UICollectionViewCell {
     }
     
     func configureCell(in categoryName: String) {
-        
-        DispatchQueue.main.async { [weak self] in
-            
-            self?.categoryLabel.text = categoryName
-        }
+
+        self.categoryLabel.text = categoryName
     }
 }

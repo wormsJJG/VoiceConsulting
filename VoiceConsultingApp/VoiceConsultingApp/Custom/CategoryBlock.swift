@@ -11,13 +11,12 @@ import Then
 import RxSwift
 
 class CategoryBlock: UIView {
-    private let disposeBag = DisposeBag()
     
     var categoryId: String = "가족상담" {
         
         didSet {
             
-            convertToCategoryName(in: categoryId)
+            convertToCategoryName()
         }
     }
     
@@ -51,25 +50,13 @@ class CategoryBlock: UIView {
         }
     }
     
-    func convertToCategoryName(in id: String) {
-
-        CategoryManager.shared.convertToCategoryName(in: id)
-            .observe(on: MainScheduler.instance)
-            .subscribe({ [weak self] event in
-                
-                switch event {
-                    
-                case .next(let categoryName):
-                    
-                    self?.label.text = categoryName
-                case .error(let error):
-                    
-                    print(error)
-                case .completed:
-                    
-                    print("completed")
-                }
-            })
-            .disposed(by: self.disposeBag)
+    func convertToCategoryName() {
+        
+        let categoryName = CategoryManager.shared.convertIdToName(in: categoryId)
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.label.text = categoryName
+        }
     }
 }
