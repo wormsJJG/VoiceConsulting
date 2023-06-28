@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import Kingfisher
 
 class UseHistoryCell: UITableViewCell {
     static let cellID = "UseHistoryCell"
@@ -35,7 +36,7 @@ class UseHistoryCell: UITableViewCell {
         $0.alignment = .center
     }
     
-    private lazy var top: UIStackView = UIStackView(arrangedSubviews: [topLeft, useDateLabel]).then {
+    private lazy var top: UIStackView = UIStackView(arrangedSubviews: [counselorNameLabel, useDateLabel]).then {
         $0.axis = .horizontal
         $0.distribution = .equalSpacing
         $0.alignment = .center
@@ -98,5 +99,22 @@ class UseHistoryCell: UITableViewCell {
         self.top.snp.makeConstraints {
             $0.right.equalTo(self.allStackView.snp.right)
         }
+    }
+    
+    func configureCell(in consultingHistory: Consulting) {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.useDateLabel.text = self?.convertCreateAtToString(consultingHistory.createAt)
+            self?.consultationTimeLabel.text = "상담시간 \(consultingHistory.duration):00"
+        }
+    }
+    
+    func convertCreateAtToString(_ timestamp: Int) -> String {
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        return dateFormatter.string(from: date)
     }
 }

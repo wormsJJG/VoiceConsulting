@@ -126,7 +126,7 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
                 return 1
             }
             
-            return reviewList.count
+            return reviewList.count == 0 ? 1 : reviewList.count
         default:
             
             return 0
@@ -204,6 +204,17 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
             }
             
             guard let reviewList = self.viewModel.output.reviewList else {
+                
+                reviewCell.configureCell(in: Review(content: "등록된 후기가 없습니다.",
+                                                    counselorId: "",
+                                                    score: 5.0,
+                                                    userId: "",
+                                                    createAt: Int(Date().timeIntervalSince1970)))
+                
+                return reviewCell
+            }
+            
+            if reviewList.count == 0 {
                 
                 reviewCell.configureCell(in: Review(content: "등록된 후기가 없습니다.",
                                                     counselorId: "",
@@ -317,7 +328,6 @@ extension CounselorDetailVC: CustomTabDelegate {
         guard let reviewList = viewModel.output.reviewList else {
             
             self.view.makeToast("등록된 후기가 없습니다.")
-            self.counselorDetailV.infoList.scroll(to: .bottom)
             return
         }
         
@@ -329,6 +339,9 @@ extension CounselorDetailVC: CustomTabDelegate {
                 self.counselorDetailV.infoList.scrollToRow(at: indexPath, at: .bottom, animated: true)
                 self.counselorDetailV.stikyTapView.selectItem = .review
             }
+        } else if reviewList.count == 0 {
+            
+            self.view.makeToast("등록된 후기가 없습니다.")
         } else {
             
             DispatchQueue.main.async {

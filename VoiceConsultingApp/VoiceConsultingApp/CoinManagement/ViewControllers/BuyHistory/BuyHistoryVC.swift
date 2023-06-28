@@ -14,6 +14,7 @@ class BuyHistoryVC: BaseViewController {
     private let buyHistoryV = BuyHistoryV()
     
     override func loadView() {
+        
         self.view = buyHistoryV
     }
     // MARK: - Properties
@@ -22,6 +23,7 @@ class BuyHistoryVC: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         bindTableView()
         self.viewModel.input.viewDidLoadTrigger.onNext(())
     }
@@ -33,7 +35,7 @@ extension BuyHistoryVC {
             .filter { $0.count == 0 }
             .bind(onNext: { [weak self] _ in
 
-                    self?.buyHistoryV.emptyLabel.isHidden = false
+                self?.buyHistoryV.emptyLabel.isHidden = false
             })
             .disposed(by: self.disposeBag)
         
