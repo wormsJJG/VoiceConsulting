@@ -9,13 +9,16 @@ import UIKit
 import Then
 import SnapKit
 import Kingfisher
+import RxSwift
 
 class UseHistoryCell: UITableViewCell {
     static let cellID = "UseHistoryCell"
+    private let disposeBag = DisposeBag()
     
     private lazy var counselorProfile: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 15
+        $0.clipsToBounds = true
     }
     
     private lazy var counselorNameLabel: UILabel = UILabel().then {
@@ -36,7 +39,7 @@ class UseHistoryCell: UITableViewCell {
         $0.alignment = .center
     }
     
-    private lazy var top: UIStackView = UIStackView(arrangedSubviews: [counselorNameLabel, useDateLabel]).then {
+    private lazy var top: UIStackView = UIStackView(arrangedSubviews: [topLeft, useDateLabel]).then {
         $0.axis = .horizontal
         $0.distribution = .equalSpacing
         $0.alignment = .center
@@ -103,14 +106,25 @@ class UseHistoryCell: UITableViewCell {
     
     func configureCell(in consultingHistory: Consulting) {
         
-        DispatchQueue.main.async { [weak self] in
-            
-            self?.useDateLabel.text = self?.convertCreateAtToString(consultingHistory.createAt)
-            self?.consultationTimeLabel.text = "상담시간 \(consultingHistory.duration):00"
-        }
+        CounselorManager.shared.getCounselor(in: consultingHistory.counselorId)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                case .next(let counselor):
+                    self?.counselorProfile.kf.setImage(with: URL(string: counselor.info.profileImageUrl))
+                    self?.counselorNameLabel.text = counselor.info.name
+                    self?.useDateLabel.text = self?.convertCreateAtToString(consultingHistory.createAt)
+                    self?.consultationTimeLabel.text = "상담시간 \(consultingHistory.duration):00"
+                case .error(let error):
+                    print(error)
+                case .completed:
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
     
-    func convertCreateAtToString(_ timestamp: Int) -> String {
+    private func convertCreateAtToString(_ timestamp: Int) -> String {
         
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         let dateFormatter = DateFormatter()
