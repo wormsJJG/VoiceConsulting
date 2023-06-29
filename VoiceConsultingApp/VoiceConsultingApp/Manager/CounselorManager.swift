@@ -159,16 +159,49 @@ class CounselorManager {
             
             let ref = self.db.document(uid)
             ref.getDocument(as: CounselorInfo.self, completion: { result in
+                
                 switch result {
+                    
                 case .success(let counselorInfo):
                     
                     let counselor = Counselor(uid: uid, info: counselorInfo)
                     event.onNext(counselor)
                     event.onCompleted()
                 case .failure(let error):
+                    
                     event.onError(error)
                 }
             })
+            return Disposables.create()
+        }
+    }
+    // MARK: -
+    func convertUidToCounselor(in uidList: [String]) -> Observable<[Counselor]> {
+        
+        return Observable.create { event in
+            
+            var counselorList: [Counselor] = []
+            
+            for uid in uidList {
+                
+                self.db.document(uid)
+                    .getDocument(as: CounselorInfo.self, completion: { result in
+                        
+                        switch result {
+    
+                        case .success(let counselorInfo):
+                            
+                            let counselor = Counselor(uid: uid, info: counselorInfo)
+                            counselorList.append(counselor)
+                        case .failure(let error):
+                            
+                            event.onError(error)
+                        }
+                    })
+            }
+            event.onNext(counselorList)
+            event.onCompleted()
+            
             return Disposables.create()
         }
     }

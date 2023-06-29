@@ -15,6 +15,7 @@ class HeartCounselorCell: UITableViewCell {
     lazy var thumnailImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 40
+        $0.clipsToBounds = true
     }
     
     lazy var counselorName: UILabel = UILabel().then {
@@ -87,5 +88,9 @@ class HeartCounselorCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureCell() {
+        
     }
 }

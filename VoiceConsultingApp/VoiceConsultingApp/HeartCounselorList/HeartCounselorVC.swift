@@ -18,25 +18,45 @@ class HeartCounselorVC: BaseViewController {
         self.view = heartCounselorV
     }
     // MARK: - Properties
-    let heartCounselorList: PublishSubject<[String]> = PublishSubject()
+    private let viewModel = HeartCounselorVM()
     private let disposeBag = DisposeBag()
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        addAction()
+        bindList()
+    }
+}
+// MARK: - addAction
+extension HeartCounselorVC {
+    
+    private func addAction() {
+        
         self.heartCounselorV.headerView.backButton.rx.tap
             .bind(onNext: { [weak self] _ in
+                
                 self?.popVC()
             })
             .disposed(by: self.disposeBag)
-        bindList()
-        heartCounselorList.onNext(["", "", "", "", "", "", "", "", ""])
     }
 }
 // MARK: - bindList
 extension HeartCounselorVC {
     
     private func bindList() {
-        self.heartCounselorList.bind(to: self.heartCounselorV.counselorList.rx.items(cellIdentifier: HeartCounselorCell.cellID, cellType: HeartCounselorCell.self)) { index, counselor, cell in
+        
+        self.viewModel.output.counselorList
+            .filter { $0.count == 0 }
+            .bind(onNext: { [weak self] _ in
+
+                self?.heartCounselorV.emptyLabel.isHidden = false
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.viewModel.output.counselorList
+            .bind(to: self.heartCounselorV.counselorList.rx.items(cellIdentifier: HeartCounselorCell.cellID, cellType: HeartCounselorCell.self)) { index, counselor, cell in
+                
             cell.heartButton.delegate = self
         }
         .disposed(by: self.disposeBag)
@@ -44,7 +64,9 @@ extension HeartCounselorVC {
 }
  // MARK: - didTapHeartButton
 extension HeartCounselorVC: HeartButtonDelegate {
+    
     func didTapHeartButton(didTap: Bool) {
+        
         print(didTap)
     }
 }
