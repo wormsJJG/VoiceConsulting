@@ -8,9 +8,13 @@
 import UIKit
 import Then
 import SnapKit
+import Kingfisher
+import RxSwift
 
 class HeartCounselorCell: UITableViewCell {
+    
     static let cellID = "HeartCounselorCell"
+    private let disposeBag = DisposeBag()
     
     lazy var thumnailImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
@@ -90,7 +94,27 @@ class HeartCounselorCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell() {
+    func configureCell(in counselorUid: String) {
         
+        CounselorManager.shared.getCounselor(in: counselorUid)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let counselor):
+                    
+                    self?.thumnailImage.kf.setImage(with: URL(string: counselor.info.profileImageUrl))
+                    self?.counselorName.text = counselor.info.name
+                    self?.introduce.text = counselor.info.introduction
+                    self?.categoryBlock.categoryId = counselor.info.categoryList[Int.random(in: 0...counselor.info.categoryList.count - 1)]
+                case .error(let error):
+                    
+                    print(error)
+                case .completed:
+                    
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }

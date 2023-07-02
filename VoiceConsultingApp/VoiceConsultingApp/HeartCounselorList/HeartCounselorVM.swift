@@ -7,17 +7,18 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class HeartCounselorVM: BaseViewModel {
     
     struct Input {
         
-        let favoriteList: PublishSubject<[String]> = PublishSubject()
+        
     }
     
     struct Output {
         
-        let counselorList: PublishSubject<[Counselor]> = PublishSubject()
+        let favoriteList: PublishSubject<[String]> = PublishSubject()
     }
     
     var input: Input
@@ -35,12 +36,12 @@ class HeartCounselorVM: BaseViewModel {
     
     private func inputSubscribe() {
         
-        self.input.favoriteList
-            .bind(onNext: { [weak self] counselorUidList in
-                
-                self?.convertUidToCounselor(counselorUidList)
-            })
-            .disposed(by: self.disposeBag)
+//        self.input.favoriteList
+//            .bind(onNext: { [weak self] counselorUidList in
+//
+//                self?.convertUidListToCounselorList(counselorUidList)
+//            })
+//            .disposed(by: self.disposeBag)
     }
     
     private func getHeartList() {
@@ -52,7 +53,7 @@ class HeartCounselorVM: BaseViewModel {
                     
                 case .next(let favoriteList):
                     
-                    self?.input.favoriteList.onNext(favoriteList.map { $0.targetId })
+                    self?.output.favoriteList.onNext(favoriteList.map { $0.targetId })
                 case .error(let error):
                     
                     print(error)
@@ -63,24 +64,28 @@ class HeartCounselorVM: BaseViewModel {
             .disposed(by: self.disposeBag)
     }
     
-    private func convertUidToCounselor(_ uidList: [String]) {
-        
-        CounselorManager.shared.convertUidToCounselor(in: uidList)
-            .subscribe({ [weak self] event in
-                
-                switch event {
-    
-                case .next(let counselorList):
-                    
-                    self?.output.counselorList.onNext(counselorList)
-                case .error(let error):
-                    
-                    print(error)
-                case .completed:
-                    
-                    print(#function)
-                }
-            })
-            .disposed(by: self.disposeBag)
-    }
+//    private func convertUidListToCounselorList(_ uidList: [String]) {
+//        var value = self.output.counselorList.value
+//        for uid in uidList {
+//            
+//            CounselorManager.shared.getCounselor(in: uid)
+//                .subscribe({ [weak self] event in
+//                    
+//                    switch event {
+//                        
+//                    case .next(let counselor):
+//                        
+//                        self?.output.counselorList.value.append(counselor)
+//                    case .error(let error):
+//                        
+//                        print(error)
+//                    case .completed:
+//                        
+//                        print(#function)
+//                    }
+//                })
+//                .disposed(by: self.disposeBag)
+//        }
+//        self.output.counselorList.accept(value)
+//    }
 }

@@ -42,11 +42,11 @@ extension HeartCounselorVC {
     }
 }
 // MARK: - bindList
-extension HeartCounselorVC {
+extension HeartCounselorVC: UITableViewDelegate {
     
     private func bindList() {
         
-        self.viewModel.output.counselorList
+        self.viewModel.output.favoriteList
             .filter { $0.count == 0 }
             .bind(onNext: { [weak self] _ in
 
@@ -54,12 +54,23 @@ extension HeartCounselorVC {
             })
             .disposed(by: self.disposeBag)
         
-        self.viewModel.output.counselorList
-            .bind(to: self.heartCounselorV.counselorList.rx.items(cellIdentifier: HeartCounselorCell.cellID, cellType: HeartCounselorCell.self)) { index, counselor, cell in
+        self.viewModel.output.favoriteList
+            .bind(to: self.heartCounselorV.counselorList.rx.items(cellIdentifier: HeartCounselorCell.cellID, cellType: HeartCounselorCell.self)) { index, counselorUid, cell in
                 
-            cell.heartButton.delegate = self
+                cell.heartButton.delegate = self
+                cell.configureCell(in: counselorUid)
         }
         .disposed(by: self.disposeBag)
+        
+        self.heartCounselorV.counselorList.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
+        self.heartCounselorV.counselorList.rx.modelSelected(String.self)
+            .bind(onNext: { [weak self] counselorUid in
+                
+                self?.moveCounselorDetailVC(in: counselorUid)
+            })
+            .disposed(by: self.disposeBag)
     }
 }
  // MARK: - didTapHeartButton
