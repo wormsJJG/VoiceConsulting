@@ -15,7 +15,7 @@ class HeartCounselorVC: BaseViewController {
     
     override func loadView() {
         super.loadView()
-        self.view = heartCounselorV
+        self.view = heartCounselorV	
     }
     // MARK: - Properties
     private let viewModel = HeartCounselorVM()

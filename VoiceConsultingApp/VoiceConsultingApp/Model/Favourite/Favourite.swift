@@ -11,6 +11,6 @@ typealias FavouriteList = [Favourite]
 
 struct Favourite: Codable {
     
-    var targetId: String
+    var counselorId: String
     var userId: String
 }

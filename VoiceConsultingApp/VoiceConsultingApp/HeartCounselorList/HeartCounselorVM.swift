@@ -53,7 +53,7 @@ class HeartCounselorVM: BaseViewModel {
                     
                 case .next(let favoriteList):
                     
-                    self?.output.favoriteList.onNext(favoriteList.map { $0.targetId })
+                    self?.output.favoriteList.onNext(favoriteList.map { $0.counselorId })
                 case .error(let error):
                     
                     print(error)

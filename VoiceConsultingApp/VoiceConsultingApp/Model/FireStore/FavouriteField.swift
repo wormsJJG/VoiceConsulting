@@ -9,6 +9,6 @@ import Foundation
 
 enum FavouriteField: String {
     
-    case targetId
+    case counselorId
     case userId
 }
