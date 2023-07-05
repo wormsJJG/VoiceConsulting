@@ -15,6 +15,7 @@ import Then
 import AgoraChat
 
 class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
+    // MARK: - View Components
     private let headerview = ChatRoomHeader().then {
         
         $0.coinBlock.isHidden = !Config.isUser
@@ -31,13 +32,14 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         $0.addTarget(self, action: #selector(didTapPlusButtonItem), for: .touchUpInside)
     }
     
+    // MARK: - Properties
     var isCustomInputView: Bool = false
     let channel: ChatChannel = ChatChannel(name: "김이름 상담사")
     var sender = Sender(senderId: "any_unique_id", displayName: "jake")
     var messages = [Message]()
     private let disposeBag = DisposeBag()
     
-    
+    // MARK: - SizeCalcurator
     private lazy var requestTranscationSizeCalculator = RequestTranscationSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     private lazy var customTextMessagesSizeCalculator = CustomTextLayoutSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     private lazy var transcationCompletedSizeCalculator = TransactionCompletedSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
@@ -52,8 +54,10 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         inputBarDesign()
         addAction()
     }
+    
     func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
         for msg in aMessages {
+            print(msg.swiftBody)
             switch msg.swiftBody {
             case let .text(content):
                 print(msg.from)

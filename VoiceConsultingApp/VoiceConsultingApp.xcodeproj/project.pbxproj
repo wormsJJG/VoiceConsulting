@@ -43,7 +43,7 @@
 		351793052A1746E9004EE7ED /* DetailIntrodutionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351793042A1746E9004EE7ED /* DetailIntrodutionCell.swift */; };
 		35188F672A09FC830040804E /* CounselorField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35188F662A09FC830040804E /* CounselorField.swift */; };
 		35188F6A2A0A01490040804E /* FBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35188F692A0A01490040804E /* FBError.swift */; };
-		351BB88A29FA72300050105F /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351BB88929FA72300050105F /* ChatManager.swift */; };
+		351BB88A29FA72300050105F /* AgoraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351BB88929FA72300050105F /* AgoraManager.swift */; };
 		351E93EF2A2CA2BE00C598C3 /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E93EE2A2CA2BE00C598C3 /* GoogleSignInManager.swift */; };
 		351E93F22A2CAA2B00C598C3 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 351E93F12A2CAA2B00C598C3 /* GoogleSignIn */; };
 		351E93F42A2CAA2B00C598C3 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 351E93F32A2CAA2B00C598C3 /* GoogleSignInSwift */; };
@@ -203,6 +203,7 @@
 		35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */; };
 		35D216AB2A443AD30072A1E6 /* BuyCoinField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */; };
 		35D216AD2A443CD00072A1E6 /* BuyHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D216AC2A443CD00072A1E6 /* BuyHistoryVM.swift */; };
+		35D8E23E2A55626F0091EB6A /* AgoraConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D8E23D2A55626F0091EB6A /* AgoraConst.swift */; };
 		35DECCB829DBD26800DE5BE3 /* LiveCounselorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DECCB729DBD26800DE5BE3 /* LiveCounselorCell.swift */; };
 		35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E2987B29CBEC2D00847F49 /* SplashV.swift */; };
 		35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E2987D29CBEC5800847F49 /* SplashVM.swift */; };
@@ -272,7 +273,7 @@
 		351793042A1746E9004EE7ED /* DetailIntrodutionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIntrodutionCell.swift; sourceTree = "<group>"; };
 		35188F662A09FC830040804E /* CounselorField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorField.swift; sourceTree = "<group>"; };
 		35188F692A0A01490040804E /* FBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBError.swift; sourceTree = "<group>"; };
-		351BB88929FA72300050105F /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		351BB88929FA72300050105F /* AgoraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraManager.swift; sourceTree = "<group>"; };
 		351E93EE2A2CA2BE00C598C3 /* GoogleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInManager.swift; sourceTree = "<group>"; };
 		351E93F72A2CCC4F00C598C3 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		351E93F92A2CD6CA00C598C3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -429,6 +430,7 @@
 		35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraPushManager.swift; sourceTree = "<group>"; };
 		35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinField.swift; sourceTree = "<group>"; };
 		35D216AC2A443CD00072A1E6 /* BuyHistoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyHistoryVM.swift; sourceTree = "<group>"; };
+		35D8E23D2A55626F0091EB6A /* AgoraConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraConst.swift; sourceTree = "<group>"; };
 		35DECCB729DBD26800DE5BE3 /* LiveCounselorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCounselorCell.swift; sourceTree = "<group>"; };
 		35E2987B29CBEC2D00847F49 /* SplashV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashV.swift; sourceTree = "<group>"; };
 		35E2987D29CBEC5800847F49 /* SplashVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVM.swift; sourceTree = "<group>"; };
@@ -868,7 +870,7 @@
 			isa = PBXGroup;
 			children = (
 				35726F312A05F556008E28D0 /* CounselorManager.swift */,
-				351BB88929FA72300050105F /* ChatManager.swift */,
+				351BB88929FA72300050105F /* AgoraManager.swift */,
 				3504CC742A2C7C4900952D84 /* RealmManager.swift */,
 				3504CC782A2C806E00952D84 /* FirebaseAuthManager.swift */,
 				351E93EE2A2CA2BE00C598C3 /* GoogleSignInManager.swift */,
@@ -1068,6 +1070,14 @@
 			path = Chatting;
 			sourceTree = "<group>";
 		};
+		35D8E23C2A5562390091EB6A /* define */ = {
+			isa = PBXGroup;
+			children = (
+				35D8E23D2A55626F0091EB6A /* AgoraConst.swift */,
+			);
+			path = define;
+			sourceTree = "<group>";
+		};
 		35DECCB529DBCD7400DE5BE3 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1115,6 +1125,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				35D8E23C2A5562390091EB6A /* define */,
 				35C29FF329ECE19F0018FE04 /* ChatRoom */,
 				351E93F62A2CCC4100C598C3 /* Error */,
 				359638BD2A2394CA00808EA0 /* PopUp */,
@@ -1577,7 +1588,7 @@
 				3509F82D29D5755800AD880C /* ColorSet.swift in Sources */,
 				354609F729D70DA600FC5ABB /* LoginVC.swift in Sources */,
 				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
-				351BB88A29FA72300050105F /* ChatManager.swift in Sources */,
+				351BB88A29FA72300050105F /* AgoraManager.swift in Sources */,
 				354664B329E42C1A0055375F /* CustomTabBarController.swift in Sources */,
 				3566899A2A2F773300022487 /* UserManager.swift in Sources */,
 				350AFE1A2A3AEA6C00FF3514 /* PopularCellVM.swift in Sources */,
@@ -1670,6 +1681,7 @@
 				35E2987E29CBEC5800847F49 /* SplashVM.swift in Sources */,
 				357D4A202A2E1382000052D1 /* RequestPaymentView.swift in Sources */,
 				35BC511D29D196FB00BEA034 /* SelectUseTypeVM.swift in Sources */,
+				35D8E23E2A55626F0091EB6A /* AgoraConst.swift in Sources */,
 				3504E2BE29E3B1C1006AEED6 /* MoreFitWellCell.swift in Sources */,
 				356F7BD42A07920A00C536D8 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
 				359933CB29D07A690098A0FC /* MainV.swift in Sources */,
