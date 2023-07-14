@@ -40,4 +40,7 @@ class AssetImage {
     static let albumIcon = "AlbumIcon"
     static let cameraIcon = "CameraIcon"
     static let cancelIcon = "CancelIcon"
+    static let muteIcon = "MuteIcon"
+    static let speakerIcon = "SpeakerIcon"
+    static let callExitIcon = "CallExitIcon"
 }

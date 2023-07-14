@@ -8,12 +8,24 @@
 import Foundation
 import AgoraChat
 import RxSwift
+import Alamofire
 
 class AgoraManager {
-    static let shared = AgoraManager()
     
+    static let shared = AgoraManager()
+    private let registerUrl = "https://a61.chat.agora.io/61936485/1094469/user"
+    private let contentType = "application/json"
+    private let authorization = "51bb3c45a6a4478086cf945970587bef:fb7b3d06e9c3429b90cf63ee1f71dc5c"
+    static let baseUrl = "https://a61.chat.agora.io"
+    private var session: URLSession?
+    
+    var currentUser: String? {
+        
+        return AgoraChatClient.shared.currentUsername
+    }
         
     func initializeAgoraRTC() {
+        
         let appID = "5257fe4a591b42158279edc716d49c9d"
     }
     
@@ -21,18 +33,29 @@ class AgoraManager {
         
         return Observable.create { event in
             
-            AgoraChatClient.shared
-                .register(withUsername: userUid,
-                          password: AgoraConst.password.rawValue) { userName, agoraChatError in
+            let lowercaseUid = userUid.lowercased()
+            
+            print("Bearer \(self.authorization.asBase64!)")
+            
+            AF.request(self.registerUrl,
+                       method: .post,
+                       parameters: ["username": lowercaseUid,
+                                    "password": AgoraConst.password.rawValue,
+                                    "nickname": lowercaseUid],
+                       headers: HTTPHeaders(["Content-Type": self.contentType,
+                                             "Authorization": "Bearer \(self.authorization.asBase64!)"]))
+            .responseData(completionHandler: { response in
                 
-                    if let agoraChatError {
-                        
-                        event.onError(agoraChatError as! Error)
-                    }
+                switch response.result {
                     
-                    event.onNext(userName)
+                case .success(let res):
+                    print(String(data: res, encoding: .utf8))
+                    event.onNext("성공")
                     event.onCompleted()
-            }
+                case .failure(let error):
+                    event.onError(error)
+                }
+            })
             
             return Disposables.create()
         }
@@ -47,7 +70,7 @@ class AgoraManager {
                 
                     if let agoraChatError {
                         
-                        event.onError(agoraChatError as! Error)
+                        event.onError(AgoraError.failedLogin)
                     }
                     
                     event.onNext(())
@@ -66,7 +89,7 @@ class AgoraManager {
                 
                 if let agoraChatError {
                     
-                    event.onError(agoraChatError as! Error)
+                    event.onError(AgoraError.failedLogout)
                 }
                 
                 event.onNext(())
@@ -74,6 +97,42 @@ class AgoraManager {
             }
             
             return Disposables.create()
+        }
+    }
+    
+    func constructRequest(method: HTTPMethod,
+                          uri: String,
+                          params: Dictionary<String,Any> ,
+                          headers:[String : String],
+                          callBack:@escaping ((Data?,HTTPURLResponse?,Error?) -> Void)) throws {
+
+        guard let url = URL(string: self.registerUrl+uri) else {
+            return
+        }
+        //MARK: - request
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
+        urlRequest.httpMethod = method.rawValue
+        self.session?.dataTask(with: urlRequest){
+            if $2 == nil {
+                callBack($0,($1 as! HTTPURLResponse),$2)
+            } else {
+                callBack(nil,nil,$2)
+            }
+        }.resume()
+    }
+    
+    func registerToAppSever(userName: String,passWord: String,callBack:@escaping ((Dictionary<String,Any>,Int) -> Void)) {
+        do {
+            try self.constructRequest(method: .post, uri: "/register", params: ["userAccount":userName,"userPassword":passWord], headers: ["Content-Type":"application/json"]) { data,response,error in
+                if error == nil {
+                    callBack(["성공": "tjdrhd"], 0)
+                } else {
+                    callBack(["error":error?.localizedDescription ?? ""],0)
+                }
+            }
+        } catch {
+            assert(false, "register error:\(error.localizedDescription)")
         }
     }
 }

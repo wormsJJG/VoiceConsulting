@@ -10,4 +10,6 @@ import Foundation
 enum AgoraConst: String {
     
     case password = "win0718"
+    case appKey = "61936485#1094469"
+    case apnsCertName = "com.team.winconsultingapp"
 }

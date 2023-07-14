@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+import AgoraChat
 
 class MainVC: BaseViewController {
     // MARK: - Load View
@@ -26,6 +27,29 @@ class MainVC: BaseViewController {
         isHiddenNavigationBar()
         bindTableView()
         addCoinBlockTapAction()
+    
+        AgoraManager.shared.registerToAppSever(userName: "asdasdasd", passWord: "abcdefghif", callBack: { dic, num in
+            
+            print(dic)
+            print(num)
+        })
+//        AgoraManager.shared
+//            .register(userUid:
+//                    FirebaseAuthManager.shared.getUserUid()!)
+//            .subscribe({ event in
+//
+//                switch event {
+//
+//                case .next(let nickName):
+//
+//                    print("성공 \(nickName)")
+//                case .error(let error):
+//                    print(error)
+//                case .completed:
+//                    print(#function)
+//                }
+//            })
+//            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - Notification

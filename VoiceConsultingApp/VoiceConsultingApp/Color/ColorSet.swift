@@ -20,4 +20,6 @@ class ColorSet {
     static let buyButtonBack = UIColor(named: "BuyButtonBack")
     static let chatRoomBack = UIColor(named: "ChatRoomBack")
     static let requestLabelBack = UIColor(named: "RequestLabelBack")
+    static let utillButtonBackground = UIColor(red: 0.96, green: 0.96, blue: 0.98, alpha: 1)
+    static let callExitButtonBackground = UIColor(red: 0.91, green: 0.25, blue: 0.2, alpha: 1)
 }
