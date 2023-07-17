@@ -13,10 +13,8 @@ import Alamofire
 class AgoraManager {
     
     static let shared = AgoraManager()
-    private let registerUrl = "https://a61.chat.agora.io/61936485/1094469/user"
+    private let registerUrl = "https://a61.chat.agora.io/61936485/1094469/users"
     private let contentType = "application/json"
-    private let authorization = "51bb3c45a6a4478086cf945970587bef:fb7b3d06e9c3429b90cf63ee1f71dc5c"
-    static let baseUrl = "https://a61.chat.agora.io"
     private var session: URLSession?
     
     var currentUser: String? {
@@ -29,34 +27,45 @@ class AgoraManager {
         let appID = "5257fe4a591b42158279edc716d49c9d"
     }
     
-    func register(userUid: String) -> Observable<String> {
-        
+    func register(userUid: String) -> Observable<Data> {
+
         return Observable.create { event in
-            
+
             let lowercaseUid = userUid.lowercased()
-            
-            print("Bearer \(self.authorization.asBase64!)")
-            
-            AF.request(self.registerUrl,
-                       method: .post,
-                       parameters: ["username": lowercaseUid,
-                                    "password": AgoraConst.password.rawValue,
-                                    "nickname": lowercaseUid],
-                       headers: HTTPHeaders(["Content-Type": self.contentType,
-                                             "Authorization": "Bearer \(self.authorization.asBase64!)"]))
-            .responseData(completionHandler: { response in
+
+            AgoraTokenService.shared.getAgoraAppToken(completion: { error, token in
                 
-                switch response.result {
+                if let error {
                     
-                case .success(let res):
-                    print(String(data: res, encoding: .utf8))
-                    event.onNext("성공")
-                    event.onCompleted()
-                case .failure(let error):
                     event.onError(error)
                 }
+                
+                if let token {
+                    
+                    AF.request(self.registerUrl,
+                               method: .post,
+                               parameters: ["username": lowercaseUid,
+                                            "password": AgoraConst.password.rawValue,
+                                            "nickname": lowercaseUid],
+                               encoding: JSONEncoding(options: []),
+                               headers: ["Content-Type": self.contentType,
+                                                     "Authorization": "Bearer \(token)"])
+                    .responseData(completionHandler: { response in
+
+                        switch response.result {
+
+                        case .success(let res):
+        
+                            event.onNext(res)
+                            event.onCompleted()
+                        case .failure(let error):
+                            
+                            event.onError(error)
+                        }
+                    })
+                }
             })
-            
+
             return Disposables.create()
         }
     }

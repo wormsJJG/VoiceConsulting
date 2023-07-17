@@ -3,16 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		09F9977C6E8DDB92E8A1782B /* Pods_VoiceConsultingAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F599E488F9B65739357D52AA /* Pods_VoiceConsultingAppTests.framework */; };
 		313E3FF2D4D47B0EF4036FCD /* Pods_VoiceConsultingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2B864350A28909505C7A110 /* Pods_VoiceConsultingApp.framework */; };
 		3500D24E2A60F2B30070E264 /* VoiceRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3500D24D2A60F2B30070E264 /* VoiceRoomVC.swift */; };
+		3500D2512A60F7E50070E264 /* AgoraTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3500D2502A60F7E50070E264 /* AgoraTokenService.swift */; };
 		3500F74229DC07770080AC4F /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3500F74129DC07770080AC4F /* Extension+UIView.swift */; };
-		3504CC712A2C79D500952D84 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3504CC702A2C79D500952D84 /* Realm */; };
-		3504CC732A2C79D500952D84 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3504CC722A2C79D500952D84 /* RealmSwift */; };
 		3504CC752A2C7C4900952D84 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504CC742A2C7C4900952D84 /* RealmManager.swift */; };
 		3504CC792A2C806E00952D84 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504CC782A2C806E00952D84 /* FirebaseAuthManager.swift */; };
 		3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3504E2A729E3A4F2006AEED6 /* PlainHeaderView.swift */; };
@@ -46,8 +45,6 @@
 		35188F6A2A0A01490040804E /* FBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35188F692A0A01490040804E /* FBError.swift */; };
 		351BB88A29FA72300050105F /* AgoraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351BB88929FA72300050105F /* AgoraManager.swift */; };
 		351E93EF2A2CA2BE00C598C3 /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E93EE2A2CA2BE00C598C3 /* GoogleSignInManager.swift */; };
-		351E93F22A2CAA2B00C598C3 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 351E93F12A2CAA2B00C598C3 /* GoogleSignIn */; };
-		351E93F42A2CAA2B00C598C3 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 351E93F32A2CAA2B00C598C3 /* GoogleSignInSwift */; };
 		351E93F82A2CCC4F00C598C3 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E93F72A2CCC4F00C598C3 /* AuthError.swift */; };
 		351E93FA2A2CD6CA00C598C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351E93F92A2CD6CA00C598C3 /* LaunchScreen.storyboard */; };
 		351E93FC2A2CDE4B00C598C3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E93FB2A2CDE4B00C598C3 /* Config.swift */; };
@@ -147,7 +144,6 @@
 		357D4A1E2A2E0F77000052D1 /* MypageCounselorMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1D2A2E0F77000052D1 /* MypageCounselorMenu.swift */; };
 		357D4A202A2E1382000052D1 /* RequestPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */; };
 		357D84ED2A0A7196003DB1FC /* LiveCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */; };
-		358609E62A20D602000DF83B /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 358609E52A20D602000DF83B /* Cosmos */; };
 		358609E82A20D7A5000DF83B /* WriteReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358609E72A20D7A5000DF83B /* WriteReviewVC.swift */; };
 		358609EA2A20D89A000DF83B /* MessageButtonTouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358609E92A20D89A000DF83B /* MessageButtonTouchable.swift */; };
 		358EF07F2A24E706001324A6 /* UserTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF07E2A24E706001324A6 /* UserTypeView.swift */; };
@@ -196,14 +192,12 @@
 		35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */; };
 		35BC511B29D1968B00BEA034 /* SelectUseTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511A29D1968B00BEA034 /* SelectUseTypeVC.swift */; };
 		35BC511D29D196FB00BEA034 /* SelectUseTypeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511C29D196FB00BEA034 /* SelectUseTypeVM.swift */; };
-		35C29FF229ECE1830018FE04 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 35C29FF129ECE1830018FE04 /* MessageKit */; };
 		35C29FF529ECE1C30018FE04 /* ChatRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FF429ECE1C30018FE04 /* ChatRoomVC.swift */; };
 		35C29FF829ECF1D60018FE04 /* ChatChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FF729ECF1D60018FE04 /* ChatChannel.swift */; };
 		35C29FFB29ECF2580018FE04 /* ImageMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFA29ECF2580018FE04 /* ImageMediaItem.swift */; };
 		35C29FFD29ECF2A20018FE04 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFC29ECF2A20018FE04 /* Message.swift */; };
 		35C29FFF29ECF3E40018FE04 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFE29ECF3E40018FE04 /* Sender.swift */; };
 		35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */; };
-		35CC32482A5AB4F700D0E7C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 35CC32472A5AB4F700D0E7C2 /* Alamofire */; };
 		35CC324A2A5ABBA000D0E7C2 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CC32492A5ABBA000D0E7C2 /* Extension+String.swift */; };
 		35D216AB2A443AD30072A1E6 /* BuyCoinField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */; };
 		35D216AD2A443CD00072A1E6 /* BuyHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D216AC2A443CD00072A1E6 /* BuyHistoryVM.swift */; };
@@ -223,6 +217,7 @@
 		35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2429CAFB5600AAE587 /* Cordinator.swift */; };
 		35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */; };
 		35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */; };
+		35F48A9F2A64F16600BA8BE5 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 35F48A9E2A64F16600BA8BE5 /* MessageKit */; };
 		F08D41518B1C0EDF3BF92FBF /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C8154CC9C5D2C8A7DEB7F4 /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -247,6 +242,7 @@
 		06447DF8FDE07A261094B044 /* Pods-VoiceConsultingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingAppTests.release.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingAppTests/Pods-VoiceConsultingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		07716390FB7502C28588E7B4 /* Pods-VoiceConsultingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceConsultingApp.release.xcconfig"; path = "Target Support Files/Pods-VoiceConsultingApp/Pods-VoiceConsultingApp.release.xcconfig"; sourceTree = "<group>"; };
 		3500D24D2A60F2B30070E264 /* VoiceRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRoomVC.swift; sourceTree = "<group>"; };
+		3500D2502A60F7E50070E264 /* AgoraTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraTokenService.swift; sourceTree = "<group>"; };
 		3500F74129DC07770080AC4F /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		3504CC742A2C7C4900952D84 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		3504CC782A2C806E00952D84 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -472,14 +468,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35C29FF229ECE1830018FE04 /* MessageKit in Frameworks */,
-				35CC32482A5AB4F700D0E7C2 /* Alamofire in Frameworks */,
-				358609E62A20D602000DF83B /* Cosmos in Frameworks */,
-				351E93F42A2CAA2B00C598C3 /* GoogleSignInSwift in Frameworks */,
-				3504CC712A2C79D500952D84 /* Realm in Frameworks */,
-				3504CC732A2C79D500952D84 /* RealmSwift in Frameworks */,
+				35F48A9F2A64F16600BA8BE5 /* MessageKit in Frameworks */,
 				313E3FF2D4D47B0EF4036FCD /* Pods_VoiceConsultingApp.framework in Frameworks */,
-				351E93F22A2CAA2B00C598C3 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +492,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3500D24F2A60F7D50070E264 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				3500D2502A60F7E50070E264 /* AgoraTokenService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		3500F74029DC07390080AC4F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -1147,6 +1145,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				3500D24F2A60F7D50070E264 /* Service */,
 				35D8E23C2A5562390091EB6A /* define */,
 				35C29FF329ECE19F0018FE04 /* ChatRoom */,
 				351E93F62A2CCC4100C598C3 /* Error */,
@@ -1284,13 +1283,7 @@
 			);
 			name = VoiceConsultingApp;
 			packageProductDependencies = (
-				35C29FF129ECE1830018FE04 /* MessageKit */,
-				358609E52A20D602000DF83B /* Cosmos */,
-				3504CC702A2C79D500952D84 /* Realm */,
-				3504CC722A2C79D500952D84 /* RealmSwift */,
-				351E93F12A2CAA2B00C598C3 /* GoogleSignIn */,
-				351E93F32A2CAA2B00C598C3 /* GoogleSignInSwift */,
-				35CC32472A5AB4F700D0E7C2 /* Alamofire */,
+				35F48A9E2A64F16600BA8BE5 /* MessageKit */,
 			);
 			productName = VoiceConsultingApp;
 			productReference = 35EAEAEF29CAF99500AAE587 /* VoiceConsultingApp.app */;
@@ -1359,7 +1352,7 @@
 				};
 			};
 			buildConfigurationList = 35EAEAEA29CAF99500AAE587 /* Build configuration list for PBXProject "VoiceConsultingApp" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1368,11 +1361,7 @@
 			);
 			mainGroup = 35EAEAE629CAF99500AAE587;
 			packageReferences = (
-				35C29FF029ECE1830018FE04 /* XCRemoteSwiftPackageReference "MessageKit" */,
-				358609E42A20D602000DF83B /* XCRemoteSwiftPackageReference "Cosmos" */,
-				3504CC6F2A2C79D500952D84 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				351E93F02A2CAA2B00C598C3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				35CC32462A5AB4F700D0E7C2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				35F48A9D2A64F16600BA8BE5 /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = 35EAEAF029CAF99500AAE587 /* Products */;
 			projectDirPath = "";
@@ -1585,6 +1574,7 @@
 				357C78AE2A407A4A00B1849D /* Extension+Rx+ScrollView.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				3504E2B429E3A8A0006AEED6 /* MoreLiveVC.swift in Sources */,
+				3500D2512A60F7E50070E264 /* AgoraTokenService.swift in Sources */,
 				350CA2272A19089500B1756C /* CategoryTVCell.swift in Sources */,
 				35C29FFF29ECF3E40018FE04 /* Sender.swift in Sources */,
 				354664BB29E43FC50055375F /* ServiceCenterBlock.swift in Sources */,
@@ -2059,83 +2049,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3504CC6F2A2C79D500952D84 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		35F48A9D2A64F16600BA8BE5 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		351E93F02A2CAA2B00C598C3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
-		358609E42A20D602000DF83B /* XCRemoteSwiftPackageReference "Cosmos" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 23.0.0;
-			};
-		};
-		35C29FF029ECE1830018FE04 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			repositoryURL = "https://github.com/MessageKit/MessageKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
 			};
 		};
-		35CC32462A5AB4F700D0E7C2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3504CC702A2C79D500952D84 /* Realm */ = {
+		35F48A9E2A64F16600BA8BE5 /* MessageKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3504CC6F2A2C79D500952D84 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		3504CC722A2C79D500952D84 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3504CC6F2A2C79D500952D84 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
-		351E93F12A2CAA2B00C598C3 /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 351E93F02A2CAA2B00C598C3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		351E93F32A2CAA2B00C598C3 /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 351E93F02A2CAA2B00C598C3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
-		};
-		358609E52A20D602000DF83B /* Cosmos */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 358609E42A20D602000DF83B /* XCRemoteSwiftPackageReference "Cosmos" */;
-			productName = Cosmos;
-		};
-		35C29FF129ECE1830018FE04 /* MessageKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 35C29FF029ECE1830018FE04 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			package = 35F48A9D2A64F16600BA8BE5 /* XCRemoteSwiftPackageReference "MessageKit" */;
 			productName = MessageKit;
-		};
-		35CC32472A5AB4F700D0E7C2 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 35CC32462A5AB4F700D0E7C2 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

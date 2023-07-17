@@ -24,32 +24,10 @@ class MainVC: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         isHiddenNavigationBar()
         bindTableView()
         addCoinBlockTapAction()
-    
-        AgoraManager.shared.registerToAppSever(userName: "asdasdasd", passWord: "abcdefghif", callBack: { dic, num in
-            
-            print(dic)
-            print(num)
-        })
-//        AgoraManager.shared
-//            .register(userUid:
-//                    FirebaseAuthManager.shared.getUserUid()!)
-//            .subscribe({ event in
-//
-//                switch event {
-//
-//                case .next(let nickName):
-//
-//                    print("성공 \(nickName)")
-//                case .error(let error):
-//                    print(error)
-//                case .completed:
-//                    print(#function)
-//                }
-//            })
-//            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - Notification

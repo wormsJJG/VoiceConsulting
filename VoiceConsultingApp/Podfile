@@ -13,6 +13,7 @@ pod 'FirebaseStorage', '~> 10.0.0'
 pod 'FirebaseFirestore', '~> 10.0.0'
 pod 'FirebaseFirestoreSwift', '~> 10.0.0'
 pod 'FirebaseRemoteConfig', '~> 10.0.0'
+pod 'Firebase/Functions'
 pod 'RxSwift'
 pod 'RxCocoa'
 pod 'RxGesture'
@@ -28,6 +29,10 @@ pod 'Pageboy', '~> 4.0'
 pod 'AgoraRtcEngine_iOS'
 pod 'AgoraRtm_iOS'
 pod 'Agora_Chat_iOS'
+pod 'Alamofire'
+pod 'Cosmos'
+pod 'RealmSwift'
+pod 'GoogleSignIn'
 
   target 'VoiceConsultingAppTests' do
     inherit! :search_paths

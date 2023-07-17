@@ -48,6 +48,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
 // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setDelegates()
         constraints()
         setMessageCollectionView()
@@ -56,21 +57,27 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
     }
     
     func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
+        
         for msg in aMessages {
+            
             print(msg.swiftBody)
             switch msg.swiftBody {
+                
             case let .text(content):
+                
                 print(msg.from)
                 var message = Message(content: content, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
                 messages.append(message)
                 self.messagesCollectionView.reloadData()
             default:
+                
                 break
             }
         }
     }
     
     private func setDelegates() {
+        
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
@@ -84,6 +91,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         self.view.addSubview(headerview)
         
         self.headerview.snp.makeConstraints {
+            
             $0.left.equalTo(self.view.snp.left)
             $0.top.equalTo(self.view.snp.top)
             $0.right.equalTo(self.view.snp.right)
@@ -92,6 +100,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         self.view.addSubview(requestView)
         
         requestView.snp.makeConstraints {
+            
             $0.height.equalTo(66)
             $0.left.equalTo(self.view.snp.left)
             $0.top.equalTo(self.headerview.snp.bottom)
@@ -100,8 +109,10 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
     }
     
     private func addAction() {
+        
         headerview.backButton.rx.tap
             .bind(onNext: { [weak self] _ in
+                
                 self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: self.disposeBag)
@@ -109,7 +120,9 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
 }
 // MARK: - didTapHeartButton
 extension ChatRoomVC: HeartButtonDelegate {
+    
     func didTapHeartButton(didTap: Bool) {
+        
         print(didTap)
     }
 }
@@ -117,14 +130,17 @@ extension ChatRoomVC: HeartButtonDelegate {
 // MARK: - MessagesDataSource
 extension ChatRoomVC: MessagesDataSource {
     var currentSender: MessageKit.SenderType {
+        
         return self.sender
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessageKit.MessagesCollectionView) -> MessageKit.MessageType {
+        
         return messages[indexPath.section]
     }
     
     func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {
+        
         return messages.count
     }
     
@@ -132,17 +148,23 @@ extension ChatRoomVC: MessagesDataSource {
         if let msg = message as? Message {
             switch msg.systemMessage! {
             case .requestTranscation:
+                
                 let cell = messagesCollectionView.dequeueReusableCell(RequestTransactionCell.self, for: indexPath)
+                
                 cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: requestTranscationSizeCalculator)
                 
                 return cell
             case .transactionCompleted:
+                
                 let cell = messagesCollectionView.dequeueReusableCell(TransactionCompletedCell.self, for: indexPath)
+                
                 cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: transcationCompletedSizeCalculator)
                 
                 return cell
             case .endConsultation:
+                
                 let cell = messagesCollectionView.dequeueReusableCell(EndConsultationCell.self, for: indexPath)
+                
                 cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: endConsultationSizeCalculator)
                 cell.systemMessageDelegate = self
 
@@ -154,9 +176,11 @@ extension ChatRoomVC: MessagesDataSource {
     }
 
     func textCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell? {
+        
         let cell = messagesCollectionView.dequeueReusableCell(
           CustomTextMessageCell.self,
           for: indexPath)
+        
         cell.configure(
           with: message,
           at: indexPath,
@@ -352,7 +376,6 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
             conversationId: "test", from: AgoraChatClient.shared.currentUsername!,
             to: "worms0627", body: .text(content: message.content), ext: nil
                 )
-//        let message = Agora
         
         AgoraChatClient.shared.chatManager?.send(msg, progress: nil)
         messages.append(message)
@@ -368,7 +391,8 @@ extension ChatRoomVC: MessageButtonTouchable {
         case .requestTranscation:
             print("거래 요청")
         case .transactionCompleted:
-            print("결제 완료")
+            self.messageInputBar.endEditing(true)
+            self.moveVoiceRoom()
         case .endConsultation:
             self.messageInputBar.endEditing(true)
             self.moveWriteReviewVC()
@@ -380,5 +404,12 @@ extension ChatRoomVC: MessageButtonTouchable {
         writeReviewVC.hidesBottomBarWhenPushed = true
         
         self.navigationController?.pushViewController(writeReviewVC, animated: true)
+    }
+    
+    func moveVoiceRoom() {
+        
+        let voiceRoomVC = VoiceRoomVC()
+        
+        self.navigationController?.pushViewController(voiceRoomVC, animated: true)
     }
 }

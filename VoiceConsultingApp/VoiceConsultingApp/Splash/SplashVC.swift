@@ -61,8 +61,7 @@ extension SplashVC {
                         
                         Config.isUser = user.isUser!
                         self?.viewModel.saveCategory()
-//                        self?.moveMain()
-                        self?.moveVoiceRoom()
+                        self?.moveMain()
                     }
                     
                 case .error(let error):
