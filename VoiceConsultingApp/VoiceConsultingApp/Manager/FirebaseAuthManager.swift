@@ -42,4 +42,14 @@ class FirebaseAuthManager {
             print(error.localizedDescription)
         }
     }
+    
+    func getAccessToken(_ completion: @escaping (Error?, String?) -> Void) {
+        
+        let currentUser = Auth.auth().currentUser
+        
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            
+            completion(error, idToken)
+        }
+    }
 }

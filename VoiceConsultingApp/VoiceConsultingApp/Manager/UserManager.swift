@@ -12,25 +12,29 @@ import RxSwift
 
 class UserManager {
     static let shared = UserManager()
-    private let db = Firestore.firestore()
+    private let db = Firestore.firestore().collection(FBCollection.user.rawValue)
     
     // MARK: - checkField
     func checkField(uid: String) -> Observable<Bool> {
         return Observable.create { event in
             
-            self.db.collection(FBCollection.user.rawValue)
-                .document(uid).getDocument(as: User.self) { result in
+            self.db.document(uid).getDocument(completion: { documentSnapshot, error in
+                
+                if let error {
                     
-                    switch result {
-                        
-                    case .success(_):
-                        event.onNext(true)
-                        event.onCompleted()
-                    case .failure(_):
-                        event.onNext(false)
-                        event.onCompleted()
-                    }
+                    event.onError(error)
                 }
+                
+                if let snapshot = documentSnapshot {
+                    
+                    event.onNext(snapshot.exists)
+                    event.onCompleted()
+                } else {
+                    
+                    event.onError(FBError.nilSnapshot)
+                }
+            })
+            
             return Disposables.create()
         }
     }
@@ -43,7 +47,7 @@ class UserManager {
             do {
                 
                 let user = User(name: name)
-                try self.db.collection(FBCollection.user.rawValue).document(uid).setData(from: user, merge: true) { error in
+                try self.db.document(uid).setData(from: user, merge: true) { error in
                     
                     if let error {
                         
@@ -69,7 +73,7 @@ class UserManager {
             
             if let uid = FirebaseAuthManager.shared.getUserUid() {
                 
-                self.db.collection(FBCollection.user.rawValue)
+                self.db
                     .document(uid).setData([FBUserFields.isUser.rawValue: isUser], merge: true) { error in
                         
                         if let error {
@@ -95,7 +99,7 @@ class UserManager {
             
             if let uid = FirebaseAuthManager.shared.getUserUid() {
                 
-                self.db.collection(FBCollection.user.rawValue)
+                self.db
                     .document(uid).setData([FBUserFields.categoryList.rawValue: categoryList], merge: true) { error in
                         
                         if let error {
@@ -119,7 +123,7 @@ class UserManager {
             do {
                 
                 let user = User(isUser: isUser, name: name)
-                try self.db.collection(FBCollection.user.rawValue).document(uid)
+                try self.db.document(uid)
                     .setData(from: user, completion: { error in
                         
                         if let error {
@@ -148,7 +152,7 @@ class UserManager {
             
             if let uid = FirebaseAuthManager.shared.getUserUid() {
                 
-                let docRef = self.db.collection(FBCollection.user.rawValue).document(uid)
+                let docRef = self.db.document(uid)
                 
                 docRef.getDocument(as: User.self, completion: { result in
                     

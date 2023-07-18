@@ -24,6 +24,31 @@ class CounselorManager {
         
     }
     
+    // MARK: - 필드 확인
+    func checkField(uid: String) -> Observable<Bool> {
+        return Observable.create { event in
+            
+            self.db.document(uid).getDocument(completion: { documentSnapshot, error in
+                
+                if let error {
+                    
+                    event.onError(error)
+                }
+                
+                if let snapshot = documentSnapshot {
+                    
+                    event.onNext(snapshot.exists)
+                    event.onCompleted()
+                } else {
+                    
+                    event.onError(FBError.nilSnapshot)
+                }
+            })
+            
+            return Disposables.create()
+        }
+    }
+    
     // MARK: - 상담사 가입
     func registerCounselor(counselor: CounselorInfo) -> Observable<String> {
         Observable.create { event in

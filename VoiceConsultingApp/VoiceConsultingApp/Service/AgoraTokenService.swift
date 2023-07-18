@@ -15,9 +15,18 @@ class AgoraTokenService {
     
     func getAgoraAppToken(completion: @escaping (Error?, String?) -> Void) {
         
-        functions.httpsCallable("makeAgoraChatToken").call() { result, error in
-        
-            completion(error, result?.data as? String)
-        }
+        FirebaseAuthManager.shared.getAccessToken({ error, accessToken in
+            
+            if let error {
+                
+                completion(error, nil)
+            } else {
+                
+                self.functions.httpsCallable("makeAgoraChatToken").call(["accessToken": accessToken]) { result, error in
+                
+                    completion(error, result?.data as? String)
+                }
+            }
+        })
     }
 }
