@@ -45,27 +45,14 @@ class SelectUseTypeVM: BaseViewModel {
         
         input.didTapNextButton
             .subscribe(onNext: { [weak self] isUser in
-                self?.addFieldIsuser(isUser: isUser)
+                self?.setCheckDataIsUser(in: isUser)
             })
             .disposed(by: self.disposeBag)
     }
     
-    private func addFieldIsuser(isUser: Bool) {
+    private func setCheckDataIsUser(in isUser: Bool) {
         
-        UserManager.shared.addUserType(isUser: isUser)
-            .subscribe({ [weak self] event in
-                
-                switch event {
-                    
-                case .next():
-                    self?.output.isSuccess.onNext(true)
-                case .error(let error):
-                    print(error.localizedDescription)
-                    self?.output.isSuccess.onNext(false)
-                case .completed:
-                    print("completed")
-                }
-            })
-            .disposed(by: self.disposeBag)
+        CheckDataManager.shared.setIsUser(in: isUser)
+        self.output.isSuccess.onNext(true)
     }
 }

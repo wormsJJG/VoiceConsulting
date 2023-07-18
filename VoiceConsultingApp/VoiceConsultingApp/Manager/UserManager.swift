@@ -39,34 +39,34 @@ class UserManager {
         }
     }
     
-    // MARK: - createField
-    func createUserUidField(name: String, uid: String) -> Observable<Void> {
-        
-        return Observable.create { event in
-                
-            do {
-                
-                let user = User(name: name)
-                try self.db.document(uid).setData(from: user, merge: true) { error in
-                    
-                    if let error {
-                        
-                        event.onError(error)
-                    } else {
-                        
-                        event.onNext(())
-                        event.onCompleted()
-                    }
-                }
-                
-            } catch {
-                
-                event.onError(error)
-            }
-            
-            return Disposables.create()
-        }
-    }
+//    // MARK: - createField
+//    func createUserUidField(name: String, uid: String) -> Observable<Void> {
+//
+//        return Observable.create { event in
+//
+//            do {
+//
+//                let user = User(name: name)
+//                try self.db.document(uid).setData(from: user, merge: true) { error in
+//
+//                    if let error {
+//
+//                        event.onError(error)
+//                    } else {
+//
+//                        event.onNext(())
+//                        event.onCompleted()
+//                    }
+//                }
+//                
+//            } catch {
+//
+//                event.onError(error)
+//            }
+//
+//            return Disposables.create()
+//        }
+//    }
     // MARK: - SelectUserType
     func addUserType(isUser: Bool) -> Observable<Void> {
         return Observable.create { event in
@@ -116,15 +116,14 @@ class UserManager {
         }
     }
     // MARK: - createUser
-    func createUser(uid: String, name: String, isUser: Bool) -> Observable<Void> {
+    func createUser(uid: String, user: User) -> Observable<Void> {
         
         Observable.create { event in
             
             do {
                 
-                let user = User(isUser: isUser, name: name)
                 try self.db.document(uid)
-                    .setData(from: user, completion: { error in
+                    .setData(from: user, merge: true, completion: { error in
                         
                         if let error {
                             

@@ -43,36 +43,20 @@ extension SplashVC {
     // 유저 데이터 유무 체크 유저가 회원가입 도중 중단했을경우를 생각
     private func userDataCheck() {
         
-        UserManager.shared.getCurrentUserData()
-            .subscribe({ [weak self] event in
-                
-                switch event {
-                    
-                case .next(let user):
-                    Config.name = user.name
-                    
-                    if user.isUser == nil {
-                        self?.moveSelectUseTypeVC()
-                    } else if user.categoryList == nil {
-                        
-                        Config.isUser = user.isUser!
-                        self?.moveSelectCategoryVC()
-                    } else {
-                        
-                        Config.isUser = user.isUser!
-                        self?.viewModel.saveCategory()
-                        self?.moveMain()
-                    }
-                    
-                case .error(let error):
-                    
-                    self?.moveLoginVC()
-                    print(error.localizedDescription)
-                case .completed:
-                    print("completed")
-                }
-            })
-            .disposed(by: self.disposeBag)
+        let isUser = CheckDataManager.shared.getIsUser()
+        let isInputInfo = CheckDataManager.shared.getIsInputInfo()
+        let name = CheckDataManager.shared.getName()
+        
+        if isInputInfo {
+            
+            Config.isUser = isUser
+            Config.name = name
+            self.viewModel.saveCategory()
+            self.moveMain()
+        } else {
+            
+            self.moveSelectUseTypeVC()
+        }
     }
 }
 

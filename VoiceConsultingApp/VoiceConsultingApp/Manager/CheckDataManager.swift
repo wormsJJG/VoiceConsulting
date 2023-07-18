@@ -6,45 +6,57 @@
 //
 
 import Foundation
-import RealmSwift
+
+enum CheckDataKey: String {
+    
+    case isLogin
+    case isInputInfo
+    case isUser
+    case name
+}
 
 class CheckDataManager {
     
     static let shared = CheckDataManager()
-    private let database: Realm
+    private let userDefault = UserDefaults.standard
     
-    private init() {
-        self.database = try! Realm()
+    func setIsLogin(in isLogin: Bool) {
+        
+        userDefault.set(isLogin, forKey: CheckDataKey.isLogin.rawValue)
     }
     
-    func setIsUser(isUser: Bool, completion: @escaping (Error?) -> Void) {
+    func setIsUser(in isUser: Bool) {
         
-        let checkData = CheckData()
-        checkData.isUser = isUser
-        
-        do {
-            
-            try database.write {
-                    
-                database.add(checkData)
-                completion(nil)
-            }
-        } catch {
-            
-            completion(error)
-        }
+        userDefault.set(isUser, forKey: CheckDataKey.isUser.rawValue)
     }
     
-    func getCheckData(completion: @escaping (CheckData?, Error?) -> Void) {
+    func setisInputInfo(in isInputInfo: Bool) {
         
-        do {
-            
-            let checkData = database.objects(CheckData.self)
-            
-            completion(checkData.first, nil)
-        } catch {
-            
-            completion(nil, error)
-        }
+        userDefault.set(isInputInfo, forKey: CheckDataKey.isInputInfo.rawValue)
+    }
+    
+    func setName(in name: String) {
+        
+        userDefault.set(name, forKey: CheckDataKey.name.rawValue)
+    }
+    
+    func getIsLogin() -> Bool {
+        
+        return userDefault.bool(forKey: CheckDataKey.isLogin.rawValue)
+    }
+    
+    func getIsUser() -> Bool {
+        
+        return userDefault.bool(forKey: CheckDataKey.isUser.rawValue)
+    }
+    
+    func getIsInputInfo() -> Bool {
+        
+        return userDefault.bool(forKey: CheckDataKey.isInputInfo.rawValue)
+    }
+    
+    func getName() -> String {
+        
+        return userDefault.string(forKey: CheckDataKey.name.rawValue) ?? "Name"
     }
 }
