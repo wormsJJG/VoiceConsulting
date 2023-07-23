@@ -268,7 +268,7 @@ class InputCounselorInfoV: UIView {
         
         inputProfileImageList.snp.makeConstraints {
             
-            $0.height.equalTo(100)
+            $0.height.equalTo(widthHeight)
         }
         
         inputIntroduceField.snp.makeConstraints {

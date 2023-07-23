@@ -31,7 +31,7 @@ class InputCounselorInfoVC: BaseViewController {
         setDelegates()
         outputSubscribe()
         addAction()
-//        setKeyboardObserver()
+        setKeyboardObserver()
     }
     
     // MARK: - SetDelegates

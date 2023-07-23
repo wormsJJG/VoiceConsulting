@@ -43,8 +43,8 @@ class AddPhotoCell: UICollectionViewCell {
         }
         
         backgroundColor = ColorSet.line
-        contentView.layer.cornerRadius = 15
-        contentView.layer.masksToBounds = true
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
     }
     
     required init?(coder: NSCoder) {
