@@ -32,10 +32,14 @@ extension SelectUseTypeVC {
     
     private func outputSubscribe() {
         
-        self.viewModel.output.isSuccess
-            .bind(onNext: { [weak self] isSuccess in
-                if isSuccess {
+        self.viewModel.output.isCompletedUseType
+            .bind(onNext: { [weak self] isUser in
+                if isUser {
+                    
                     self?.moveSelectCategoryVC()
+                } else {
+                    
+                    //상담사 회원가입
                 }
             })
             .disposed(by: self.disposeBag)
@@ -49,30 +53,35 @@ extension SelectUseTypeVC {
         
         self.selectUseTypeV.userButton.rx.tap
             .bind(onNext: { [weak self] _ in
+                
                 self?.viewModel.input.selectUseType.onNext(UseType.user)
             })
             .disposed(by: self.disposeBag)
         
         self.selectUseTypeV.counselorButton.rx.tap
             .bind(onNext: { [weak self] _ in
+                
                 self?.viewModel.input.selectUseType.onNext(UseType.counselor)
             })
             .disposed(by: self.disposeBag)
         
         self.viewModel.input.selectUseType
             .subscribe(onNext: { [weak self] useType in
+                
                 self?.selectUseTypeV.clickAction(useType: useType)
             })
             .disposed(by: self.disposeBag)
         
         self.viewModel.output.isNextButtonEnable
             .subscribe(onNext: { [weak self] isEnable in
+                
                 self?.selectUseTypeV.nextButton.isEnabled = isEnable
             })
             .disposed(by: self.disposeBag)
         
         self.selectUseTypeV.nextButton.rx.tap
             .bind(onNext: { [weak self] _ in
+                
                 self?.viewModel.input.didTapNextButton.onNext(self!.selectUseTypeV.isUser)
             })
             .disposed(by: self.disposeBag)

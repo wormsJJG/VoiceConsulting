@@ -35,7 +35,9 @@ class WriteReviewVC: BaseViewController {
 }
 // MARK: - AddAction
 extension WriteReviewVC {
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         self.view.endEditing(true)
     }
     
@@ -55,12 +57,14 @@ extension WriteReviewVC {
 extension WriteReviewVC: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
         guard textView.textColor == ColorSet.subTextColor2 else { return }
         textView.textColor = ColorSet.mainText
         textView.text = nil
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        
         if textView.text.isEmpty {
             textView.text = "리뷰작성하기"
             textView.textColor = ColorSet.subTextColor2
@@ -69,7 +73,9 @@ extension WriteReviewVC: UITextViewDelegate {
 }
 // MARK: - StarScorePickerDelegate
 extension WriteReviewVC: StarScorePickerDelegate {
+    
     func didChangeScore(score: Double) {
+        
         self.writeReviewV.updateStarScoreLabel(score: score)
     }
 }

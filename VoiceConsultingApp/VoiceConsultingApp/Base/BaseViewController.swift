@@ -31,6 +31,13 @@ class BaseViewController: UIViewController {
         self.navigationController?.pushViewController(splashVC, animated: true)
     }
     
+    func moveInputCounselorInfoVC() {
+        
+        let inputCounselorInfoVC = InputCounselorInfoVC()
+        
+        self.navigationController?.pushViewController(inputCounselorInfoVC, animated: true)
+    }
+    
     func moveMain() {
         let mainVC = CustomTabBarController()
         

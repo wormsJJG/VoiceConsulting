@@ -22,7 +22,7 @@ class SelectUseTypeVM: BaseViewModel {
     
     struct Output {
         let isNextButtonEnable: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-        let isSuccess: PublishSubject<Bool> = PublishSubject()
+        let isCompletedUseType: PublishSubject<Bool> = PublishSubject()
     }
     
     var input: Input
@@ -53,6 +53,6 @@ class SelectUseTypeVM: BaseViewModel {
     private func setCheckDataIsUser(in isUser: Bool) {
         
         CheckDataManager.shared.setIsUser(in: isUser)
-        self.output.isSuccess.onNext(true)
+        self.output.isCompletedUseType.onNext(isUser)
     }
 }
