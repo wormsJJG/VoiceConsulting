@@ -98,6 +98,18 @@ extension InputCounselorInfoVC {
             .disposed(by: self.disposeBag)
     }
 }
+// MARK: - DeleteButtonTouchable
+extension InputCounselorInfoVC: DeleteButtonTouchable {
+    
+    func didTapDeleteButton(_ image: UIImage?) {
+        
+        if let index = viewModel.output.profileImageList.firstIndex(of: image) {
+            
+            viewModel.output.profileImageList.remove(at: index)
+            inputCounselorInfoV.inputProfileImageList.reloadData()
+        }
+    }
+}
 
 // MARK: - CollectionView Delegate, DataSource
 extension InputCounselorInfoVC: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -126,6 +138,7 @@ extension InputCounselorInfoVC: UICollectionViewDataSource, UICollectionViewDele
                 return UICollectionViewCell()
             }
             
+            cell.deleteDelegate = self
             let image = viewModel.output.profileImageList[indexPath.item]
             cell.configureCell(in: image)
             

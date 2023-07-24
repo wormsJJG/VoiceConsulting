@@ -207,6 +207,7 @@
 		35C29FFF29ECF3E40018FE04 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFE29ECF3E40018FE04 /* Sender.swift */; };
 		35C5FA692A6E823B00815055 /* CancelImagePickPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5FA682A6E823B00815055 /* CancelImagePickPopUp.swift */; };
 		35C5FA6B2A6E83A400815055 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5FA6A2A6E83A400815055 /* PhotoCell.swift */; };
+		35C5FA6D2A6E8E2A00815055 /* DeleteButtonTouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5FA6C2A6E8E2A00815055 /* DeleteButtonTouchable.swift */; };
 		35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */; };
 		35CC324A2A5ABBA000D0E7C2 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CC32492A5ABBA000D0E7C2 /* Extension+String.swift */; };
 		35D216AB2A443AD30072A1E6 /* BuyCoinField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */; };
@@ -450,6 +451,7 @@
 		35C29FFE29ECF3E40018FE04 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		35C5FA682A6E823B00815055 /* CancelImagePickPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelImagePickPopUp.swift; sourceTree = "<group>"; };
 		35C5FA6A2A6E83A400815055 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		35C5FA6C2A6E8E2A00815055 /* DeleteButtonTouchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButtonTouchable.swift; sourceTree = "<group>"; };
 		35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraPushManager.swift; sourceTree = "<group>"; };
 		35CC32492A5ABBA000D0E7C2 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinField.swift; sourceTree = "<group>"; };
@@ -763,6 +765,7 @@
 				354B73C82A0B88AA00651EF9 /* CellTouchable.swift */,
 				354B73CC2A0BAEB200651EF9 /* MoreButtonTouchable.swift */,
 				35B15B862A1B158E004345F3 /* HeartButtonDelegate.swift */,
+				35C5FA6C2A6E8E2A00815055 /* DeleteButtonTouchable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1624,6 +1627,7 @@
 				359D327729E57D4E005BF86C /* BuyHistoryCell.swift in Sources */,
 				35289C602A0E038800D2B3C5 /* CustomTextMessageCell.swift in Sources */,
 				35BC05352A12640200E312C8 /* TransactionCompletedSizeCalculator.swift in Sources */,
+				35C5FA6D2A6E8E2A00815055 /* DeleteButtonTouchable.swift in Sources */,
 				354664B929E43ADF0055375F /* BigCoinBlock.swift in Sources */,
 				35277D2529DA8ACD002A2A14 /* PopularCell.swift in Sources */,
 				3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */,
