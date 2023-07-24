@@ -8,11 +8,13 @@
 import Foundation
 
 enum MoreType {
+    
     case live
     case popular
     case fitWell
 }
 
 protocol MoreButtonTouchable: AnyObject {
+    
     func didTouchMoreButton(_ moreType: MoreType)
 }

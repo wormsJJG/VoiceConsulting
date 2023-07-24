@@ -8,5 +8,6 @@
 import Foundation
 
 protocol CellTouchable: AnyObject {
+    
     func didTouchCell(_ model: Counselor) 
 }

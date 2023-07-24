@@ -205,6 +205,8 @@
 		35C29FFB29ECF2580018FE04 /* ImageMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFA29ECF2580018FE04 /* ImageMediaItem.swift */; };
 		35C29FFD29ECF2A20018FE04 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFC29ECF2A20018FE04 /* Message.swift */; };
 		35C29FFF29ECF3E40018FE04 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C29FFE29ECF3E40018FE04 /* Sender.swift */; };
+		35C5FA692A6E823B00815055 /* CancelImagePickPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5FA682A6E823B00815055 /* CancelImagePickPopUp.swift */; };
+		35C5FA6B2A6E83A400815055 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5FA6A2A6E83A400815055 /* PhotoCell.swift */; };
 		35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */; };
 		35CC324A2A5ABBA000D0E7C2 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CC32492A5ABBA000D0E7C2 /* Extension+String.swift */; };
 		35D216AB2A443AD30072A1E6 /* BuyCoinField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */; };
@@ -446,6 +448,8 @@
 		35C29FFA29ECF2580018FE04 /* ImageMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMediaItem.swift; sourceTree = "<group>"; };
 		35C29FFC29ECF2A20018FE04 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		35C29FFE29ECF3E40018FE04 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		35C5FA682A6E823B00815055 /* CancelImagePickPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelImagePickPopUp.swift; sourceTree = "<group>"; };
+		35C5FA6A2A6E83A400815055 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraPushManager.swift; sourceTree = "<group>"; };
 		35CC32492A5ABBA000D0E7C2 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinField.swift; sourceTree = "<group>"; };
@@ -545,6 +549,7 @@
 			isa = PBXGroup;
 			children = (
 				3503B9212A692E4400E8751A /* AddPhotoCell.swift */,
+				35C5FA6A2A6E83A400815055 /* PhotoCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -956,6 +961,7 @@
 				359638C02A23956700808EA0 /* PopUpVC.swift */,
 				359638C22A23A3D900808EA0 /* DeleteAccountPopUpVC.swift */,
 				357D4A1B2A2E0D98000052D1 /* OneButtonNoActionPopUpVC.swift */,
+				35C5FA682A6E823B00815055 /* CancelImagePickPopUp.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -1622,6 +1628,7 @@
 				35277D2529DA8ACD002A2A14 /* PopularCell.swift in Sources */,
 				3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */,
 				357D4A1E2A2E0F77000052D1 /* MypageCounselorMenu.swift in Sources */,
+				35C5FA6B2A6E83A400815055 /* PhotoCell.swift in Sources */,
 				357C78AE2A407A4A00B1849D /* Extension+Rx+ScrollView.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				3504E2B429E3A8A0006AEED6 /* MoreLiveVC.swift in Sources */,
@@ -1674,6 +1681,7 @@
 				356F7BE82A07E4A000C536D8 /* WriteReviewV.swift in Sources */,
 				3503B91B2A68F95E00E8751A /* PlainTextField.swift in Sources */,
 				356F7BD22A0790E300C536D8 /* AffiliationCell.swift in Sources */,
+				35C5FA692A6E823B00815055 /* CancelImagePickPopUp.swift in Sources */,
 				355EDEDE29D5CD0300F9BD5D /* SelectCategoryVC.swift in Sources */,
 				35CC324A2A5ABBA000D0E7C2 /* Extension+String.swift in Sources */,
 				35D216AB2A443AD30072A1E6 /* BuyCoinField.swift in Sources */,

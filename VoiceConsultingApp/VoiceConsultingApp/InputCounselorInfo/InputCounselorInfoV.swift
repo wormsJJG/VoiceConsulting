@@ -147,6 +147,7 @@ class InputCounselorInfoV: UIView {
         
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.register(AddPhotoCell.self, forCellWithReuseIdentifier: AddPhotoCell.cellID)
+        list.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.cellID)
         list.showsHorizontalScrollIndicator = false
         
         return list

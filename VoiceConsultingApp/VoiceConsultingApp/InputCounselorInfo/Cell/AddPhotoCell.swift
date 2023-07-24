@@ -31,11 +31,18 @@ class AddPhotoCell: UICollectionViewCell {
         
         $0.axis = .vertical
         $0.spacing = 4
+        $0.alignment = .center
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.addSubview(allStackView)
+        
+        cameraIconImageView.snp.makeConstraints {
+            
+            $0.width.height.equalTo(20)
+        }
         
         allStackView.snp.makeConstraints {
             
@@ -49,5 +56,13 @@ class AddPhotoCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureCell(in count: Int) {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.imageCountLabel.text = "\(count)/10"
+        }
     }
 }

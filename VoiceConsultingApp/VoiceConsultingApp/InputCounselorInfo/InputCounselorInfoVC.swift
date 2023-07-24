@@ -109,17 +109,74 @@ extension InputCounselorInfoVC: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if indexPath.row == 0 {
+        if indexPath.item == 0 {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddPhotoCell.cellID, for: indexPath) as? AddPhotoCell else {
                 
                 return UICollectionViewCell()
             }
             
+            cell.configureCell(in: viewModel.output.profileImageList.count - 1)
+            
             return cell
         } else {
             
-            return UICollectionViewCell()
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.cellID, for: indexPath) as? PhotoCell else {
+                
+                return UICollectionViewCell()
+            }
+            
+            let image = viewModel.output.profileImageList[indexPath.item]
+            cell.configureCell(in: image)
+            
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.item == 0 {
+            
+            presentImagePicker()
+        }
+    }
+}
+// MARK: - ImageFicker Function && Delegate
+extension InputCounselorInfoVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    private func presentImagePicker() {
+        
+        let picker = UIImagePickerController()
+        
+        picker.sourceType = .photoLibrary // 앨범에서 사진을 선택
+        picker.allowsEditing = true // 편집 가능
+        picker.delegate = self
+        
+        self.present(picker, animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // 사진을 선택하지않고 취소한 경우
+        
+        self.dismiss(animated: true) { () in // 창 닫기
+            
+            let popUp = CancelImagePickPopUp()
+            popUp.hidesBottomBarWhenPushed = true
+            popUp.modalPresentationStyle = .overFullScreen
+            popUp.modalTransitionStyle = .crossDissolve
+            
+            self.present(popUp, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // 사진을 선택한 경우
+        
+        self.dismiss(animated: true) { () in // 창닫기
+            
+            let selectImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+            self.viewModel.output.profileImageList.append(selectImage)
+            self.inputCounselorInfoV.inputProfileImageList.reloadData()
         }
     }
 }

@@ -17,7 +17,7 @@ class InputCounselorInfoVM: BaseViewModel {
     
     struct Output {
         
-        var profileImageList: [String] = [""]
+        var profileImageList: [UIImage?] = [nil]
         let addAffiliationFieldEvent: PublishSubject<Int> = PublishSubject()
     }
     
