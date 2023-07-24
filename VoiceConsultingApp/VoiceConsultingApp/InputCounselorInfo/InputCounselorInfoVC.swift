@@ -66,6 +66,15 @@ extension InputCounselorInfoVC {
                 self?.viewModel.input.didTapAddAffiliationField.onNext(())
             })
             .disposed(by: self.disposeBag)
+        
+        inputCounselorInfoV.selectProfileButton
+            .rx
+            .tap
+            .bind(onNext: { [weak self] _ in
+                
+                print(#function)
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - Output Subscribe

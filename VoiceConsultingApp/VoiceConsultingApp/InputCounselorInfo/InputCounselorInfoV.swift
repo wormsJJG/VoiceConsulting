@@ -37,11 +37,19 @@ class InputCounselorInfoV: UIView {
         
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 40
-        $0.clipsToBounds = true
         $0.layer.borderWidth = 1
         $0.layer.borderColor = ColorSet.line?.cgColor
         $0.image = UIImage(named: AssetImage.myIconFull)
         $0.contentMode = .center
+        $0.layer.masksToBounds = false
+    }
+    
+    let selectProfileButton: UIButton = UIButton().then {
+        
+        $0.backgroundColor = ColorSet.line
+        $0.layer.cornerRadius = 17
+        $0.layer.masksToBounds = true
+        $0.setImage(UIImage(named: AssetImage.cameraIconFull), for: .normal)
     }
     
     private lazy var inputProfileStackView: UIStackView = UIStackView(arrangedSubviews: [inputProfileTitle,
@@ -282,6 +290,15 @@ class InputCounselorInfoV: UIView {
         allStackView.snp.makeConstraints {
             
             $0.edges.equalTo(self.contentView.snp.edges).inset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
+        }
+        
+        profileImageView.addSubview(selectProfileButton)
+        
+        selectProfileButton.snp.makeConstraints {
+            
+            $0.height.width.equalTo(34)
+            $0.top.equalTo(profileImageView.snp.top).offset(56)
+            $0.left.equalTo(profileImageView.snp.left).offset(56)
         }
     }
 }
