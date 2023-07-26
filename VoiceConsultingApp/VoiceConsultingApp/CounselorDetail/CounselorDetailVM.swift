@@ -20,6 +20,7 @@ class CounselorDetailVM: BaseViewModel {
         let section = CounselorInfoSection.allCases
         var counselor: Counselor?
         var reviewList: ReviewList?
+        let isHeartCounselor: PublishSubject<Bool> = PublishSubject()
     }
     
     var input: Input
@@ -57,6 +58,7 @@ class CounselorDetailVM: BaseViewModel {
                     self?.output.counselor = counselor
                     self?.output.reloadTrigger.onNext(())
                     self?.getCounselorReview(uid: counselor.uid)
+                    self?.checkCounselorHeart(in: counselor.uid)
                 case .error(let error):
                     
                     print(error)
@@ -83,6 +85,27 @@ class CounselorDetailVM: BaseViewModel {
                     
                     print(error)
                 case .completed:
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func checkCounselorHeart(in counselorUid: String) {
+        
+        HeartManager.shared.checkIsHeart(in: counselorUid)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let isHeart):
+                    
+                    self?.output.isHeartCounselor.onNext(isHeart)
+                case .error(let error):
+                    
+                    print(error.localizedDescription)
+                case .completed:
+                    
                     print(#function)
                 }
             })

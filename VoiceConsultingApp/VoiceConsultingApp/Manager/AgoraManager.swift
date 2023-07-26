@@ -77,7 +77,7 @@ class AgoraManager {
             AgoraChatClient.shared
                 .login(withUsername: userUid, password: AgoraConst.password.rawValue) { nickName, agoraChatError in
                 
-                    if let agoraChatError {
+                    if agoraChatError != nil {
                         
                         event.onError(AgoraError.failedLogin)
                     }
@@ -106,42 +106,6 @@ class AgoraManager {
             }
             
             return Disposables.create()
-        }
-    }
-    
-    func constructRequest(method: HTTPMethod,
-                          uri: String,
-                          params: Dictionary<String,Any> ,
-                          headers:[String : String],
-                          callBack:@escaping ((Data?,HTTPURLResponse?,Error?) -> Void)) throws {
-
-        guard let url = URL(string: self.registerUrl+uri) else {
-            return
-        }
-        //MARK: - request
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
-        urlRequest.httpMethod = method.rawValue
-        self.session?.dataTask(with: urlRequest){
-            if $2 == nil {
-                callBack($0,($1 as! HTTPURLResponse),$2)
-            } else {
-                callBack(nil,nil,$2)
-            }
-        }.resume()
-    }
-    
-    func registerToAppSever(userName: String,passWord: String,callBack:@escaping ((Dictionary<String,Any>,Int) -> Void)) {
-        do {
-            try self.constructRequest(method: .post, uri: "/register", params: ["userAccount":userName,"userPassword":passWord], headers: ["Content-Type":"application/json"]) { data,response,error in
-                if error == nil {
-                    callBack(["성공": "tjdrhd"], 0)
-                } else {
-                    callBack(["error":error?.localizedDescription ?? ""],0)
-                }
-            }
-        } catch {
-            assert(false, "register error:\(error.localizedDescription)")
         }
     }
 }

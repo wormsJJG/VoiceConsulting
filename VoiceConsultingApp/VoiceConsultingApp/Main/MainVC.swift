@@ -28,10 +28,6 @@ class MainVC: BaseViewController {
         isHiddenNavigationBar()
         bindTableView()
         addCoinBlockTapAction()
-        AgoraTokenService.shared.getAgoraAppToken(completion: { error, token in
-            
-            print(token)
-        })
     }
 }
 // MARK: - Notification

@@ -11,14 +11,13 @@ import SnapKit
 
 class InputCounselorInfoV: UIView {
     
-    private let titleLabel: UILabel = UILabel().then {
+    let header: PlainHeaderView = PlainHeaderView().then {
         
-        $0.text = "상담사 회원가입"
-        $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 16)
-        $0.textColor = ColorSet.mainText
+        $0.isHiddenRefreshButton = true
+        $0.headerType = .inputCounselrInfo
     }
     
-    private lazy var scrollView: UIScrollView = UIScrollView().then {
+    lazy var scrollView: UIScrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .white
     }
@@ -41,7 +40,9 @@ class InputCounselorInfoV: UIView {
         $0.layer.borderColor = ColorSet.line?.cgColor
         $0.image = UIImage(named: AssetImage.myIconFull)
         $0.contentMode = .center
-        $0.layer.masksToBounds = false
+        $0.layer.masksToBounds = true
+        $0.clipsToBounds = true
+        $0.isUserInteractionEnabled = true
     }
     
     let selectProfileButton: UIButton = UIButton().then {
@@ -50,13 +51,13 @@ class InputCounselorInfoV: UIView {
         $0.layer.cornerRadius = 17
         $0.layer.masksToBounds = true
         $0.setImage(UIImage(named: AssetImage.cameraIconFull), for: .normal)
+        $0.clipsToBounds = true
     }
     
     private lazy var inputProfileStackView: UIStackView = UIStackView(arrangedSubviews: [inputProfileTitle,
                                                                                          profileImageView]).then {
         
         $0.axis = .vertical
-        $0.distribution = .fillProportionally
         $0.alignment = .center
         $0.spacing = 20
     }
@@ -225,12 +226,13 @@ class InputCounselorInfoV: UIView {
     
     private func constraints() {
         
-        self.addSubview(titleLabel)
+        self.addSubview(header)
         
-        titleLabel.snp.makeConstraints {
+        header.snp.makeConstraints {
             
-            $0.left.equalTo(self.snp.left).offset(20)
-            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.left.equalTo(self.snp.left)
+            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            $0.right.equalTo(self.snp.right)
         }
         
         self.addSubview(nextButton)
@@ -247,7 +249,7 @@ class InputCounselorInfoV: UIView {
         
         self.scrollView.snp.makeConstraints { scrollView in
             scrollView.left.equalTo(self.snp.left)
-            scrollView.top.equalTo(self.titleLabel.snp.bottom).offset(16)
+            scrollView.top.equalTo(self.header.snp.bottom)
             scrollView.right.equalTo(self.snp.right)
             scrollView.bottom.equalTo(self.nextButton.snp.top).offset(-10)
         }
@@ -292,7 +294,7 @@ class InputCounselorInfoV: UIView {
             $0.edges.equalTo(self.contentView.snp.edges).inset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
         }
         
-        profileImageView.addSubview(selectProfileButton)
+        contentView.addSubview(selectProfileButton)
         
         selectProfileButton.snp.makeConstraints {
             

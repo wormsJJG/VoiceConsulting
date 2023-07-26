@@ -52,8 +52,7 @@ extension SplashVC {
             Config.isUser = isUser
             Config.name = name
             self.viewModel.saveCategory()
-//            self.moveMain()
-            self.moveInputCounselorInfoVC()
+            self.moveMain()
         } else {
             
             self.moveSelectUseTypeVC()

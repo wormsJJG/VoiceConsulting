@@ -52,6 +52,13 @@ class CounselorDetailVC: BaseViewController {
                 self?.counselorDetailV.infoList.reloadData()
             })
             .disposed(by: self.disposeBag)
+        
+        viewModel.output.isHeartCounselor
+            .subscribe(onNext: { [weak self] isHeart in
+
+                self?.counselorDetailV.header.heartButton.isHeart = isHeart
+            })
+            .disposed(by: self.disposeBag)
     }
     
     func setCounselorUid(uid: String) {

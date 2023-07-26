@@ -23,6 +23,7 @@ class InputCounselorInfoVM: BaseViewModel {
     
     var input: Input
     var output: Output
+    var isSelectProfile: Bool = true
     private var affiliationFieldCount: Int = 1
     private let disposeBag = DisposeBag()
     

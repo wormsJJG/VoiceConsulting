@@ -10,11 +10,15 @@ import UIKit
 class HeartButton: BaseButton {
     weak var delegate: HeartButtonDelegate?
     
-    var didTap: Bool = false {
+    var isHeart: Bool = false {
+        
         didSet {
-            if didTap {
+            
+            if isHeart {
+                
                 self.setImage(UIImage(named: AssetImage.heart_Fill), for: .normal)
             } else {
+                
                 self.setImage(UIImage(named: AssetImage.heart), for: .normal)
             }
         }
@@ -24,17 +28,21 @@ class HeartButton: BaseButton {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        
         if fill {
-            didTap = true
+            
+            isHeart = true
         } else {
-            didTap = false
+            
+            isHeart = false
         }
         
         self.addTarget(self, action: #selector(didTapAction), for: .touchDown)
     }
     
     @objc func didTapAction() {
-        didTap = !didTap
-        delegate?.didTapHeartButton(didTap: didTap)
+        
+        isHeart = !isHeart
+        delegate?.didTapHeartButton(didTap: isHeart)
     }
 }

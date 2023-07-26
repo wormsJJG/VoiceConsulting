@@ -35,7 +35,7 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
     // MARK: - Properties
     var isCustomInputView: Bool = false
     let channel: ChatChannel = ChatChannel(name: "김이름 상담사")
-    var sender = Sender(senderId: "any_unique_id", displayName: "jake")
+    var sender = Sender(senderId: AgoraManager.shared.currentUser!.lowercased(), displayName: Config.name)
     var messages = [Message]()
     private let disposeBag = DisposeBag()
     
@@ -373,7 +373,7 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     
     private func sendMessage(message: Message) {
         let msg = AgoraChatMessage(
-            conversationId: "test", from: AgoraChatClient.shared.currentUsername!,
+            conversationId: "test", from: AgoraChatClient.shared.currentUsername!.lowercased(),
             to: "worms0627", body: .text(content: message.content), ext: nil
                 )
         

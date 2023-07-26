@@ -62,7 +62,8 @@ class HeartCounselorCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.heartButton.didTap = true
+        
+        self.heartButton.isHeart = true
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

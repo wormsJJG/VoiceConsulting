@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 class InputCounselorInfoVC: BaseViewController {
     
@@ -50,13 +51,16 @@ class InputCounselorInfoVC: BaseViewController {
 // MARK: - Add Action
 extension InputCounselorInfoVC {
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        
-        view.endEditing(true)
-    }
-    
     private func addAction() {
+        
+        inputCounselorInfoV.header.backButton
+            .rx
+            .tap
+            .bind(onNext: { [weak self] _ in
+                
+                self?.popVC()
+            })
+            .disposed(by: self.disposeBag)
         
         inputCounselorInfoV.addAffiliationFieldButton
             .rx
@@ -67,14 +71,43 @@ extension InputCounselorInfoVC {
             })
             .disposed(by: self.disposeBag)
         
+        inputCounselorInfoV.profileImageView
+            .rx
+            .tapGesture()
+            .when(.recognized)
+            .bind(onNext: { [weak self] _ in
+                
+                self?.viewModel.isSelectProfile = true
+                self?.presentImagePicker()
+            })
+            .disposed(by: self.disposeBag)
+        
         inputCounselorInfoV.selectProfileButton
             .rx
             .tap
             .bind(onNext: { [weak self] _ in
                 
-                print(#function)
+                self?.viewModel.isSelectProfile = true
+                self?.presentImagePicker()
             })
             .disposed(by: self.disposeBag)
+        
+        addDidTapScrollViewAction()
+    }
+    
+    private func addDidTapScrollViewAction() {
+        
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapScrollView))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+
+        inputCounselorInfoV.scrollView.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+    
+    @objc private func didTapScrollView() {
+        
+        view.endEditing(true)
     }
 }
 // MARK: - Output Subscribe
@@ -159,6 +192,7 @@ extension InputCounselorInfoVC: UICollectionViewDataSource, UICollectionViewDele
         
         if indexPath.item == 0 {
             
+            viewModel.isSelectProfile = false
             presentImagePicker()
         }
     }
@@ -197,8 +231,16 @@ extension InputCounselorInfoVC: UIImagePickerControllerDelegate, UINavigationCon
         self.dismiss(animated: true) { () in // 창닫기
             
             let selectImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-            self.viewModel.output.profileImageList.append(selectImage)
-            self.inputCounselorInfoV.inputProfileImageList.reloadData()
+            
+            if self.viewModel.isSelectProfile {
+                
+                self.inputCounselorInfoV.profileImageView.contentMode = .scaleToFill
+                self.inputCounselorInfoV.profileImageView.image = selectImage
+            } else {
+                
+                self.viewModel.output.profileImageList.append(selectImage)
+                self.inputCounselorInfoV.inputProfileImageList.reloadData()
+            }
         }
     }
 }
