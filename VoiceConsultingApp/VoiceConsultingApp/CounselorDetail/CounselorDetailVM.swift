@@ -93,7 +93,7 @@ class CounselorDetailVM: BaseViewModel {
     
     private func checkCounselorHeart(in counselorUid: String) {
         
-        HeartManager.shared.checkIsHeart(in: counselorUid)
+        FavouriteManager.shared.checkIsFavorite(in: counselorUid)
             .subscribe({ [weak self] event in
                 
                 switch event {
@@ -110,5 +110,36 @@ class CounselorDetailVM: BaseViewModel {
                 }
             })
             .disposed(by: self.disposeBag)
+    }
+    
+    func didTapHeartButtonAction(in isFavorite: Bool) {
+        
+        if let counselorUid = output.counselor?.uid {
+            
+            FavouriteManager.shared.addFavouriteCounselor(isHeart: isFavorite, counselorUid: counselorUid)
+                .subscribe({ [weak self] event in
+                    
+                    switch event {
+                        
+                    case .next(let isHeart):
+                        
+                        self?.output.isHeartCounselor.onNext(isHeart)
+                        if isHeart {
+                            
+                            CounselorManager.shared.increaseHeart(in: counselorUid)
+                        } else {
+                            
+                            CounselorManager.shared.decreaseHeart(in: counselorUid)
+                        }
+                    case .error(let error):
+                        
+                        print(error.localizedDescription)
+                    case .completed:
+                        
+                        print(#function)
+                    }
+                })
+                .disposed(by: self.disposeBag)
+        }
     }
 }

@@ -230,6 +230,16 @@ class CounselorManager {
             return Disposables.create()
         }
     }
+    
+    func increaseHeart(in counselorUid: String) {
+        
+        db.document(counselorUid).updateData([CounselorField.heartCount.rawValue: FieldValue.increment(Int64(1))])
+    }
+    
+    func decreaseHeart(in counselorUid: String) {
+        
+        db.document(counselorUid).updateData([CounselorField.heartCount.rawValue: FieldValue.increment(Int64(-1))])
+    }
     // MARK: - TestFunc
     func createMockData() {
         

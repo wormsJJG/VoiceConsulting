@@ -400,6 +400,6 @@ extension CounselorDetailVC: HeartButtonDelegate {
     
     func didTapHeartButton(didTap: Bool) {
         
-        print(didTap)
+        viewModel.didTapHeartButtonAction(in: didTap)
     }
 }
