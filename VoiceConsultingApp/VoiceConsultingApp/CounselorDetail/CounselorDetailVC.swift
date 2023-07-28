@@ -10,6 +10,7 @@ import RxCocoa
 import RxSwift
 import RxGesture
 import Tabman
+import Toast_Swift
 
 class CounselorDetailVC: BaseViewController {
     // MARK: - Load View
@@ -17,6 +18,7 @@ class CounselorDetailVC: BaseViewController {
     
     override func loadView() {
         super.loadView()
+        
         counselorDetailV = CounselorDetailV(frame: self.view.frame)
         self.view = counselorDetailV
     }
@@ -27,12 +29,14 @@ class CounselorDetailVC: BaseViewController {
     // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         outputSubscribe()
         setDelegates()
         addAction()
     }
     // MARK: - setDelegates
     private func setDelegates() {
+        
         self.counselorDetailV.infoList.delegate = self
         self.counselorDetailV.infoList.dataSource = self
         self.counselorDetailV.stikyTapView.delegate = self
@@ -46,6 +50,13 @@ class CounselorDetailVC: BaseViewController {
                     
                 self?.counselorDetailV.header.counselorLabel.text = self?.viewModel.output.counselor!.info.name
                 self?.counselorDetailV.infoList.reloadData()
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.isHeartCounselor
+            .subscribe(onNext: { [weak self] isHeart in
+
+                self?.counselorDetailV.header.heartButton.isHeart = isHeart
             })
             .disposed(by: self.disposeBag)
     }
@@ -62,10 +73,12 @@ extension CounselorDetailVC: UIScrollViewDelegate {
 
         // 셀이 보이는지 확인
         let stikyTapIsHidden = indexPathsForVisibleRows?.contains { indexPath in
+            
             return indexPath.section == CounselorInfoSection.tapView.section && indexPath.row == 0
         } ?? false
         
         let reviewShow = indexPathsForVisibleRows?.contains { indexPath in
+            
             return indexPath.section == CounselorInfoSection.review.section && indexPath.row == 2 ||
             indexPath.section == CounselorInfoSection.review.section && indexPath.row > 2
         } ?? false
@@ -73,9 +86,12 @@ extension CounselorDetailVC: UIScrollViewDelegate {
         self.counselorDetailV.stikyTapView.isHidden = stikyTapIsHidden
         
         if !stikyTapIsHidden {
+            
             if reviewShow {
+                
                 self.counselorDetailV.stikyTapView.selectItem = .review
             } else {
+                
                 self.counselorDetailV.stikyTapView.selectItem = .review
                 self.counselorDetailV.stikyTapView.selectItem = .introduce
             }
@@ -84,41 +100,61 @@ extension CounselorDetailVC: UIScrollViewDelegate {
 }
 extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return viewModel.output.section.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         switch section {
+            
         case CounselorInfoSection.category.section :
+            
             return 1
         case CounselorInfoSection.profile.section :
+            
             return 1
         case CounselorInfoSection.tapView.section :
+            
             return 1
         case CounselorInfoSection.affiliation.section :
+            
             return 1
         case CounselorInfoSection.certificate.section :
+            
             return 1
         case CounselorInfoSection.detailIntrodution.section :
+            
             return 1
         case CounselorInfoSection.review.section :
-            return 10
             
+            guard let reviewList = self.viewModel.output.reviewList else {
+                
+                return 1
+            }
+            
+            return reviewList.count == 0 ? 1 : reviewList.count
         default:
+            
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch indexPath.section {
+            
         case CounselorInfoSection.category.section :
+            
             guard let categoryCell = tableView.dequeueReusableCell(withIdentifier: CategoryTVCell.cellID, for: indexPath) as? CategoryTVCell else {
+                
                 return UITableViewCell()
             }
             categoryCell.categoryList.onNext(self.viewModel.output.counselor?.info.categoryList ?? [])
             
             return categoryCell
         case CounselorInfoSection.profile.section :
+            
             guard let profileCell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.cellID, for: indexPath) as? ProfileCell else {
                 
                 return UITableViewCell()
@@ -173,6 +209,30 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
                 
                 return UITableViewCell()
             }
+            
+            guard let reviewList = self.viewModel.output.reviewList else {
+                
+                reviewCell.configureCell(in: Review(content: "등록된 후기가 없습니다.",
+                                                    counselorId: "",
+                                                    score: 5.0,
+                                                    userId: "",
+                                                    createAt: Int(Date().timeIntervalSince1970)))
+                
+                return reviewCell
+            }
+            
+            if reviewList.count == 0 {
+                
+                reviewCell.configureCell(in: Review(content: "등록된 후기가 없습니다.",
+                                                    counselorId: "",
+                                                    score: 5.0,
+                                                    userId: "",
+                                                    createAt: Int(Date().timeIntervalSince1970)))
+                
+                return reviewCell
+            }
+            
+            reviewCell.configureCell(in: reviewList[indexPath.row])
             
             return reviewCell
         }
@@ -231,40 +291,72 @@ extension CounselorDetailVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
         if section == 0 || section == 1 {
+            
             return 0
         } else {
+            
             return 20
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return UITableView.automaticDimension
     }
 }
 // MARK: - CustomTabbar
 extension CounselorDetailVC: CustomTabDelegate {
     func didSelectItem(_ item: CustomTabItem) {
+        
         switch item {
+            
         case .introduce:
+            
             scrollToProfile()
-            self.counselorDetailV.stikyTapView.selectItem = .introduce
         case .review:
+            
             scrollToReviewSection()
-            self.counselorDetailV.stikyTapView.selectItem = .review
         }
     }
     
     private func scrollToProfile() {
+        
         DispatchQueue.main.async {
+            
             self.counselorDetailV.infoList.scroll(to: .top)
+            self.counselorDetailV.stikyTapView.selectItem = .introduce
         }
     }
     
     private func scrollToReviewSection() {
-        DispatchQueue.main.async {
-            let indexPath = IndexPath(row: 2, section: CounselorInfoSection.review.section)
-            self.counselorDetailV.infoList.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        
+        guard let reviewList = viewModel.output.reviewList else {
+            
+            self.view.makeToast("등록된 후기가 없습니다.")
+            return
+        }
+        
+        if reviewList.count > 2 {
+            
+            DispatchQueue.main.async {
+                
+                let indexPath = IndexPath(row: 2, section: CounselorInfoSection.review.section)
+                self.counselorDetailV.infoList.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                self.counselorDetailV.stikyTapView.selectItem = .review
+            }
+        } else if reviewList.count == 0 {
+            
+            self.view.makeToast("등록된 후기가 없습니다.")
+        } else {
+            
+            DispatchQueue.main.async {
+                
+                let indexPath = IndexPath(row: 0, section: CounselorInfoSection.review.section)
+                self.counselorDetailV.infoList.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                self.counselorDetailV.stikyTapView.selectItem = .review
+            }
         }
     }
 }
@@ -273,6 +365,7 @@ extension CounselorDetailVC: CustomTabDelegate {
 extension CounselorDetailVC {
     
     private func addAction() {
+        
         counselorDetailV.header.backButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 
@@ -293,6 +386,7 @@ extension CounselorDetailVC {
     }
     
     func showPopUp() {
+        
         let popUp = OneButtonNoActionPopUpVC()
         
         popUp.hidesBottomBarWhenPushed = true
@@ -303,7 +397,9 @@ extension CounselorDetailVC {
 }
 // MARK: - didTapHeartButton
 extension CounselorDetailVC: HeartButtonDelegate {
+    
     func didTapHeartButton(didTap: Bool) {
-        print(didTap)
+        
+        viewModel.didTapHeartButtonAction(in: didTap)
     }
 }

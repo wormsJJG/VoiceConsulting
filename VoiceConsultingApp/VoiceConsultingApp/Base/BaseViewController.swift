@@ -11,6 +11,7 @@ import AcknowList
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.backgroundColor = .white
         isHiddenNavigationBar()
     }
@@ -29,6 +30,13 @@ class BaseViewController: UIViewController {
         let splashVC = SplashVC()
         
         self.navigationController?.pushViewController(splashVC, animated: true)
+    }
+    
+    func moveInputCounselorInfoVC() {
+        
+        let inputCounselorInfoVC = InputCounselorInfoVC()
+        
+        self.navigationController?.pushViewController(inputCounselorInfoVC, animated: true)
     }
     
     func moveMain() {
@@ -128,6 +136,13 @@ class BaseViewController: UIViewController {
         popUp.modalPresentationStyle = .overFullScreen
         popUp.modalTransitionStyle = .crossDissolve
         self.present(popUp, animated: true, completion: nil)
+    }
+    
+    func moveVoiceRoom() {
+        
+        let voiceRoomVC = VoiceRoomVC()
+        
+        self.navigationController?.pushViewController(voiceRoomVC, animated: true)
     }
     
     // MARK: - KeyBoard

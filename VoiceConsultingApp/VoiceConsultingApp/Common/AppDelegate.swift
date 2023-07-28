@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PushManager.shared.registerForPushNotifications() // Push Noti
         UNUserNotificationCenter.current().delegate = self // Push Noti Delegate
         AgoraPushManager.shared.initAgoraChatOptions() //AgoraPush
+        CategoryManager.shared.initCategoryData()
         
         return true
     }

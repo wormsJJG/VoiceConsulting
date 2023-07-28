@@ -8,15 +8,23 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
 
 class CategoryBlock: UIView {
-    var category: String = "가족상담" {
+    
+    var categoryName: String = "가족상담" {
+        
         didSet {
-            self.label.text = category
+            
+            DispatchQueue.main.async { [weak self] in
+                
+                self?.categoryNameLabel.text = self?.categoryName
+            }
         }
     }
     
-    lazy var label: UILabel = UILabel().then {
+    lazy var categoryNameLabel: UILabel = UILabel().then {
+        
         $0.text = "가족상담"
         $0.textColor = ColorSet.mainColor
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 12)
@@ -39,9 +47,9 @@ class CategoryBlock: UIView {
     }
     
     private func constraint() {
-        self.addSubview(label)
+        self.addSubview(categoryNameLabel)
         
-        label.snp.makeConstraints { label in
+        categoryNameLabel.snp.makeConstraints { label in
             label.center.equalTo(self.snp.center)
         }
     }

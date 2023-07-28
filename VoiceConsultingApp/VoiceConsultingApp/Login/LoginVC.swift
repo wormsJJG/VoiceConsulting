@@ -58,6 +58,7 @@ extension LoginVC {
             .subscribe(onNext: { [weak self] authResult in
                 if let authResult {
                     
+                    CheckDataManager.shared.setIsLogin(in: true)
                     self?.checkFisrtLoginCheck(uid: authResult.user.uid,
                                                name: authResult.user.displayName ?? "user")
                 } else {
@@ -74,30 +75,21 @@ extension LoginVC {
                 
                 if isLogined {
                     
+                    CheckDataManager.shared.setName(in: name)
                     self?.moveSplashVC()
                 } else {
                     
-                    self?.createField(name: name, uid: uid)
+                    self?.saveGlobalData(name: name, uid: uid)
+                    self?.moveSelectUseTypeVC()
                 }
             })
             .disposed(by: self.disposeBag)
     }
     
-    private func createField(name: String, uid: String) {
+    private func saveGlobalData(name: String, uid: String) {
         
-        UserManager.shared.createUserUidField(name: name, uid: uid)
-            .subscribe({ [weak self] event in
-                
-                switch event {
-                    
-                case .next():
-                    self?.moveSelectUseTypeVC()
-                case .error(let error):
-                    print(error.localizedDescription)
-                case .completed:
-                    print("completed")
-                }
-            })
-            .disposed(by: self.disposeBag)
+        CheckDataManager.shared.setName(in: name)
+        UserRegisterData.name = name
+        UserRegisterData.uid = uid
     }
 }

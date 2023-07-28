@@ -16,6 +16,7 @@ class CertificateCell: UITableViewCell {
     
     let certificateImageList: PublishSubject<[String]> = PublishSubject()
     private let disposeBag = DisposeBag()
+    
     let widthHeight = (UIScreen.main.bounds.width / 3) - 20
     
     private lazy var contentList: UICollectionView = {

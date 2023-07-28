@@ -9,23 +9,26 @@ import Foundation
 import AgoraChat
 
 class AgoraPushManager: NSObject, AgoraChatManagerDelegate, AgoraChatClientDelegate, AgoraChatMultiDevicesDelegate {
+    
     static let shared = AgoraPushManager()
     
     func initAgoraChatOptions() {
-        let options = AgoraChatOptions(appkey: "61936485#1094469")
-        options.apnsCertName = "com.team.winconsultingapp"
+        
+        let options = AgoraChatOptions(appkey: AgoraConst.appKey.rawValue)
+        options.apnsCertName = AgoraConst.apnsCertName.rawValue
         
         AgoraChatClient.shared.initializeSDK(with: options)
-        AgoraChatClient.shared.logout(true)
-        AgoraChatClient.shared.login(withUsername: "jaegeun0627", password: "worms1837@")
-        print("UserID:::: \(AgoraChatClient.shared.currentUsername)")
     }
     
     func registerForRemoteNotifications(deviceToken: Data) {
-        AgoraChatClient.shared.registerForRemoteNotifications(withDeviceToken: deviceToken) { error in
+        AgoraChatClient.shared
+            .registerForRemoteNotifications(withDeviceToken: deviceToken) { error in
+            
             if let error {
+                
                 print("Agora Push Noti Error: \(error.errorDescription!)")
             } else {
+                
                 print("\(deviceToken)")
             }
         }

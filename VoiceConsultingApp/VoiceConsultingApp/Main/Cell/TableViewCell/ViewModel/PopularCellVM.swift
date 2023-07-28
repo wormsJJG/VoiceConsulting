@@ -41,10 +41,13 @@ extension PopularCellVM {
                 switch event {
                     
                 case .next(let counselorList):
+                    
                     self?.output.popularCounselorList.onNext(counselorList)
                 case .error(let error):
+                    
                     print(error)
                 case .completed:
+                    
                     print("onCompleted")
                 }
             })

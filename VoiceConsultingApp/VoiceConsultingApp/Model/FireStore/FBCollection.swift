@@ -8,8 +8,12 @@
 import Foundation
 
 enum FBCollection: String {
+    
     case counselor = "Counselor"
     case user = "User"
     case category = "MasterCategory"
     case buyCoin = "BuyCoin"
+    case review = "Review"
+    case consulting = "Consulting"
+    case favourite = "Favourite"
 }

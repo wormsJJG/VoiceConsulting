@@ -38,6 +38,7 @@ class CounselorDetailV: UIView {
         $0.register(ReviewCell.self, forCellReuseIdentifier: ReviewCell.cellID)
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
+        $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
     }
     
 

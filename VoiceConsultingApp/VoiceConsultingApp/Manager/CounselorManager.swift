@@ -24,6 +24,31 @@ class CounselorManager {
         
     }
     
+    // MARK: - 필드 확인
+    func checkField(uid: String) -> Observable<Bool> {
+        return Observable.create { event in
+            
+            self.db.document(uid).getDocument(completion: { documentSnapshot, error in
+                
+                if let error {
+                    
+                    event.onError(error)
+                }
+                
+                if let snapshot = documentSnapshot {
+                    
+                    event.onNext(snapshot.exists)
+                    event.onCompleted()
+                } else {
+                    
+                    event.onError(FBError.nilSnapshot)
+                }
+            })
+            
+            return Disposables.create()
+        }
+    }
+    
     // MARK: - 상담사 가입
     func registerCounselor(counselor: CounselorInfo) -> Observable<String> {
         Observable.create { event in
@@ -59,7 +84,7 @@ class CounselorManager {
                     }
                     
                     guard let snapshot = querySnapshot else {
-                        event.onError(FBError.nilQuerySnapshot)
+                        event.onError(FBError.nilSnapshot)
                         return
                     }
                     
@@ -93,7 +118,7 @@ class CounselorManager {
                     }
                     
                     guard let snapshot = querySnapshot else {
-                        event.onError(FBError.nilQuerySnapshot)
+                        event.onError(FBError.nilSnapshot)
                         return
                     }
                     
@@ -130,7 +155,7 @@ class CounselorManager {
                     
                     guard let snapshot = querySnapshot else {
                         
-                        event.onError(FBError.nilQuerySnapshot)
+                        event.onError(FBError.nilSnapshot)
                         return
                     }
                     
@@ -159,18 +184,61 @@ class CounselorManager {
             
             let ref = self.db.document(uid)
             ref.getDocument(as: CounselorInfo.self, completion: { result in
+                
                 switch result {
+                    
                 case .success(let counselorInfo):
                     
                     let counselor = Counselor(uid: uid, info: counselorInfo)
                     event.onNext(counselor)
                     event.onCompleted()
                 case .failure(let error):
+                    
                     event.onError(error)
                 }
             })
             return Disposables.create()
         }
+    }
+    // MARK: -
+    func convertUidToCounselor(in uidList: [String]) -> Observable<[Counselor]> {
+        
+        return Observable.create { event in
+            
+            var counselorList: [Counselor] = []
+            
+            for uid in uidList {
+                
+                self.db.document(uid)
+                    .getDocument(as: CounselorInfo.self, completion: { result in
+                        
+                        switch result {
+    
+                        case .success(let counselorInfo):
+                            
+                            let counselor = Counselor(uid: uid, info: counselorInfo)
+                            counselorList.append(counselor)
+                        case .failure(let error):
+                            
+                            event.onError(error)
+                        }
+                    })
+            }
+            event.onNext(counselorList)
+            event.onCompleted()
+            
+            return Disposables.create()
+        }
+    }
+    
+    func increaseHeart(in counselorUid: String) {
+        
+        db.document(counselorUid).updateData([CounselorField.heartCount.rawValue: FieldValue.increment(Int64(1))])
+    }
+    
+    func decreaseHeart(in counselorUid: String) {
+        
+        db.document(counselorUid).updateData([CounselorField.heartCount.rawValue: FieldValue.increment(Int64(-1))])
     }
     // MARK: - TestFunc
     func createMockData() {

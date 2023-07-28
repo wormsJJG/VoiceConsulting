@@ -69,11 +69,11 @@ class BuyHistoryCell: UITableViewCell {
             
             self?.coinCountLabel.text = "코인 \(content.coin)개 구매"
             self?.priceLabel.text = "\(self!.formatCurrency(content.moneyPayment))원"
-            self?.dateLabel.text = self?.convertToDateString(content.createAt)
+            self?.dateLabel.text = self?.convertCreateAtToString(content.createAt)
         }
     }
     
-    func convertToDateString(_ timestamp: Int) -> String {
+    func convertCreateAtToString(_ timestamp: Int) -> String {
         
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         let dateFormatter = DateFormatter()

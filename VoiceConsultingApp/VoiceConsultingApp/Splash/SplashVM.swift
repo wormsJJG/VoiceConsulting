@@ -38,4 +38,22 @@ class SplashVM: BaseViewModel {
             })
             .disposed(by: self.disposeBag)
     }
+    
+    func saveCategory() {
+        
+//        CategoryManager.shared.getCategoryList()
+//            .subscribe({ event in
+//
+//                switch event {
+//
+//                case .next(let categoryList):
+//                    CategoryManager.categoryData = categoryList
+//                case .error(let error):
+//                    print(error)
+//                case .completed:
+//                    print(#function)
+//                }
+//            })
+//            .disposed(by: self.disposeBag)
+    }
 }

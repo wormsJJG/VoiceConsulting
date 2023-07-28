@@ -18,6 +18,7 @@ class CategoryTVCell: UITableViewCell {
     private let disposeBag = DisposeBag()
     
     private let categoryCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewLeftAlignFlowLayout()).then {
+        
         $0.register(CategoryCVCell.self, forCellWithReuseIdentifier: CategoryCVCell.cellID)
         $0.showsHorizontalScrollIndicator = false
     }
@@ -30,7 +31,9 @@ class CategoryTVCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.selectionStyle = .none
+        
         if let flowLayout = categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            
                 flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
         self.contentView.addSubview(categoryCollectionView)
@@ -60,9 +63,10 @@ class CategoryTVCell: UITableViewCell {
     }
     
     private func bindList() {
-        self.categoryList.bind(to: self.categoryCollectionView.rx.items(cellIdentifier: CategoryCVCell.cellID, cellType: CategoryCVCell.self)) { [weak self] index, category, cell in
+        self.categoryList.bind(to: self.categoryCollectionView.rx.items(cellIdentifier: CategoryCVCell.cellID, cellType: CategoryCVCell.self)) { [weak self] index, categoryId, cell in
             
-            cell.configureCell(in: category)
+            let categoryNameKr = CategoryManager.shared.convertIdToName(in: categoryId)
+            cell.configureCell(in: categoryNameKr)
         }
         .disposed(by: self.disposeBag)
     }

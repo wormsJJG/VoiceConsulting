@@ -8,13 +8,17 @@
 import UIKit
 import Then
 import SnapKit
+import Kingfisher
+import RxSwift
 
 class UseHistoryCell: UITableViewCell {
     static let cellID = "UseHistoryCell"
+    private let disposeBag = DisposeBag()
     
     private lazy var counselorProfile: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 15
+        $0.clipsToBounds = true
     }
     
     private lazy var counselorNameLabel: UILabel = UILabel().then {
@@ -98,5 +102,33 @@ class UseHistoryCell: UITableViewCell {
         self.top.snp.makeConstraints {
             $0.right.equalTo(self.allStackView.snp.right)
         }
+    }
+    
+    func configureCell(in consultingHistory: Consulting) {
+        
+        CounselorManager.shared.getCounselor(in: consultingHistory.counselorId)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                case .next(let counselor):
+                    self?.counselorProfile.kf.setImage(with: URL(string: counselor.info.profileImageUrl))
+                    self?.counselorNameLabel.text = counselor.info.name
+                    self?.useDateLabel.text = self?.convertCreateAtToString(consultingHistory.createAt)
+                    self?.consultationTimeLabel.text = "상담시간 \(consultingHistory.duration):00"
+                case .error(let error):
+                    print(error)
+                case .completed:
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func convertCreateAtToString(_ timestamp: Int) -> String {
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        return dateFormatter.string(from: date)
     }
 }

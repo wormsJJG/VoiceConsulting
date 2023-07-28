@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+import AgoraChat
 
 class MainVC: BaseViewController {
     // MARK: - Load View
@@ -23,9 +24,15 @@ class MainVC: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        isHiddenNavigationBar()
+        
         bindTableView()
         addCoinBlockTapAction()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mainV.mainList.reloadData()
     }
 }
 // MARK: - Notification

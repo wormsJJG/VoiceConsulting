@@ -8,13 +8,18 @@
 import UIKit
 import Then
 import SnapKit
+import Kingfisher
+import RxSwift
 
 class HeartCounselorCell: UITableViewCell {
+    
     static let cellID = "HeartCounselorCell"
+    private let disposeBag = DisposeBag()
     
     lazy var thumnailImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 40
+        $0.clipsToBounds = true
     }
     
     lazy var counselorName: UILabel = UILabel().then {
@@ -57,7 +62,8 @@ class HeartCounselorCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.heartButton.didTap = true
+        
+        self.heartButton.isHeart = true
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -69,8 +75,8 @@ class HeartCounselorCell: UITableViewCell {
         }
         
         categoryBlock.snp.makeConstraints { block in
-            block.width.equalTo(self.categoryBlock.label.snp.width).offset(12)
-            block.height.equalTo(self.categoryBlock.label.snp.height).offset(6)
+            block.width.equalTo(self.categoryBlock.categoryNameLabel.snp.width).offset(12)
+            block.height.equalTo(self.categoryBlock.categoryNameLabel.snp.height).offset(6)
         }
         
         self.contentView.addSubview(allStackView)
@@ -87,5 +93,30 @@ class HeartCounselorCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureCell(in counselorUid: String) {
+        
+        CounselorManager.shared.getCounselor(in: counselorUid)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let counselor):
+                    
+                    self?.thumnailImage.kf.setImage(with: URL(string: counselor.info.profileImageUrl))
+                    self?.counselorName.text = counselor.info.name
+                    self?.introduce.text = counselor.info.introduction
+                    let randomCategoryId = counselor.info.categoryList[Int.random(in: 0...counselor.info.categoryList.count - 1)]
+                    self?.categoryBlock.categoryName = CategoryManager.shared.convertIdToName(in: randomCategoryId)
+                case .error(let error):
+                    
+                    print(error)
+                case .completed:
+                    
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }

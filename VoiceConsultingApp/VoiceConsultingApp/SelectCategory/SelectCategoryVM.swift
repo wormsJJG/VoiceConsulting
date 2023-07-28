@@ -62,19 +62,28 @@ class SelectCategoryVM: BaseViewModel {
     
     private func addCategoryList() {
         
-        UserManager.shared.addCategory(categoryList: input.userSelectCategoryList)
-            .subscribe({ [weak self] event in
-                
-                switch event {
+        if let uid = FirebaseAuthManager.shared.getUserUid() {
+            
+            let user = User(name: UserRegisterData.name,
+                            categoryList: input.userSelectCategoryList,
+                            fcmToken: "",
+                            profileImageUrl: UserRegisterData.profileUrl ?? "")
+            
+            UserManager.shared.createUser(uid: uid, user: user)
+                .subscribe({ [weak self] event in
                     
-                case .next(_):
-                    self?.output.completion.onNext(nil)
-                case .error(let error):
-                    self?.output.completion.onNext(error)
-                case .completed:
-                    print("onCompleted")
-                }
-            })
-            .disposed(by: self.disposeBag)
+                    switch event {
+                        
+                    case .next(_):
+                        CheckDataManager.shared.setisInputInfo(in: true)
+                        self?.output.completion.onNext(nil)
+                    case .error(let error):
+                        self?.output.completion.onNext(error)
+                    case .completed:
+                        print("onCompleted")
+                    }
+                })
+                .disposed(by: self.disposeBag)
+        }
     }
 }

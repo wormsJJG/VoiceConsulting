@@ -11,13 +11,17 @@ class CustomTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.backgroundColor = .white
     }
 }
 
 extension CustomTabBarController {
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        isHiddenNavigationBar()
         let main = UINavigationController(rootViewController: MainVC())
         let chattingList = UINavigationController(rootViewController: ChattingListVC())
         let myPage = UINavigationController(rootViewController: MyPageVC())
@@ -46,11 +50,14 @@ extension CustomTabBarController {
 }
 
 extension CustomTabBarController {
+    
     func isHiddenBackButton() {
+        
         self.navigationItem.hidesBackButton = true
     }
     
     func isHiddenNavigationBar() {
+        
         self.navigationController?.navigationBar.isHidden = true
     }
 }

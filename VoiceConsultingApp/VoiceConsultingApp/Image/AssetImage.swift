@@ -8,6 +8,7 @@
 import Foundation
 
 class AssetImage {
+    
     static let check_off = "Check_off"
     static let check_on = "Check_on"
     static let kakaoLogin = "KaKaoLogin"
@@ -40,4 +41,10 @@ class AssetImage {
     static let albumIcon = "AlbumIcon"
     static let cameraIcon = "CameraIcon"
     static let cancelIcon = "CancelIcon"
+    static let muteIcon = "MuteIcon"
+    static let speakerIcon = "SpeakerIcon"
+    static let callExitIcon = "CallExitIcon"
+    static let myIconFull = "MyIconFull"
+    static let cameraIconFull = "CameraIconFull"
+    static let cancelWhiteIcon = "CancelWhiteIcon"
 }

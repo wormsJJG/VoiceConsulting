@@ -19,6 +19,8 @@ class CounselorDetailVM: BaseViewModel {
         let reloadTrigger: PublishSubject<Void> = PublishSubject()
         let section = CounselorInfoSection.allCases
         var counselor: Counselor?
+        var reviewList: ReviewList?
+        let isHeartCounselor: PublishSubject<Bool> = PublishSubject()
     }
     
     var input: Input
@@ -47,11 +49,97 @@ class CounselorDetailVM: BaseViewModel {
     private func getCounselor(uid: String) {
         
         CounselorManager.shared.getCounselor(in: uid)
-            .subscribe(onNext: { [weak self] counselor in
+            .subscribe({ [weak self] event in
                 
-                self?.output.counselor = counselor
-                self?.output.reloadTrigger.onNext(())
+                switch event {
+                    
+                case .next(let counselor):
+                    
+                    self?.output.counselor = counselor
+                    self?.output.reloadTrigger.onNext(())
+                    self?.getCounselorReview(uid: counselor.uid)
+                    self?.checkCounselorHeart(in: counselor.uid)
+                case .error(let error):
+                    
+                    print(error)
+                case .completed:
+                    
+                    print(#function)
+                }
             })
             .disposed(by: self.disposeBag)
+    }
+    
+    private func getCounselorReview(uid: String) {
+        
+        ReviewManager.shared.getReviewList(in: uid)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let reviewList):
+                    
+                    self?.output.reviewList = reviewList
+                    self?.output.reloadTrigger.onNext(())
+                case .error(let error):
+                    
+                    print(error)
+                case .completed:
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func checkCounselorHeart(in counselorUid: String) {
+        
+        FavouriteManager.shared.checkIsFavorite(in: counselorUid)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let isHeart):
+                    
+                    self?.output.isHeartCounselor.onNext(isHeart)
+                case .error(let error):
+                    
+                    print(error.localizedDescription)
+                case .completed:
+                    
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    func didTapHeartButtonAction(in isFavorite: Bool) {
+        
+        if let counselorUid = output.counselor?.uid {
+            
+            FavouriteManager.shared.addFavouriteCounselor(isHeart: isFavorite, counselorUid: counselorUid)
+                .subscribe({ [weak self] event in
+                    
+                    switch event {
+                        
+                    case .next(let isHeart):
+                        
+                        self?.output.isHeartCounselor.onNext(isHeart)
+                        if isHeart {
+                            
+                            CounselorManager.shared.increaseHeart(in: counselorUid)
+                        } else {
+                            
+                            CounselorManager.shared.decreaseHeart(in: counselorUid)
+                        }
+                    case .error(let error):
+                        
+                        print(error.localizedDescription)
+                    case .completed:
+                        
+                        print(#function)
+                    }
+                })
+                .disposed(by: self.disposeBag)
+        }
     }
 }

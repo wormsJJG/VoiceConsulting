@@ -8,42 +8,29 @@
 import Foundation
 
 struct User: Codable {
-    var isUser: Bool?
-    var name: String
-    var categoryList: [String]?
-    var isOnline: Bool?
-    var prfileImageUrl: String?
-    var affiliationList: [String]?
-    var licenseImages: [String]?
-    var phoneNumber: String?
-    var heartCount: Int?
-    var heartCounselor: [String]?
-    var coinCount: Int
-    var consultingCount: Int?
     
-    init(isUser: Bool? = nil,
-         name: String,
-         categoryList: [String]? = nil,
-         isOnline: Bool? = nil,
-         prfileImageUrl: String? = nil,
-         affiliationList: [String]? = nil,
-         licenseImages: [String]? = nil,
+    var name: String
+    var categoryList: [String]
+    var phoneNumber: String?
+    var coinCount: Int
+    var fcmToken: String
+    var platform: String
+    var profileImageUrl: String
+    
+    init(name: String,
+         categoryList: [String],
          phoneNumber: String? = nil,
-         heartCount: Int? = nil,
-         heartCounselor: [String]? = nil,
          coinCount: Int = 0,
-         consultingCount: Int? = nil) {
+         fcmToken: String,
+         platform: String = "apple",
+         profileImageUrl: String) {
         
-        self.isUser = isUser
         self.name = name
         self.categoryList = categoryList
-        self.isOnline = isOnline
-        self.prfileImageUrl = prfileImageUrl
-        self.affiliationList = affiliationList
-        self.licenseImages = licenseImages
         self.phoneNumber = phoneNumber
-        self.heartCount = heartCount
-        self.heartCounselor = heartCounselor
         self.coinCount = coinCount
+        self.fcmToken = fcmToken
+        self.platform = platform
+        self.profileImageUrl = profileImageUrl
     }
 }
