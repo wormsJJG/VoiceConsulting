@@ -184,7 +184,11 @@ extension MyPageVC: UITableViewDelegate {
                 switch menu {
                 
                 case .showProfile:
-                    print("프로필 보기")
+                    
+                    if let counselorUid = FirebaseAuthManager.shared.getUserUid() {
+                        
+                        self?.moveCounselorDetailVC(in: counselorUid)
+                    }
                 case .revenueManagement:
                     print("수익관리")
                 case .termsOfUse:
