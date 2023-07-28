@@ -17,7 +17,7 @@ class ChattingListHeader: UIView {
     }
     
     lazy var name: UILabel = UILabel().then {
-        $0.text = "박고민"
+        $0.text = Config.name
         $0.textColor = ColorSet.mainText
         $0.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 16)
     }

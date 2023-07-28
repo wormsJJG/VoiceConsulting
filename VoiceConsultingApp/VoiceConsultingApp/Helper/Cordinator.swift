@@ -31,6 +31,9 @@ class Cordinator {
                 Config.isUser = CheckDataManager.shared.getIsUser() // 글로벌 데이터에 유저 타입 넣기
                 Config.name = CheckDataManager.shared.getName() // 글로벌 데이터에 이름 넣기
                 window.rootViewController = UINavigationController(rootViewController: CustomTabBarController())
+            } else {
+                
+                window.rootViewController = UINavigationController(rootViewController: SelectUseTypeVC())
             }
         } else {
             
