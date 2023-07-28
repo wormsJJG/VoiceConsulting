@@ -75,8 +75,8 @@ class HeartCounselorCell: UITableViewCell {
         }
         
         categoryBlock.snp.makeConstraints { block in
-            block.width.equalTo(self.categoryBlock.label.snp.width).offset(12)
-            block.height.equalTo(self.categoryBlock.label.snp.height).offset(6)
+            block.width.equalTo(self.categoryBlock.categoryNameLabel.snp.width).offset(12)
+            block.height.equalTo(self.categoryBlock.categoryNameLabel.snp.height).offset(6)
         }
         
         self.contentView.addSubview(allStackView)
@@ -107,7 +107,8 @@ class HeartCounselorCell: UITableViewCell {
                     self?.thumnailImage.kf.setImage(with: URL(string: counselor.info.profileImageUrl))
                     self?.counselorName.text = counselor.info.name
                     self?.introduce.text = counselor.info.introduction
-                    self?.categoryBlock.categoryId = counselor.info.categoryList[Int.random(in: 0...counselor.info.categoryList.count - 1)]
+                    let randomCategoryId = counselor.info.categoryList[Int.random(in: 0...counselor.info.categoryList.count - 1)]
+                    self?.categoryBlock.categoryName = CategoryManager.shared.convertIdToName(in: randomCategoryId)
                 case .error(let error):
                     
                     print(error)

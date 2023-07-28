@@ -62,8 +62,8 @@ class FitWellCounselorCell: UICollectionViewCell {
         }
         
         categoryBlock.snp.makeConstraints { block in
-            block.width.equalTo(self.categoryBlock.label.snp.width).offset(12)
-            block.height.equalTo(self.categoryBlock.label.snp.height).offset(6)
+            block.width.equalTo(self.categoryBlock.categoryNameLabel.snp.width).offset(12)
+            block.height.equalTo(self.categoryBlock.categoryNameLabel.snp.height).offset(6)
         }
         
         self.contentView.addSubview(allStackView)
@@ -78,10 +78,12 @@ class FitWellCounselorCell: UICollectionViewCell {
     func configureCell(in counselor: CounselorInfo) {
         
         self.profileImage.kf.setImage(with: URL(string: counselor.profileImageUrl))
-        self.categoryBlock.categoryId = counselor.categoryList[Int.random(in: 0...counselor.categoryList.count-1)]
+        let randomCategoryId = counselor.categoryList[Int.random(in: 0...counselor.categoryList.count - 1)]
         DispatchQueue.main.async { [weak self] in
+            
             self?.counselorName.text = counselor.name
             self?.introduce.text = counselor.introduction
+            self?.categoryBlock.categoryName = CategoryManager.shared.convertIdToName(in: randomCategoryId)
         }
     }
 }

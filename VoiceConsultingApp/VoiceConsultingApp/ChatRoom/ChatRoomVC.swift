@@ -374,8 +374,8 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     private func sendMessage(message: Message) {
         let msg = AgoraChatMessage(
             conversationId: "test", from: AgoraChatClient.shared.currentUsername!.lowercased(),
-            to: "worms0627", body: .text(content: message.content), ext: nil
-                )
+            to: "worms0627", body: .text(content: message.content), ext: nil)
+
         
         AgoraChatClient.shared.chatManager?.send(msg, progress: nil)
         messages.append(message)

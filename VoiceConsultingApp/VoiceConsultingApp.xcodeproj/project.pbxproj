@@ -764,9 +764,9 @@
 		354B73C72A0B885400651EF9 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				35B15B862A1B158E004345F3 /* HeartButtonDelegate.swift */,
 				354B73C82A0B88AA00651EF9 /* CellTouchable.swift */,
 				354B73CC2A0BAEB200651EF9 /* MoreButtonTouchable.swift */,
-				35B15B862A1B158E004345F3 /* HeartButtonDelegate.swift */,
 				35C5FA6C2A6E8E2A00815055 /* DeleteButtonTouchable.swift */,
 			);
 			path = Protocol;

@@ -12,9 +12,40 @@ import FirebaseFirestoreSwift
 
 class CategoryManager {
     
-    static var categoryData: CategoryList?
+    var categoryList: CategoryList?
     static let shared = CategoryManager()
     private let db = Firestore.firestore().collection(FBCollection.category.rawValue)
+    
+    private init() {}
+    
+    func initCategoryData() {
+        
+        self.db
+            .order(by: CategoryField.modelId.rawValue, descending: false)
+            .getDocuments() { querySnapshot, error in
+                
+                guard let snapshot = querySnapshot else {
+                    
+                    return
+                }
+                
+                var categoryList: [CategoryType] = []
+                
+                for document in snapshot.documents {
+                    
+                    do {
+                        
+                        let category = try document.data(as: CategoryType.self)
+                        categoryList.append(category)
+                    } catch {
+                        
+                        print(error.localizedDescription)
+                    }
+                }
+                
+                self.categoryList = categoryList
+            }
+    }
     
     func getCategoryList() -> Observable<[CategoryType]> {
 
@@ -78,7 +109,7 @@ class CategoryManager {
     
     func convertIdToName(in id: String) -> String {
         
-        guard let categoryList = CategoryManager.categoryData else {
+        guard let categoryList = self.categoryList else {
             
             return "noData"
         }

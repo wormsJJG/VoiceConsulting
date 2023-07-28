@@ -25,9 +25,14 @@ class MainVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        isHiddenNavigationBar()
         bindTableView()
         addCoinBlockTapAction()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mainV.mainList.reloadData()
     }
 }
 // MARK: - Notification

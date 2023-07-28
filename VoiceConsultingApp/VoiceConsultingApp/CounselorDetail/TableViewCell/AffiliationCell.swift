@@ -18,6 +18,7 @@ class AffiliationCell: UITableViewCell {
     private let disposeBag = DisposeBag()
     
     private let contentList: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewLeftAlignFlowLayout()).then {
+        
         $0.register(AffiliationContentCell.self, forCellWithReuseIdentifier: AffiliationContentCell.cellID)
         $0.showsHorizontalScrollIndicator = false
     }
@@ -28,8 +29,10 @@ class AffiliationCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.selectionStyle = .none
         if let flowLayout = contentList.collectionViewLayout as? UICollectionViewFlowLayout {
+            
                 flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
         self.contentView.addSubview(contentList)

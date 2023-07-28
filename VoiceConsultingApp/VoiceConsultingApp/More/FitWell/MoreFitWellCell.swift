@@ -9,9 +9,12 @@ import UIKit
 import SnapKit
 import Then
 import Kingfisher
+import RxSwift
 
 class MoreFitWellCell: UITableViewCell {
     static let cellID = "MoreFitWellCell"
+    
+    private let disposeBag = DisposeBag()
     // MARK: - View
     lazy var thumnailImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
@@ -68,8 +71,8 @@ class MoreFitWellCell: UITableViewCell {
         }
         
         categoryBlock.snp.makeConstraints { block in
-            block.width.equalTo(self.categoryBlock.label.snp.width).offset(12)
-            block.height.equalTo(self.categoryBlock.label.snp.height).offset(6)
+            block.width.equalTo(self.categoryBlock.categoryNameLabel.snp.width).offset(12)
+            block.height.equalTo(self.categoryBlock.categoryNameLabel.snp.height).offset(6)
         }
         
         self.contentView.addSubview(allStackView)
@@ -85,7 +88,9 @@ class MoreFitWellCell: UITableViewCell {
     func configureCell(in counselorInfo: CounselorInfo) {
         
         thumnailImage.kf.setImage(with: URL(string: counselorInfo.profileImageUrl))
-        self.categoryBlock.categoryId = counselorInfo.categoryList[Int.random(in: 0...counselorInfo.categoryList.count - 1)]
+        let categoryList = counselorInfo.categoryList
+        let randomCategoryId = categoryList[Int.random(in: 0...categoryList.count - 1)]
+        self.categoryBlock.categoryName = CategoryManager.shared.convertIdToName(in: randomCategoryId)
         DispatchQueue.main.async { [weak self] in
             
             self?.counselorName.text = counselorInfo.name

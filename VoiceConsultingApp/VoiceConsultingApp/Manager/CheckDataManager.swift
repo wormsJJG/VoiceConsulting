@@ -50,7 +50,7 @@ class CheckDataManager {
         return userDefault.bool(forKey: CheckDataKey.isUser.rawValue)
     }
     
-    func getIsInputInfo() -> Bool {
+    func getIsInputInfo() -> Bool? {
         
         return userDefault.bool(forKey: CheckDataKey.isInputInfo.rawValue)
     }
