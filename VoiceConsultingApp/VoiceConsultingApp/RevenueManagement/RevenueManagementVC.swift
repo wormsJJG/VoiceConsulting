@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Tabman
+import Pageboy
 
 class RevenueManagementVC: TabmanViewController {
 
@@ -29,6 +30,22 @@ class RevenueManagementVC: TabmanViewController {
         super.viewDidLoad()
 
         addAction()
+        addChildVC()
+    }
+}
+// MARK: - ContainerViewSetting
+extension RevenueManagementVC {
+    
+    private func addChildVC() {
+        
+        let tabmanVC = RevenuePageBoyVC()
+        tabmanVC.view.frame = CGRect(x: 0,
+                                     y: 0,
+                                     width: revenueManagementV.containerView.frame.width,
+                                     height: revenueManagementV.containerView.frame.height)
+        self.addChild(tabmanVC)
+        self.revenueManagementV.containerView.addSubview(tabmanVC.view)
+        tabmanVC.didMove(toParent: self)
     }
 }
 // MARK: - Add Action

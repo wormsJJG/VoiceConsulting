@@ -161,6 +161,11 @@
 		358EF0812A25118E001324A6 /* ServiceCenterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF0802A25118E001324A6 /* ServiceCenterCell.swift */; };
 		358F42FB2A4435B3004BBBE0 /* BuyCoinHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F42FA2A4435B3004BBBE0 /* BuyCoinHistory.swift */; };
 		358F42FD2A44371B004BBBE0 /* BuyCoinHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F42FC2A44371B004BBBE0 /* BuyCoinHistoryManager.swift */; };
+		3592A4432A77D01B00DF8F60 /* RevenueDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3592A4422A77D01B00DF8F60 /* RevenueDetailVC.swift */; };
+		3592A4452A77D02D00DF8F60 /* SettlementDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3592A4442A77D02D00DF8F60 /* SettlementDetailVC.swift */; };
+		3592A4472A77D25D00DF8F60 /* RevenueDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3592A4462A77D25D00DF8F60 /* RevenueDetailCell.swift */; };
+		3592A4492A77D52B00DF8F60 /* SettlementDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3592A4482A77D52B00DF8F60 /* SettlementDetailCell.swift */; };
+		3592A44C2A77DCF100DF8F60 /* RevenuePageBoyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3592A44B2A77DCF100DF8F60 /* RevenuePageBoyVC.swift */; };
 		3595B1562A40268500AE717D /* CounselorDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B1552A40268500AE717D /* CounselorDetailVM.swift */; };
 		35962E8029F9253A0059CF17 /* ChatRoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */; };
 		359638BC2A2391B600808EA0 /* StarScorePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359638BB2A2391B600808EA0 /* StarScorePicker.swift */; };
@@ -410,6 +415,11 @@
 		358EF0802A25118E001324A6 /* ServiceCenterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCenterCell.swift; sourceTree = "<group>"; };
 		358F42FA2A4435B3004BBBE0 /* BuyCoinHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinHistory.swift; sourceTree = "<group>"; };
 		358F42FC2A44371B004BBBE0 /* BuyCoinHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinHistoryManager.swift; sourceTree = "<group>"; };
+		3592A4422A77D01B00DF8F60 /* RevenueDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueDetailVC.swift; sourceTree = "<group>"; };
+		3592A4442A77D02D00DF8F60 /* SettlementDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementDetailVC.swift; sourceTree = "<group>"; };
+		3592A4462A77D25D00DF8F60 /* RevenueDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueDetailCell.swift; sourceTree = "<group>"; };
+		3592A4482A77D52B00DF8F60 /* SettlementDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementDetailCell.swift; sourceTree = "<group>"; };
+		3592A44B2A77DCF100DF8F60 /* RevenuePageBoyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenuePageBoyVC.swift; sourceTree = "<group>"; };
 		3595B1552A40268500AE717D /* CounselorDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorDetailVM.swift; sourceTree = "<group>"; };
 		35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomHeader.swift; sourceTree = "<group>"; };
 		359638BB2A2391B600808EA0 /* StarScorePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarScorePicker.swift; sourceTree = "<group>"; };
@@ -968,6 +978,32 @@
 			path = Coin;
 			sourceTree = "<group>";
 		};
+		3592A4402A77CFE200DF8F60 /* RevenueDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3592A4422A77D01B00DF8F60 /* RevenueDetailVC.swift */,
+				3592A4462A77D25D00DF8F60 /* RevenueDetailCell.swift */,
+			);
+			path = RevenueDetail;
+			sourceTree = "<group>";
+		};
+		3592A4412A77CFF700DF8F60 /* SettlementDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3592A4442A77D02D00DF8F60 /* SettlementDetailVC.swift */,
+				3592A4482A77D52B00DF8F60 /* SettlementDetailCell.swift */,
+			);
+			path = SettlementDetail;
+			sourceTree = "<group>";
+		};
+		3592A44A2A77DCC900DF8F60 /* PageBoyVC */ = {
+			isa = PBXGroup;
+			children = (
+				3592A44B2A77DCF100DF8F60 /* RevenuePageBoyVC.swift */,
+			);
+			path = PageBoyVC;
+			sourceTree = "<group>";
+		};
 		359638BD2A2394CA00808EA0 /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1313,6 +1349,9 @@
 		35F951492A73DD830052261A /* RevenueManagement */ = {
 			isa = PBXGroup;
 			children = (
+				3592A44A2A77DCC900DF8F60 /* PageBoyVC */,
+				3592A4412A77CFF700DF8F60 /* SettlementDetail */,
+				3592A4402A77CFE200DF8F60 /* RevenueDetail */,
 				35F9514A2A73DDBB0052261A /* RevenueManagementV.swift */,
 				35F9514C2A73DDEA0052261A /* RevenueManagementVC.swift */,
 				354DDE942A77B83200288ED3 /* RevenueView.swift */,
@@ -1601,6 +1640,7 @@
 				3504E2AE29E3A669006AEED6 /* HeaderType.swift in Sources */,
 				359F7FC129FD589C00274108 /* NotificationName.swift in Sources */,
 				35277D1E29DA8662002A2A14 /* MainListHeader.swift in Sources */,
+				3592A4492A77D52B00DF8F60 /* SettlementDetailCell.swift in Sources */,
 				3504E2B229E3A894006AEED6 /* MorePopularVC.swift in Sources */,
 				3504CC792A2C806E00952D84 /* FirebaseAuthManager.swift in Sources */,
 				359638C12A23956700808EA0 /* PopUpVC.swift in Sources */,
@@ -1658,6 +1698,7 @@
 				3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */,
 				357D4A1E2A2E0F77000052D1 /* MypageCounselorMenu.swift in Sources */,
 				35C5FA6B2A6E83A400815055 /* PhotoCell.swift in Sources */,
+				3592A4452A77D02D00DF8F60 /* SettlementDetailVC.swift in Sources */,
 				357C78AE2A407A4A00B1849D /* Extension+Rx+ScrollView.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				3504E2B429E3A8A0006AEED6 /* MoreLiveVC.swift in Sources */,
@@ -1694,6 +1735,7 @@
 				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
 				3564A9702A7137F300AAA5F6 /* HeartManager.swift in Sources */,
 				351BB88A29FA72300050105F /* AgoraManager.swift in Sources */,
+				3592A4432A77D01B00DF8F60 /* RevenueDetailVC.swift in Sources */,
 				354664B329E42C1A0055375F /* CustomTabBarController.swift in Sources */,
 				3566899A2A2F773300022487 /* UserManager.swift in Sources */,
 				350AFE1A2A3AEA6C00FF3514 /* PopularCellVM.swift in Sources */,
@@ -1768,6 +1810,7 @@
 				354F49292A1A678900D71E3D /* AlertContentCell.swift in Sources */,
 				358609EA2A20D89A000DF83B /* MessageButtonTouchable.swift in Sources */,
 				3523AF902A0908F800D51B8A /* Extenstion+CollectionReference.swift in Sources */,
+				3592A44C2A77DCF100DF8F60 /* RevenuePageBoyVC.swift in Sources */,
 				35AE84352A4C1A2F007B2FAF /* ConsultingHistoryManager.swift in Sources */,
 				354F49272A1A664700D71E3D /* AlertVC.swift in Sources */,
 				3528E4A72A4D879000CA80CC /* FavouriteManager.swift in Sources */,
@@ -1777,6 +1820,7 @@
 				354609FD29D70EEB00FC5ABB /* LoginType.swift in Sources */,
 				354609F029D6F19500FC5ABB /* AssetImage.swift in Sources */,
 				359F7FBD29FD4CE600274108 /* CounselorDetailVC.swift in Sources */,
+				3592A4472A77D25D00DF8F60 /* RevenueDetailCell.swift in Sources */,
 				354DDE952A77B83200288ED3 /* RevenueView.swift in Sources */,
 				358EF0812A25118E001324A6 /* ServiceCenterCell.swift in Sources */,
 				35086BF72A652FF600739C12 /* UserRegisterData.swift in Sources */,

@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Then
+import Tabman
+import Pageboy
 
 class RevenueManagementV: UIView {
     
@@ -23,6 +25,8 @@ class RevenueManagementV: UIView {
         
         $0.titleText = "정산하기"
     }
+    
+    lazy var containerView: UIView = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,6 +68,16 @@ class RevenueManagementV: UIView {
             $0.left.equalToSuperview().offset(20)
             $0.right.equalToSuperview().offset(-20)
             $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-10)
+        }
+        
+        addSubview(containerView)
+        
+        containerView.snp.makeConstraints {
+            
+            $0.left.equalToSuperview()
+            $0.top.equalTo(revenueView.snp.bottom).offset(20)
+            $0.right.equalToSuperview()
+            $0.bottom.equalTo(calculateButton.snp.top).offset(-10)
         }
     }
 }
