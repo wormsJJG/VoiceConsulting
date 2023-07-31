@@ -839,6 +839,8 @@
 		355EDED929D5C96B00F9BD5D /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				354DDE942A77B83200288ED3 /* RevenueView.swift */,
+				354DDE962A77BA4800288ED3 /* MiniServiceCenterView.swift */,
 				359638BB2A2391B600808EA0 /* StarScorePicker.swift */,
 				3504E2AD29E3A669006AEED6 /* HeaderType.swift */,
 				355EDEDA29D5C98800F9BD5D /* PlainButton.swift */,
@@ -1354,8 +1356,6 @@
 				3592A4402A77CFE200DF8F60 /* RevenueDetail */,
 				35F9514A2A73DDBB0052261A /* RevenueManagementV.swift */,
 				35F9514C2A73DDEA0052261A /* RevenueManagementVC.swift */,
-				354DDE942A77B83200288ED3 /* RevenueView.swift */,
-				354DDE962A77BA4800288ED3 /* MiniServiceCenterView.swift */,
 			);
 			path = RevenueManagement;
 			sourceTree = "<group>";
