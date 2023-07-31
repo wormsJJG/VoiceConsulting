@@ -10,6 +10,7 @@ import Then
 import SnapKit
 
 class PlainHeaderView: UIView {
+    
     var headerType: HeaderType = .live {
         didSet {
             self.titleLabel.text = headerType.title

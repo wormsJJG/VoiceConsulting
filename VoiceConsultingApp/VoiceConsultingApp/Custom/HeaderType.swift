@@ -19,6 +19,7 @@ enum HeaderType {
     case review
     case inputCounselrInfo
     case editCounselorInfo
+    case revenueManagement
     
     var title: String {
         switch self {
@@ -44,6 +45,8 @@ enum HeaderType {
             return "상담사 회원가입"
         case .editCounselorInfo:
             return "계정 설정"
+        case .revenueManagement:
+            return "수익 관리"
         }
     }
 }

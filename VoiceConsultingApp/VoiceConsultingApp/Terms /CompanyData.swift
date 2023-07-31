@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TermsContent {
+class CompanyData {
     static let termsOfUseContent = """
         제 1 장 총 칙
         제 1 조 (목적) 이 약관은 {COMPANY_NAME}(이하 "사이트"라 합니다)에서 제공하는 인터넷서비스(이하 "서비스"라 합니다)의 이용 조건 및 절차에 관한 기본적인 사항을 규정함을 목적으로 합니다.
@@ -225,4 +225,5 @@ class TermsContent {
         •    문서 출력물에 의해 직접 전달하는 경우 요청기관의 담당자 또는 직상급자에게 직접전달(수령자 인적사항 등을 반드시 기록하여 관리)
 
 """
+    static let ServiceCenterPhoneNumber = "010-1234-1234"
 }

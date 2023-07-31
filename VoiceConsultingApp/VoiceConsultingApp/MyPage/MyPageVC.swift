@@ -190,7 +190,7 @@ extension MyPageVC: UITableViewDelegate {
                         self?.moveCounselorDetailVC(in: counselorUid)
                     }
                 case .revenueManagement:
-                    print("수익관리")
+                    self?.moveRevenueManagementVC()
                 case .termsOfUse:
                     self?.moveTermsVC(type: .termsOfUse)
                 case .privacyPolicy:

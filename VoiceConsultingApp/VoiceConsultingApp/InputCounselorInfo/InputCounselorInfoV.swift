@@ -208,7 +208,7 @@ class InputCounselorInfoV: UIView {
         $0.spacing = 40
     }
     
-    let nextButton: CompleteButton = CompleteButton().then {
+    let nextButton: PlainButton = PlainButton().then {
         
         $0.titleText = "다음"
     }

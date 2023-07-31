@@ -47,4 +47,5 @@ class AssetImage {
     static let myIconFull = "MyIconFull"
     static let cameraIconFull = "CameraIconFull"
     static let cancelWhiteIcon = "CancelWhiteIcon"
+    static let phoneIconMainColor = "PhoneIconMainColor"
 }

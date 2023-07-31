@@ -84,6 +84,14 @@ class BaseViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    func moveRevenueManagementVC() {
+        
+        let revenueManagementVC = RevenueManagementVC()
+        revenueManagementVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(revenueManagementVC, animated: true)
+    }
+    
     func moveChatRommVC() {
         let chatRoom = ChatRoomVC()
         chatRoom.hidesBottomBarWhenPushed = true
