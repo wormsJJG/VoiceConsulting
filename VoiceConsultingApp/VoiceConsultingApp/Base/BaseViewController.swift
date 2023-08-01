@@ -153,6 +153,13 @@ class BaseViewController: UIViewController {
         self.navigationController?.pushViewController(voiceRoomVC, animated: true)
     }
     
+    func moveToSettleVC() {
+        
+        let toSettleVC = ToSettleVC()
+        
+        self.navigationController?.pushViewController(toSettleVC, animated: true)
+    }
+    
     // MARK: - KeyBoard
     func setKeyboardObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

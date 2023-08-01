@@ -8,10 +8,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Tabman
-import Pageboy
 
-class RevenueManagementVC: TabmanViewController {
+class RevenueManagementVC: BaseViewController {
 
     // MARK: - Load View
     private let revenueManagementV = RevenueManagementV()
@@ -58,8 +56,18 @@ extension RevenueManagementVC {
             .tap
             .bind(onNext: { [weak self] _ in
                 
-                self?.navigationController?.popViewController(animated: true)
+                self?.popVC()
             })
             .disposed(by: self.disposeBag)
+        
+        revenueManagementV.moveToSettleVCButton
+            .rx
+            .tap
+            .bind(onNext: { [weak self] _ in
+                
+                self?.moveToSettleVC()
+            })
+            .disposed(by: self.disposeBag)
+        
     }
 }

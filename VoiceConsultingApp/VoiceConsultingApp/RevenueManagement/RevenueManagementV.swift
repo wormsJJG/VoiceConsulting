@@ -21,7 +21,7 @@ class RevenueManagementV: UIView {
     
     let revenueView: RevenueView = RevenueView()
     
-    let calculateButton: PlainButton = PlainButton().then {
+    let moveToSettleVCButton: PlainButton = PlainButton().then {
         
         $0.titleText = "정산하기"
     }
@@ -60,9 +60,9 @@ class RevenueManagementV: UIView {
             $0.right.equalToSuperview().offset(-20)
         }
         
-        addSubview(calculateButton)
+        addSubview(moveToSettleVCButton)
         
-        calculateButton.snp.makeConstraints {
+        moveToSettleVCButton.snp.makeConstraints {
             
             $0.height.equalTo(54)
             $0.left.equalToSuperview().offset(20)
@@ -77,7 +77,7 @@ class RevenueManagementV: UIView {
             $0.left.equalToSuperview()
             $0.top.equalTo(revenueView.snp.bottom).offset(20)
             $0.right.equalToSuperview()
-            $0.bottom.equalTo(calculateButton.snp.top).offset(-10)
+            $0.bottom.equalTo(moveToSettleVCButton.snp.top).offset(-10)
         }
     }
 }

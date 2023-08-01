@@ -218,6 +218,8 @@
 		35C5FA6D2A6E8E2A00815055 /* DeleteButtonTouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5FA6C2A6E8E2A00815055 /* DeleteButtonTouchable.swift */; };
 		35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */; };
 		35CC324A2A5ABBA000D0E7C2 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CC32492A5ABBA000D0E7C2 /* Extension+String.swift */; };
+		35D0A0702A78FE2300C529DC /* ToSettleV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D0A06F2A78FE2300C529DC /* ToSettleV.swift */; };
+		35D0A0722A78FF0B00C529DC /* ToSettleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D0A0712A78FF0B00C529DC /* ToSettleVC.swift */; };
 		35D216AB2A443AD30072A1E6 /* BuyCoinField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */; };
 		35D216AD2A443CD00072A1E6 /* BuyHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D216AC2A443CD00072A1E6 /* BuyHistoryVM.swift */; };
 		35D8E23E2A55626F0091EB6A /* AgoraConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D8E23D2A55626F0091EB6A /* AgoraConst.swift */; };
@@ -472,6 +474,8 @@
 		35C5FA6C2A6E8E2A00815055 /* DeleteButtonTouchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButtonTouchable.swift; sourceTree = "<group>"; };
 		35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraPushManager.swift; sourceTree = "<group>"; };
 		35CC32492A5ABBA000D0E7C2 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		35D0A06F2A78FE2300C529DC /* ToSettleV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToSettleV.swift; sourceTree = "<group>"; };
+		35D0A0712A78FF0B00C529DC /* ToSettleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToSettleVC.swift; sourceTree = "<group>"; };
 		35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinField.swift; sourceTree = "<group>"; };
 		35D216AC2A443CD00072A1E6 /* BuyHistoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyHistoryVM.swift; sourceTree = "<group>"; };
 		35D8E23D2A55626F0091EB6A /* AgoraConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraConst.swift; sourceTree = "<group>"; };
@@ -1187,6 +1191,15 @@
 			path = Chatting;
 			sourceTree = "<group>";
 		};
+		35D0A06E2A78FDE300C529DC /* ToSettle */ = {
+			isa = PBXGroup;
+			children = (
+				35D0A06F2A78FE2300C529DC /* ToSettleV.swift */,
+				35D0A0712A78FF0B00C529DC /* ToSettleVC.swift */,
+			);
+			path = ToSettle;
+			sourceTree = "<group>";
+		};
 		35D8E23C2A5562390091EB6A /* define */ = {
 			isa = PBXGroup;
 			children = (
@@ -1250,6 +1263,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				35D0A06E2A78FDE300C529DC /* ToSettle */,
 				35F951492A73DD830052261A /* RevenueManagement */,
 				3503B9172A666EAA00E8751A /* InputCounselorInfo */,
 				3500D24F2A60F7D50070E264 /* Service */,
@@ -1733,6 +1747,7 @@
 				3509F82D29D5755800AD880C /* ColorSet.swift in Sources */,
 				354609F729D70DA600FC5ABB /* LoginVC.swift in Sources */,
 				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
+				35D0A0702A78FE2300C529DC /* ToSettleV.swift in Sources */,
 				3564A9702A7137F300AAA5F6 /* HeartManager.swift in Sources */,
 				351BB88A29FA72300050105F /* AgoraManager.swift in Sources */,
 				3592A4432A77D01B00DF8F60 /* RevenueDetailVC.swift in Sources */,
@@ -1812,6 +1827,7 @@
 				3523AF902A0908F800D51B8A /* Extenstion+CollectionReference.swift in Sources */,
 				3592A44C2A77DCF100DF8F60 /* RevenuePageBoyVC.swift in Sources */,
 				35AE84352A4C1A2F007B2FAF /* ConsultingHistoryManager.swift in Sources */,
+				35D0A0722A78FF0B00C529DC /* ToSettleVC.swift in Sources */,
 				354F49272A1A664700D71E3D /* AlertVC.swift in Sources */,
 				3528E4A72A4D879000CA80CC /* FavouriteManager.swift in Sources */,
 				35A63F642A1322910058C92D /* SystemMessageType.swift in Sources */,
