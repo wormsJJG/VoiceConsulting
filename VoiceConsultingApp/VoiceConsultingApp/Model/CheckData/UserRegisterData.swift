@@ -9,7 +9,7 @@ import Foundation
 
 class UserRegisterData {
     
-    static var name: String = ""
+    static var name: String?
     static var uid: String = ""
     static var profileUrl: String?
 }

@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self // Push Noti Delegate
         AgoraPushManager.shared.initAgoraChatOptions() //AgoraPush
         CategoryManager.shared.initCategoryData()
+        KakaoLoginService.shared.initSDK()
         
         return true
     }
@@ -32,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         handled = GIDSignIn.sharedInstance.handle(url)
         
-        if handled {
+        if handled && KakaoLoginService.shared.handleOpenUrl(url: url) {
             return true
         }
         

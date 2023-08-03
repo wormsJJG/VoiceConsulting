@@ -8,6 +8,9 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import AuthenticationServices
+import CryptoKit
+import FirebaseAuth
 
 class LoginVC: BaseViewController {
     // MARK: - Load View
@@ -22,6 +25,7 @@ class LoginVC: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addButtonAction()
     }
 }
@@ -38,6 +42,7 @@ extension LoginVC {
         self.loginV.appleLoginButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.viewModel.input.didTapLoginButton.onNext(.apple)
+                self?.signInApple()
             })
             .disposed(by: self.disposeBag)
         
@@ -54,13 +59,12 @@ extension LoginVC {
     // GoogleLogin은 viewController를 넘겨야해서 VC에 함수
     private func googleLogin() {
         
-        GoogleSignInManager.shared.signIn(viewController: self)
+        GoogleLoginService.shared.signIn(viewController: self)
             .subscribe(onNext: { [weak self] authResult in
                 if let authResult {
                     
-                    CheckDataManager.shared.setIsLogin(in: true)
-                    self?.checkFisrtLoginCheck(uid: authResult.user.uid,
-                                               name: authResult.user.displayName ?? "user")
+                    self?.checkFisrtLogin(uid: authResult.user.uid,
+                                               name: authResult.user.displayName)
                 } else {
                     print("optional AuthResult")
                 }
@@ -68,28 +72,104 @@ extension LoginVC {
             .disposed(by: self.disposeBag)
     }
     
-    private func checkFisrtLoginCheck(uid: String, name: String) {
+    private func checkFisrtLogin(uid: String, name: String?) {
         
-        UserManager.shared.checkField(uid: uid)
-            .subscribe(onNext: { [weak self] isLogined in
+        Observable.combineLatest(UserManager.shared.checkField(uid: uid),
+                                 CounselorManager.shared.checkField(uid: uid))
+        .subscribe({ [weak self] event in
+            
+            switch event {
                 
-                if isLogined {
+            case .next((let userLogined, let counselorLogined)):
+                
+                if userLogined || counselorLogined {
                     
-                    CheckDataManager.shared.setName(in: name)
                     self?.moveSplashVC()
                 } else {
                     
-                    self?.saveGlobalData(name: name, uid: uid)
+                    UserRegisterData.uid = uid
+                    UserRegisterData.name = name
                     self?.moveSelectUseTypeVC()
                 }
-            })
-            .disposed(by: self.disposeBag)
+            case .error(let error):
+                
+                print(error.localizedDescription)
+            case .completed:
+                
+                print("completed")
+            }
+        })
+        .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - Apple Login
+extension LoginVC: ASAuthorizationControllerDelegate {
+    
+    private func signInApple() {
+        
+        let nonce = String().randomNonceString()
+        viewModel.currentNonce = nonce
+        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = String().sha256(nonce)
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
     
-    private func saveGlobalData(name: String, uid: String) {
+    // controller로 인증 정보 값을 받게되면, idToken 값을 받음
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
-        CheckDataManager.shared.setName(in: name)
-        UserRegisterData.name = name
-        UserRegisterData.uid = uid
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            guard let nonce = viewModel.currentNonce,
+                  let appleIDToken = appleIDCredential.identityToken,
+                  let idTokenString = String(data: appleIDToken, encoding: .utf8) else { return }
+            
+            let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                      idToken: idTokenString,
+                                                      rawNonce: nonce)
+            
+            Auth.auth().signIn(with: credential) { authResult, error in
+                
+                if let error = error {
+                    
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                if let result = authResult {
+                    
+                    let fullName = appleIDCredential.fullName
+                    
+                    guard let familyName = fullName?.familyName,
+                          let givenName = fullName?.givenName else {
+                        
+                        self.checkFisrtLogin(uid: result.user.uid, name: nil)
+                        return
+                    }
+                    let name = (familyName) + (givenName)
+                    self.checkFisrtLogin(uid: result.user.uid, name: name)
+                }
+            }
+        }
+    }
+}
+
+extension LoginVC: ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        
+        guard let window = self.view.window else {
+            
+           return ASPresentationAnchor()
+        }
+        
+        return window
     }
 }

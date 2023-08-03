@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class SplashVC: BaseViewController {
     // MARK: - Load View
@@ -21,42 +22,34 @@ class SplashVC: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        userLoginCheck()
+        outputSubscrbe()
         self.viewModel.input.isEnterUser.onNext(())
     }
 }
 
 extension SplashVC {
     // 유저 검증 (로그인이 되어있는지 안되어 있는지 검증)
-    private func userLoginCheck() {
-        self.viewModel.output.isLogin
-            .subscribe(onNext: { [weak self] isLogin in
-                if isLogin {
-                    self?.userDataCheck()
-                } else {
-                    
-                    self?.moveLoginVC()
-                }
+    private func outputSubscrbe() {
+        self.viewModel.output.pushMainVCTrigger
+            .bind(onNext: { [weak self] isLogin in
+                
+                self?.moveMain()
             })
             .disposed(by: self.disposeBag)
-    }
-    // 유저 데이터 유무 체크 유저가 회원가입 도중 중단했을경우를 생각
-    private func userDataCheck() {
         
-//        let isUser = CheckDataManager.shared.getIsUser()
-//        let isInputInfo = CheckDataManager.shared.getIsInputInfo()
-//        let name = CheckDataManager.shared.getName()
-//
-//        if isInputInfo {
-//
-//            Config.isUser = isUser
-//            Config.name = name
-//            self.viewModel.saveCategory()
-//            self.moveMain()
-//        } else {
-//
-//            self.moveSelectUseTypeVC()
-//        }
+        self.viewModel.output.isNoLogin
+            .bind(onNext: { [weak self] _ in
+                
+                self?.moveLoginVC()
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.viewModel.output.pushSelectUseTypeVCTrigger
+            .bind(onNext: { [weak self] _ in
+                
+                self?.moveSelectUseTypeVC()
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 

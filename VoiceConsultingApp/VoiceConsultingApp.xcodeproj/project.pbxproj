@@ -52,7 +52,7 @@
 		35188F672A09FC830040804E /* CounselorField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35188F662A09FC830040804E /* CounselorField.swift */; };
 		35188F6A2A0A01490040804E /* FBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35188F692A0A01490040804E /* FBError.swift */; };
 		351BB88A29FA72300050105F /* AgoraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351BB88929FA72300050105F /* AgoraManager.swift */; };
-		351E93EF2A2CA2BE00C598C3 /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E93EE2A2CA2BE00C598C3 /* GoogleSignInManager.swift */; };
+		351E93EF2A2CA2BE00C598C3 /* GoogleLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E93EE2A2CA2BE00C598C3 /* GoogleLoginService.swift */; };
 		351E93F82A2CCC4F00C598C3 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E93F72A2CCC4F00C598C3 /* AuthError.swift */; };
 		351E93FA2A2CD6CA00C598C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351E93F92A2CD6CA00C598C3 /* LaunchScreen.storyboard */; };
 		351E93FC2A2CDE4B00C598C3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E93FB2A2CDE4B00C598C3 /* Config.swift */; };
@@ -172,7 +172,6 @@
 		359638BF2A23954300808EA0 /* LogoutPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359638BE2A23954300808EA0 /* LogoutPopUpVC.swift */; };
 		359638C12A23956700808EA0 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359638C02A23956700808EA0 /* PopUpVC.swift */; };
 		359638C32A23A3D900808EA0 /* DeleteAccountPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359638C22A23A3D900808EA0 /* DeleteAccountPopUpVC.swift */; };
-		359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359933C529D077E50098A0FC /* GoogleService-Info.plist */; };
 		359933C929D07A520098A0FC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933C829D07A520098A0FC /* MainVC.swift */; };
 		359933CB29D07A690098A0FC /* MainV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933CA29D07A690098A0FC /* MainV.swift */; };
 		359933CD29D07A750098A0FC /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933CC29D07A750098A0FC /* MainVM.swift */; };
@@ -238,6 +237,8 @@
 		35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2429CAFB5600AAE587 /* Cordinator.swift */; };
 		35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */; };
 		35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */; };
+		35EF33EE2A7B925400DB6194 /* KakaoLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF33ED2A7B925400DB6194 /* KakaoLoginService.swift */; };
+		35EF33F02A7BAD0400DB6194 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35EF33EF2A7BAD0300DB6194 /* GoogleService-Info.plist */; };
 		35F48A9F2A64F16600BA8BE5 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 35F48A9E2A64F16600BA8BE5 /* MessageKit */; };
 		35F9514B2A73DDBB0052261A /* RevenueManagementV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9514A2A73DDBB0052261A /* RevenueManagementV.swift */; };
 		35F9514D2A73DDEA0052261A /* RevenueManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9514C2A73DDEA0052261A /* RevenueManagementVC.swift */; };
@@ -307,7 +308,7 @@
 		35188F662A09FC830040804E /* CounselorField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorField.swift; sourceTree = "<group>"; };
 		35188F692A0A01490040804E /* FBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBError.swift; sourceTree = "<group>"; };
 		351BB88929FA72300050105F /* AgoraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraManager.swift; sourceTree = "<group>"; };
-		351E93EE2A2CA2BE00C598C3 /* GoogleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInManager.swift; sourceTree = "<group>"; };
+		351E93EE2A2CA2BE00C598C3 /* GoogleLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginService.swift; sourceTree = "<group>"; };
 		351E93F72A2CCC4F00C598C3 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		351E93F92A2CD6CA00C598C3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		351E93FB2A2CDE4B00C598C3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -428,7 +429,6 @@
 		359638BE2A23954300808EA0 /* LogoutPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutPopUpVC.swift; sourceTree = "<group>"; };
 		359638C02A23956700808EA0 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		359638C22A23A3D900808EA0 /* DeleteAccountPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountPopUpVC.swift; sourceTree = "<group>"; };
-		359933C529D077E50098A0FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		359933C829D07A520098A0FC /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		359933CA29D07A690098A0FC /* MainV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainV.swift; sourceTree = "<group>"; };
 		359933CC29D07A750098A0FC /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
@@ -498,6 +498,8 @@
 		35EAEB2429CAFB5600AAE587 /* Cordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cordinator.swift; sourceTree = "<group>"; };
 		35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		35EF33ED2A7B925400DB6194 /* KakaoLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginService.swift; sourceTree = "<group>"; };
+		35EF33EF2A7BAD0300DB6194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35F9514A2A73DDBB0052261A /* RevenueManagementV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueManagementV.swift; sourceTree = "<group>"; };
 		35F9514C2A73DDEA0052261A /* RevenueManagementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueManagementVC.swift; sourceTree = "<group>"; };
 		63C8154CC9C5D2C8A7DEB7F4 /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -541,7 +543,9 @@
 		3500D24F2A60F7D50070E264 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				351E93EE2A2CA2BE00C598C3 /* GoogleLoginService.swift */,
 				3500D2502A60F7E50070E264 /* AgoraTokenService.swift */,
+				35EF33ED2A7B925400DB6194 /* KakaoLoginService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -963,7 +967,6 @@
 				351BB88929FA72300050105F /* AgoraManager.swift */,
 				3504CC742A2C7C4900952D84 /* RealmManager.swift */,
 				3504CC782A2C806E00952D84 /* FirebaseAuthManager.swift */,
-				351E93EE2A2CA2BE00C598C3 /* GoogleSignInManager.swift */,
 				356689992A2F773300022487 /* UserManager.swift */,
 				350AFE1D2A3B057C00FF3514 /* CategoryManager.swift */,
 				358F42FC2A44371B004BBBE0 /* BuyCoinHistoryManager.swift */,
@@ -1296,7 +1299,6 @@
 				355EDEBE29D5C2B400F9BD5D /* Fonts */,
 				3509F82B29D5754600AD880C /* Color */,
 				35BC511729D194EB00BEA034 /* SelectUseType */,
-				359933C529D077E50098A0FC /* GoogleService-Info.plist */,
 				35EAEB2229CAFAC600AAE587 /* Common */,
 				35EAEB2329CAFB1000AAE587 /* Helper */,
 				35EAEB2729CAFD2D00AAE587 /* Base */,
@@ -1326,6 +1328,7 @@
 		35EAEB2229CAFAC600AAE587 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				35EF33EF2A7BAD0300DB6194 /* GoogleService-Info.plist */,
 				35EAEAF229CAF99500AAE587 /* AppDelegate.swift */,
 				35EAEAF429CAF99500AAE587 /* SceneDelegate.swift */,
 				35EAEB0029CAF99600AAE587 /* Info.plist */,
@@ -1517,13 +1520,13 @@
 				355EDED729D5C6C600F9BD5D /* NotoSansKR-Light.otf in Resources */,
 				35277D1A29DA74B0002A2A14 /* Inter-Bold.ttf in Resources */,
 				355EDED329D5C6C600F9BD5D /* NotoSansKR-Regular.otf in Resources */,
+				35EF33F02A7BAD0400DB6194 /* GoogleService-Info.plist in Resources */,
 				355EDED829D5C6C600F9BD5D /* NotoSansKR-Medium.otf in Resources */,
 				354F495F2A1A73E300D71E3D /* Pods-VoiceConsultingApp-acknowledgements.plist in Resources */,
 				355EDED529D5C6C600F9BD5D /* NotoSansKR-Black.otf in Resources */,
 				355EDED629D5C6C600F9BD5D /* NotoSansKR-Bold.otf in Resources */,
 				351E93FA2A2CD6CA00C598C3 /* LaunchScreen.storyboard in Resources */,
 				354664BD29E441130055375F /* Inter-Medium.ttf in Resources */,
-				359933C629D077E50098A0FC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1720,7 +1723,7 @@
 				350CA2272A19089500B1756C /* CategoryTVCell.swift in Sources */,
 				35C29FFF29ECF3E40018FE04 /* Sender.swift in Sources */,
 				354664BB29E43FC50055375F /* ServiceCenterBlock.swift in Sources */,
-				351E93EF2A2CA2BE00C598C3 /* GoogleSignInManager.swift in Sources */,
+				351E93EF2A2CA2BE00C598C3 /* GoogleLoginService.swift in Sources */,
 				3503B9242A69391000E8751A /* Extension+UITextField.swift in Sources */,
 				359F7FBA29FD4B7000274108 /* CounselorDetailV.swift in Sources */,
 				35A63F672A132FD50058C92D /* EndConsultationCell.swift in Sources */,
@@ -1805,6 +1808,7 @@
 				357810682A0E401500AE8EC8 /* PaddingLabel.swift in Sources */,
 				357D84ED2A0A7196003DB1FC /* LiveCellVM.swift in Sources */,
 				35B15B892A1B1DBE004345F3 /* BaseButton.swift in Sources */,
+				35EF33EE2A7B925400DB6194 /* KakaoLoginService.swift in Sources */,
 				354609F929D70DF300FC5ABB /* LoginVM.swift in Sources */,
 				354DDE972A77BA4800288ED3 /* MiniServiceCenterView.swift in Sources */,
 				3528E4A52A4D874600CA80CC /* Favourite.swift in Sources */,
@@ -1954,6 +1958,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "말해봐";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2010,6 +2015,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "말해봐";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -2033,6 +2039,8 @@
 				DEVELOPMENT_TEAM = 4D57VYHA4Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "말해봐";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진앨범에 접근하도록 허용버튼을 눌러주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -2064,6 +2072,8 @@
 				DEVELOPMENT_TEAM = 4D57VYHA4Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "말해봐";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진앨범에 접근하도록 허용버튼을 눌러주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

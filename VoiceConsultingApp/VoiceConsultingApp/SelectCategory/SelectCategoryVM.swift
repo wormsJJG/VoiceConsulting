@@ -64,7 +64,7 @@ class SelectCategoryVM: BaseViewModel {
         
         if let uid = FirebaseAuthManager.shared.getUserUid() {
             
-            let user = User(name: UserRegisterData.name,
+            let user = User(name: UserRegisterData.name ?? "name",
                             categoryList: input.userSelectCategoryList,
                             fcmToken: "",
                             profileImageUrl: UserRegisterData.profileUrl ?? "")
@@ -75,11 +75,16 @@ class SelectCategoryVM: BaseViewModel {
                     switch event {
                         
                     case .next(_):
-                        CheckDataManager.shared.setisInputInfo(in: true)
+                        
+                        Config.isUser = true
+                        Config.name = UserRegisterData.name ?? "name"
+                        Config.profileUrlString = UserRegisterData.profileUrl
                         self?.output.completion.onNext(nil)
                     case .error(let error):
+                        
                         self?.output.completion.onNext(error)
                     case .completed:
+                        
                         print("onCompleted")
                     }
                 })

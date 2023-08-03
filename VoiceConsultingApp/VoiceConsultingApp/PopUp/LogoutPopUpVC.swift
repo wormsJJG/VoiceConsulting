@@ -24,8 +24,8 @@ class LogoutPopUpVC: PopUpVC {
     }
     
     private func moveLoginVC() {
-        let loginVC = LoginVC()
+        let loginVC = UINavigationController(rootViewController: LoginVC()) 
         
-        self.navigationController?.pushViewController(loginVC, animated: true)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: loginVC)
     }
 }

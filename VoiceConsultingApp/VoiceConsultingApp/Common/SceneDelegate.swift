@@ -20,6 +20,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         cordinator.start()
     }
+    
+    func changeRootVC(vc: UIViewController) {
+        
+        guard let window = self.window else { return }
+        window.rootViewController = vc
+        
+        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil, completion: nil)
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
 

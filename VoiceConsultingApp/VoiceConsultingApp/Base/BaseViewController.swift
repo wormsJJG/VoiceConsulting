@@ -40,15 +40,15 @@ class BaseViewController: UIViewController {
     }
     
     func moveMain() {
-        let mainVC = CustomTabBarController()
+        let mainVC = UINavigationController(rootViewController: CustomTabBarController())
         
-        self.navigationController?.pushViewController(mainVC, animated: true)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: mainVC)
     }
     
     func moveLoginVC() {
-        let loginVC = LoginVC()
+        let loginVC = UINavigationController(rootViewController: LoginVC())
         
-        self.navigationController?.pushViewController(loginVC, animated: true)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: loginVC)
     }
     
     func moveSelectCategoryVC() {
@@ -58,9 +58,9 @@ class BaseViewController: UIViewController {
     }
     
     func moveSelectUseTypeVC() {
-        let selectUseTypeVC = SelectUseTypeVC()
+        let selectUseTypeVC = UINavigationController(rootViewController: SelectUseTypeVC())
         
-        self.navigationController?.pushViewController(selectUseTypeVC, animated: true)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: selectUseTypeVC)
     }
     
     func moveCoinManagementVC(start: Int) {
