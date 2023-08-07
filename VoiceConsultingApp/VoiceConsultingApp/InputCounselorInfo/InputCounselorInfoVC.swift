@@ -32,7 +32,6 @@ class InputCounselorInfoVC: BaseViewController {
         setDelegates()
         outputSubscribe()
         addAction()
-        setKeyboardObserver()
     }
     
     // MARK: - SetDelegates
@@ -93,6 +92,62 @@ extension InputCounselorInfoVC {
             .disposed(by: self.disposeBag)
         
         addDidTapScrollViewAction()
+        
+        inputCounselorInfoV
+            .inputIntroduceField
+            .rx
+            .didBeginEditing
+            .bind(onNext: { [weak self] _ in
+                
+                UIView.animate(withDuration: 1.0) {
+                    
+                    self?.view.window?.frame.origin.y -= 300
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        inputCounselorInfoV
+            .inputIntroduceField
+            .rx
+            .didEndEditing
+            .bind(onNext: { [weak self] _ in
+                    
+                self?.view.window?.frame.origin.y += 300
+            })
+            .disposed(by: self.disposeBag)
+        
+        inputCounselorInfoV
+            .nextButton
+            .rx
+            .tap
+            .bind(onNext: { [weak self] _ in
+                
+                self?.checkRegisterData()
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func checkRegisterData() {
+        
+        let nilImage = inputCounselorInfoV.profileImageView.image == UIImage(named: AssetImage.myIconFull) || inputCounselorInfoV.profileImageView.image == nil
+        let nilName = inputCounselorInfoV.inputNameTextField.text == nil
+        let nilAffiliation = inputCounselorInfoV.affiliationTextFieldOne.text == nil
+        let nilCertificate = viewModel.output.certificateList.count == 0
+        let nilintroduce = inputCounselorInfoV.inputIntroduceField.text == "상세 소개를 작성해주세요"
+        let isNoPass = nilImage || nilName || nilAffiliation || nilCertificate || nilintroduce
+        
+        if isNoPass {
+            
+            self.showPopUp(popUp: NoPassRegisterPopUp())
+        } else {
+            
+            UserRegisterData.name = getName()
+            UserRegisterData.affiliationList = getAffiliationList()
+            UserRegisterData.profileImage = getProfileImage()
+            UserRegisterData.cerificateImageList = getCertificateImages()
+            UserRegisterData.introduce = getIntroduce()
+            self.moveSelectCategoryVC()
+        }
     }
     
     private func addDidTapScrollViewAction() {
@@ -108,6 +163,50 @@ extension InputCounselorInfoVC {
     @objc private func didTapScrollView() {
         
         view.endEditing(true)
+    }
+    
+    private func getName() -> String {
+        
+        return inputCounselorInfoV.inputNameTextField.text!
+    }
+    
+    private func getAffiliationList() -> [String] {
+        
+        var list: [String] = []
+        list.append(inputCounselorInfoV.affiliationTextFieldOne.text!)
+        if let two = inputCounselorInfoV.affiliationTextFieldTwo.text {
+            
+            list.append(two)
+        }
+        
+        if let three = inputCounselorInfoV.affiliationTextFieldThree.text {
+            
+            list.append(three)
+        }
+        
+        if let four = inputCounselorInfoV.affiliationTextFieldFour.text {
+            
+            list.append(four)
+        }
+        
+        return list
+    }
+    
+    private func getProfileImage() -> UIImage? {
+        
+        return inputCounselorInfoV.profileImageView.image
+    }
+    
+    private func getCertificateImages() -> [UIImage?] {
+        
+        viewModel.output.certificateList.removeFirst()
+        
+        return viewModel.output.certificateList
+    }
+    
+    private func getIntroduce() -> String {
+        
+        return inputCounselorInfoV.inputIntroduceField.text
     }
 }
 // MARK: - Output Subscribe
@@ -145,9 +244,9 @@ extension InputCounselorInfoVC: DeleteButtonTouchable {
     
     func didTapDeleteButton(_ image: UIImage?) {
         
-        if let index = viewModel.output.profileImageList.firstIndex(of: image) {
+        if let index = viewModel.output.certificateList.firstIndex(of: image) {
             
-            viewModel.output.profileImageList.remove(at: index)
+            viewModel.output.certificateList.remove(at: index)
             inputCounselorInfoV.inputProfileImageList.reloadData()
         }
     }
@@ -158,7 +257,7 @@ extension InputCounselorInfoVC: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        viewModel.output.profileImageList.count
+        viewModel.output.certificateList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -170,7 +269,7 @@ extension InputCounselorInfoVC: UICollectionViewDataSource, UICollectionViewDele
                 return UICollectionViewCell()
             }
             
-            cell.configureCell(in: viewModel.output.profileImageList.count - 1)
+            cell.configureCell(in: viewModel.output.certificateList.count - 1)
             
             return cell
         } else {
@@ -181,7 +280,7 @@ extension InputCounselorInfoVC: UICollectionViewDataSource, UICollectionViewDele
             }
             
             cell.deleteDelegate = self
-            let image = viewModel.output.profileImageList[indexPath.item]
+            let image = viewModel.output.certificateList[indexPath.item]
             cell.configureCell(in: image)
             
             return cell
@@ -238,7 +337,7 @@ extension InputCounselorInfoVC: UIImagePickerControllerDelegate, UINavigationCon
                 self.inputCounselorInfoV.profileImageView.image = selectImage
             } else {
                 
-                self.viewModel.output.profileImageList.append(selectImage)
+                self.viewModel.output.certificateList.append(selectImage)
                 self.inputCounselorInfoV.inputProfileImageList.reloadData()
             }
         }

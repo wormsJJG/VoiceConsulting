@@ -84,6 +84,9 @@
 		35308FBA29E51126008FB343 /* ChattingListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35308FB929E51126008FB343 /* ChattingListVM.swift */; };
 		3534D2CC2A5BF50D00EF6111 /* VoIpUtillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534D2CB2A5BF50D00EF6111 /* VoIpUtillButton.swift */; };
 		35364FDB2A029D7D00C4BC8D /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35364FDA2A029D7D00C4BC8D /* PushManager.swift */; };
+		35390C612A80F2500066CF89 /* FireStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35390C602A80F2500066CF89 /* FireStorageService.swift */; };
+		35390C632A80F4580066CF89 /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35390C622A80F4580066CF89 /* StorageError.swift */; };
+		35390C652A8102500066CF89 /* NoPassRegisterPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35390C642A8102500066CF89 /* NoPassRegisterPopUp.swift */; };
 		354609EC29D6EBA000FC5ABB /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354609EB29D6EBA000FC5ABB /* CategoryCell.swift */; };
 		354609F029D6F19500FC5ABB /* AssetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354609EF29D6F19500FC5ABB /* AssetImage.swift */; };
 		354609F529D70D8500FC5ABB /* LoginV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354609F429D70D8500FC5ABB /* LoginV.swift */; };
@@ -341,6 +344,9 @@
 		3534D2CB2A5BF50D00EF6111 /* VoIpUtillButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoIpUtillButton.swift; sourceTree = "<group>"; };
 		35364FD82A029C5900C4BC8D /* VoiceConsultingApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoiceConsultingApp.entitlements; sourceTree = "<group>"; };
 		35364FDA2A029D7D00C4BC8D /* PushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
+		35390C602A80F2500066CF89 /* FireStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStorageService.swift; sourceTree = "<group>"; };
+		35390C622A80F4580066CF89 /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
+		35390C642A8102500066CF89 /* NoPassRegisterPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPassRegisterPopUp.swift; sourceTree = "<group>"; };
 		354609EB29D6EBA000FC5ABB /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		354609EF29D6F19500FC5ABB /* AssetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetImage.swift; sourceTree = "<group>"; };
 		354609F429D70D8500FC5ABB /* LoginV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginV.swift; sourceTree = "<group>"; };
@@ -546,6 +552,7 @@
 				351E93EE2A2CA2BE00C598C3 /* GoogleLoginService.swift */,
 				3500D2502A60F7E50070E264 /* AgoraTokenService.swift */,
 				35EF33ED2A7B925400DB6194 /* KakaoLoginService.swift */,
+				35390C602A80F2500066CF89 /* FireStorageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -659,6 +666,7 @@
 			isa = PBXGroup;
 			children = (
 				351E93F72A2CCC4F00C598C3 /* AuthError.swift */,
+				35390C622A80F4580066CF89 /* StorageError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1021,6 +1029,7 @@
 				359638C22A23A3D900808EA0 /* DeleteAccountPopUpVC.swift */,
 				357D4A1B2A2E0D98000052D1 /* OneButtonNoActionPopUpVC.swift */,
 				35C5FA682A6E823B00815055 /* CancelImagePickPopUp.swift */,
+				35390C642A8102500066CF89 /* NoPassRegisterPopUp.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -1665,12 +1674,14 @@
 				354B73C92A0B88AA00651EF9 /* CellTouchable.swift in Sources */,
 				35277D2129DA8A95002A2A14 /* BannerCell.swift in Sources */,
 				357C78B42A407E3C00B1849D /* MoreLiveVM.swift in Sources */,
+				35390C632A80F4580066CF89 /* StorageError.swift in Sources */,
 				3534D2CC2A5BF50D00EF6111 /* VoIpUtillButton.swift in Sources */,
 				356F7BD92A0794D500C536D8 /* CertificateCell.swift in Sources */,
 				350AFE222A3B10F400FF3514 /* CategoryField.swift in Sources */,
 				35F9514D2A73DDEA0052261A /* RevenueManagementVC.swift in Sources */,
 				356F7BDF2A07B47800C536D8 /* Extension+UISCrollView.swift in Sources */,
 				355EDEE229D5CD7A00F9BD5D /* SelectCategoryV.swift in Sources */,
+				35390C612A80F2500066CF89 /* FireStorageService.swift in Sources */,
 				358F42FD2A44371B004BBBE0 /* BuyCoinHistoryManager.swift in Sources */,
 				3503B9222A692E4400E8751A /* AddPhotoCell.swift in Sources */,
 				355EDEE029D5CD3600F9BD5D /* SelectCategoryVM.swift in Sources */,
@@ -1709,6 +1720,7 @@
 				35289C602A0E038800D2B3C5 /* CustomTextMessageCell.swift in Sources */,
 				35BC05352A12640200E312C8 /* TransactionCompletedSizeCalculator.swift in Sources */,
 				35C5FA6D2A6E8E2A00815055 /* DeleteButtonTouchable.swift in Sources */,
+				35390C652A8102500066CF89 /* NoPassRegisterPopUp.swift in Sources */,
 				354664B929E43ADF0055375F /* BigCoinBlock.swift in Sources */,
 				35F9514B2A73DDBB0052261A /* RevenueManagementV.swift in Sources */,
 				35277D2529DA8ACD002A2A14 /* PopularCell.swift in Sources */,

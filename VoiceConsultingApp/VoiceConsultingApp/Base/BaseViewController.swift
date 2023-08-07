@@ -40,30 +40,35 @@ class BaseViewController: UIViewController {
     }
     
     func moveMain() {
+        
         let mainVC = UINavigationController(rootViewController: CustomTabBarController())
         
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: mainVC)
     }
     
     func moveLoginVC() {
+        
         let loginVC = UINavigationController(rootViewController: LoginVC())
         
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: loginVC)
     }
     
     func moveSelectCategoryVC() {
+        
         let selectCategoryVC = SelectCategoryVC()
         
         self.navigationController?.pushViewController(selectCategoryVC, animated: true)
     }
     
     func moveSelectUseTypeVC() {
+        
         let selectUseTypeVC = UINavigationController(rootViewController: SelectUseTypeVC())
         
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: selectUseTypeVC)
     }
     
     func moveCoinManagementVC(start: Int) {
+        
         let coinManagementVC = CoinManagementVC()
         coinManagementVC.hidesBottomBarWhenPushed = true
         coinManagementVC.startIndex = start
@@ -139,6 +144,14 @@ class BaseViewController: UIViewController {
     
     func showDeleteAccountPopUp() {
         let popUp = DeleteAccountPopUpVC()
+        
+        popUp.hidesBottomBarWhenPushed = true
+        popUp.modalPresentationStyle = .overFullScreen
+        popUp.modalTransitionStyle = .crossDissolve
+        self.present(popUp, animated: true, completion: nil)
+    }
+    
+    func showPopUp(popUp: PopUpVC) {
         
         popUp.hidesBottomBarWhenPushed = true
         popUp.modalPresentationStyle = .overFullScreen

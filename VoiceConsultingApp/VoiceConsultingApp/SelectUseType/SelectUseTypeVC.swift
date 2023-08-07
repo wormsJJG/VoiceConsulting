@@ -22,6 +22,7 @@ class SelectUseTypeVC: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         outputSubscribe()
         addButtonAction()
         isHiddenNavigationBar()
@@ -39,7 +40,7 @@ extension SelectUseTypeVC {
                     self?.moveSelectCategoryVC()
                 } else {
                     
-                    //상담사 회원가입
+                    self?.moveInputCounselorInfoVC()
                 }
             })
             .disposed(by: self.disposeBag)

@@ -13,11 +13,12 @@ class InputCounselorInfoVM: BaseViewModel {
     struct Input {
         
         let didTapAddAffiliationField: PublishSubject<Void> = PublishSubject()
+        let completeInputInfo: PublishSubject<CounselorInfo> = PublishSubject()
     }
     
     struct Output {
         
-        var profileImageList: [UIImage?] = [nil]
+        var certificateList: [UIImage?] = [nil]
         let addAffiliationFieldEvent: PublishSubject<Int> = PublishSubject()
     }
     

@@ -14,7 +14,7 @@ struct CounselorInfo: Codable {
     var consultingCount: Int
     var heartCount: Int
     var isHidden: Bool
-    var phoneNumber: String
+    var phoneNumber: String?
     var isOnline: Bool
     var coin: Int
     var platform: String
@@ -24,7 +24,7 @@ struct CounselorInfo: Codable {
     var reviewPoint: Double?
     var fcmToken: String?
     
-    init(name: String, categoryList: [String], affiliationList: [String], licenseImages: [String], profileImageUrl: String, introduction: String, phoneNumber: String) {
+    init(name: String, categoryList: [String], affiliationList: [String], licenseImages: [String], profileImageUrl: String, introduction: String, phoneNumber: String?) {
         self.name = name
         self.categoryList = categoryList
         self.profileImageUrl = profileImageUrl

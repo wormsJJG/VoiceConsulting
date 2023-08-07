@@ -9,11 +9,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+import Kingfisher
 
 class ChattingListVC: BaseViewController {
     // MARK: - Load View
     private let chattingListV = ChattingListV()
+    
     override func loadView() {
+        
         self.view = chattingListV
     }
     // MARK: - Properties
@@ -22,11 +25,24 @@ class ChattingListVC: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bindData()
         addCoinBlockTapAction()
         bindTableView()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+}
+// MARK: - Bind Data
+extension ChattingListVC {
+    
+    private func bindData() {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.chattingListV.header.profileImage.kf.setImage(with: URL(string: Config.profileUrlString ?? ""))
+        }
     }
 }
 // MARK: - Touch Action

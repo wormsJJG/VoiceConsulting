@@ -78,6 +78,7 @@ class CategoryManager {
                             event.onError(error)
                         }
                     }
+                    
                     event.onNext(categoryList)
                     event.onCompleted()
                 }

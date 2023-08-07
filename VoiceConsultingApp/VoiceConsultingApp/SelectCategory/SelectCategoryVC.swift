@@ -19,7 +19,6 @@ class SelectCategoryVC: BaseViewController {
     // MARK: - Properties
     private let viewModel = SelectCategoryVM()
     private let disposeBag = DisposeBag()
-    
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +36,9 @@ extension SelectCategoryVC: UICollectionViewDelegateFlowLayout {
         // DataSource
         viewModel.output.categoryList
             .bind(to: self.selectCategoryV.categoryList.rx.items(cellIdentifier: CategoryCell.cellID, cellType: CategoryCell.self)) { index, category, cell in
-                
+            
                 cell.configure(category: category)
+                cell.isChecked = self.viewModel.checkedCategory(in: category.modelId)
             }
             .disposed(by: self.disposeBag)
         // Data Logic - select, deselect
@@ -99,7 +99,7 @@ extension SelectCategoryVC {
                 
                 if let error {
                     
-                    print(error)
+                    print(error.localizedDescription)
                 } else {
                     
                     self?.moveMain()

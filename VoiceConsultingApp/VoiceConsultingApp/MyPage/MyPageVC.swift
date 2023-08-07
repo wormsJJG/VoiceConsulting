@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+import Kingfisher
 
 class MyPageVC: BaseViewController {
     // MARK: - Load View
@@ -39,9 +40,11 @@ class MyPageVC: BaseViewController {
 extension MyPageVC {
     
     private func dataBind() {
+        
         DispatchQueue.main.async {
+            
             self.myPageV.name.text = Config.name
-            //프로필 코드
+            self.myPageV.profileImage.kf.setImage(with: URL(string: Config.profileUrlString ?? ""))
             //보유 코인
         }
     }

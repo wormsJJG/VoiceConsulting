@@ -87,8 +87,7 @@ extension LoginVC {
                     self?.moveSplashVC()
                 } else {
                     
-                    UserRegisterData.uid = uid
-                    UserRegisterData.name = name
+                    UserRegisterData.name = name!
                     self?.moveSelectUseTypeVC()
                 }
             case .error(let error):

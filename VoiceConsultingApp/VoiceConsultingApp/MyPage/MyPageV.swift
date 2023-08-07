@@ -18,6 +18,7 @@ class MyPageV: UIView {
     lazy var profileImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.thumnail)
         $0.layer.cornerRadius = 30.0
+        $0.clipsToBounds = true
     }
     
     lazy var name: UILabel = UILabel().then {
