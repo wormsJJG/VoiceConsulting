@@ -76,6 +76,15 @@ class BaseViewController: UIViewController {
         self.navigationController?.pushViewController(coinManagementVC, animated: true)
     }
     
+    func moveEditCounselorInfoVC() {
+        
+        let inputCounselorInfo = InputCounselorInfoVC()
+        inputCounselorInfo.isEditInfo()
+        inputCounselorInfo.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(inputCounselorInfo, animated: true)
+    }
+    
     func moveCounselorDetailVC(in counselorUid: String) {
         
         let counselorDetailVC = CounselorDetailVC()

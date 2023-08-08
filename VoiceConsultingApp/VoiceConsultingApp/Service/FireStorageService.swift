@@ -24,50 +24,108 @@ class FireStorageService {
         self.metaData.contentType = contentType
     }
     
+    private func upLoadImageInFireStorage(in ref: StorageReference,
+                                            jpegData: Data,
+                                            completion: @escaping((Result<String, Error>) -> Void)) {
+        
+        ref.putData(jpegData, metadata: self.metaData) { data, error in
+                
+            if let error {
+                    
+                completion(.failure(error))
+            } else {
+                    
+                ref.downloadURL { url, error in
+                        
+                    if let error {
+                            
+                        completion(.failure(error))
+                    }
+                        
+                    if let url {
+                            
+                        completion(.success(url.absoluteString))
+                    } else {
+                            
+                        completion(.failure(StorageError.nilUrl))
+                    }
+                }
+            }
+        }
+    }
+    
     func uploadProfileImage(in image: UIImage?) -> Observable<String> {
         
         return Observable.create { event in
             
-            guard let uid = FirebaseAuthManager.shared.getUserUid() else {
+            if let uid = FirebaseAuthManager.shared.getUserUid() {
+                
+                let avatorRef = self.storageRef.child(uid).child(self.profileChild).child(self.profileChild)
+                
+                if let profileImage = image,
+                   let imageJpegData = profileImage.jpegData(compressionQuality: 0.1) {
+                    
+                    self.upLoadImageInFireStorage(in: avatorRef,
+                                                  jpegData: imageJpegData,
+                                                  completion: { result in
+                        
+                        switch result {
+                            
+                        case .success(let urlString):
+                            
+                            event.onNext(urlString)
+                            event.onCompleted()
+                        case .failure(let error):
+                            
+                            event.onError(error)
+                        }
+                    })
+                } else{
+                    
+                    event.onError(StorageError.nilImage)
+                }
+            } else {
                 
                 event.onError(AuthError.noCurrentUser)
-                return Disposables.create()
             }
+            return Disposables.create()
+        }
+    }
+    
+    func uploadCertificateImage(in image: UIImage?, child: String) -> Observable<String> {
+        
+        return Observable.create { event in
             
-            let avatorRef = self.storageRef.child(uid).child(self.profileChild).child(self.profileChild)
-            
-            guard let profileImage = image,
-                  let imageJpegData = profileImage.jpegData(compressionQuality: 0.1) else {
+            if let uid = FirebaseAuthManager.shared.getUserUid() {
                 
-                event.onError(StorageError.nilImage)
-                return Disposables.create()
-            }
-            
-            avatorRef
-                .putData(imageJpegData, metadata: self.metaData) { data, error in
+                let certificateRef = self.storageRef.child(uid).child(self.certificateChild).child(child)
+                
+                if let profileImage = image,
+                   let imageJpegData = profileImage.jpegData(compressionQuality: 0.1) {
                     
-                    if let error {
+                    self.upLoadImageInFireStorage(in: certificateRef,
+                                                  jpegData: imageJpegData,
+                                                  completion: { result in
                         
-                        event.onError(error)
-                    } else {
-                        
-                        avatorRef.downloadURL { url, error in
+                        switch result {
                             
-                            if let error {
-                                
-                                event.onError(error)
-                            }
+                        case .success(let urlString):
                             
-                            if let url {
-                                event.onNext(url.absoluteString)
-                                event.onCompleted()
-                            } else {
-                                
-                                event.onError(StorageError.nilUrl)
-                            }
+                            event.onNext(urlString)
+                            event.onCompleted()
+                        case .failure(let error):
+                            
+                            event.onError(error)
                         }
-                    }
+                    })
+                } else{
+                    
+                    event.onError(StorageError.nilImage)
                 }
+            } else {
+                
+                event.onError(AuthError.noCurrentUser)
+            }
             return Disposables.create()
         }
     }
@@ -76,54 +134,49 @@ class FireStorageService {
         
         return Observable.create { event in
             
-            guard let uid = FirebaseAuthManager.shared.getUserUid() else {
+            if let uid = FirebaseAuthManager.shared.getUserUid() {
                 
-                event.onError(AuthError.noCurrentUser)
-                return Disposables.create()
-            }
-            
-            var urlList: [String] = []
-            
-            for image in images {
+                var urlList: [String] = []
+                var i = 0
                 
-                let certificateRef = self.storageRef.child(uid).child(self.certificateChild).child(String(urlList.count + 1))
-                
-                guard let profileImage = image,
-                      let imageJpegData = profileImage.jpegData(compressionQuality: 0.1) else {
+                images.forEach { image in
+                    i += 1
+                    let certificateRef = self.storageRef.child(uid).child(self.certificateChild).child(String(i))
                     
-                    event.onError(StorageError.nilImage)
-                    return Disposables.create()
-                }
-                
-                certificateRef
-                    .putData(imageJpegData, metadata: self.metaData) { data, error in
+                    if let profileImage = image,
+                       let imageJpegData = profileImage.jpegData(compressionQuality: 0.1) {
                         
-                        if let error {
+                        self.upLoadImageInFireStorage(in: certificateRef,
+                                                      jpegData: imageJpegData,
+                                                      completion: { result in
                             
-                            event.onError(error)
-                        } else {
-                            
-                            certificateRef.downloadURL { url, error in
+                            switch result {
                                 
-                                if let error {
-                                    
-                                    event.onError(error)
-                                }
+                            case .success(let urlString):
                                 
-                                if let url {
+                                if i == urlList.count + 1{
                                     
-                                    urlList.append(url.absoluteString)
+                                    urlList.append(urlString)
+                                    event.onNext(urlList)
+                                    event.onCompleted()
                                 } else {
                                     
-                                    event.onError(StorageError.nilUrl)
+                                    urlList.append(urlString)
                                 }
+                            case .failure(let error):
+                                
+                                event.onError(error)
                             }
-                        }
+                        })
+                    } else {
+                        
+                        event.onError(StorageError.nilImage)
                     }
+                }
+            } else {
+                
+                event.onError(AuthError.noCurrentUser)
             }
-            
-            event.onNext(urlList)
-            event.onCompleted()
             return Disposables.create()
         }
     }

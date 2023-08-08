@@ -122,34 +122,40 @@ class SelectCategoryVM: BaseViewModel {
             
             uploadImageForCounselor(completion: { [weak self] profileImageUrl, licenseImages, error in
                 
-                let counselor = CounselorInfo(name: UserRegisterData.name,
-                                              categoryList: self!.input.userSelectCategoryList,
-                                              affiliationList: UserRegisterData.affiliationList,
-                                              licenseImages: licenseImages,
-                                              profileImageUrl: profileImageUrl,
-                                              introduction: UserRegisterData.introduce,
-                                              phoneNumber: nil)
-                
-                CounselorManager.shared.registerCounselor(uid: uid, counselor: counselor)
-                    .subscribe({ [weak self] event in
-                        
-                        switch event {
+                if let error {
+                    
+                    self?.output.completion.onNext(error)
+                } else {
+                    
+                    let counselor = CounselorInfo(name: UserRegisterData.name,
+                                                  categoryList: self!.input.userSelectCategoryList,
+                                                  affiliationList: UserRegisterData.affiliationList,
+                                                  licenseImages: licenseImages,
+                                                  profileImageUrl: profileImageUrl,
+                                                  introduction: UserRegisterData.introduce,
+                                                  phoneNumber: nil)
+                    
+                    CounselorManager.shared.registerCounselor(uid: uid, counselor: counselor)
+                        .subscribe({ [weak self] event in
                             
-                        case .next(_):
-                            
-                            Config.isUser = UserRegisterData.isUser
-                            Config.name = UserRegisterData.name
-                            Config.profileUrlString = profileImageUrl
-                            self?.output.completion.onNext(nil)
-                        case .error(let error):
-                            
-                            self?.output.completion.onNext(error)
-                        case .completed:
-                            
-                            print("completed")
-                        }
-                    })
-                    .disposed(by: self!.disposeBag)
+                            switch event {
+                                
+                            case .next(_):
+                                
+                                Config.isUser = UserRegisterData.isUser
+                                Config.name = UserRegisterData.name
+                                Config.profileUrlString = profileImageUrl
+                                self?.output.completion.onNext(nil)
+                            case .error(let error):
+                                
+                                self?.output.completion.onNext(error)
+                            case .completed:
+                                
+                                print("completed")
+                            }
+                        })
+                        .disposed(by: self!.disposeBag)
+                }
             })
         }
     }

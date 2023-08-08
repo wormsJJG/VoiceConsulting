@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+import Kingfisher
 
 class InputCounselorInfoVC: BaseViewController {
     
@@ -32,6 +33,13 @@ class InputCounselorInfoVC: BaseViewController {
         setDelegates()
         outputSubscribe()
         addAction()
+    }
+    
+    // MARK: - View Mode
+    func isEditInfo() {
+        
+        inputCounselorInfoV.header.headerType = .editCounselorInfo
+        viewModel.input.isEditInfo.onNext(())
     }
     
     // MARK: - SetDelegates
@@ -132,7 +140,7 @@ extension InputCounselorInfoVC {
         let nilImage = inputCounselorInfoV.profileImageView.image == UIImage(named: AssetImage.myIconFull) || inputCounselorInfoV.profileImageView.image == nil
         let nilName = inputCounselorInfoV.inputNameTextField.text == nil
         let nilAffiliation = inputCounselorInfoV.affiliationTextFieldOne.text == nil
-        let nilCertificate = viewModel.output.certificateList.count == 0
+        let nilCertificate = viewModel.output.certificateImageList.count == 1
         let nilintroduce = inputCounselorInfoV.inputIntroduceField.text == "상세 소개를 작성해주세요"
         let isNoPass = nilImage || nilName || nilAffiliation || nilCertificate || nilintroduce
         
@@ -141,13 +149,54 @@ extension InputCounselorInfoVC {
             self.showPopUp(popUp: NoPassRegisterPopUp())
         } else {
             
-            UserRegisterData.name = getName()
-            UserRegisterData.affiliationList = getAffiliationList()
-            UserRegisterData.profileImage = getProfileImage()
-            UserRegisterData.cerificateImageList = getCertificateImages()
-            UserRegisterData.introduce = getIntroduce()
-            self.moveSelectCategoryVC()
+            if inputCounselorInfoV.header.headerType == .inputCounselrInfo {
+                
+                nextStep()
+            } else {
+                
+                editCounselorData()
+            }
         }
+    }
+    
+    private func nextStep() {
+        
+        UserRegisterData.name = getName()
+        UserRegisterData.affiliationList = getAffiliationList()
+        UserRegisterData.profileImage = getProfileImage()
+        UserRegisterData.cerificateImageList = getCertificateImages()
+        UserRegisterData.introduce = getIntroduce()
+        self.moveSelectCategoryVC()
+    }
+    
+    private func editCounselorData() {
+        
+        viewModel.convertProfileImageToUrlString(in: getProfileImage(),
+                                                 completion: { [weak self] profileUrlString, error in
+
+            if let error {
+
+                print(error.localizedDescription)
+            } else {
+
+                self?.viewModel.convertCertificateImageListToUrlStringList(in: self!.getCertificateImages(),
+                                                                     completion: { certificateUrlStringList, error in
+                    
+                    if let error {
+                        
+                        print(error.localizedDescription)
+                    } else {
+                        
+                        self?.viewModel.output.beforeCounselor?.info.profileImageUrl = profileUrlString
+                        self?.viewModel.output.beforeCounselor?.info.name = self!.getName()
+                        self?.viewModel.output.beforeCounselor?.info.affiliationList = self!.getAffiliationList()
+                        self?.viewModel.output.beforeCounselor?.info.licenseImages = certificateUrlStringList
+                        self?.viewModel.output.beforeCounselor?.info.introduction = self!.getIntroduce()
+                        self?.viewModel.input.completeEditTrigger.onNext(())
+                    }
+                })
+            }
+        })
     }
     
     private func addDidTapScrollViewAction() {
@@ -174,19 +223,20 @@ extension InputCounselorInfoVC {
         
         var list: [String] = []
         list.append(inputCounselorInfoV.affiliationTextFieldOne.text!)
-        if let two = inputCounselorInfoV.affiliationTextFieldTwo.text {
+        
+        if !(inputCounselorInfoV.affiliationTextFieldTwo.text!.isEmpty) {
             
-            list.append(two)
+            list.append(inputCounselorInfoV.affiliationTextFieldTwo.text!)
         }
         
-        if let three = inputCounselorInfoV.affiliationTextFieldThree.text {
+        if !(inputCounselorInfoV.affiliationTextFieldThree.text!.isEmpty) {
             
-            list.append(three)
+            list.append(inputCounselorInfoV.affiliationTextFieldThree.text!)
         }
         
-        if let four = inputCounselorInfoV.affiliationTextFieldFour.text {
+        if !(inputCounselorInfoV.affiliationTextFieldFour.text!.isEmpty) {
             
-            list.append(four)
+            list.append(inputCounselorInfoV.affiliationTextFieldFour.text!)
         }
         
         return list
@@ -199,14 +249,66 @@ extension InputCounselorInfoVC {
     
     private func getCertificateImages() -> [UIImage?] {
         
-        viewModel.output.certificateList.removeFirst()
+        var imageList = viewModel.output.certificateImageList
+        imageList.remove(at: 0)
         
-        return viewModel.output.certificateList
+        return imageList
     }
     
     private func getIntroduce() -> String {
         
         return inputCounselorInfoV.inputIntroduceField.text
+    }
+    
+    private func loadLicenseImages(in urlStringList: [String]) {
+        
+        for urlString in urlStringList {
+            
+            self.viewModel.convertUrlStringToUIImage(in: urlString) { image in
+                
+                self.viewModel.output.certificateImageList.append(image)
+                DispatchQueue.main.async { [weak self] in
+                    
+                    self?.inputCounselorInfoV.inputProfileImageList.reloadData()
+                }
+            }
+        }
+    }
+    
+    private func loadAffiliationList(in affiliationList: [String]) {
+        
+        viewModel.setAffiliationCount(in: affiliationList.count)
+        
+        switch affiliationList.count {
+            
+        case 1:
+            
+            self.inputCounselorInfoV.affiliationTextFieldOne.text = affiliationList[0]
+        case 2:
+            
+            self.inputCounselorInfoV.affiliationTextFieldTwo.isHidden = false
+            self.inputCounselorInfoV.affiliationTextFieldOne.text = affiliationList[0]
+            self.inputCounselorInfoV.affiliationTextFieldTwo.text = affiliationList[1]
+        case 3:
+            
+            self.inputCounselorInfoV.affiliationTextFieldTwo.isHidden = false
+            self.inputCounselorInfoV.affiliationTextFieldThree.isHidden = false
+            self.inputCounselorInfoV.affiliationTextFieldOne.text = affiliationList[0]
+            self.inputCounselorInfoV.affiliationTextFieldTwo.text = affiliationList[1]
+            self.inputCounselorInfoV.affiliationTextFieldThree.text = affiliationList[2]
+        case 4:
+            
+            self.inputCounselorInfoV.affiliationTextFieldTwo.isHidden = false
+            self.inputCounselorInfoV.affiliationTextFieldThree.isHidden = false
+            self.inputCounselorInfoV.affiliationTextFieldFour.isHidden = false
+            self.inputCounselorInfoV.affiliationTextFieldOne.text = affiliationList[0]
+            self.inputCounselorInfoV.affiliationTextFieldTwo.text = affiliationList[1]
+            self.inputCounselorInfoV.affiliationTextFieldThree.text = affiliationList[2]
+            self.inputCounselorInfoV.affiliationTextFieldFour.text = affiliationList[3]
+        default:
+            
+            return
+        }
     }
 }
 // MARK: - Output Subscribe
@@ -237,6 +339,27 @@ extension InputCounselorInfoVC {
                 }
             })
             .disposed(by: self.disposeBag)
+        
+        viewModel.output.counselorData
+            .subscribe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] counselor in
+                
+                self?.inputCounselorInfoV.profileImageView.kf.setImage(with: URL(string: counselor.info.profileImageUrl))
+                self?.inputCounselorInfoV.inputNameTextField.text = counselor.info.name
+                self?.inputCounselorInfoV.profileImageView.contentMode = .scaleToFill
+                self?.inputCounselorInfoV.inputIntroduceField.text = counselor.info.introduction
+                self?.inputCounselorInfoV.inputIntroduceField.textColor = ColorSet.mainText
+                self?.loadLicenseImages(in: counselor.info.licenseImages)
+                self?.loadAffiliationList(in: counselor.info.affiliationList)
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.sucessEditTrigger
+            .subscribe(onNext: { [weak self] _ in
+                
+                self?.moveSplashVC()
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - DeleteButtonTouchable
@@ -244,9 +367,9 @@ extension InputCounselorInfoVC: DeleteButtonTouchable {
     
     func didTapDeleteButton(_ image: UIImage?) {
         
-        if let index = viewModel.output.certificateList.firstIndex(of: image) {
+        if let index = viewModel.output.certificateImageList.firstIndex(of: image) {
             
-            viewModel.output.certificateList.remove(at: index)
+            viewModel.output.certificateImageList.remove(at: index)
             inputCounselorInfoV.inputProfileImageList.reloadData()
         }
     }
@@ -256,8 +379,8 @@ extension InputCounselorInfoVC: DeleteButtonTouchable {
 extension InputCounselorInfoVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        viewModel.output.certificateList.count
+    
+        viewModel.output.certificateImageList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -269,7 +392,7 @@ extension InputCounselorInfoVC: UICollectionViewDataSource, UICollectionViewDele
                 return UICollectionViewCell()
             }
             
-            cell.configureCell(in: viewModel.output.certificateList.count - 1)
+            cell.configureCell(in: viewModel.output.certificateImageList.count - 1)
             
             return cell
         } else {
@@ -280,7 +403,7 @@ extension InputCounselorInfoVC: UICollectionViewDataSource, UICollectionViewDele
             }
             
             cell.deleteDelegate = self
-            let image = viewModel.output.certificateList[indexPath.item]
+            let image = viewModel.output.certificateImageList[indexPath.item]
             cell.configureCell(in: image)
             
             return cell
@@ -337,7 +460,7 @@ extension InputCounselorInfoVC: UIImagePickerControllerDelegate, UINavigationCon
                 self.inputCounselorInfoV.profileImageView.image = selectImage
             } else {
                 
-                self.viewModel.output.certificateList.append(selectImage)
+                self.viewModel.output.certificateImageList.append(selectImage)
                 self.inputCounselorInfoV.inputProfileImageList.reloadData()
             }
         }

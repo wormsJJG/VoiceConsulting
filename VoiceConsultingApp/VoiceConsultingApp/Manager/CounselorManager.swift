@@ -73,7 +73,31 @@ class CounselorManager {
             return Disposables.create()
         }
     }
-    
+    // MARK: - 상담사 정보 수정
+    func editCounselorData(counselor: Counselor) -> Observable<Void> {
+        
+        Observable.create { event in
+            
+            do {
+                
+                try self.db.document(counselor.uid).setData(from: counselor.info, merge: true) { error in
+                    
+                    if let error {
+                        
+                        event.onError(error)
+                    }
+                    
+                    event.onNext(())
+                    event.onCompleted()
+                }
+            } catch {
+                
+                event.onError(error)
+            }
+            
+            return Disposables.create()
+        }
+    }
     // MARK: - getOnlineCounselor
     func getOnlineCounselorList(with limit: Int) -> Observable<[Counselor]> {
         Observable.create { event in
