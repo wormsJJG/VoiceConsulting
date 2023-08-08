@@ -22,6 +22,7 @@ class SplashVC: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         outputSubscrbe()
         self.viewModel.input.isEnterUser.onNext(())
     }

@@ -24,6 +24,7 @@ class MyPageVC: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addTapAction()
         bindTableView()
         dataBind()

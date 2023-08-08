@@ -145,7 +145,7 @@ class SelectCategoryVM: BaseViewModel {
                                 Config.isUser = UserRegisterData.isUser
                                 Config.name = UserRegisterData.name
                                 Config.profileUrlString = profileImageUrl
-                                self?.output.completion.onNext(nil)
+                                self?.registerAgora()
                             case .error(let error):
                                 
                                 self?.output.completion.onNext(error)
@@ -157,6 +157,55 @@ class SelectCategoryVM: BaseViewModel {
                         .disposed(by: self!.disposeBag)
                 }
             })
+        }
+    }
+    
+    private func registerAgora() {
+        
+        if let uid = FirebaseAuthManager.shared.getUserUid() {
+            
+            AgoraManager.shared.register(userUid: uid)
+                .subscribe({ [weak self] event in
+                    
+                    switch event {
+                        
+                    case .next(_):
+                        
+                        self?.agoraLogin(uid: uid)
+                    case .error(let error):
+                        
+                        print(error.localizedDescription)
+                    case .completed:
+                        print("completed")
+                    }
+                })
+                .disposed(by: self.disposeBag)
+        }
+    }
+    
+    private func agoraLogin(uid: String) {
+        
+        if AgoraManager.shared.currentUser == nil {
+            
+            AgoraManager.shared.login(userUid: uid.lowercased())
+                .subscribe({ [weak self] event in
+                    
+                    switch event {
+                        
+                    case .next():
+                        
+                        self?.output.completion.onNext(nil)
+                    case .error(let error):
+                        
+                        self?.output.completion.onNext(error)
+                    case .completed:
+                        print("completed")
+                    }
+                })
+                .disposed(by: self.disposeBag)
+        } else {
+            
+            self.output.completion.onNext(nil)
         }
     }
     

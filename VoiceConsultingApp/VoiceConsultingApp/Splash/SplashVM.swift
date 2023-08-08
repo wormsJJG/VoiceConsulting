@@ -123,7 +123,7 @@ class SplashVM: BaseViewModel {
                         Config.name = counselor.info.name
                         Config.profileUrlString = counselor.info.profileImageUrl
                         
-                        self?.output.pushMainVCTrigger.onNext(())
+                        self?.agoraLogin()
                     case .error(let error):
                         
                         print(error.localizedDescription)
@@ -133,6 +133,39 @@ class SplashVM: BaseViewModel {
                     }
                 })
                 .disposed(by: self.disposeBag)
+        }
+    }
+    
+    private func agoraLogin() {
+        
+        if AgoraManager.shared.currentUser == nil {
+            
+            if let uid = FirebaseAuthManager.shared.getUserUid() {
+                
+                AgoraManager.shared.login(userUid: uid.lowercased())
+                    .subscribe({ [weak self] event in
+                        
+                        switch event {
+                            
+                        case .next():
+                            
+                            self?.output.pushMainVCTrigger.onNext(())
+                        case .error(let error):
+                            
+                            print(error.localizedDescription)
+                        case .completed:
+                            
+                            print("completed")
+                        }
+                    })
+                    .disposed(by: self.disposeBag)
+            } else {
+                
+                self.output.isNoLogin.onNext(())
+            }
+        } else {
+            
+            self.output.pushMainVCTrigger.onNext(())
         }
     }
 }
