@@ -32,12 +32,20 @@ class MainVC: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        dataBind()
         mainV.mainList.reloadData()
     }
 }
-// MARK: - Notification
+// MARK: - dataBind
 extension MainVC {
 
+    private func dataBind() {
+        
+        DispatchQueue.main.async { [weak self] in
+
+            self?.mainV.headerView.coinBlock.coinCount.text = String(Config.coin)
+        }
+    }
 }
 // MARK: - Touch Action
 extension MainVC {

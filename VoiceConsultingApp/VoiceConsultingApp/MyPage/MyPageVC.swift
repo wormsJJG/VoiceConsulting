@@ -47,7 +47,7 @@ extension MyPageVC {
             
             self.myPageV.name.text = Config.name
             self.myPageV.profileImage.kf.setImage(with: URL(string: Config.profileUrlString ?? ""))
-            //보유 코인
+            self.myPageV.coinBlock.coinCount.text = String(Config.coin)
         }
     }
 }

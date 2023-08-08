@@ -40,9 +40,9 @@ class ToSettleV: UIView {
         $0.image = UIImage(named: AssetImage.coinIconBlack)
     }
     
-    private let coinCountLabel: UILabel = UILabel().then {
+    let coinCountLabel: UILabel = UILabel().then {
         
-        $0.text = "100"
+        $0.text = String(Config.coin)
         $0.font = UIFont(name: Fonts.Inter_Bold, size: 20)
         $0.textColor = ColorSet.mainText
     }

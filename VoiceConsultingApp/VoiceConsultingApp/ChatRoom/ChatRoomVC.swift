@@ -14,7 +14,7 @@ import SnapKit
 import Then
 import AgoraChat
 
-class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
+class ChatRoomVC: MessagesViewController {
     // MARK: - View Components
     private let headerview = ChatRoomHeader().then {
         
@@ -56,6 +56,15 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         addAction()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        bindData()
+    }
+}
+// MARK: - AgoraChatManagerDelegate
+extension ChatRoomVC: AgoraChatManagerDelegate {
+    
     func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
         
         for msg in aMessages {
@@ -75,6 +84,9 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
             }
         }
     }
+}
+// MARK: - setDelegates
+extension ChatRoomVC {
     
     private func setDelegates() {
         
@@ -86,6 +98,22 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
         headerview.heartButton.delegate = self
         customInputView.delegate = self
     }
+}
+// MARK: - addAction
+extension ChatRoomVC {
+    
+    private func addAction() {
+        
+        headerview.backButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - Constraints
+extension ChatRoomVC {
     
     private func constraints() {
         self.view.addSubview(headerview)
@@ -107,15 +135,16 @@ class ChatRoomVC: MessagesViewController, AgoraChatManagerDelegate {
             $0.right.equalTo(self.view.snp.right)
         }
     }
+}
+// MARK: - bindData
+extension ChatRoomVC {
     
-    private func addAction() {
+    private func bindData() {
         
-        headerview.backButton.rx.tap
-            .bind(onNext: { [weak self] _ in
+        DispatchQueue.main.async { [weak self] in
                 
-                self?.navigationController?.popViewController(animated: true)
-            })
-            .disposed(by: self.disposeBag)
+            self?.headerview.coinBlock.coinCount.text = String(Config.coin)
+        }
     }
 }
 // MARK: - didTapHeartButton

@@ -19,5 +19,17 @@ class BuyCoinVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        bindData()
+    }
+}
+// MARK: - DataBind
+extension BuyCoinVC {
+    
+    private func bindData() {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.buyCoinV.coinCount.text = String(Config.coin)
+        }
     }
 }

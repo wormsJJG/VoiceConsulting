@@ -95,6 +95,7 @@ class SplashVM: BaseViewModel {
                     Config.isUser = true
                     Config.name = user.name
                     Config.profileUrlString = user.profileImageUrl
+                    Config.coin = user.coinCount
                     
                     self?.output.pushMainVCTrigger.onNext(())
                 case .error(let error):
@@ -122,6 +123,7 @@ class SplashVM: BaseViewModel {
                         Config.isUser = false
                         Config.name = counselor.info.name
                         Config.profileUrlString = counselor.info.profileImageUrl
+                        Config.coin = counselor.info.coin
                         
                         self?.agoraLogin()
                     case .error(let error):

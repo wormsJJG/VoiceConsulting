@@ -19,9 +19,9 @@ class RevenueView: UIView {
         $0.textAlignment = .center
     }
     
-    private let coinCountlabel: UILabel = UILabel().then {
+    let coinCountlabel: UILabel = UILabel().then {
         
-        $0.text = "400"
+        $0.text = String(Config.coin)
         $0.textColor = ColorSet.mainText
         $0.font = UIFont(name: Fonts.Inter_Bold, size: 30)
         $0.textAlignment = .center

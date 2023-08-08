@@ -42,6 +42,7 @@ extension ChattingListVC {
         DispatchQueue.main.async { [weak self] in
             
             self?.chattingListV.header.profileImage.kf.setImage(with: URL(string: Config.profileUrlString ?? ""))
+            self?.chattingListV.header.coinBlock.coinCount.text = String(Config.coin)
         }
     }
 }

@@ -30,6 +30,23 @@ class RevenueManagementVC: BaseViewController {
         addAction()
         addChildVC()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        bindData()
+    }
+}
+// MARK: - bindData
+extension RevenueManagementVC {
+    
+    private func bindData() {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.revenueManagementV.revenueView.coinCountlabel.text = String(Config.coin)
+        }
+    }
 }
 // MARK: - ContainerViewSetting
 extension RevenueManagementVC {

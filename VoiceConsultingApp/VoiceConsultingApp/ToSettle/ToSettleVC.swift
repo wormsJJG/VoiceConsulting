@@ -29,6 +29,21 @@ class ToSettleVC: BaseViewController {
 
         addAction()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+}
+// MARK: - bindData
+extension ToSettleVC {
+    
+    private func bindData() {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.toSettleV.coinCountLabel.text = String(Config.coin)
+        }
+    }
 }
 // MARK: - Add Action
 extension ToSettleVC {
