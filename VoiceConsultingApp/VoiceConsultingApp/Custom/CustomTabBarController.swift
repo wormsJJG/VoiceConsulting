@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AgoraChat
 
 class CustomTabBarController: UITabBarController {
 
@@ -61,3 +62,5 @@ extension CustomTabBarController {
         self.navigationController?.navigationBar.isHidden = true
     }
 }
+
+

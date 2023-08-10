@@ -134,6 +134,7 @@
 		3568DC802A498C9100E767BC /* ReviewField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3568DC7F2A498C9100E767BC /* ReviewField.swift */; };
 		3568DC852A498DB400E767BC /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3568DC842A498DB400E767BC /* Review.swift */; };
 		3568DC872A498F4D00E767BC /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3568DC862A498F4D00E767BC /* ReviewManager.swift */; };
+		356F39C92A83D72400A4192D /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F39C82A83D72400A4192D /* TextMessage.swift */; };
 		356F7BCD2A07770100C536D8 /* InfoSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BCC2A07770100C536D8 /* InfoSectionHeader.swift */; };
 		356F7BCF2A0779AE00C536D8 /* CounselorInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BCE2A0779AE00C536D8 /* CounselorInfoSection.swift */; };
 		356F7BD22A0790E300C536D8 /* AffiliationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F7BD12A0790E300C536D8 /* AffiliationCell.swift */; };
@@ -195,6 +196,7 @@
 		35A63F642A1322910058C92D /* SystemMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F632A1322910058C92D /* SystemMessageType.swift */; };
 		35A63F672A132FD50058C92D /* EndConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F662A132FD50058C92D /* EndConsultationCell.swift */; };
 		35A63F692A132FE30058C92D /* EndConsultationSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F682A132FE30058C92D /* EndConsultationSizeCalculator.swift */; };
+		35ACA05B2A8501A40029E183 /* AgoraChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACA05A2A8501A40029E183 /* AgoraChatService.swift */; };
 		35AE84302A4C18E2007B2FAF /* ConsultingField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AE842F2A4C18E2007B2FAF /* ConsultingField.swift */; };
 		35AE84332A4C19A3007B2FAF /* Consulting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AE84322A4C19A3007B2FAF /* Consulting.swift */; };
 		35AE84352A4C1A2F007B2FAF /* ConsultingHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AE84342A4C1A2F007B2FAF /* ConsultingHistoryManager.swift */; };
@@ -394,6 +396,7 @@
 		3568DC7F2A498C9100E767BC /* ReviewField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewField.swift; sourceTree = "<group>"; };
 		3568DC842A498DB400E767BC /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		3568DC862A498F4D00E767BC /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
+		356F39C82A83D72400A4192D /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
 		356F7BCC2A07770100C536D8 /* InfoSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSectionHeader.swift; sourceTree = "<group>"; };
 		356F7BCE2A0779AE00C536D8 /* CounselorInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorInfoSection.swift; sourceTree = "<group>"; };
 		356F7BD12A0790E300C536D8 /* AffiliationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliationCell.swift; sourceTree = "<group>"; };
@@ -455,6 +458,7 @@
 		35A63F632A1322910058C92D /* SystemMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageType.swift; sourceTree = "<group>"; };
 		35A63F662A132FD50058C92D /* EndConsultationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndConsultationCell.swift; sourceTree = "<group>"; };
 		35A63F682A132FE30058C92D /* EndConsultationSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndConsultationSizeCalculator.swift; sourceTree = "<group>"; };
+		35ACA05A2A8501A40029E183 /* AgoraChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraChatService.swift; sourceTree = "<group>"; };
 		35AE842F2A4C18E2007B2FAF /* ConsultingField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultingField.swift; sourceTree = "<group>"; };
 		35AE84322A4C19A3007B2FAF /* Consulting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consulting.swift; sourceTree = "<group>"; };
 		35AE84342A4C1A2F007B2FAF /* ConsultingHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultingHistoryManager.swift; sourceTree = "<group>"; };
@@ -746,6 +750,7 @@
 			children = (
 				35364FDA2A029D7D00C4BC8D /* PushManager.swift */,
 				35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */,
+				35ACA05A2A8501A40029E183 /* AgoraChatService.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1199,6 +1204,7 @@
 				35C29FFC29ECF2A20018FE04 /* Message.swift */,
 				35C29FFE29ECF3E40018FE04 /* Sender.swift */,
 				35A63F632A1322910058C92D /* SystemMessageType.swift */,
+				356F39C82A83D72400A4192D /* TextMessage.swift */,
 			);
 			path = Chatting;
 			sourceTree = "<group>";
@@ -1717,6 +1723,7 @@
 				35364FDB2A029D7D00C4BC8D /* PushManager.swift in Sources */,
 				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
 				359D327729E57D4E005BF86C /* BuyHistoryCell.swift in Sources */,
+				35ACA05B2A8501A40029E183 /* AgoraChatService.swift in Sources */,
 				35289C602A0E038800D2B3C5 /* CustomTextMessageCell.swift in Sources */,
 				35BC05352A12640200E312C8 /* TransactionCompletedSizeCalculator.swift in Sources */,
 				35C5FA6D2A6E8E2A00815055 /* DeleteButtonTouchable.swift in Sources */,
@@ -1833,6 +1840,7 @@
 				354664B729E436200055375F /* MyPageHeader.swift in Sources */,
 				350AFE202A3B063800FF3514 /* CategoryType.swift in Sources */,
 				359D326529E550AC005BF86C /* CoinManagementVC.swift in Sources */,
+				356F39C92A83D72400A4192D /* TextMessage.swift in Sources */,
 				359933CD29D07A750098A0FC /* MainVM.swift in Sources */,
 				35C29FFB29ECF2580018FE04 /* ImageMediaItem.swift in Sources */,
 				358609E82A20D7A5000DF83B /* WriteReviewVC.swift in Sources */,

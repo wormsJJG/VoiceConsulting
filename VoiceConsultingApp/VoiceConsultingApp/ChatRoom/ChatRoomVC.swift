@@ -49,6 +49,7 @@ class ChatRoomVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(AgoraManager.shared.currentUser)
         setDelegates()
         constraints()
         setMessageCollectionView()
@@ -69,19 +70,41 @@ extension ChatRoomVC: AgoraChatManagerDelegate {
         
         for msg in aMessages {
             
-            print(msg.swiftBody)
             switch msg.swiftBody {
                 
             case let .text(content):
                 
-                print(msg.from)
-                var message = Message(content: content, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
-                messages.append(message)
-                self.messagesCollectionView.reloadData()
+                convertMessage(in: content)
             default:
                 
                 break
             }
+        }
+    }
+    
+    private func convertMessage(in content: String) {
+        
+        do {
+            
+            guard let data = content.data(using: .utf8) else { return }
+            let convertMessage = try JSONDecoder().decode(TextMessage.self, from: data)
+            var message: Message?
+            
+            switch convertMessage.typeMessage {
+                
+            case 0:
+                
+                message = Message(content: convertMessage.message, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
+            default:
+                
+                break
+            }
+            
+            self.messages.append(message!)
+            self.messagesCollectionView.reloadData()
+        } catch {
+            
+            print(error.localizedDescription)
         }
     }
 }

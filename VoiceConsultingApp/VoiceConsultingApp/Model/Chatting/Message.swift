@@ -20,13 +20,18 @@ struct Message: MessageType {
     let sender: SenderType
     var systemMessage: SystemMessageType?
     var kind: MessageKind {
+        
         if let systemMessage {
+            
             return .custom(systemMessage)
         }
         if let image = image {
+            
             let mediaItem = ImageMediaItem(image: image)
+            
             return .photo(mediaItem)
         } else {
+            
             return .text(content)
         }
     }

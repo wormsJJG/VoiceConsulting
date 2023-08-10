@@ -7,6 +7,7 @@
 
 import UIKit
 import AcknowList
+import AgoraChat
 
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
@@ -14,6 +15,18 @@ class BaseViewController: UIViewController {
         
         self.view.backgroundColor = .white
         isHiddenNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        registerNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        unregisterNotifications()
     }
     // MARK: - Util
     
@@ -209,5 +222,43 @@ class BaseViewController: UIViewController {
                 }
             }
         }
+    }
+}
+
+extension BaseViewController: AgoraChatManagerDelegate, AgoraChatClientDelegate {
+    
+    private func registerNotifications() {
+        self.unregisterNotifications()
+        AgoraChatClient.shared.add(self, delegateQueue: nil)
+        AgoraChatClient.shared().chatManager?.add(self, delegateQueue: nil)
+    }
+    
+    private func unregisterNotifications() {
+        AgoraChatClient.shared.removeDelegate(self)
+        AgoraChatClient.shared.chatManager?.remove(self)
+    }
+    
+    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
+        
+        for message in aMessages {
+            
+            showLocalNotification(in: message)
+        }
+    }
+    
+    private func showLocalNotification(in message: AgoraChatMessage) {
+        
+        guard let ext = message.ext,
+              let apnsItem = ext["em_apns_ext"],
+              let convertApns = apnsItem as? [String: Any],
+              let senderName = convertApns["senderName"] as? String,
+              let message = convertApns["message"] as? String else { return }
+        
+        let content = UNMutableNotificationContent()
+        content.title = senderName
+        content.body = message
+        
+        let request = UNNotificationRequest(identifier: "agoraChat", content: content, trigger: .none)
+        UNUserNotificationCenter.current().add(request)
     }
 }
