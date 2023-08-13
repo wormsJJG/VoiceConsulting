@@ -95,7 +95,7 @@ class SplashVM: BaseViewModel {
                     Config.isUser = true
                     Config.name = user.name
                     Config.profileUrlString = user.profileImageUrl
-                    Config.coin = user.coinCount
+                    Config.coin = user.coin
                     
                     self?.output.pushMainVCTrigger.onNext(())
                 case .error(let error):

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import MessageKit
 import AgoraChat
+import RealmSwift
 
 struct Message: MessageType {
     let id: String?

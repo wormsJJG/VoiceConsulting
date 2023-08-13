@@ -53,6 +53,7 @@ class SettlementDetailCell: UITableViewCell {
         
         $0.axis = .horizontal
         $0.alignment = .center
+        $0.distribution = .equalSpacing
     }
     
     private lazy var allStackView: UIStackView = UIStackView(arrangedSubviews: [topStackView,
@@ -76,5 +77,39 @@ class SettlementDetailCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureCell(in settlementDetail: SettlementDetail) {
+        
+        if settlementDetail.isSettle {
+            
+            self.isCompleteSettlementLabel.text = "정산완료"
+        } else {
+            
+            self.isCompleteSettlementLabel.text = "정산대기"
+            self.isCompleteSettlementLabel.textColor = ColorSet.date
+        }
+        
+        self.timeLabel.text = convertCreateAtToString(settlementDetail.createAt)
+        self.coinCountLabel.text = "코인 \(settlementDetail.coinCount)개"
+        self.priceLabel.text = convertPriceToString(settlementDetail.price)
+    }
+    
+    func convertCreateAtToString(_ timestamp: Double) -> String {
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(Int(timestamp)))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        return dateFormatter.string(from: date)
+    }
+    
+    func convertPriceToString(_ price: Int) -> String {
+     
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        let result = numberFormatter.string(from: NSNumber(value: price))
+        
+        return result! + "원"
     }
 }

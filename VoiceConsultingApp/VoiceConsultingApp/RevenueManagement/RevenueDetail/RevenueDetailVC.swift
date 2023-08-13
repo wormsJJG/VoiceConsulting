@@ -22,7 +22,7 @@ class RevenueDetailVC: UIViewController {
     
     private let emptyLabel: UILabel = UILabel().then {
         
-        $0.text = "정산내역이 없습니다."
+        $0.text = "수익내역이 없습니다."
         $0.isHidden = true
         $0.textColor = ColorSet.subTextColor2
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 16)
@@ -31,7 +31,8 @@ class RevenueDetailVC: UIViewController {
     }
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let revenueDetailList: PublishSubject<[String]> = PublishSubject()
+    private let revenueDetailList: PublishSubject<[Consulting]> = PublishSubject()
+    private let revenueDetailCellModelList: BehaviorRelay<[RevenueDetailCellModel]> = BehaviorRelay(value: [])
 
     // MARK: - Life Cycles
     override func viewDidLoad() {
@@ -39,7 +40,94 @@ class RevenueDetailVC: UIViewController {
         
         constraints()
         bindTableView()
-        revenueDetailList.onNext(["", "", "", "", ""])
+        bindData()
+        fetchConsultingHistoryData()
+    }
+}
+// MARK: - Data Logic
+extension RevenueDetailVC {
+    
+    private func fetchConsultingHistoryData() {
+        
+        ConsultingHistoryManager.shared.getConsultingHistoryForCounselor()
+            .subscribe(on: MainScheduler.instance)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let consultingList):
+                    
+                    if consultingList.count != 0 {
+                        
+                        self?.emptyLabel.isHidden = true
+                    }
+                    self?.revenueDetailList.onNext(consultingList)
+                case .error(let error):
+                    
+                    print(error.localizedDescription)
+                case .completed:
+                    
+                    print("completed")
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func bindData() {
+        
+        self.revenueDetailList
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: DispatchQoS.default))
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let revenueDetailList):
+                    
+                    for consulting in revenueDetailList {
+                        
+                        self?.fetchCellModel(in: consulting)
+                    }
+                case .error(let error):
+                    
+                    print(error.localizedDescription)
+                case .completed:
+                    
+                    print("completed")
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func fetchCellModel(in consulting: Consulting) {
+        
+        UserManager.shared.fetchUserData(in: consulting.userId)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let user):
+                    
+                    let cellModel = RevenueDetailCellModel(userName: user.name,
+                                                           userProfileUrlString: user.profileImageUrl,
+                                                           consultingDetail: consulting)
+
+                    self?.accept(in: cellModel)
+                case .error(let error):
+                    
+                    print(error.localizedDescription)
+                case .completed:
+                    
+                    print("completed")
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func accept(in cellModel: RevenueDetailCellModel) {
+        var value = self.revenueDetailCellModelList.value
+        value.append(cellModel)
+        
+        self.revenueDetailCellModelList.accept(value)
     }
 }
 // MARK: - bindTableView
@@ -47,7 +135,7 @@ extension RevenueDetailVC {
     
     private func bindTableView() {
         
-        revenueDetailList
+        revenueDetailCellModelList
             .filter { $0.count == 0 }
             .bind(onNext: { [weak self] _ in
 
@@ -55,9 +143,11 @@ extension RevenueDetailVC {
             })
             .disposed(by: self.disposeBag)
         
-        revenueDetailList
-            .bind(to: revenueDetailTableView.rx.items(cellIdentifier: RevenueDetailCell.cellID, cellType: RevenueDetailCell.self)) { index, settlementDetail, cell in
+        revenueDetailCellModelList
+            .subscribe(on: MainScheduler.instance)
+            .bind(to: revenueDetailTableView.rx.items(cellIdentifier: RevenueDetailCell.cellID, cellType: RevenueDetailCell.self)) { index, cellModel, cell in
                 
+                cell.configureCell(in: cellModel)
             }
             .disposed(by: self.disposeBag)
     }
@@ -75,6 +165,13 @@ extension RevenueDetailVC {
         revenueDetailTableView.snp.makeConstraints {
             
             $0.edges.equalToSuperview()
+        }
+        
+        view.addSubview(emptyLabel)
+        
+        emptyLabel.snp.makeConstraints {
+            
+            $0.center.equalToSuperview()
         }
     }
 }

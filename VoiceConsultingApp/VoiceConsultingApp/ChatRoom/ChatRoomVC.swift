@@ -34,9 +34,8 @@ class ChatRoomVC: MessagesViewController {
     
     // MARK: - Properties
     var isCustomInputView: Bool = false
-    let channel: ChatChannel = ChatChannel(name: "김이름 상담사")
     var sender = Sender(senderId: AgoraManager.shared.currentUser!.lowercased(), displayName: Config.name)
-    var messages = [Message]()
+    var messages: [Message] = []
     private let disposeBag = DisposeBag()
     
     // MARK: - SizeCalcurator
@@ -49,7 +48,6 @@ class ChatRoomVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(AgoraManager.shared.currentUser)
         setDelegates()
         constraints()
         setMessageCollectionView()
@@ -424,10 +422,12 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     }
     
     private func sendMessage(message: Message) {
+        let textMessage = TextMessage(message: message.content, typeMessage: 0)
+        let body = String(data: try! JSONEncoder().encode(textMessage), encoding: .utf8)!
         let msg = AgoraChatMessage(
             conversationId: "test", from: AgoraChatClient.shared.currentUsername!.lowercased(),
-            to: "worms0627", body: .text(content: message.content), ext: nil)
-
+            to: "kakao2956433522", body: .text(content: body), ext: ["em_apns_ext": ["message": 8, "senderName": "레벨업", "typeMessage": 0]])
+        
         
         AgoraChatClient.shared.chatManager?.send(msg, progress: nil)
         messages.append(message)

@@ -31,7 +31,7 @@ class SettlementDetailVC: UIViewController {
     }
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let settlementDetailList: PublishSubject<[String]> = PublishSubject()
+    private let settlementDetailList: PublishSubject<[SettlementDetail]> = PublishSubject()
 
     // MARK: - Life Cycles
     override func viewDidLoad() {
@@ -39,7 +39,41 @@ class SettlementDetailVC: UIViewController {
         
         constraints()
         bindTableView()
-        settlementDetailList.onNext(["", "", "", "", ""])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchSettlementHistoryData()
+    }
+}
+// MARK: - Data Logic
+extension SettlementDetailVC {
+    
+    private func fetchSettlementHistoryData() {
+        
+        SettlementManager.shared.fetchSettlementHistory()
+            .subscribe(on: MainScheduler.instance)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let settlementList):
+                    
+                    if settlementList.count != 0 {
+                        
+                        self?.emptyLabel.isHidden = true
+                    }
+                    self?.settlementDetailList.onNext(settlementList)
+                case .error(let error):
+                    
+                    print(error.localizedDescription)
+                case .completed:
+                    
+                    print("completed")
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - bindTableView
@@ -56,8 +90,10 @@ extension SettlementDetailVC {
             .disposed(by: self.disposeBag)
         
         settlementDetailList
+            .subscribe(on: MainScheduler.instance)
             .bind(to: settlementDetailTableView.rx.items(cellIdentifier: SettlementDetailCell.cellID, cellType: SettlementDetailCell.self)) { index, settlementDetail, cell in
                 
+                cell.configureCell(in: settlementDetail)
             }
             .disposed(by: self.disposeBag)
     }
@@ -75,6 +111,13 @@ extension SettlementDetailVC {
         settlementDetailTableView.snp.makeConstraints {
             
             $0.edges.equalToSuperview()
+        }
+        
+        view.addSubview(emptyLabel)
+        
+        emptyLabel.snp.makeConstraints {
+            
+            $0.center.equalToSuperview()
         }
     }
 }

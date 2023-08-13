@@ -6,18 +6,23 @@
 //
 
 import Foundation
+import RealmSwift
+import Realm
 
-struct ChatChannel {
+class ChatChannel: Object {
     
-    var id: String?
-    var name: String
+    @objc dynamic var uid: String = ""
+    @objc dynamic var name: String = ""
+    @objc dynamic var profileUrlString: String?
+    @objc dynamic var lastMessage: String = ""
+    @objc dynamic var isMeLastMessage: Bool = false
 }
 
 extension ChatChannel: Comparable {
     
     static func == (lhs: ChatChannel, rhs: ChatChannel) -> Bool {
         
-        return lhs.id == rhs.id
+        return lhs.uid == rhs.uid
     }
     
     static func < (lhs: ChatChannel, rhs: ChatChannel) -> Bool {

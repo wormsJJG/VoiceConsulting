@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AgoraChatClient.shared.add(self, delegateQueue: nil)
         PushManager.shared.registerForPushNotifications() // Push Noti
         AgoraPushManager.shared.initAgoraChatOptions() //AgoraPush
+        AgoraPushManager.shared.pushManagerSetting()
         CategoryManager.shared.initCategoryData()
         KakaoLoginService.shared.initSDK()
         
@@ -71,6 +72,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, AgoraChatClientDelegate
         
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
+        
         AgoraPushManager.shared.registerForRemoteNotifications(deviceToken: deviceToken)
         print("Device Token: \(token)")
     }
@@ -83,15 +85,22 @@ extension AppDelegate: UNUserNotificationCenterDelegate, AgoraChatClientDelegate
     // foreground 상태
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        AgoraChatClient.shared().application(UIApplication.shared, didReceiveRemoteNotification: notification.request.content.userInfo)
-        print(notification.request.content.userInfo)
+        AgoraChatClient.shared.application(UIApplication.shared, didReceiveRemoteNotification: notification.request.content.userInfo)
+        
         completionHandler([.alert, .sound, .badge])
     }
     
     // background
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        AgoraChatClient.shared().application(application, didReceiveRemoteNotification: userInfo)
+        AgoraChatClient.shared.application(application, didReceiveRemoteNotification: userInfo)
+        
         completionHandler(.newData)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        print("asd")
+        completionHandler()
     }
 }

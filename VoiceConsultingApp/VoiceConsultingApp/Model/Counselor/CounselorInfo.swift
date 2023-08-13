@@ -25,6 +25,7 @@ struct CounselorInfo: Codable {
     var fcmToken: String?
     
     init(name: String, categoryList: [String], affiliationList: [String], licenseImages: [String], profileImageUrl: String, introduction: String, phoneNumber: String?) {
+        
         self.name = name
         self.categoryList = categoryList
         self.profileImageUrl = profileImageUrl

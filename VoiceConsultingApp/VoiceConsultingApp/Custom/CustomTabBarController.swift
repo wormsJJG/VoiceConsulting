@@ -9,11 +9,17 @@ import UIKit
 import AgoraChat
 
 class CustomTabBarController: UITabBarController {
+    
+    deinit {
+        
+        unregisterNotifications()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
+        registerNotifications()
     }
 }
 
@@ -60,6 +66,57 @@ extension CustomTabBarController {
     func isHiddenNavigationBar() {
         
         self.navigationController?.navigationBar.isHidden = true
+    }
+}
+
+extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDelegate {
+    
+    private func registerNotifications() {
+        self.unregisterNotifications()
+        AgoraChatClient.shared.add(self, delegateQueue: nil)
+        AgoraChatClient.shared().chatManager?.add(self, delegateQueue: nil)
+    }
+    
+    private func unregisterNotifications() {
+        AgoraChatClient.shared.removeDelegate(self)
+        AgoraChatClient.shared.chatManager?.remove(self)
+    }
+    
+    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
+        
+        for message in aMessages {
+            
+            let state = UIApplication.shared.applicationState
+            switch state {
+                
+            case .inactive, .active:
+                
+                showLocalNotification(in: message)
+            case .background:
+                
+                showLocalNotification(in: message)
+            default:
+                
+                break
+            }
+        }
+    }
+    
+    private func showLocalNotification(in message: AgoraChatMessage) {
+        
+        guard let ext = message.ext,
+              let apnsItem = ext["em_apns_ext"],
+              let convertApns = apnsItem as? [String: Any],
+              let senderName = convertApns["senderName"] as? String,
+              let message = convertApns["message"] as? String else { return }
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
+        let content = UNMutableNotificationContent()
+        content.title = senderName
+        content.body = message
+        
+        let request = UNNotificationRequest(identifier: "agoraChat", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
     }
 }
 

@@ -33,4 +33,15 @@ class AgoraPushManager: NSObject, AgoraChatManagerDelegate, AgoraChatClientDeleg
             }
         }
     }
+    
+    func pushManagerSetting() {
+        
+        AgoraChatClient.shared.pushManager?.setPreferredNotificationLanguage("KR") { error in
+            
+            if let error {
+                
+                print(error.description)
+            }
+        }
+    }
 }

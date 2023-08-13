@@ -63,5 +63,28 @@ extension ToSettleVC {
                 self?.popVC()
             })
             .disposed(by: self.disposeBag)
+        
+        toSettleV.toSettleButton
+            .rx
+            .tap
+            .bind(onNext: { [weak self] _ in
+                
+                self?.addSettlementDetail()
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func addSettlementDetail() {
+        
+        SettlementManager.shared.addSettlementDetail(in: toSettleV.fetchSettleDetail(), completion: { [weak self] error in
+            
+            if let error {
+                
+                print(error.localizedDescription)
+            } else {
+                
+                self?.popVC()
+            }
+        })
     }
 }

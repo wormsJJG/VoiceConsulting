@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import Kingfisher
 
 class RevenueDetailCell: UITableViewCell {
     
@@ -103,4 +104,12 @@ class RevenueDetailCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureCell(in cellModel: RevenueDetailCellModel) {
+        
+        self.timeLabel.text = cellModel.convertCreateAtToString()
+        self.coinCountLabel.text = cellModel.convertCoinCountToString()
+        self.userNameLabel.text = cellModel.userName
+        self.userProfileImageView.kf.setImage(with: URL(string: cellModel.userProfileUrlString ?? ""))
+        self.consultingTimeLabel.text = cellModel.convertConsultingTimeToString()
+    }
 }

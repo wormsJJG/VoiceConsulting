@@ -161,6 +161,18 @@ class ToSettleV: UIView {
         $0.spacing = 38
     }
     
+    func fetchSettleDetail() -> SettlementDetail {
+        
+        let settlementDetail = SettlementDetail(counselorUid: FirebaseAuthManager.shared.getUserUid()!,
+                                                coinCount: Int(coinCountTextField.text!)!,
+                                                price: Int(coinCountTextField.text!)! * 300,
+                                                isSettle: false,
+                                                createAt: NSDate().timeIntervalSince1970,
+                                                accountInfo: "\(nameTextField.text!) \(accountNameTextField.text!) \(accountNumberTextField.text!)")
+        
+        return settlementDetail
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

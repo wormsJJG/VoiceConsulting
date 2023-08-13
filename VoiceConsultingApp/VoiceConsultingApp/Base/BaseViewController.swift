@@ -20,13 +20,13 @@ class BaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        registerNotifications()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        unregisterNotifications()
+        
     }
     // MARK: - Util
     
@@ -242,7 +242,19 @@ extension BaseViewController: AgoraChatManagerDelegate, AgoraChatClientDelegate 
         
         for message in aMessages {
             
-            showLocalNotification(in: message)
+            let state = UIApplication.shared.applicationState
+            switch state {
+                
+            case .inactive, .active:
+                
+                showLocalNotification(in: message)
+            case .background:
+                
+                showLocalNotification(in: message)
+            default:
+                
+                break
+            }
         }
     }
     
