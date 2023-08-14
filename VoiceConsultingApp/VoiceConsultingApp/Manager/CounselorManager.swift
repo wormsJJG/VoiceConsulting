@@ -268,6 +268,48 @@ class CounselorManager {
         
         db.document(counselorUid).updateData([CounselorField.heartCount.rawValue: FieldValue.increment(Int64(-1))])
     }
+    
+    func subCoin(in coinCount: Int, completion: @escaping((Error?) -> Void)) {
+        
+        if let uid = FirebaseAuthManager.shared.getUserUid() {
+            
+            db.document(uid).updateData([CounselorField.coin.rawValue: FieldValue.increment(Int64(-coinCount))]) { error in
+                
+                completion(error)
+            }
+        } else {
+            
+            completion(AuthError.noCurrentUser)
+        }
+    }
+    
+    func addCoin(in coinCount: Int, completion: @escaping((Error?) -> Void)) {
+        
+        if let uid = FirebaseAuthManager.shared.getUserUid() {
+            
+            db.document(uid).updateData([CounselorField.coin.rawValue: FieldValue.increment(Int64(coinCount))]) { error in
+                
+                completion(error)
+            }
+        } else {
+            
+            completion(AuthError.noCurrentUser)
+        }
+    }
+    
+    func chageIsOnline(in isOnline: Bool, completion: @escaping((Error?) -> Void)) {
+        
+        if let uid = FirebaseAuthManager.shared.getUserUid() {
+            
+            db.document(uid).updateData([CounselorField.isOnline.rawValue: isOnline]) { error in
+                
+                completion(error)
+            }
+        } else {
+            
+            completion(AuthError.noCurrentUser)
+        }
+    }
     // MARK: - TestFunc
 //    func createMockData() {
 //        

@@ -18,7 +18,7 @@ struct RevenueDetailCellModel {
         let date = Date(timeIntervalSince1970: TimeInterval(consultingDetail.createAt))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
-        dateFormatter.timeZone = TimeZone.current  // 원하는 타임존으로 변경 가능
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
         let formattedDate = dateFormatter.string(from: date)
         
         return formattedDate

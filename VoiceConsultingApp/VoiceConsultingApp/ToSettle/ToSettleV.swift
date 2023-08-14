@@ -167,10 +167,21 @@ class ToSettleV: UIView {
                                                 coinCount: Int(coinCountTextField.text!)!,
                                                 price: Int(coinCountTextField.text!)! * 300,
                                                 isSettle: false,
-                                                createAt: NSDate().timeIntervalSince1970,
+                                                createAt: Int(NSDate().timeIntervalSince1970),
                                                 accountInfo: "\(nameTextField.text!) \(accountNameTextField.text!) \(accountNumberTextField.text!)")
         
         return settlementDetail
+    }
+    
+    func isNoNext() -> Bool {
+        
+        let inputCoinCount = coinCountTextField.text!.isEmpty
+        let coinCountCheck = Config.coin < Int(coinCountTextField.text!)!
+        let inputAccountName = accountNameTextField.text!.isEmpty
+        let inputAccountNumber = accountNumberTextField.text!.isEmpty
+        let inputname = nameTextField.text!.isEmpty
+        
+        return inputCoinCount || coinCountCheck || inputAccountName || inputAccountNumber || inputname
     }
     
     required init?(coder: NSCoder) {

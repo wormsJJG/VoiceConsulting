@@ -13,6 +13,6 @@ struct SettlementDetail: Codable {
     var coinCount: Int
     var price: Int
     var isSettle: Bool
-    var createAt: Double
+    var createAt: Int
     var accountInfo: String
 }

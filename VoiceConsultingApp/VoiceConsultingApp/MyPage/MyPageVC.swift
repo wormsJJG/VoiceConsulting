@@ -27,7 +27,6 @@ class MyPageVC: BaseViewController {
         
         addTapAction()
         bindTableView()
-        dataBind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +34,7 @@ class MyPageVC: BaseViewController {
         
         // 오픈소스 라이브러리를 갔다오면 바 히든이 풀려서 다시 해줌
         isHiddenNavigationBar()
+        dataBind()
     }
 }
 // MARK: - bindData
@@ -46,7 +46,14 @@ extension MyPageVC {
         DispatchQueue.main.async {
             
             self.myPageV.name.text = Config.name
-            self.myPageV.profileImage.kf.setImage(with: URL(string: Config.profileUrlString ?? ""))
+            
+            if let profileUrlString = Config.profileUrlString {
+                
+                self.myPageV.profileImage.kf.setImage(with: URL(string: profileUrlString))
+            } else {
+                
+                self.myPageV.profileImage.backgroundColor = .gray
+            }
             self.myPageV.coinBlock.coinCount.text = String(Config.coin)
         }
     }

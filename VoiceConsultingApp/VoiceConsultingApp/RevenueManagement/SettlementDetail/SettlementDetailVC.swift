@@ -64,7 +64,7 @@ extension SettlementDetailVC {
                         
                         self?.emptyLabel.isHidden = true
                     }
-                    self?.settlementDetailList.onNext(settlementList)
+                    self?.settlementDetailList.onNext(settlementList.sorted(by: { $0.createAt > $1.createAt}))
                 case .error(let error):
                     
                     print(error.localizedDescription)

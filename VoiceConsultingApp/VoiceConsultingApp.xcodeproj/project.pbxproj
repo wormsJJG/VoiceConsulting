@@ -156,6 +156,7 @@
 		35726F342A05F7A3008E28D0 /* DateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F332A05F7A3008E28D0 /* DateCustomCell.swift */; };
 		35726F362A066966008E28D0 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35726F352A066966008E28D0 /* CustomTabBar.swift */; };
 		357810682A0E401500AE8EC8 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357810672A0E401500AE8EC8 /* PaddingLabel.swift */; };
+		357B25C22A8A693100E7C8A3 /* NoPassToSettlePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357B25C12A8A693100E7C8A3 /* NoPassToSettlePopUp.swift */; };
 		357C78AE2A407A4A00B1849D /* Extension+Rx+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357C78AD2A407A4A00B1849D /* Extension+Rx+ScrollView.swift */; };
 		357C78B02A407D6500B1849D /* MoreFitWellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357C78AF2A407D6500B1849D /* MoreFitWellVM.swift */; };
 		357C78B22A407E0B00B1849D /* MorePopularVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357C78B12A407E0B00B1849D /* MorePopularVM.swift */; };
@@ -423,6 +424,7 @@
 		35726F332A05F7A3008E28D0 /* DateCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCustomCell.swift; sourceTree = "<group>"; };
 		35726F352A066966008E28D0 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		357810672A0E401500AE8EC8 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		357B25C12A8A693100E7C8A3 /* NoPassToSettlePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPassToSettlePopUp.swift; sourceTree = "<group>"; };
 		357C78AD2A407A4A00B1849D /* Extension+Rx+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Rx+ScrollView.swift"; sourceTree = "<group>"; };
 		357C78AF2A407D6500B1849D /* MoreFitWellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreFitWellVM.swift; sourceTree = "<group>"; };
 		357C78B12A407E0B00B1849D /* MorePopularVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePopularVM.swift; sourceTree = "<group>"; };
@@ -1057,6 +1059,7 @@
 				357D4A1B2A2E0D98000052D1 /* OneButtonNoActionPopUpVC.swift */,
 				35C5FA682A6E823B00815055 /* CancelImagePickPopUp.swift */,
 				35390C642A8102500066CF89 /* NoPassRegisterPopUp.swift */,
+				357B25C12A8A693100E7C8A3 /* NoPassToSettlePopUp.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -1892,6 +1895,7 @@
 				354DDE952A77B83200288ED3 /* RevenueView.swift in Sources */,
 				358EF0812A25118E001324A6 /* ServiceCenterCell.swift in Sources */,
 				35086BF72A652FF600739C12 /* UserRegisterData.swift in Sources */,
+				357B25C22A8A693100E7C8A3 /* NoPassToSettlePopUp.swift in Sources */,
 				3504E2BC29E3B1B4006AEED6 /* MorePopularCell.swift in Sources */,
 				354F49662A1A785B00D71E3D /* CompanyData.swift in Sources */,
 				351793052A1746E9004EE7ED /* DetailIntrodutionCell.swift in Sources */,

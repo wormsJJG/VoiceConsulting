@@ -95,9 +95,9 @@ class SettlementDetailCell: UITableViewCell {
         self.priceLabel.text = convertPriceToString(settlementDetail.price)
     }
     
-    func convertCreateAtToString(_ timestamp: Double) -> String {
+    func convertCreateAtToString(_ timestamp: Int) -> String {
         
-        let date = Date(timeIntervalSince1970: TimeInterval(Int(timestamp)))
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         return dateFormatter.string(from: date)

@@ -109,7 +109,24 @@ class RevenueDetailCell: UITableViewCell {
         self.timeLabel.text = cellModel.convertCreateAtToString()
         self.coinCountLabel.text = cellModel.convertCoinCountToString()
         self.userNameLabel.text = cellModel.userName
-        self.userProfileImageView.kf.setImage(with: URL(string: cellModel.userProfileUrlString ?? ""))
         self.consultingTimeLabel.text = cellModel.convertConsultingTimeToString()
+        if let profileUrlString = cellModel.userProfileUrlString {
+            
+            self.userProfileImageView.kf.setImage(with: URL(string: profileUrlString)) { task in
+                
+                switch task {
+                    
+                case .success(_):
+                    
+                    print("loadSuccess")
+                case .failure(_):
+                    
+                    self.userProfileImageView.backgroundColor = .gray
+                }
+            }
+        } else {
+            
+            self.userProfileImageView.backgroundColor = .gray
+        }
     }
 }

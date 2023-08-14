@@ -32,7 +32,6 @@ class RevenueDetailVC: UIViewController {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let revenueDetailList: PublishSubject<[Consulting]> = PublishSubject()
-    private let revenueDetailCellModelList: BehaviorRelay<[RevenueDetailCellModel]> = BehaviorRelay(value: [])
 
     // MARK: - Life Cycles
     override func viewDidLoad() {
@@ -40,7 +39,6 @@ class RevenueDetailVC: UIViewController {
         
         constraints()
         bindTableView()
-        bindData()
         fetchConsultingHistoryData()
     }
 }
@@ -73,35 +71,10 @@ extension RevenueDetailVC {
             .disposed(by: self.disposeBag)
     }
     
-    private func bindData() {
-        
-        self.revenueDetailList
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: DispatchQoS.default))
-            .subscribe({ [weak self] event in
-                
-                switch event {
-                    
-                case .next(let revenueDetailList):
-                    
-                    for consulting in revenueDetailList {
-                        
-                        self?.fetchCellModel(in: consulting)
-                    }
-                case .error(let error):
-                    
-                    print(error.localizedDescription)
-                case .completed:
-                    
-                    print("completed")
-                }
-            })
-            .disposed(by: self.disposeBag)
-    }
-    
-    private func fetchCellModel(in consulting: Consulting) {
+    private func convertConsultingToCellModl(in consulting: Consulting, completion: @escaping((RevenueDetailCellModel) -> Void)) {
         
         UserManager.shared.fetchUserData(in: consulting.userId)
-            .subscribe({ [weak self] event in
+            .subscribe({ event in
                 
                 switch event {
                     
@@ -111,10 +84,14 @@ extension RevenueDetailVC {
                                                            userProfileUrlString: user.profileImageUrl,
                                                            consultingDetail: consulting)
 
-                    self?.accept(in: cellModel)
-                case .error(let error):
+                    completion(cellModel)
+                case .error(_):
                     
-                    print(error.localizedDescription)
+                    let cellModel = RevenueDetailCellModel(userName: "알수 없는 사용자",
+                                                           userProfileUrlString: nil,
+                                                           consultingDetail: consulting)
+                    
+                    completion(cellModel)
                 case .completed:
                     
                     print("completed")
@@ -122,20 +99,13 @@ extension RevenueDetailVC {
             })
             .disposed(by: self.disposeBag)
     }
-    
-    private func accept(in cellModel: RevenueDetailCellModel) {
-        var value = self.revenueDetailCellModelList.value
-        value.append(cellModel)
-        
-        self.revenueDetailCellModelList.accept(value)
-    }
 }
 // MARK: - bindTableView
 extension RevenueDetailVC {
     
     private func bindTableView() {
         
-        revenueDetailCellModelList
+        revenueDetailList
             .filter { $0.count == 0 }
             .bind(onNext: { [weak self] _ in
 
@@ -143,11 +113,14 @@ extension RevenueDetailVC {
             })
             .disposed(by: self.disposeBag)
         
-        revenueDetailCellModelList
+        revenueDetailList
             .subscribe(on: MainScheduler.instance)
-            .bind(to: revenueDetailTableView.rx.items(cellIdentifier: RevenueDetailCell.cellID, cellType: RevenueDetailCell.self)) { index, cellModel, cell in
+            .bind(to: revenueDetailTableView.rx.items(cellIdentifier: RevenueDetailCell.cellID, cellType: RevenueDetailCell.self)) { [weak self] index, consultingDetail, cell in
                 
-                cell.configureCell(in: cellModel)
+                self?.convertConsultingToCellModl(in: consultingDetail, completion: { cellModel in
+                    
+                    cell.configureCell(in: cellModel)
+                })
             }
             .disposed(by: self.disposeBag)
     }

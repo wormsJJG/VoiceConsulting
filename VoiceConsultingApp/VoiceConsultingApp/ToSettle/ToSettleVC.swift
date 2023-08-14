@@ -76,15 +76,31 @@ extension ToSettleVC {
     
     private func addSettlementDetail() {
         
-        SettlementManager.shared.addSettlementDetail(in: toSettleV.fetchSettleDetail(), completion: { [weak self] error in
+        if toSettleV.isNoNext() {
             
-            if let error {
+            self.showPopUp(popUp: NoPassToSettlePopUp())
+        } else {
+            let settleDetail = toSettleV.fetchSettleDetail()
+            CounselorManager.shared.subCoin(in: settleDetail.coinCount, completion: { [weak self] error in
                 
-                print(error.localizedDescription)
-            } else {
-                
-                self?.popVC()
-            }
-        })
+                if let error {
+                    
+                    print(error.localizedDescription)
+                } else {
+                    
+                    Config.coin -= settleDetail.coinCount
+                    SettlementManager.shared.addSettlementDetail(in: settleDetail, completion: { [weak self] error in
+                        
+                        if let error {
+                            
+                            print(error.localizedDescription)
+                        } else {
+                            
+                            self?.popVC()
+                        }
+                    })
+                }
+            })
+        }
     }
 }
