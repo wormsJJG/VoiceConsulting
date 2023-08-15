@@ -88,6 +88,27 @@ extension MyPageVC {
             .disposed(by: self.disposeBag)
     }
 }
+
+extension MyPageVC: ToggleChangeable {
+    
+    func didChange(isOn: Bool, menuType: MypageCounselorMenu) {
+        
+        if menuType == .alarmOnOff {
+            
+        }
+        
+        if menuType == .isOnlineOnOff {
+            
+            CounselorManager.shared.changeIsOnline(in: isOn, completion: { [weak self] error in
+                
+                if let error {
+                    
+                    print(error.localizedDescription)
+                }
+            })
+        }
+    }
+}
 // MARK: - Bind TableView
 extension MyPageVC: UITableViewDelegate {
     
@@ -207,6 +228,7 @@ extension MyPageVC: UITableViewDelegate {
                 cell.configureCounselor(menuType: menu)
                 if menu == MypageCounselorMenu.alarmOnOff {
                     
+                    cell.toggleDelegate = self
                     UNUserNotificationCenter.current().getNotificationSettings { settings in
                         DispatchQueue.main.async {
                             
@@ -220,6 +242,22 @@ extension MyPageVC: UITableViewDelegate {
                                 cell.toggle.isOn = false
                             }
                         }
+                    }
+                }
+                
+                if menu == MypageCounselorMenu.isOnlineOnOff {
+                    
+                    cell.toggleDelegate = self
+                    if let uid = FirebaseAuthManager.shared.getUserUid() {
+                        
+                        CounselorManager.shared.getCounselor(in: uid)
+                            .map { $0.info.isOnline }
+                            .subscribe(on: MainScheduler.instance)
+                            .subscribe(onNext: { isOnline in
+                                
+                                cell.toggle.isOn = isOnline
+                            })
+                            .disposed(by: self.disposeBag)
                     }
                 }
                 return cell

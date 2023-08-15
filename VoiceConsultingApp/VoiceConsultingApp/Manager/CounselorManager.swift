@@ -297,7 +297,7 @@ class CounselorManager {
         }
     }
     
-    func chageIsOnline(in isOnline: Bool, completion: @escaping((Error?) -> Void)) {
+    func changeIsOnline(in isOnline: Bool, completion: @escaping((Error?) -> Void)) {
         
         if let uid = FirebaseAuthManager.shared.getUserUid() {
             

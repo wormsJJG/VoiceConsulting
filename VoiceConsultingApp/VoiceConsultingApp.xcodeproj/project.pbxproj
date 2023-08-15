@@ -165,6 +165,7 @@
 		357D4A1E2A2E0F77000052D1 /* MypageCounselorMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1D2A2E0F77000052D1 /* MypageCounselorMenu.swift */; };
 		357D4A202A2E1382000052D1 /* RequestPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */; };
 		357D84ED2A0A7196003DB1FC /* LiveCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */; };
+		35813D632A8BB05A00405920 /* ToggleChangeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35813D622A8BB05A00405920 /* ToggleChangeable.swift */; };
 		358609E82A20D7A5000DF83B /* WriteReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358609E72A20D7A5000DF83B /* WriteReviewVC.swift */; };
 		358609EA2A20D89A000DF83B /* MessageButtonTouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358609E92A20D89A000DF83B /* MessageButtonTouchable.swift */; };
 		358EF07F2A24E706001324A6 /* UserTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF07E2A24E706001324A6 /* UserTypeView.swift */; };
@@ -433,6 +434,7 @@
 		357D4A1D2A2E0F77000052D1 /* MypageCounselorMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageCounselorMenu.swift; sourceTree = "<group>"; };
 		357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPaymentView.swift; sourceTree = "<group>"; };
 		357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCellVM.swift; sourceTree = "<group>"; };
+		35813D622A8BB05A00405920 /* ToggleChangeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleChangeable.swift; sourceTree = "<group>"; };
 		358609E72A20D7A5000DF83B /* WriteReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewVC.swift; sourceTree = "<group>"; };
 		358609E92A20D89A000DF83B /* MessageButtonTouchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageButtonTouchable.swift; sourceTree = "<group>"; };
 		358EF07E2A24E706001324A6 /* UserTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeView.swift; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 				354B73C82A0B88AA00651EF9 /* CellTouchable.swift */,
 				354B73CC2A0BAEB200651EF9 /* MoreButtonTouchable.swift */,
 				35C5FA6C2A6E8E2A00815055 /* DeleteButtonTouchable.swift */,
+				35813D622A8BB05A00405920 /* ToggleChangeable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1921,6 +1924,7 @@
 				356F7BE52A07E45600C536D8 /* VoiceRoomV.swift in Sources */,
 				35726F362A066966008E28D0 /* CustomTabBar.swift in Sources */,
 				359D327529E57601005BF86C /* BuyCoinV.swift in Sources */,
+				35813D632A8BB05A00405920 /* ToggleChangeable.swift in Sources */,
 				357D4A1C2A2E0D98000052D1 /* OneButtonNoActionPopUpVC.swift in Sources */,
 				356689982A2F725900022487 /* User.swift in Sources */,
 			);

@@ -26,12 +26,13 @@ class ChattingListVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bindData()
         addCoinBlockTapAction()
         bindTableView()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        bindData()
     }
 }
 // MARK: - Bind Data

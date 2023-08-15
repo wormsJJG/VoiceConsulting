@@ -10,7 +10,10 @@ import Then
 import SnapKit
 
 class MenuCell: UITableViewCell {
+    
     static let cellID = "MenuCell"
+    weak var toggleDelegate: ToggleChangeable?
+    private var menuType: MypageCounselorMenu = .alarmOnOff
     
     private lazy var title: UILabel = UILabel().then {
         $0.text = "Title"
@@ -19,8 +22,10 @@ class MenuCell: UITableViewCell {
     }
     
     lazy var toggle: UISwitch = UISwitch().then {
+        
         $0.onTintColor = ColorSet.mainColor
         $0.isHidden = true
+        $0.addTarget(self, action: #selector(didChangeSwitch(sender: )), for: .valueChanged)
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -55,6 +60,7 @@ class MenuCell: UITableViewCell {
         
         if menuType == .alarmOnOff {
             self.toggle.isHidden = false
+            self.menuType = .alarmOnOff
         } else if menuType == .logOut {
             self.title.textColor = ColorSet.subTextColor
         } else if menuType == .outOfService {
@@ -66,6 +72,7 @@ class MenuCell: UITableViewCell {
     
     func configureCounselor(menuType: MypageCounselorMenu) {
         self.title.text = menuType.title
+        self.menuType = menuType
         
         if menuType == .alarmOnOff || menuType == .isOnlineOnOff {
             self.toggle.isHidden = false
@@ -76,5 +83,10 @@ class MenuCell: UITableViewCell {
             self.title.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
             self.title.attributedText = NSMutableAttributedString(string: "회원탈퇴", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.kern: -1])
         }
+    }
+    
+    @objc private func didChangeSwitch(sender: UISwitch) {
+        
+        toggleDelegate?.didChange(isOn: sender.isOn, menuType: self.menuType)
     }
 }
