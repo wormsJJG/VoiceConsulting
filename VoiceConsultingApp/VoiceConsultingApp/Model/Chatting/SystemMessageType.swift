@@ -7,8 +7,11 @@
 
 import Foundation
 
-enum SystemMessageType {
-    case requestTranscation
-    case transactionCompleted
-    case endConsultation
+enum SystemMessageType: Int {
+    
+    case text = 0
+    case image = 1
+    case requestTranscation = 2
+    case transactionCompleted = 3
+    case endConsultation = 4
 }

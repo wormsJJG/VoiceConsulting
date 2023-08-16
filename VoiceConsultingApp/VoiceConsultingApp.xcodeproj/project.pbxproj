@@ -214,6 +214,10 @@
 		35B15B852A1B14F1004345F3 /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B15B842A1B14F1004345F3 /* HeartButton.swift */; };
 		35B15B872A1B158E004345F3 /* HeartButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B15B862A1B158E004345F3 /* HeartButtonDelegate.swift */; };
 		35B15B892A1B1DBE004345F3 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B15B882A1B1DBE004345F3 /* BaseButton.swift */; };
+		35BB11472A8D115E006CA4A5 /* MessageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BB11462A8D115E006CA4A5 /* MessageStorage.swift */; };
+		35BB114B2A8D1EB7006CA4A5 /* RealmMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BB114A2A8D1EB7006CA4A5 /* RealmMessage.swift */; };
+		35BB114D2A8D1F4F006CA4A5 /* RealmMessageListByUid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BB114C2A8D1F4F006CA4A5 /* RealmMessageListByUid.swift */; };
+		35BB114F2A8D23C7006CA4A5 /* RealmError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BB114E2A8D23C7006CA4A5 /* RealmError.swift */; };
 		35BC05332A1263F400E312C8 /* TransactionCompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC05322A1263F400E312C8 /* TransactionCompletedCell.swift */; };
 		35BC05352A12640200E312C8 /* TransactionCompletedSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC05342A12640200E312C8 /* TransactionCompletedSizeCalculator.swift */; };
 		35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */; };
@@ -483,6 +487,10 @@
 		35B15B842A1B14F1004345F3 /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		35B15B862A1B158E004345F3 /* HeartButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButtonDelegate.swift; sourceTree = "<group>"; };
 		35B15B882A1B1DBE004345F3 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		35BB11462A8D115E006CA4A5 /* MessageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStorage.swift; sourceTree = "<group>"; };
+		35BB114A2A8D1EB7006CA4A5 /* RealmMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMessage.swift; sourceTree = "<group>"; };
+		35BB114C2A8D1F4F006CA4A5 /* RealmMessageListByUid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMessageListByUid.swift; sourceTree = "<group>"; };
+		35BB114E2A8D23C7006CA4A5 /* RealmError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmError.swift; sourceTree = "<group>"; };
 		35BC05322A1263F400E312C8 /* TransactionCompletedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCompletedCell.swift; sourceTree = "<group>"; };
 		35BC05342A12640200E312C8 /* TransactionCompletedSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCompletedSizeCalculator.swift; sourceTree = "<group>"; };
 		35BC511829D1950F00BEA034 /* SelectUseTypeV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUseTypeV.swift; sourceTree = "<group>"; };
@@ -685,6 +693,7 @@
 			children = (
 				351E93F72A2CCC4F00C598C3 /* AuthError.swift */,
 				35390C622A80F4580066CF89 /* StorageError.swift */,
+				35BB114E2A8D23C7006CA4A5 /* RealmError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1175,6 +1184,24 @@
 			path = HeartCounselorList;
 			sourceTree = "<group>";
 		};
+		35BB11482A8D1E7D006CA4A5 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				35BB11462A8D115E006CA4A5 /* MessageStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		35BB11492A8D1E8D006CA4A5 /* RealmModel */ = {
+			isa = PBXGroup;
+			children = (
+				35C29FF729ECF1D60018FE04 /* ChatChannel.swift */,
+				35BB114A2A8D1EB7006CA4A5 /* RealmMessage.swift */,
+				35BB114C2A8D1F4F006CA4A5 /* RealmMessageListByUid.swift */,
+			);
+			path = RealmModel;
+			sourceTree = "<group>";
+		};
 		35BC05312A12639600E312C8 /* TransactionCompleted */ = {
 			isa = PBXGroup;
 			children = (
@@ -1228,7 +1255,7 @@
 		35C29FF929ECF2390018FE04 /* Chatting */ = {
 			isa = PBXGroup;
 			children = (
-				35C29FF729ECF1D60018FE04 /* ChatChannel.swift */,
+				35BB11492A8D1E8D006CA4A5 /* RealmModel */,
 				35C29FFA29ECF2580018FE04 /* ImageMediaItem.swift */,
 				35C29FFC29ECF2A20018FE04 /* Message.swift */,
 				35C29FFE29ECF3E40018FE04 /* Sender.swift */,
@@ -1310,6 +1337,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				35BB11482A8D1E7D006CA4A5 /* Storage */,
 				3500D24F2A60F7D50070E264 /* Service */,
 				35D0A06E2A78FDE300C529DC /* ToSettle */,
 				35F951492A73DD830052261A /* RevenueManagement */,
@@ -1719,6 +1747,7 @@
 				35390C612A80F2500066CF89 /* FireStorageService.swift in Sources */,
 				358F42FD2A44371B004BBBE0 /* BuyCoinHistoryManager.swift in Sources */,
 				3503B9222A692E4400E8751A /* AddPhotoCell.swift in Sources */,
+				35BB11472A8D115E006CA4A5 /* MessageStorage.swift in Sources */,
 				355EDEE029D5CD3600F9BD5D /* SelectCategoryVM.swift in Sources */,
 				35308FB029E4F77A008FB343 /* MyPageVM.swift in Sources */,
 				35289C632A0E192000D2B3C5 /* RequestTransactionSizeCalculator.swift in Sources */,
@@ -1748,6 +1777,7 @@
 				35D216AD2A443CD00072A1E6 /* BuyHistoryVM.swift in Sources */,
 				350CA2242A18BCA500B1756C /* TapViewCell.swift in Sources */,
 				359D326729E5514B005BF86C /* CoinManagementV.swift in Sources */,
+				35BB114F2A8D23C7006CA4A5 /* RealmError.swift in Sources */,
 				358F42FB2A4435B3004BBBE0 /* BuyCoinHistory.swift in Sources */,
 				35364FDB2A029D7D00C4BC8D /* PushManager.swift in Sources */,
 				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
@@ -1766,6 +1796,7 @@
 				3592A4452A77D02D00DF8F60 /* SettlementDetailVC.swift in Sources */,
 				357C78AE2A407A4A00B1849D /* Extension+Rx+ScrollView.swift in Sources */,
 				3509AAC52A86669500A0AE0F /* ChatChannelManager.swift in Sources */,
+				35BB114D2A8D1F4F006CA4A5 /* RealmMessageListByUid.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				3504E2B429E3A8A0006AEED6 /* MoreLiveVC.swift in Sources */,
 				3500D2512A60F7E50070E264 /* AgoraTokenService.swift in Sources */,
@@ -1878,6 +1909,7 @@
 				358609E82A20D7A5000DF83B /* WriteReviewVC.swift in Sources */,
 				354664B129E4262D0055375F /* MyPageVC.swift in Sources */,
 				3568DC852A498DB400E767BC /* Review.swift in Sources */,
+				35BB114B2A8D1EB7006CA4A5 /* RealmMessage.swift in Sources */,
 				354F49292A1A678900D71E3D /* AlertContentCell.swift in Sources */,
 				358609EA2A20D89A000DF83B /* MessageButtonTouchable.swift in Sources */,
 				3523AF902A0908F800D51B8A /* Extenstion+CollectionReference.swift in Sources */,

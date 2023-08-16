@@ -13,6 +13,7 @@ import RxSwift
 import SnapKit
 import Then
 import AgoraChat
+import RealmSwift
 
 class ChatRoomVC: MessagesViewController {
     // MARK: - View Components
@@ -28,13 +29,14 @@ class ChatRoomVC: MessagesViewController {
     }
     
     lazy var plusButtonItem: InputBarButtonItem = InputBarButtonItem().then {
+        
         $0.setImage(UIImage(named: AssetImage.plus), for: .normal)
         $0.addTarget(self, action: #selector(didTapPlusButtonItem), for: .touchUpInside)
     }
     
     // MARK: - Properties
     var isCustomInputView: Bool = false
-    var sender = Sender(senderId: AgoraManager.shared.currentUser!.lowercased(), displayName: Config.name)
+    var sender = Sender(senderId: AgoraManager.shared.currentUser!, displayName: Config.name)
     var messages: [Message] = []
     private let disposeBag = DisposeBag()
     
@@ -48,6 +50,24 @@ class ChatRoomVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
+//        MessageStorage.shared.fetchMessageListByUid(by: "asd")
+//            .subscribe({ event in
+//
+//                switch event {
+//
+//                case .next(let list):
+//
+//                    print(list.count)
+//                case .error(let error):
+//
+//                    print(error.localizedDescription)
+//                case .completed:
+//
+//                    print("completed")
+//                }
+//            })
+//            .disposed(by: self.disposeBag)
         setDelegates()
         constraints()
         setMessageCollectionView()
@@ -92,7 +112,16 @@ extension ChatRoomVC: AgoraChatManagerDelegate {
                 
             case 0:
                 
-                message = Message(content: convertMessage.message, sender: Sender(senderId: "asdasd", displayName: "asdasd"))
+                message = Message(content: convertMessage.message,
+                                  sender: Sender(senderId: "asdasd", displayName: "asdasd"),
+                                  sentDate: Date(),
+                                  messageId: nil)
+            case 1:
+                
+                message = Message(imageUrlString: convertMessage.message,
+                                  sender: Sender(senderId: "asdasd", displayName: "asdasd"),
+                                  sentDate: Date(),
+                                  messageId: nil)
             default:
                 
                 break
@@ -179,6 +208,7 @@ extension ChatRoomVC: HeartButtonDelegate {
 
 // MARK: - MessagesDataSource
 extension ChatRoomVC: MessagesDataSource {
+    
     var currentSender: MessageKit.SenderType {
         
         return self.sender
@@ -196,7 +226,7 @@ extension ChatRoomVC: MessagesDataSource {
     
     func customCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell {
         if let msg = message as? Message {
-            switch msg.systemMessage! {
+            switch msg.systemMessageType {
             case .requestTranscation:
                 
                 let cell = messagesCollectionView.dequeueReusableCell(RequestTransactionCell.self, for: indexPath)
@@ -220,6 +250,9 @@ extension ChatRoomVC: MessagesDataSource {
 
                 
                 return cell
+            default:
+                
+                return UICollectionViewCell()
             }
         }
         return UICollectionViewCell()
@@ -258,13 +291,20 @@ extension ChatRoomVC: MessagesLayoutDelegate {
     
     func customCellSizeCalculator(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CellSizeCalculator {
         if let msg = message as? Message {
-            switch msg.systemMessage! {
+            
+            switch msg.systemMessageType {
             case .requestTranscation:
+                
                 return requestTranscationSizeCalculator
             case .transactionCompleted:
+                
                 return transcationCompletedSizeCalculator
             case .endConsultation:
+                
                 return endConsultationSizeCalculator
+            default:
+                
+                return CellSizeCalculator()
             }
         }
         return customTextMessagesSizeCalculator
@@ -281,7 +321,9 @@ extension ChatRoomVC: MessagesLayoutDelegate {
 }
 // MARK: - InputViewDelegate
 extension ChatRoomVC: CustomInputViewDelegate {
+    
     func didTapMenuButton(selectMenu: InputViewMenuType) {
+        
         print(selectMenu)
     }
 }
@@ -347,20 +389,25 @@ extension ChatRoomVC: MessagesDisplayDelegate {
     }
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 M월 d일 EEEE"
         formatter.locale = Locale(identifier: "ko_KR")
         let dateString = formatter.string(from: message.sentDate)
         let attributeString = NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont(name: Fonts.NotoSansKR_Regular, size: 12)!])
-        if messages.count == 1 {
+        
+        let messageDate = messages.filter { Int(message.sentDate.timeIntervalSince1970 / 60 / 60 / 24) == Int($0.sentDate.timeIntervalSince1970 / 60 / 60 / 24) }
+        
+        guard let msg = messageDate.first else { return nil }
+        
+        if msg.sentDate == message.sentDate {
+            
             return attributeString
-        } else {
-            if Calendar.current.isDateInToday(messages[indexPath.row].sentDate) {
-                return nil
-            } else {
-                return attributeString
-            }
         }
+        
+        print(messages.contains(where: { $0.sentDate == message.sentDate} ))
+        
+        return nil
     }
 }
 // MARK: - InputBarAccessoryViewDelegate
@@ -407,15 +454,15 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     
     //send버튼을 눌렀을떄
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        var message = Message(content: text, sender: Sender(senderId: "any_unique_id", displayName: "jake"))
+        var message = Message(content: text, sender: self.sender, sentDate: Date(), messageId: nil)
         
-        if message.content == "거래 요청 메세지" {
-            message.systemMessage = .requestTranscation
-        } else if message.content == "거래 완료 메세지" {
-            message.systemMessage = .transactionCompleted
-        } else if message.content == "상담 종료 메세지" {
-            message.systemMessage = .endConsultation
-        }
+//        if message.content == "거래 요청 메세지" {
+//            message.systemMessage = .requestTranscation
+//        } else if message.content == "거래 완료 메세지" {
+//            message.systemMessage = .transactionCompleted
+//        } else if message.content == "상담 종료 메세지" {
+//            message.systemMessage = .endConsultation
+//        }
         
         sendMessage(message: message)
         inputBar.inputTextView.text.removeAll()
@@ -425,29 +472,44 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
         let textMessage = TextMessage(message: message.content, typeMessage: 0)
         let body = String(data: try! JSONEncoder().encode(textMessage), encoding: .utf8)!
         let msg = AgoraChatMessage(
-            conversationId: "test", from: AgoraChatClient.shared.currentUsername!.lowercased(),
-            to: "kakao2956433522", body: .text(content: body), ext: ["em_apns_ext": ["message": 8, "senderName": "레벨업", "typeMessage": 0]])
+            conversationId: "test", from: FirebaseAuthManager.shared.getUserUid()!.lowercased(),
+            to: "uuwwn6u0xrhs4arnrhuolg3kkaj1", body: .text(content: body), ext: ["em_apns_ext": ["message": message.content, "senderName": Config.name, "typeMessage": 0] as [String : Any]])
         
-        
-        AgoraChatClient.shared.chatManager?.send(msg, progress: nil)
-        messages.append(message)
-        messages.sort()
-        
-        messagesCollectionView.reloadData()
+        AgoraChatClient.shared.chatManager?.send(msg, progress: nil) { [weak self] agoraMessage , error  in
+            
+            if let error {
+                
+                print(error.errorDescription)
+            } else {
+                
+                MessageStorage.shared.addMessage(by: message.sender.senderId, message: message.toRealmMessage())
+                self?.messages.append(message)
+                self?.messages.sort()
+                
+                self?.messagesCollectionView.reloadData()
+            }
+        }
     }
 }
 
 extension ChatRoomVC: MessageButtonTouchable {
     func didTapButton(_ systemMessageType: SystemMessageType) {
         switch systemMessageType {
+            
         case .requestTranscation:
+            
             print("거래 요청")
         case .transactionCompleted:
+            
             self.messageInputBar.endEditing(true)
             self.moveVoiceRoom()
         case .endConsultation:
+            
             self.messageInputBar.endEditing(true)
             self.moveWriteReviewVC()
+        default:
+            
+            return
         }
     }
     
