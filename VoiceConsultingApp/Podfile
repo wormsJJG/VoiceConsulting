@@ -43,5 +43,4 @@ pod 'MessageKit'
   target 'VoiceConsultingAppUITests' do
     # Pods for testing
   end
-
 end

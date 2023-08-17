@@ -32,6 +32,7 @@ class ChattingListVC: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        viewModel.input.viewWillAppearTrigger.onNext(())
         bindData()
     }
 }
@@ -67,14 +68,14 @@ extension ChattingListVC: UICollectionViewDelegate {
         self.chattingListV.chattingList.rx.setDelegate(self)
             .disposed(by: self.disposeBag)
         
-        self.viewModel.chatList
-            .bind(to: self.chattingListV.chattingList.rx.items(cellIdentifier: ChattingCell.cellID, cellType: ChattingCell.self)) { index, chat, cell in
+        self.viewModel.output.channelList
+            .bind(to: self.chattingListV.chattingList.rx.items(cellIdentifier: ChattingCell.cellID, cellType: ChattingCell.self)) { index, channel, cell in
                 
-                
+                cell.configureCell(in: channel)
             }
             .disposed(by: self.disposeBag)
         
-        self.chattingListV.chattingList.rx.modelSelected(String.self)
+        self.chattingListV.chattingList.rx.modelSelected(ChatChannel.self)
             .bind(onNext: { selectItem in
                 print(selectItem)
                 self.moveChatRommVC()

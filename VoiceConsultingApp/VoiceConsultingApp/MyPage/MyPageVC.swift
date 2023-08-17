@@ -25,6 +25,7 @@ class MyPageVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ChatChannelStorage.shared.test()
         addTapAction()
         bindTableView()
     }

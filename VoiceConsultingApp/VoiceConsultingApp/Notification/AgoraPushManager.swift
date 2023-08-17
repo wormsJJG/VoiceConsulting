@@ -17,11 +17,11 @@ class AgoraPushManager: NSObject, AgoraChatManagerDelegate, AgoraChatClientDeleg
         let options = AgoraChatOptions(appkey: AgoraConst.appKey.rawValue)
         options.apnsCertName = AgoraConst.apnsCertName.rawValue
         
-        AgoraChatClient.shared.initializeSDK(with: options)
+        AgoraChatClient.shared().initializeSDK(with: options)
     }
     
     func registerForRemoteNotifications(deviceToken: Data) {
-        AgoraChatClient.shared
+        AgoraChatClient.shared()
             .registerForRemoteNotifications(withDeviceToken: deviceToken) { error in
             
             if let error {
@@ -36,7 +36,7 @@ class AgoraPushManager: NSObject, AgoraChatManagerDelegate, AgoraChatClientDeleg
     
     func pushManagerSetting() {
         
-        AgoraChatClient.shared.pushManager?.setPreferredNotificationLanguage("KR") { error in
+        AgoraChatClient.shared().pushManager?.setPreferredNotificationLanguage("KR") { error in
             
             if let error {
                 

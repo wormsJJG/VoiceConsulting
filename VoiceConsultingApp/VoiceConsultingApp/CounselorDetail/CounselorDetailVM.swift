@@ -13,6 +13,7 @@ class CounselorDetailVM: BaseViewModel {
     
     struct Input {
         let getDataTrigger: PublishSubject<String> = PublishSubject()
+        let didTapConsultingButton: PublishSubject<String> = PublishSubject()
     }
     
     struct Output {
@@ -21,6 +22,7 @@ class CounselorDetailVM: BaseViewModel {
         var counselor: Counselor?
         var reviewList: ReviewList?
         let isHeartCounselor: PublishSubject<Bool> = PublishSubject()
+        let completedCheckIsOnline: PublishSubject<Bool> = PublishSubject()
     }
     
     var input: Input
@@ -42,6 +44,13 @@ class CounselorDetailVM: BaseViewModel {
             .subscribe(onNext: { [weak self] counselorUid in
                 
                 self?.getCounselor(uid: counselorUid)
+            })
+            .disposed(by: self.disposeBag)
+        
+        input.didTapConsultingButton
+            .bind(onNext: { [weak self] counselorUid in
+                
+                self?.checkCounselorIsOnline(in: counselorUid)
             })
             .disposed(by: self.disposeBag)
     }
@@ -141,5 +150,19 @@ class CounselorDetailVM: BaseViewModel {
                 })
                 .disposed(by: self.disposeBag)
         }
+    }
+    
+    func checkCounselorIsOnline(in uid: String) {
+        
+        CounselorManager.shared.getCounselor(in: uid)
+            .map { $0.info.isOnline }
+            .subscribe(onNext: { [weak self] isOnline in
+                
+                self?.output.completedCheckIsOnline.onNext(isOnline)
+            }, onError: { error in
+                
+                print(error.localizedDescription)
+            })
+            .disposed(by: self.disposeBag)
     }
 }

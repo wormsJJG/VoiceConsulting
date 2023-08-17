@@ -59,6 +59,13 @@ class CounselorDetailVC: BaseViewController {
                 self?.counselorDetailV.header.heartButton.isHeart = isHeart
             })
             .disposed(by: self.disposeBag)
+        
+        viewModel.output.completedCheckIsOnline
+            .bind(onNext: { [weak self] isOnline in
+                
+                print(isOnline)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     func setCounselorUid(uid: String) {
@@ -377,8 +384,10 @@ extension CounselorDetailVC {
             .bind(onNext: { [weak self] _ in
                 
                 if Config.isUser {
-                    print("상담하기")
+                    
+                    self?.viewModel.input.didTapConsultingButton.onNext((self?.viewModel.output.counselor!.uid)!)
                 } else {
+                    
                     self?.showPopUp()
                 }
             })

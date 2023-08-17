@@ -257,6 +257,7 @@
 		35EB1A7C2A8E358B00080241 /* InputUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB1A7B2A8E358B00080241 /* InputUserInfoVC.swift */; };
 		35EB1A7E2A8E35D300080241 /* InputUserInfoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB1A7D2A8E35D300080241 /* InputUserInfoVM.swift */; };
 		35EB1A802A8E4B5900080241 /* NoPassUserRegisterPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB1A7F2A8E4B5900080241 /* NoPassUserRegisterPopUp.swift */; };
+		35EB1A822A8E60B400080241 /* ChatChannelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB1A812A8E60B400080241 /* ChatChannelStorage.swift */; };
 		35EF33EE2A7B925400DB6194 /* KakaoLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF33ED2A7B925400DB6194 /* KakaoLoginService.swift */; };
 		35EF33F02A7BAD0400DB6194 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35EF33EF2A7BAD0300DB6194 /* GoogleService-Info.plist */; };
 		35F9514B2A73DDBB0052261A /* RevenueManagementV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9514A2A73DDBB0052261A /* RevenueManagementV.swift */; };
@@ -537,6 +538,7 @@
 		35EB1A7B2A8E358B00080241 /* InputUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputUserInfoVC.swift; sourceTree = "<group>"; };
 		35EB1A7D2A8E35D300080241 /* InputUserInfoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputUserInfoVM.swift; sourceTree = "<group>"; };
 		35EB1A7F2A8E4B5900080241 /* NoPassUserRegisterPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPassUserRegisterPopUp.swift; sourceTree = "<group>"; };
+		35EB1A812A8E60B400080241 /* ChatChannelStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatChannelStorage.swift; sourceTree = "<group>"; };
 		35EF33ED2A7B925400DB6194 /* KakaoLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginService.swift; sourceTree = "<group>"; };
 		35EF33EF2A7BAD0300DB6194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35F9514A2A73DDBB0052261A /* RevenueManagementV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueManagementV.swift; sourceTree = "<group>"; };
@@ -1195,6 +1197,7 @@
 			isa = PBXGroup;
 			children = (
 				35BB11462A8D115E006CA4A5 /* MessageStorage.swift */,
+				35EB1A812A8E60B400080241 /* ChatChannelStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -1853,6 +1856,7 @@
 				35EAEAF729CAF99500AAE587 /* SplashVC.swift in Sources */,
 				35D0A0702A78FE2300C529DC /* ToSettleV.swift in Sources */,
 				3564A9702A7137F300AAA5F6 /* HeartManager.swift in Sources */,
+				35EB1A822A8E60B400080241 /* ChatChannelStorage.swift in Sources */,
 				351BB88A29FA72300050105F /* AgoraManager.swift in Sources */,
 				3592A4432A77D01B00DF8F60 /* RevenueDetailVC.swift in Sources */,
 				353347D92A88E4DE00547FE1 /* SettlementDetail.swift in Sources */,
@@ -2145,6 +2149,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4D57VYHA4Y;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "말해봐";
@@ -2153,7 +2158,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2178,6 +2183,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4D57VYHA4Y;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "말해봐";
@@ -2186,7 +2192,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

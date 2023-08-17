@@ -236,13 +236,13 @@ extension BaseViewController: AgoraChatManagerDelegate, AgoraChatClientDelegate 
     
     private func registerNotifications() {
         self.unregisterNotifications()
-        AgoraChatClient.shared.add(self, delegateQueue: nil)
+        AgoraChatClient.shared().add(self, delegateQueue: nil)
         AgoraChatClient.shared().chatManager?.add(self, delegateQueue: nil)
     }
     
     private func unregisterNotifications() {
-        AgoraChatClient.shared.removeDelegate(self)
-        AgoraChatClient.shared.chatManager?.remove(self)
+        AgoraChatClient.shared().removeDelegate(self)
+        AgoraChatClient.shared().chatManager?.remove(self)
     }
     
     func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {

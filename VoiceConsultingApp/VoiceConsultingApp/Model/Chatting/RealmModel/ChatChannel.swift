@@ -14,7 +14,7 @@ class ChatChannel: Object {
     @objc dynamic var uid: String = ""
     @objc dynamic var name: String = ""
     @objc dynamic var profileUrlString: String = ""
-    @objc dynamic let lastMessage: RealmMessage = RealmMessage()
+    @objc dynamic var lastMessage: RealmMessage? = nil
 }
 
 extension ChatChannel: Comparable {

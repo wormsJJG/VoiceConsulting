@@ -85,7 +85,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, AgoraChatClientDelegate
     // foreground 상태
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        AgoraChatClient.shared.application(UIApplication.shared, didReceiveRemoteNotification: notification.request.content.userInfo)
+        AgoraChatClient.shared().application(UIApplication.shared, didReceiveRemoteNotification: notification.request.content.userInfo)
         
         completionHandler([.alert, .sound, .badge])
     }
@@ -93,7 +93,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, AgoraChatClientDelegate
     // background
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        AgoraChatClient.shared.application(application, didReceiveRemoteNotification: userInfo)
+        AgoraChatClient.shared().application(application, didReceiveRemoteNotification: userInfo)
         
         completionHandler(.newData)
     }
