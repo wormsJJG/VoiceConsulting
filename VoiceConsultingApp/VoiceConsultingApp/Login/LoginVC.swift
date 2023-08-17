@@ -63,7 +63,7 @@ extension LoginVC {
             .subscribe(onNext: { [weak self] authResult in
                 if let authResult {
                     
-                    self?.checkFisrtLogin(uid: authResult.user.uid,
+                    self?.checkFisrtLogin(uid: authResult.user.uid.lowercased(),
                                                name: authResult.user.displayName)
                 } else {
                     print("optional AuthResult")
@@ -87,7 +87,7 @@ extension LoginVC {
                     self?.moveSplashVC()
                 } else {
                     
-                    UserRegisterData.name = name!
+                    UserRegisterData.name = name ?? ""
                     self?.moveSelectUseTypeVC()
                 }
             case .error(let error):
@@ -149,11 +149,11 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                     guard let familyName = fullName?.familyName,
                           let givenName = fullName?.givenName else {
                         
-                        self.checkFisrtLogin(uid: result.user.uid, name: nil)
+                        self.checkFisrtLogin(uid: result.user.uid.lowercased(), name: nil)
                         return
                     }
                     let name = (familyName) + (givenName)
-                    self.checkFisrtLogin(uid: result.user.uid, name: name)
+                    self.checkFisrtLogin(uid: result.user.uid.lowercased(), name: name)
                 }
             }
         }

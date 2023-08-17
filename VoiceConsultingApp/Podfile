@@ -33,6 +33,7 @@ pod 'Alamofire'
 pod 'Cosmos'
 pod 'RealmSwift'
 pod 'GoogleSignIn'
+pod 'MessageKit'
 
   target 'VoiceConsultingAppTests' do
     inherit! :search_paths

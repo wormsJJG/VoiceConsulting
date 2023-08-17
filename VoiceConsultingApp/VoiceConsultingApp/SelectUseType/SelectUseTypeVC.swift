@@ -37,7 +37,7 @@ extension SelectUseTypeVC {
             .bind(onNext: { [weak self] isUser in
                 if isUser {
                     
-                    self?.moveSelectCategoryVC()
+                    self?.moveInputUserInfoVC()
                 } else {
                     
                     self?.moveInputCounselorInfoVC()

@@ -253,9 +253,12 @@
 		35EAEB2529CAFB5600AAE587 /* Cordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2429CAFB5600AAE587 /* Cordinator.swift */; };
 		35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */; };
 		35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */; };
+		35EB1A7A2A8E30AD00080241 /* InputUserInfoV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB1A792A8E30AD00080241 /* InputUserInfoV.swift */; };
+		35EB1A7C2A8E358B00080241 /* InputUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB1A7B2A8E358B00080241 /* InputUserInfoVC.swift */; };
+		35EB1A7E2A8E35D300080241 /* InputUserInfoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB1A7D2A8E35D300080241 /* InputUserInfoVM.swift */; };
+		35EB1A802A8E4B5900080241 /* NoPassUserRegisterPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB1A7F2A8E4B5900080241 /* NoPassUserRegisterPopUp.swift */; };
 		35EF33EE2A7B925400DB6194 /* KakaoLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF33ED2A7B925400DB6194 /* KakaoLoginService.swift */; };
 		35EF33F02A7BAD0400DB6194 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35EF33EF2A7BAD0300DB6194 /* GoogleService-Info.plist */; };
-		35F48A9F2A64F16600BA8BE5 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 35F48A9E2A64F16600BA8BE5 /* MessageKit */; };
 		35F9514B2A73DDBB0052261A /* RevenueManagementV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9514A2A73DDBB0052261A /* RevenueManagementV.swift */; };
 		35F9514D2A73DDEA0052261A /* RevenueManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9514C2A73DDEA0052261A /* RevenueManagementVC.swift */; };
 		F08D41518B1C0EDF3BF92FBF /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C8154CC9C5D2C8A7DEB7F4 /* Pods_VoiceConsultingApp_VoiceConsultingAppUITests.framework */; };
@@ -530,6 +533,10 @@
 		35EAEB2429CAFB5600AAE587 /* Cordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cordinator.swift; sourceTree = "<group>"; };
 		35EAEB2829CAFD4A00AAE587 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		35EAEB2B29CAFDAA00AAE587 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		35EB1A792A8E30AD00080241 /* InputUserInfoV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputUserInfoV.swift; sourceTree = "<group>"; };
+		35EB1A7B2A8E358B00080241 /* InputUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputUserInfoVC.swift; sourceTree = "<group>"; };
+		35EB1A7D2A8E35D300080241 /* InputUserInfoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputUserInfoVM.swift; sourceTree = "<group>"; };
+		35EB1A7F2A8E4B5900080241 /* NoPassUserRegisterPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPassUserRegisterPopUp.swift; sourceTree = "<group>"; };
 		35EF33ED2A7B925400DB6194 /* KakaoLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginService.swift; sourceTree = "<group>"; };
 		35EF33EF2A7BAD0300DB6194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35F9514A2A73DDBB0052261A /* RevenueManagementV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueManagementV.swift; sourceTree = "<group>"; };
@@ -548,7 +555,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35F48A9F2A64F16600BA8BE5 /* MessageKit in Frameworks */,
 				313E3FF2D4D47B0EF4036FCD /* Pods_VoiceConsultingApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1072,6 +1078,7 @@
 				35C5FA682A6E823B00815055 /* CancelImagePickPopUp.swift */,
 				35390C642A8102500066CF89 /* NoPassRegisterPopUp.swift */,
 				357B25C12A8A693100E7C8A3 /* NoPassToSettlePopUp.swift */,
+				35EB1A7F2A8E4B5900080241 /* NoPassUserRegisterPopUp.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -1337,6 +1344,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				35EB1A782A8E309100080241 /* InputUserInfo */,
 				35BB11482A8D1E7D006CA4A5 /* Storage */,
 				3500D24F2A60F7D50070E264 /* Service */,
 				35D0A06E2A78FDE300C529DC /* ToSettle */,
@@ -1437,6 +1445,16 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		35EB1A782A8E309100080241 /* InputUserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				35EB1A792A8E30AD00080241 /* InputUserInfoV.swift */,
+				35EB1A7B2A8E358B00080241 /* InputUserInfoVC.swift */,
+				35EB1A7D2A8E35D300080241 /* InputUserInfoVM.swift */,
+			);
+			path = InputUserInfo;
+			sourceTree = "<group>";
+		};
 		35F951492A73DD830052261A /* RevenueManagement */ = {
 			isa = PBXGroup;
 			children = (
@@ -1491,7 +1509,6 @@
 			);
 			name = VoiceConsultingApp;
 			packageProductDependencies = (
-				35F48A9E2A64F16600BA8BE5 /* MessageKit */,
 			);
 			productName = VoiceConsultingApp;
 			productReference = 35EAEAEF29CAF99500AAE587 /* VoiceConsultingApp.app */;
@@ -1569,7 +1586,6 @@
 			);
 			mainGroup = 35EAEAE629CAF99500AAE587;
 			packageReferences = (
-				35F48A9D2A64F16600BA8BE5 /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = 35EAEAF029CAF99500AAE587 /* Products */;
 			projectDirPath = "";
@@ -1778,7 +1794,9 @@
 				350CA2242A18BCA500B1756C /* TapViewCell.swift in Sources */,
 				359D326729E5514B005BF86C /* CoinManagementV.swift in Sources */,
 				35BB114F2A8D23C7006CA4A5 /* RealmError.swift in Sources */,
+				35EB1A7A2A8E30AD00080241 /* InputUserInfoV.swift in Sources */,
 				358F42FB2A4435B3004BBBE0 /* BuyCoinHistory.swift in Sources */,
+				35EB1A7E2A8E35D300080241 /* InputUserInfoVM.swift in Sources */,
 				35364FDB2A029D7D00C4BC8D /* PushManager.swift in Sources */,
 				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
 				359D327729E57D4E005BF86C /* BuyHistoryCell.swift in Sources */,
@@ -1821,10 +1839,12 @@
 				358EF07F2A24E706001324A6 /* UserTypeView.swift in Sources */,
 				353347DB2A88E53300547FE1 /* SettlementField.swift in Sources */,
 				3523AF8B2A09055300D51B8A /* CounselorInfo.swift in Sources */,
+				35EB1A802A8E4B5900080241 /* NoPassUserRegisterPopUp.swift in Sources */,
 				350AFE1C2A3AFDB100FF3514 /* FitWellCellVM.swift in Sources */,
 				35726F322A05F556008E28D0 /* CounselorManager.swift in Sources */,
 				35DECCB829DBD26800DE5BE3 /* LiveCounselorCell.swift in Sources */,
 				35B15B832A1B0D2D004345F3 /* HeartCounselorVC.swift in Sources */,
+				35EB1A7C2A8E358B00080241 /* InputUserInfoVC.swift in Sources */,
 				3560437629DECB6A001CDA77 /* FitWellCounselorCell.swift in Sources */,
 				35E2987C29CBEC2D00847F49 /* SplashV.swift in Sources */,
 				359638C32A23A3D900808EA0 /* DeleteAccountPopUpVC.swift in Sources */,
@@ -2301,25 +2321,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		35F48A9D2A64F16600BA8BE5 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MessageKit/MessageKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		35F48A9E2A64F16600BA8BE5 /* MessageKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 35F48A9D2A64F16600BA8BE5 /* XCRemoteSwiftPackageReference "MessageKit" */;
-			productName = MessageKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 35EAEAE729CAF99500AAE587 /* Project object */;
 }

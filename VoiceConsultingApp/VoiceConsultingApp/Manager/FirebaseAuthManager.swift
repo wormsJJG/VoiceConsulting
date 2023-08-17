@@ -24,7 +24,7 @@ class FirebaseAuthManager {
     func getUserUid() -> String? {
         if isLogin {
             
-            return Auth.auth().currentUser!.uid
+            return Auth.auth().currentUser!.uid.lowercased()
         }
         
         return nil

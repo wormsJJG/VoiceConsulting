@@ -13,7 +13,7 @@ struct User: Codable {
     var categoryList: [String]
     var phoneNumber: String?
     var coin: Int
-    var fcmToken: String
+    var fcmToken: String?
     var platform: String
     var profileImageUrl: String?
     
@@ -21,7 +21,7 @@ struct User: Codable {
          categoryList: [String],
          phoneNumber: String? = nil,
          coin: Int = 0,
-         fcmToken: String,
+         fcmToken: String? = nil,
          platform: String = "apple",
          profileImageUrl: String?) {
         

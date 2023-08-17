@@ -209,7 +209,7 @@ extension ChatRoomVC: HeartButtonDelegate {
 // MARK: - MessagesDataSource
 extension ChatRoomVC: MessagesDataSource {
     
-    var currentSender: MessageKit.SenderType {
+    func currentSender() -> MessageKit.SenderType {
         
         return self.sender
     }
@@ -472,8 +472,8 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
         let textMessage = TextMessage(message: message.content, typeMessage: 0)
         let body = String(data: try! JSONEncoder().encode(textMessage), encoding: .utf8)!
         let msg = AgoraChatMessage(
-            conversationId: "test", from: FirebaseAuthManager.shared.getUserUid()!.lowercased(),
-            to: "uuwwn6u0xrhs4arnrhuolg3kkaj1", body: .text(content: body), ext: ["em_apns_ext": ["message": message.content, "senderName": Config.name, "typeMessage": 0] as [String : Any]])
+            conversationId: "test", from: FirebaseAuthManager.shared.getUserUid()!,
+            to: "kakao2956433522", body: .text(content: body), ext: ["em_apns_ext": ["message": message.content, "senderName": Config.name, "typeMessage": 0] as [String : Any]])
         
         AgoraChatClient.shared.chatManager?.send(msg, progress: nil) { [weak self] agoraMessage , error  in
             
@@ -482,7 +482,7 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
                 print(error.errorDescription)
             } else {
                 
-                MessageStorage.shared.addMessage(by: message.sender.senderId, message: message.toRealmMessage())
+//                MessageStorage.shared.addMessage(by: message.sender.senderId, message: message.toRealmMessage())
                 self?.messages.append(message)
                 self?.messages.sort()
                 

@@ -75,8 +75,44 @@ class SelectCategoryVM: BaseViewModel {
         }
     }
     
+    private func uploadProfileImageForUser(completion: @escaping ((String?) -> Void)) {
+        
+        FireStorageService.shared.uploadProfileImage(in: UserRegisterData.profileImage)
+            .subscribe(onNext: { imageUrlString in
+                
+                completion(imageUrlString)
+            }, onError: { error in
+                
+                completion(nil)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
     private func registerUser() {
         
+        uploadProfileImageForUser(completion: { [weak self] profileImageUrlString in
+            
+            if let uid = FirebaseAuthManager.shared.getUserUid() {
+                
+                let user = User(name: UserRegisterData.name,
+                                categoryList: self!.input.userSelectCategoryList,
+                                profileImageUrl: profileImageUrlString)
+                
+                UserManager.shared.createUser(uid: uid, user: user)
+                    .subscribe(onNext: {
+                        
+                        Config.isUser = true
+                        Config.name = user.name
+                        Config.coin = user.coin
+                        Config.profileUrlString = user.profileImageUrl
+                        self?.registerAgora()
+                    }, onError: { error in
+                        
+                        self?.output.completion.onNext(error)
+                    })
+                    .disposed(by: self!.disposeBag)
+            }
+        })
     }
     
     private func uploadImageForCounselor(completion: @escaping(String, [String], Error?) -> Void) {
@@ -142,8 +178,9 @@ class SelectCategoryVM: BaseViewModel {
                                 
                             case .next(_):
                                 
-                                Config.isUser = UserRegisterData.isUser
-                                Config.name = UserRegisterData.name
+                                Config.isUser = false
+                                Config.name = counselor.name
+                                Config.coin = counselor.coin
                                 Config.profileUrlString = profileImageUrl
                                 self?.registerAgora()
                             case .error(let error):
@@ -206,38 +243,6 @@ class SelectCategoryVM: BaseViewModel {
         } else {
             
             self.output.completion.onNext(nil)
-        }
-    }
-    
-    private func addCategoryList() {
-        
-        if let uid = FirebaseAuthManager.shared.getUserUid() {
-            
-//            let user = User(name: UserRegisterData.name ?? "name",
-//                            categoryList: input.userSelectCategoryList,
-//                            fcmToken: "",
-//                            profileImageUrl: UserRegisterData.profileUrl ?? "")
-//
-//            UserManager.shared.createUser(uid: uid, user: user)
-//                .subscribe({ [weak self] event in
-//
-//                    switch event {
-//
-//                    case .next(_):
-//
-//                        Config.isUser = true
-//                        Config.name = UserRegisterData.name ?? "name"
-//                        Config.profileUrlString = UserRegisterData.profileUrl
-//                        self?.output.completion.onNext(nil)
-//                    case .error(let error):
-//
-//                        self?.output.completion.onNext(error)
-//                    case .completed:
-//
-//                        print("onCompleted")
-//                    }
-//                })
-//                .disposed(by: self.disposeBag)
         }
     }
     

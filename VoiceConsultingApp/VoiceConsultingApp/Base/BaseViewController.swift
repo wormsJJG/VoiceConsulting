@@ -73,6 +73,13 @@ class BaseViewController: UIViewController {
         self.navigationController?.pushViewController(selectCategoryVC, animated: true)
     }
     
+    func moveInputUserInfoVC() {
+        
+        let inputUserInfoVC = InputUserInfoVC()
+        
+        self.navigationController?.pushViewController(inputUserInfoVC, animated: true)
+    }
+    
     func moveSelectUseTypeVC() {
         
         let selectUseTypeVC = UINavigationController(rootViewController: SelectUseTypeVC())

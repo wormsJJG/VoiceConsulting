@@ -49,4 +49,5 @@ class AssetImage {
     static let cancelWhiteIcon = "CancelWhiteIcon"
     static let phoneIconMainColor = "PhoneIconMainColor"
     static let coinIconBlack = "CoinIconBlack"
+    static let defaultProfileImage = "DefaultProfileImage"
 }
