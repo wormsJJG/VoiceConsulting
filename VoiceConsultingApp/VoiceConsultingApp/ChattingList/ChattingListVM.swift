@@ -13,7 +13,7 @@ class ChattingListVM: BaseViewModel {
     
     struct Input {
         
-        let viewWillAppearTrigger: PublishSubject<Void> = PublishSubject()
+        let fetchChattingListTrigger: PublishSubject<Void> = PublishSubject()
     }
     
     struct Output {
@@ -34,7 +34,7 @@ class ChattingListVM: BaseViewModel {
     
     private func inputSubscribe() {
         
-        input.viewWillAppearTrigger
+        input.fetchChattingListTrigger
             .bind(onNext: { [weak self] _ in
                 
                 self?.fetchChatChannelList()

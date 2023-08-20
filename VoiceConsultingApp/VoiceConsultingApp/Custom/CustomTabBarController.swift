@@ -140,6 +140,7 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
             })
         }
         
+        MessageClient.shared.delegate?.didReciceMessage(message: message)
         showLocalNotification(in: message)
     }
     

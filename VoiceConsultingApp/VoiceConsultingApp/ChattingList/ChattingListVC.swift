@@ -26,13 +26,14 @@ class ChattingListVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        MessageClient.shared.delegate = self
         addCoinBlockTapAction()
         bindTableView()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel.input.viewWillAppearTrigger.onNext(())
+        viewModel.input.fetchChattingListTrigger.onNext(())
         bindData()
     }
 }
@@ -82,5 +83,14 @@ extension ChattingListVC: UICollectionViewDelegate {
             })
             .disposed(by: self.disposeBag)
         
+    }
+}
+
+// MARK: - MessageClient
+extension ChattingListVC: MessageReciveable {
+    
+    func didReciceMessage(message: Message) {
+        
+        viewModel.input.fetchChattingListTrigger.onNext(())
     }
 }
