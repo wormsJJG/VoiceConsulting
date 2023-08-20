@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AgoraChatClient.shared.add(self, delegateQueue: nil)
         PushManager.shared.registerForPushNotifications() // Push Noti
         AgoraPushManager.shared.initAgoraChatOptions() //AgoraPush
-        AgoraPushManager.shared.pushManagerSetting()
         CategoryManager.shared.initCategoryData()
         KakaoLoginService.shared.initSDK()
         
@@ -53,18 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate {
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        
-        AgoraChatClient.shared.applicationDidEnterBackground(application)
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        
-        AgoraChatClient.shared.applicationWillEnterForeground(application)
-    }
-}
 // MARK: - Push Noti
 extension AppDelegate: UNUserNotificationCenterDelegate, AgoraChatClientDelegate {
     
@@ -93,7 +80,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, AgoraChatClientDelegate
     // background
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        AgoraChatClient.shared().application(application, didReceiveRemoteNotification: userInfo)
+//        AgoraChatClient.shared().application(application, didReceiveRemoteNotification: userInfo)
         
         completionHandler(.newData)
     }

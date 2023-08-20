@@ -86,6 +86,9 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
         
         for message in aMessages {
             
+            print(message.ext)
+            print(message)
+            
             let state = UIApplication.shared.applicationState
             switch state {
                 

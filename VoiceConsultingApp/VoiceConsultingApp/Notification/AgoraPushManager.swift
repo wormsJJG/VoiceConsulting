@@ -40,7 +40,7 @@ class AgoraPushManager: NSObject, AgoraChatManagerDelegate, AgoraChatClientDeleg
             
             if let error {
                 
-                print(error.description)
+                print(error.errorDescription)
             }
         }
     }

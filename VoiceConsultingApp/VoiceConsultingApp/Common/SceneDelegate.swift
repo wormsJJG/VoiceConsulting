@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleSignIn
+import AgoraChat
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -42,11 +43,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-
+        
+        AgoraChatClient.shared().applicationWillEnterForeground(UIApplication.shared)
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
 
+        AgoraChatClient.shared().applicationDidEnterBackground(UIApplication.shared)
     }
 }
 
