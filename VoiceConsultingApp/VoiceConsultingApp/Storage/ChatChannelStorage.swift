@@ -39,39 +39,67 @@ class ChatChannelStorage {
         print(result)
     }
     
-    func addChatChannel(uid: String, name: String, profileUrlString: String) -> Observable<ChatChannel> {
+    func isExistChannel(by uid: String) -> Bool {
         
-        return Observable.create { event in
+        let result = self.storage.objects(ChatChannel.self).filter("uid == '\(uid)'")
+        
+        return !result.isEmpty
+    }
+    
+    func addChatChannel(chatChannel: ChatChannel) {
+        
+        let messageRoom = RealmMessageListByUid()
+        messageRoom.uid = chatChannel.uid
+        if let lastMessage = chatChannel.lastMessage {
             
-            let result = self.storage.objects(ChatChannel.self).filter("uid == '\(uid)'")
-            let chatChannel = ChatChannel()
-            chatChannel.uid = uid
-            chatChannel.name = name
-            chatChannel.profileUrlString = profileUrlString
-            chatChannel.lastMessage = RealmMessage(content: "", sender: Sender(senderId: "", displayName: Config.name), sentDate: Date(), messageId: nil)
+            messageRoom.messageList.append(chatChannel.lastMessage!)
             
-            if result.isEmpty {
-                
-                do {
-                    
-                    try self.storage.write {
+        } else {
+            
+            let sender = Sender(senderId: chatChannel.uid, displayName: chatChannel.name)
+            chatChannel.lastMessage = RealmMessage(content: "", sender: sender, sentDate: Date(), messageId: nil)
+        }
+        
+        
+        do {
+            
+            try self.storage.write {
                         
-                        self.storage.add(chatChannel)
-                        
-                        event.onNext(chatChannel)
-                        event.onCompleted()
-                    }
-                } catch {
-                    
-                    event.onError(error)
-                }
-            } else {
-                
-                event.onNext(chatChannel)
-                event.onCompleted()
+                self.storage.add(chatChannel)
+                self.storage.add(messageRoom)
             }
+        } catch {
+                    
+            print(error.localizedDescription)
+        }
+    }
+    
+    func addChatChannelCompletion(chatChannel: ChatChannel, completion: @escaping ((Error?) -> Void)) {
+        
+        let messageRoom = RealmMessageListByUid()
+        messageRoom.uid = chatChannel.uid
+        if let lastMessage = chatChannel.lastMessage {
             
-            return Disposables.create()
+            messageRoom.messageList.append(chatChannel.lastMessage!)
+            
+        } else {
+            
+            let sender = Sender(senderId: chatChannel.uid, displayName: chatChannel.name)
+            chatChannel.lastMessage = RealmMessage(content: "", sender: sender, sentDate: Date(), messageId: nil)
+        }
+        
+        
+        do {
+            
+            try self.storage.write {
+                        
+                self.storage.add(chatChannel)
+                self.storage.add(messageRoom)
+                completion(nil)
+            }
+        } catch {
+                    
+            completion(error)
         }
     }
     

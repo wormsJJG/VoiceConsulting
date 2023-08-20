@@ -60,7 +60,6 @@ class ChatRoomVM: BaseViewModel{
                 
                 let channelUid = self!.channel!.uid
                 MessageStorage.shared.saveMessage(by: channelUid, message: message)
-                ChatChannelStorage.shared.editLastMessage(uid: channelUid, lastMessage: message)
             })
             .disposed(by: self.disposeBag)
     }

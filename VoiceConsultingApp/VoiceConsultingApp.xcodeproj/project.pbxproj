@@ -205,6 +205,9 @@
 		35A63F642A1322910058C92D /* SystemMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F632A1322910058C92D /* SystemMessageType.swift */; };
 		35A63F672A132FD50058C92D /* EndConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F662A132FD50058C92D /* EndConsultationCell.swift */; };
 		35A63F692A132FE30058C92D /* EndConsultationSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A63F682A132FE30058C92D /* EndConsultationSizeCalculator.swift */; };
+		35A70CA42A926F5D003551F1 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A70CA32A926F5D003551F1 /* ConfigManager.swift */; };
+		35A70CA62A927261003551F1 /* MessageReciveable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A70CA52A927261003551F1 /* MessageReciveable.swift */; };
+		35A70CA92A9272D9003551F1 /* MessageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A70CA82A9272D9003551F1 /* MessageClient.swift */; };
 		35ACA05B2A8501A40029E183 /* AgoraChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACA05A2A8501A40029E183 /* AgoraChatService.swift */; };
 		35AE84302A4C18E2007B2FAF /* ConsultingField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AE842F2A4C18E2007B2FAF /* ConsultingField.swift */; };
 		35AE84332A4C19A3007B2FAF /* Consulting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AE84322A4C19A3007B2FAF /* Consulting.swift */; };
@@ -484,6 +487,9 @@
 		35A63F632A1322910058C92D /* SystemMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageType.swift; sourceTree = "<group>"; };
 		35A63F662A132FD50058C92D /* EndConsultationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndConsultationCell.swift; sourceTree = "<group>"; };
 		35A63F682A132FE30058C92D /* EndConsultationSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndConsultationSizeCalculator.swift; sourceTree = "<group>"; };
+		35A70CA32A926F5D003551F1 /* ConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
+		35A70CA52A927261003551F1 /* MessageReciveable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReciveable.swift; sourceTree = "<group>"; };
+		35A70CA82A9272D9003551F1 /* MessageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageClient.swift; sourceTree = "<group>"; };
 		35ACA05A2A8501A40029E183 /* AgoraChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraChatService.swift; sourceTree = "<group>"; };
 		35AE842F2A4C18E2007B2FAF /* ConsultingField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultingField.swift; sourceTree = "<group>"; };
 		35AE84322A4C19A3007B2FAF /* Consulting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consulting.swift; sourceTree = "<group>"; };
@@ -852,6 +858,7 @@
 				354B73CC2A0BAEB200651EF9 /* MoreButtonTouchable.swift */,
 				35C5FA6C2A6E8E2A00815055 /* DeleteButtonTouchable.swift */,
 				35813D622A8BB05A00405920 /* ToggleChangeable.swift */,
+				35A70CA52A927261003551F1 /* MessageReciveable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1045,6 +1052,7 @@
 				3564A96F2A7137F300AAA5F6 /* HeartManager.swift */,
 				3509AAC42A86669500A0AE0F /* ChatChannelManager.swift */,
 				353347DC2A88E58900547FE1 /* SettlementManager.swift */,
+				35A70CA32A926F5D003551F1 /* ConfigManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1187,6 +1195,14 @@
 				35A63F682A132FE30058C92D /* EndConsultationSizeCalculator.swift */,
 			);
 			path = "EndConsultation ";
+			sourceTree = "<group>";
+		};
+		35A70CA72A9272BA003551F1 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				35A70CA82A9272D9003551F1 /* MessageClient.swift */,
+			);
+			name = Client;
 			sourceTree = "<group>";
 		};
 		35AE84312A4C1995007B2FAF /* Consulting */ = {
@@ -1361,6 +1377,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				35A70CA72A9272BA003551F1 /* Client */,
 				35EB1A782A8E309100080241 /* InputUserInfo */,
 				35BB11482A8D1E7D006CA4A5 /* Storage */,
 				3500D24F2A60F7D50070E264 /* Service */,
@@ -1832,6 +1849,7 @@
 				357C78AE2A407A4A00B1849D /* Extension+Rx+ScrollView.swift in Sources */,
 				3509AAC52A86669500A0AE0F /* ChatChannelManager.swift in Sources */,
 				35BB114D2A8D1F4F006CA4A5 /* RealmMessageListByUid.swift in Sources */,
+				35A70CA42A926F5D003551F1 /* ConfigManager.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,
 				3504E2B429E3A8A0006AEED6 /* MoreLiveVC.swift in Sources */,
 				3500D2512A60F7E50070E264 /* AgoraTokenService.swift in Sources */,
@@ -1968,6 +1986,7 @@
 				3592A4472A77D25D00DF8F60 /* RevenueDetailCell.swift in Sources */,
 				356FA7AC2A8917730071C631 /* RevenueDetailCellModel.swift in Sources */,
 				354DDE952A77B83200288ED3 /* RevenueView.swift in Sources */,
+				35A70CA92A9272D9003551F1 /* MessageClient.swift in Sources */,
 				358EF0812A25118E001324A6 /* ServiceCenterCell.swift in Sources */,
 				35086BF72A652FF600739C12 /* UserRegisterData.swift in Sources */,
 				357B25C22A8A693100E7C8A3 /* NoPassToSettlePopUp.swift in Sources */,
@@ -1987,6 +2006,7 @@
 				357D4A202A2E1382000052D1 /* RequestPaymentView.swift in Sources */,
 				35BC511D29D196FB00BEA034 /* SelectUseTypeVM.swift in Sources */,
 				35D8E23E2A55626F0091EB6A /* AgoraConst.swift in Sources */,
+				35A70CA62A927261003551F1 /* MessageReciveable.swift in Sources */,
 				3504E2BE29E3B1C1006AEED6 /* MoreFitWellCell.swift in Sources */,
 				356F7BD42A07920A00C536D8 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
 				359933CB29D07A690098A0FC /* MainV.swift in Sources */,

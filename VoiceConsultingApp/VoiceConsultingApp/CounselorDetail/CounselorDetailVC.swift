@@ -92,16 +92,21 @@ class CounselorDetailVC: BaseViewController {
     private func addChatChannel() {
         
         guard let counselor = viewModel.output.counselor else { return }
+        let chatChannel = ChatChannel()
+        chatChannel.uid = counselor.uid
+        chatChannel.name = counselor.info.name
+        chatChannel.profileUrlString = counselor.info.profileImageUrl
         
-        ChatChannelStorage.shared.addChatChannel(uid: counselor.uid, name: counselor.info.name, profileUrlString: counselor.info.profileImageUrl)
-            .subscribe(onNext: { [weak self] channel in
-                
-                self?.moveChatRoomVC(channel)
-            }, onError: { error in
+        ChatChannelStorage.shared.addChatChannelCompletion(chatChannel: chatChannel, completion: { [weak self] error in
+            
+            if let error {
                 
                 print(error.localizedDescription)
-            })
-            .disposed(by: self.disposeBag)
+            } else {
+                
+                self?.moveChatRoomVC(chatChannel)
+            }
+        })
     }
 }
 extension CounselorDetailVC: UIScrollViewDelegate {

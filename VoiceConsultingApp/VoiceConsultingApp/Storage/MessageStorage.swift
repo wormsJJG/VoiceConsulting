@@ -66,9 +66,18 @@ class MessageStorage {
                 
                 result.first?.messageList.append(message)
             }
+            
+            ChatChannelStorage.shared.editLastMessage(uid: uid, lastMessage: message)
         } catch {
             
             print(error)
         }
+    }
+    
+    func isExitsMessageRoom(by uid: String) -> Bool {
+        
+        let result = storage.objects(RealmMessageListByUid.self).filter("uid = '\(uid)'")
+        
+        return false
     }
 }

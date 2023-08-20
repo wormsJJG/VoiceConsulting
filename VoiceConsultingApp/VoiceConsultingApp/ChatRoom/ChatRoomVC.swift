@@ -61,8 +61,15 @@ class ChatRoomVC: MessagesViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        MessageClient.shared.didEnterChatRoom(uid: viewModel.channel?.uid)
         bindData()
         messagesCollectionView.scrollToLastItem(animated: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        MessageClient.shared.didLeaveChatRoom()
     }
 }
 // MARK: - Output Subscribe
@@ -91,6 +98,16 @@ extension ChatRoomVC {
         }
     }
 }
+
+// MARK: - MessageClientDelegate
+extension ChatRoomVC: MessageReciveable {
+    
+    func didReciceMessage(message: Message) {
+        
+        viewModel.output.messageList.append(message)
+        messagesCollectionView.reloadData()
+    }
+}
 // MARK: - AgoraChatManagerDelegate
 extension ChatRoomVC: AgoraChatManagerDelegate {
     
@@ -110,46 +127,14 @@ extension ChatRoomVC: AgoraChatManagerDelegate {
 //        }
 //    }
     
-//    private func convertMessage(in content: String) {
-//
-//        do {
-//
-//            guard let data = content.data(using: .utf8) else { return }
-//            let convertMessage = try JSONDecoder().decode(TextMessage.self, from: data)
-//            var message: Message?
-//
-//            switch convertMessage.typeMessage {
-//
-//            case 0:
-//
-//                message = Message(content: convertMessage.message,
-//                                  sender: Sender(senderId: "asdasd", displayName: "asdasd"),
-//                                  sentDate: Date(),
-//                                  messageId: nil)
-//            case 1:
-//
-//                message = Message(imageUrlString: convertMessage.message,
-//                                  sender: Sender(senderId: "asdasd", displayName: "asdasd"),
-//                                  sentDate: Date(),
-//                                  messageId: nil)
-//            default:
-//
-//                break
-//            }
-//
-//            self.messages.append(message!)
-//            self.messagesCollectionView.reloadData()
-//        } catch {
-//
-//            print(error.localizedDescription)
-//        }
-//    }
+    
 }
 // MARK: - setDelegates
 extension ChatRoomVC {
     
     private func setDelegates() {
         
+        MessageClient.shared.delegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
