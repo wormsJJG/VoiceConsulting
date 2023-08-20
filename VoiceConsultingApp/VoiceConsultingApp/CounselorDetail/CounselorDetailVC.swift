@@ -63,7 +63,7 @@ class CounselorDetailVC: BaseViewController {
         viewModel.output.completedCheckIsOnline
             .bind(onNext: { [weak self] isOnline in
                 
-                print(isOnline)
+                self?.didCompletedCheckIsOnline(isOnline)
             })
             .disposed(by: self.disposeBag)
     }
@@ -71,6 +71,37 @@ class CounselorDetailVC: BaseViewController {
     func setCounselorUid(uid: String) {
         
         viewModel.input.getDataTrigger.onNext(uid)
+    }
+    
+    private func didCompletedCheckIsOnline(_ isOnline: Bool) {
+        
+        if isOnline {
+            
+        } else {
+            
+            let noOnlineCounselorPopUp = NoOnlineCounselorPopUp()
+            noOnlineCounselorPopUp.setCallBack(didTapOkButtonCallBack: { [weak self] in
+                
+                self?.addChatChannel()
+            })
+            
+            showPopUp(popUp: noOnlineCounselorPopUp)
+        }
+    }
+    
+    private func addChatChannel() {
+        
+        guard let counselor = viewModel.output.counselor else { return }
+        
+        ChatChannelStorage.shared.addChatChannel(uid: counselor.uid, name: counselor.info.name, profileUrlString: counselor.info.profileImageUrl)
+            .subscribe(onNext: { [weak self] channel in
+                
+                self?.moveChatRoomVC(channel)
+            }, onError: { error in
+                
+                print(error.localizedDescription)
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 extension CounselorDetailVC: UIScrollViewDelegate {

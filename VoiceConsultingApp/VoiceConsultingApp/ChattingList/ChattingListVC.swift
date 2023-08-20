@@ -76,9 +76,9 @@ extension ChattingListVC: UICollectionViewDelegate {
             .disposed(by: self.disposeBag)
         
         self.chattingListV.chattingList.rx.modelSelected(ChatChannel.self)
-            .bind(onNext: { selectItem in
-                print(selectItem)
-                self.moveChatRommVC()
+            .bind(onNext: { [weak self] chatChannel in
+                
+                self?.moveChatRoomVC(chatChannel)
             })
             .disposed(by: self.disposeBag)
         

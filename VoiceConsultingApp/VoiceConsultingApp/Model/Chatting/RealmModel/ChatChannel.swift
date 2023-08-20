@@ -15,6 +15,11 @@ class ChatChannel: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var profileUrlString: String = ""
     @objc dynamic var lastMessage: RealmMessage? = nil
+    
+    override class func primaryKey() -> String? {
+        
+        return "uid"
+    }
 }
 
 extension ChatChannel: Comparable {

@@ -39,6 +39,14 @@ class BaseViewController: UIViewController {
     }
     // MARK: - MoveView
     
+    func moveChatRoomVC(_ chatChannel: ChatChannel) {
+        
+        let chatRoomVC = ChatRoomVC()
+        chatRoomVC.setChatChannel(chatChannel)
+        
+        self.navigationController?.pushViewController(chatRoomVC, animated: true)
+    }
+    
     func moveSplashVC() {
         let splashVC = SplashVC()
         

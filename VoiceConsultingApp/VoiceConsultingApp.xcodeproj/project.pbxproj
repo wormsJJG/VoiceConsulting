@@ -116,6 +116,8 @@
 		354F49622A1A750800D71E3D /* TermsV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49612A1A750800D71E3D /* TermsV.swift */; };
 		354F49642A1A772C00D71E3D /* TermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49632A1A772C00D71E3D /* TermsVC.swift */; };
 		354F49662A1A785B00D71E3D /* CompanyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F49652A1A785B00D71E3D /* CompanyData.swift */; };
+		35585B9F2A8F86A100EF5E54 /* NoOnlineCounselorPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35585B9E2A8F86A100EF5E54 /* NoOnlineCounselorPopUp.swift */; };
+		35585BA12A8FCC5400EF5E54 /* ChatRoomVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35585BA02A8FCC5400EF5E54 /* ChatRoomVM.swift */; };
 		355CAE592A0A27E500C121BF /* Counselor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355CAE582A0A27E500C121BF /* Counselor.swift */; };
 		355EDEC629D5C43D00F9BD5D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EDEC529D5C43D00F9BD5D /* Fonts.swift */; };
 		355EDED329D5C6C600F9BD5D /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */; };
@@ -393,6 +395,8 @@
 		354F49612A1A750800D71E3D /* TermsV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsV.swift; sourceTree = "<group>"; };
 		354F49632A1A772C00D71E3D /* TermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsVC.swift; sourceTree = "<group>"; };
 		354F49652A1A785B00D71E3D /* CompanyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyData.swift; sourceTree = "<group>"; };
+		35585B9E2A8F86A100EF5E54 /* NoOnlineCounselorPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOnlineCounselorPopUp.swift; sourceTree = "<group>"; };
+		35585BA02A8FCC5400EF5E54 /* ChatRoomVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomVM.swift; sourceTree = "<group>"; };
 		355CAE582A0A27E500C121BF /* Counselor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counselor.swift; sourceTree = "<group>"; };
 		355EDEC529D5C43D00F9BD5D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		355EDECD29D5C6C500F9BD5D /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -882,6 +886,16 @@
 			path = "Terms ";
 			sourceTree = "<group>";
 		};
+		35585BA22A8FD0F200EF5E54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */,
+				3570FE2A2A26415700A9A9C1 /* CustomInputView.swift */,
+				357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		355EDEBE29D5C2B400F9BD5D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1081,6 +1095,7 @@
 				35390C642A8102500066CF89 /* NoPassRegisterPopUp.swift */,
 				357B25C12A8A693100E7C8A3 /* NoPassToSettlePopUp.swift */,
 				35EB1A7F2A8E4B5900080241 /* NoPassUserRegisterPopUp.swift */,
+				35585B9E2A8F86A100EF5E54 /* NoOnlineCounselorPopUp.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -1234,10 +1249,9 @@
 		35C29FF329ECE19F0018FE04 /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
+				35585BA22A8FD0F200EF5E54 /* View */,
 				35C29FF429ECE1C30018FE04 /* ChatRoomVC.swift */,
-				35962E7F29F9253A0059CF17 /* ChatRoomHeader.swift */,
-				3570FE2A2A26415700A9A9C1 /* CustomInputView.swift */,
-				357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */,
+				35585BA02A8FCC5400EF5E54 /* ChatRoomVM.swift */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";
@@ -1841,6 +1855,7 @@
 				359D326E29E57530005BF86C /* UseHistoryVC.swift in Sources */,
 				358EF07F2A24E706001324A6 /* UserTypeView.swift in Sources */,
 				353347DB2A88E53300547FE1 /* SettlementField.swift in Sources */,
+				35585B9F2A8F86A100EF5E54 /* NoOnlineCounselorPopUp.swift in Sources */,
 				3523AF8B2A09055300D51B8A /* CounselorInfo.swift in Sources */,
 				35EB1A802A8E4B5900080241 /* NoPassUserRegisterPopUp.swift in Sources */,
 				350AFE1C2A3AFDB100FF3514 /* FitWellCellVM.swift in Sources */,
@@ -1930,6 +1945,7 @@
 				356F39C92A83D72400A4192D /* TextMessage.swift in Sources */,
 				359933CD29D07A750098A0FC /* MainVM.swift in Sources */,
 				35C29FFB29ECF2580018FE04 /* ImageMediaItem.swift in Sources */,
+				35585BA12A8FCC5400EF5E54 /* ChatRoomVM.swift in Sources */,
 				358609E82A20D7A5000DF83B /* WriteReviewVC.swift in Sources */,
 				354664B129E4262D0055375F /* MyPageVC.swift in Sources */,
 				3568DC852A498DB400E767BC /* Review.swift in Sources */,
@@ -2150,6 +2166,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4D57VYHA4Y;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "말해봐";

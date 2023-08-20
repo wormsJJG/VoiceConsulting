@@ -97,7 +97,7 @@ class SplashVM: BaseViewModel {
                     Config.profileUrlString = user.profileImageUrl
                     Config.coin = user.coin
                     
-                    self?.output.pushMainVCTrigger.onNext(())
+                    self?.agoraLogin()
                 case .error(let error):
                     
                     print(error.localizedDescription)
@@ -144,7 +144,7 @@ class SplashVM: BaseViewModel {
             
             if let uid = FirebaseAuthManager.shared.getUserUid() {
                 
-                AgoraManager.shared.login(userUid: uid.lowercased())
+                AgoraManager.shared.login(userUid: uid)
                     .subscribe({ [weak self] event in
                         
                         switch event {

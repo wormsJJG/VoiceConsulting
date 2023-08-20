@@ -35,9 +35,8 @@ class ChatRoomVC: MessagesViewController {
     }
     
     // MARK: - Properties
-    var isCustomInputView: Bool = false
-    var sender = Sender(senderId: AgoraManager.shared.currentUser!, displayName: Config.name)
-    var messages: [Message] = []
+    
+    private let viewModel = ChatRoomVM()
     private let disposeBag = DisposeBag()
     
     // MARK: - SizeCalcurator
@@ -50,24 +49,8 @@ class ChatRoomVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
-//        MessageStorage.shared.fetchMessageListByUid(by: "asd")
-//            .subscribe({ event in
-//
-//                switch event {
-//
-//                case .next(let list):
-//
-//                    print(list.count)
-//                case .error(let error):
-//
-//                    print(error.localizedDescription)
-//                case .completed:
-//
-//                    print("completed")
-//                }
-//            })
-//            .disposed(by: self.disposeBag)
+        outputSubsribe()
+        viewModel.input.viewDidLoadTrigger.onNext(viewModel.channel!.uid)
         setDelegates()
         constraints()
         setMessageCollectionView()
@@ -79,61 +62,88 @@ class ChatRoomVC: MessagesViewController {
         super.viewWillAppear(animated)
         
         bindData()
+        messagesCollectionView.scrollToLastItem(animated: true)
+    }
+}
+// MARK: - Output Subscribe
+extension ChatRoomVC {
+    
+    private func outputSubsribe() {
+        
+        viewModel.output.reloadTrigger
+            .subscribe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                
+                self?.messagesCollectionView.reloadData()
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - Helper
+extension ChatRoomVC {
+    
+    func setChatChannel(_ chatChannel: ChatChannel) {
+        
+        self.viewModel.channel = chatChannel
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.headerview.counselorLabel.text = chatChannel.name
+        }
     }
 }
 // MARK: - AgoraChatManagerDelegate
 extension ChatRoomVC: AgoraChatManagerDelegate {
     
-    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
-        
-        for msg in aMessages {
-            
-            switch msg.swiftBody {
-                
-            case let .text(content):
-                
-                convertMessage(in: content)
-            default:
-                
-                break
-            }
-        }
-    }
+//    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
+//
+//        for msg in aMessages {
+//
+//            switch msg.swiftBody {
+//
+//            case let .text(content):
+//
+//                convertMessage(in: content)
+//            default:
+//
+//                break
+//            }
+//        }
+//    }
     
-    private func convertMessage(in content: String) {
-        
-        do {
-            
-            guard let data = content.data(using: .utf8) else { return }
-            let convertMessage = try JSONDecoder().decode(TextMessage.self, from: data)
-            var message: Message?
-            
-            switch convertMessage.typeMessage {
-                
-            case 0:
-                
-                message = Message(content: convertMessage.message,
-                                  sender: Sender(senderId: "asdasd", displayName: "asdasd"),
-                                  sentDate: Date(),
-                                  messageId: nil)
-            case 1:
-                
-                message = Message(imageUrlString: convertMessage.message,
-                                  sender: Sender(senderId: "asdasd", displayName: "asdasd"),
-                                  sentDate: Date(),
-                                  messageId: nil)
-            default:
-                
-                break
-            }
-            
-            self.messages.append(message!)
-            self.messagesCollectionView.reloadData()
-        } catch {
-            
-            print(error.localizedDescription)
-        }
-    }
+//    private func convertMessage(in content: String) {
+//
+//        do {
+//
+//            guard let data = content.data(using: .utf8) else { return }
+//            let convertMessage = try JSONDecoder().decode(TextMessage.self, from: data)
+//            var message: Message?
+//
+//            switch convertMessage.typeMessage {
+//
+//            case 0:
+//
+//                message = Message(content: convertMessage.message,
+//                                  sender: Sender(senderId: "asdasd", displayName: "asdasd"),
+//                                  sentDate: Date(),
+//                                  messageId: nil)
+//            case 1:
+//
+//                message = Message(imageUrlString: convertMessage.message,
+//                                  sender: Sender(senderId: "asdasd", displayName: "asdasd"),
+//                                  sentDate: Date(),
+//                                  messageId: nil)
+//            default:
+//
+//                break
+//            }
+//
+//            self.messages.append(message!)
+//            self.messagesCollectionView.reloadData()
+//        } catch {
+//
+//            print(error.localizedDescription)
+//        }
+//    }
 }
 // MARK: - setDelegates
 extension ChatRoomVC {
@@ -152,6 +162,8 @@ extension ChatRoomVC {
 // MARK: - addAction
 extension ChatRoomVC {
     
+    
+    
     private func addAction() {
         
         headerview.backButton.rx.tap
@@ -160,30 +172,6 @@ extension ChatRoomVC {
                 self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: self.disposeBag)
-    }
-}
-// MARK: - Constraints
-extension ChatRoomVC {
-    
-    private func constraints() {
-        self.view.addSubview(headerview)
-        
-        self.headerview.snp.makeConstraints {
-            
-            $0.left.equalTo(self.view.snp.left)
-            $0.top.equalTo(self.view.snp.top)
-            $0.right.equalTo(self.view.snp.right)
-        }
-        
-        self.view.addSubview(requestView)
-        
-        requestView.snp.makeConstraints {
-            
-            $0.height.equalTo(66)
-            $0.left.equalTo(self.view.snp.left)
-            $0.top.equalTo(self.headerview.snp.bottom)
-            $0.right.equalTo(self.view.snp.right)
-        }
     }
 }
 // MARK: - bindData
@@ -211,17 +199,17 @@ extension ChatRoomVC: MessagesDataSource {
     
     func currentSender() -> MessageKit.SenderType {
         
-        return self.sender
+        return self.viewModel.sender
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessageKit.MessagesCollectionView) -> MessageKit.MessageType {
         
-        return messages[indexPath.section]
+        return viewModel.output.messageList[indexPath.section]
     }
     
     func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {
         
-        return messages.count
+        return viewModel.output.messageList.count
     }
     
     func customCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell {
@@ -293,6 +281,7 @@ extension ChatRoomVC: MessagesLayoutDelegate {
         if let msg = message as? Message {
             
             switch msg.systemMessageType {
+                
             case .requestTranscation:
                 
                 return requestTranscationSizeCalculator
@@ -316,6 +305,7 @@ extension ChatRoomVC: MessagesLayoutDelegate {
       in _: MessagesCollectionView)
       -> CellSizeCalculator?
     {
+        
       customTextMessagesSizeCalculator
     }
 }
@@ -327,89 +317,6 @@ extension ChatRoomVC: CustomInputViewDelegate {
         print(selectMenu)
     }
 }
-// MARK: - MessagesDisplayDelegate
-extension ChatRoomVC: MessagesDisplayDelegate {
-    private func setMessageCollectionView() {
-        self.messagesCollectionView.backgroundColor = ColorSet.chatRoomBack
-        additionalSafeAreaInsets = UIEdgeInsets(top: 120, left: 0, bottom: 0, right: 0)
-        messagesCollectionView.register(RequestTransactionCell.self)
-        messagesCollectionView.register(CustomTextMessageCell.self)
-        messagesCollectionView.register(TransactionCompletedCell.self)
-        messagesCollectionView.register(EndConsultationCell.self)
-    }
-    // 말풍선의 배경 색상
-    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? ColorSet.mainColor! : .white
-    }
-    // 글자색
-    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? .white : ColorSet.mainText!
-    }
-        
-    // 말풍선의 꼬리 모양 방향
-    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-        
-        return isFromCurrentSender(message: message) ? .custom({ messageView in
-            let maskPath = UIBezierPath(roundedRect: messageView.bounds, byRoundingCorners: [.topLeft, .bottomLeft, .bottomRight], cornerRadii: CGSizeMake(10, 10))
-            let maskLayer = CAShapeLayer()
-            maskLayer.frame = messageView.bounds
-            maskLayer.path  = maskPath.cgPath
-            messageView.layer.mask = maskLayer
-        }) : .custom({ messageView in
-            let maskPath = UIBezierPath(roundedRect: messageView.bounds, byRoundingCorners: [.topRight, .bottomLeft, .bottomRight], cornerRadii: CGSizeMake(10, 10))
-            let maskLayer = CAShapeLayer()
-            maskLayer.frame = messageView.bounds
-            maskLayer.path  = maskPath.cgPath
-            messageView.layer.mask = maskLayer
-        })
-    }
-    
-    func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize? {
-        if isFromCurrentSender(message: message) {
-            return CGSize(width: 10, height: 10)
-        } else {
-            return CGSize(width: 40, height: 40)
-        }
-    }
-    
-    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        if isFromCurrentSender(message: message) {
-            avatarView.backgroundColor = ColorSet.chatRoomBack
-        }
-    }
-    
-    func messageBottomLabelAttributedText(for message: MessageType, at _: IndexPath) -> NSAttributedString? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "a hh:mm"
-        formatter.locale = Locale(identifier: "ko_KR")
-        let dateString = formatter.string(from: message.sentDate)
-        return NSAttributedString(
-        string: dateString,
-        attributes: [NSAttributedString.Key.font: UIFont(name: Fonts.NotoSansKR_Regular, size: 12)!])
-    }
-    
-    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 M월 d일 EEEE"
-        formatter.locale = Locale(identifier: "ko_KR")
-        let dateString = formatter.string(from: message.sentDate)
-        let attributeString = NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont(name: Fonts.NotoSansKR_Regular, size: 12)!])
-        
-        let messageDate = messages.filter { Int(message.sentDate.timeIntervalSince1970 / 60 / 60 / 24) == Int($0.sentDate.timeIntervalSince1970 / 60 / 60 / 24) }
-        
-        guard let msg = messageDate.first else { return nil }
-        
-        if msg.sentDate == message.sentDate {
-            
-            return attributeString
-        }
-        
-        print(messages.contains(where: { $0.sentDate == message.sentDate} ))
-        
-        return nil
-    }
-}
 // MARK: - InputBarAccessoryViewDelegate
 extension ChatRoomVC: InputBarAccessoryViewDelegate {
     
@@ -417,7 +324,7 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
         
         DispatchQueue.main.async { [weak self] in
             
-            if !self!.isCustomInputView {
+            if !self!.viewModel.isCustomInputView {
                 
                 self?.messageInputBar.inputTextView.inputView = self?.customInputView
                 self?.plusButtonItem.setImage(UIImage(named: AssetImage.cancelIcon), for: .normal)
@@ -429,7 +336,7 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
             self?.messageInputBar.inputTextView.reloadInputViews()
             self?.messageInputBar.inputTextView.becomeFirstResponder()
             
-            self?.isCustomInputView = !self!.isCustomInputView
+            self?.viewModel.isCustomInputView = !self!.viewModel.isCustomInputView
         }
     }
     
@@ -454,39 +361,34 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
     
     //send버튼을 눌렀을떄
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        var message = Message(content: text, sender: self.sender, sentDate: Date(), messageId: nil)
         
-//        if message.content == "거래 요청 메세지" {
-//            message.systemMessage = .requestTranscation
-//        } else if message.content == "거래 완료 메세지" {
-//            message.systemMessage = .transactionCompleted
-//        } else if message.content == "상담 종료 메세지" {
-//            message.systemMessage = .endConsultation
-//        }
+        let message = Message(content: text, sender: self.viewModel.sender, sentDate: Date(), messageId: nil)
         
         sendMessage(message: message)
         inputBar.inputTextView.text.removeAll()
     }
     
     private func sendMessage(message: Message) {
+        
         let textMessage = TextMessage(message: message.content, typeMessage: 0)
         let body = String(data: try! JSONEncoder().encode(textMessage), encoding: .utf8)!
         let msg = AgoraChatMessage(
             conversationId: "test", from: FirebaseAuthManager.shared.getUserUid()!,
-            to: "kakao2956433522", body: .text(content: body), ext: ["em_apns_ext": ["message": message.content, "senderName": Config.name, "typeMessage": 0] as [String : Any]])
+            to: viewModel.channel!.uid, body: .text(content: body), ext: ["em_apns_ext": ["message": message.content, "senderName": Config.name, "typeMessage": 0] as [String : Any]])
         
         AgoraChatClient.shared.chatManager?.send(msg, progress: nil) { [weak self] agoraMessage , error  in
             
             if let error {
                 
-                print(error.errorDescription)
+                
             } else {
                 
-//                MessageStorage.shared.addMessage(by: message.sender.senderId, message: message.toRealmMessage())
-                self?.messages.append(message)
-                self?.messages.sort()
+                self?.viewModel.input.saveMessageInRealm.onNext(message)
+                self?.viewModel.output.messageList.append(message)
+                self?.viewModel.output.messageList.sort()
                 
                 self?.messagesCollectionView.reloadData()
+                self?.messagesCollectionView.scrollToBottom(animated: true)
             }
         }
     }
@@ -525,5 +427,123 @@ extension ChatRoomVC: MessageButtonTouchable {
         let voiceRoomVC = VoiceRoomVC()
         
         self.navigationController?.pushViewController(voiceRoomVC, animated: true)
+    }
+}
+// MARK: - MessagesDisplayDelegate
+extension ChatRoomVC: MessagesDisplayDelegate {
+    
+    private func setMessageCollectionView() {
+        
+        self.messagesCollectionView.backgroundColor = ColorSet.chatRoomBack
+        additionalSafeAreaInsets = UIEdgeInsets(top: 120, left: 0, bottom: 0, right: 0)
+        messagesCollectionView.register(RequestTransactionCell.self)
+        messagesCollectionView.register(CustomTextMessageCell.self)
+        messagesCollectionView.register(TransactionCompletedCell.self)
+        messagesCollectionView.register(EndConsultationCell.self)
+    }
+    // 말풍선의 배경 색상
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        
+        return isFromCurrentSender(message: message) ? ColorSet.mainColor! : .white
+    }
+    // 글자색
+    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        
+        return isFromCurrentSender(message: message) ? .white : ColorSet.mainText!
+    }
+        
+    // 말풍선의 꼬리 모양 방향
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        
+        return isFromCurrentSender(message: message) ? .custom({ messageView in
+            
+            let maskPath = UIBezierPath(roundedRect: messageView.bounds, byRoundingCorners: [.topLeft, .bottomLeft, .bottomRight], cornerRadii: CGSizeMake(10, 10))
+            let maskLayer = CAShapeLayer()
+            maskLayer.frame = messageView.bounds
+            maskLayer.path  = maskPath.cgPath
+            messageView.layer.mask = maskLayer
+        }) : .custom({ messageView in
+            
+            let maskPath = UIBezierPath(roundedRect: messageView.bounds, byRoundingCorners: [.topRight, .bottomLeft, .bottomRight], cornerRadii: CGSizeMake(10, 10))
+            let maskLayer = CAShapeLayer()
+            maskLayer.frame = messageView.bounds
+            maskLayer.path  = maskPath.cgPath
+            messageView.layer.mask = maskLayer
+        })
+    }
+    
+    func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize? {
+        
+        if isFromCurrentSender(message: message) {
+            
+            return CGSize(width: 10, height: 10)
+        } else {
+            
+            return CGSize(width: 40, height: 40)
+        }
+    }
+    
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        
+        if isFromCurrentSender(message: message) {
+            
+            avatarView.backgroundColor = ColorSet.chatRoomBack
+        }
+    }
+    
+    func messageBottomLabelAttributedText(for message: MessageType, at _: IndexPath) -> NSAttributedString? {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "a hh:mm"
+        formatter.locale = Locale(identifier: "ko_KR")
+        let dateString = formatter.string(from: message.sentDate)
+        return NSAttributedString(
+        string: dateString,
+        attributes: [NSAttributedString.Key.font: UIFont(name: Fonts.NotoSansKR_Regular, size: 12)!])
+    }
+    
+    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 M월 d일 EEEE"
+        formatter.locale = Locale(identifier: "ko_KR")
+        let dateString = formatter.string(from: message.sentDate)
+        let attributeString = NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont(name: Fonts.NotoSansKR_Regular, size: 12)!])
+        
+        let messageDate = viewModel.output.messageList.filter { Int(message.sentDate.timeIntervalSince1970 / 60 / 60 / 24) == Int($0.sentDate.timeIntervalSince1970 / 60 / 60 / 24) }
+        
+        guard let msg = messageDate.first else { return nil }
+        
+        if msg.sentDate == message.sentDate {
+            
+            return attributeString
+        }
+
+        return nil
+    }
+}
+// MARK: - Constraints
+extension ChatRoomVC {
+    
+    private func constraints() {
+        
+        self.view.addSubview(headerview)
+        
+        self.headerview.snp.makeConstraints {
+            
+            $0.left.equalTo(self.view.snp.left)
+            $0.top.equalTo(self.view.snp.top)
+            $0.right.equalTo(self.view.snp.right)
+        }
+        
+        self.view.addSubview(requestView)
+        
+        requestView.snp.makeConstraints {
+            
+            $0.height.equalTo(66)
+            $0.left.equalTo(self.view.snp.left)
+            $0.top.equalTo(self.headerview.snp.bottom)
+            $0.right.equalTo(self.view.snp.right)
+        }
     }
 }

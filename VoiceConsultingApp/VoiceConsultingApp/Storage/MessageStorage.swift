@@ -36,7 +36,7 @@ class MessageStorage {
         }
     }
     
-    func addMessage(by uid: String, message: RealmMessage) {
+    func addMessageRoom(by uid: String, message: RealmMessage?) {
         
         do {
             
@@ -44,12 +44,31 @@ class MessageStorage {
                 
                 let realmMessageListByUid = RealmMessageListByUid()
                 realmMessageListByUid.uid = uid
-                realmMessageListByUid.messageList.append(message)
+                if let message {
+                    
+                    realmMessageListByUid.messageList.append(message)
+                }
+                
                 storage.add(realmMessageListByUid)
             }
         } catch {
             
             print(error.localizedDescription)
+        }
+    }
+    
+    func saveMessage(by uid: String, message: RealmMessage) {
+        
+        let result = storage.objects(RealmMessageListByUid.self).filter("uid = '\(uid)'")
+        do {
+            
+            try storage.write {
+                
+                result.first?.messageList.append(message)
+            }
+        } catch {
+            
+            print(error)
         }
     }
 }
