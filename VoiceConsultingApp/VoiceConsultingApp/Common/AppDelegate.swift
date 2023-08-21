@@ -82,12 +82,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate, AgoraChatClientDelegate
         
 //        AgoraChatClient.shared().application(application, didReceiveRemoteNotification: userInfo)
         
+        print(userInfo)
         completionHandler(.newData)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
-        print("asd")
+        print(response.notification.request.content.userInfo)
         completionHandler()
     }
 }

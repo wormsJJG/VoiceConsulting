@@ -108,4 +108,9 @@ class AgoraManager {
             return Disposables.create()
         }
     }
+    
+    func setPushTemplate() {
+        
+        AgoraChatClient.shared().pushManager?.setPushTemplate("iOSApnsPush")
+    }
 }

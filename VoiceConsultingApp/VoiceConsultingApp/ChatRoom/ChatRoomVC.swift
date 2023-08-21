@@ -14,6 +14,7 @@ import SnapKit
 import Then
 import AgoraChat
 import RealmSwift
+import Kingfisher
 
 class ChatRoomVC: MessagesViewController {
     // MARK: - View Components
@@ -49,6 +50,7 @@ class ChatRoomVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.scrollsToLastItemOnKeyboardBeginsEditing = true
         outputSubsribe()
         viewModel.input.viewDidLoadTrigger.onNext(viewModel.channel!.uid)
         setDelegates()
@@ -63,7 +65,6 @@ class ChatRoomVC: MessagesViewController {
         
         MessageClient.shared.didEnterChatRoom(uid: viewModel.channel?.uid)
         bindData()
-        messagesCollectionView.scrollToLastItem(animated: true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -83,7 +84,8 @@ extension ChatRoomVC {
     private func outputSubsribe() {
         
         viewModel.output.reloadTrigger
-            .subscribe(on: MainScheduler.instance)
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 
                 self?.messagesCollectionView.reloadData()
@@ -111,27 +113,11 @@ extension ChatRoomVC: MessageReceiveable {
         
         viewModel.output.messageList.append(message)
         messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToBottom(animated: true)
     }
 }
 // MARK: - AgoraChatManagerDelegate
 extension ChatRoomVC: AgoraChatManagerDelegate {
-    
-//    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
-//
-//        for msg in aMessages {
-//
-//            switch msg.swiftBody {
-//
-//            case let .text(content):
-//
-//                convertMessage(in: content)
-//            default:
-//
-//                break
-//            }
-//        }
-//    }
-    
     
 }
 // MARK: - setDelegates
@@ -478,6 +464,9 @@ extension ChatRoomVC: MessagesDisplayDelegate {
         if isFromCurrentSender(message: message) {
             
             avatarView.backgroundColor = ColorSet.chatRoomBack
+        } else {
+            
+            avatarView.kf.setImage(with: URL(string: viewModel.channel!.profileUrlString))
         }
     }
     
@@ -499,11 +488,11 @@ extension ChatRoomVC: MessagesDisplayDelegate {
         formatter.locale = Locale(identifier: "ko_KR")
         let dateString = formatter.string(from: message.sentDate)
         let attributeString = NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont(name: Fonts.NotoSansKR_Regular, size: 12)!])
-        
+
         let messageDate = viewModel.output.messageList.filter { Int(message.sentDate.timeIntervalSince1970 / 60 / 60 / 24) == Int($0.sentDate.timeIntervalSince1970 / 60 / 60 / 24) }
-        
+
         guard let msg = messageDate.first else { return nil }
-        
+
         if msg.sentDate == message.sentDate {
             
             return attributeString

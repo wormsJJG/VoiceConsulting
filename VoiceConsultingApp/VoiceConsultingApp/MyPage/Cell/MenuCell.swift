@@ -16,6 +16,7 @@ class MenuCell: UITableViewCell {
     private var menuType: MypageCounselorMenu = .alarmOnOff
     
     private lazy var title: UILabel = UILabel().then {
+        
         $0.text = "Title"
         $0.textColor = ColorSet.mainText
         $0.font = UIFont(name: Fonts.NotoSansKR_Regular, size: 16)
@@ -30,15 +31,18 @@ class MenuCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.selectionStyle = .none
         constraint()
     }
     
     required init?(coder: NSCoder) {
+        
         fatalError("init(coder:) has not been implemented")
     }
     
     private func constraint() {
+        
         self.contentView.addSubview(title)
         
         self.title.snp.makeConstraints { label in
@@ -55,15 +59,34 @@ class MenuCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        title.text = nil
+        title.attributedText = .none
+        title.textColor = ColorSet.mainText
+        title.font = UIFont(name: Fonts.NotoSansKR_Regular, size: 16)
+        toggle.isHidden = true
+        toggle.isOn = false
+    }
+    
     func configureUser(menuType: MypageUserMenu) {
+        
         self.title.text = menuType.title
         
         if menuType == .alarmOnOff {
+            
             self.toggle.isHidden = false
             self.menuType = .alarmOnOff
-        } else if menuType == .logOut {
+        }
+        
+        if menuType == .logOut {
+            
             self.title.textColor = ColorSet.subTextColor
-        } else if menuType == .outOfService {
+        }
+        
+        if menuType == .outOfService {
+            
             self.title.textColor = ColorSet.date
             self.title.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
             self.title.attributedText = NSMutableAttributedString(string: "회원탈퇴", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.kern: -1])
@@ -71,14 +94,22 @@ class MenuCell: UITableViewCell {
     }
     
     func configureCounselor(menuType: MypageCounselorMenu) {
+        
         self.title.text = menuType.title
         self.menuType = menuType
         
         if menuType == .alarmOnOff || menuType == .isOnlineOnOff {
+            
             self.toggle.isHidden = false
-        } else if menuType == .logOut {
+        }
+        
+        if menuType == .logOut {
+            
             self.title.textColor = ColorSet.subTextColor
-        } else if menuType == .outOfService {
+        }
+        
+        if menuType == .outOfService {
+            
             self.title.textColor = ColorSet.date
             self.title.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
             self.title.attributedText = NSMutableAttributedString(string: "회원탈퇴", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.kern: -1])

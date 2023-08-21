@@ -84,6 +84,7 @@ class ChatRoomVM: BaseViewModel{
         
         if let channel {
             
+            UIApplication.shared.applicationIconBadgeNumber -= channel.unReadMessageCount
             ChatChannelStorage.shared.editUnReadMessageCount(uid: channel.uid, count: 0, isIncrease: false)
         }
     }

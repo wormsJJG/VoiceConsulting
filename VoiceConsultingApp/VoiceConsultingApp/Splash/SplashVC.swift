@@ -34,6 +34,7 @@ extension SplashVC {
         self.viewModel.output.pushMainVCTrigger
             .bind(onNext: { [weak self] isLogin in
                 
+                AgoraManager.shared.setPushTemplate()
                 self?.moveMain()
             })
             .disposed(by: self.disposeBag)

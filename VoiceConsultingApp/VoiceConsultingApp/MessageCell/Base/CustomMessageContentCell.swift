@@ -54,6 +54,8 @@ class CustomMessageContentCell: MessageCollectionViewCell {
         cellTopLabel.attributedText = nil
         cellDateLabel.text = nil
         cellDateLabel.attributedText = nil
+        profileView.image = nil
+        profileView.isHidden = false
     }
     // MARK: - setupSubviews()
     func setupSubviews() {

@@ -25,8 +25,8 @@ class MyPageVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addTapAction()
         bindTableView()
+        addTapAction()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +34,7 @@ class MyPageVC: BaseViewController {
         
         // 오픈소스 라이브러리를 갔다오면 바 히든이 풀려서 다시 해줌
         isHiddenNavigationBar()
+        viewModel.input.refreshTrigger.onNext(())
         dataBind()
     }
 }
@@ -113,6 +114,7 @@ extension MyPageVC: ToggleChangeable {
 extension MyPageVC: UITableViewDelegate {
     
     private func bindTableView() {
+        
         if Config.isUser {
             
             bindUserTableView()

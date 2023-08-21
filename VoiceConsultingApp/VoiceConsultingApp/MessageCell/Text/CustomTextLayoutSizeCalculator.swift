@@ -10,7 +10,7 @@ import UIKit
 
 class CustomTextLayoutSizeCalculator: CustomLayoutSizeCalculator {
     var messageLabelFont = UIFont(name: Fonts.NotoSansKR_Regular, size: 14)
-  var cellMessageContainerRightSpacing: CGFloat = 0
+    var cellMessageContainerRightSpacing: CGFloat = 0
 
   override func messageContainerSize(
     for message: MessageType,

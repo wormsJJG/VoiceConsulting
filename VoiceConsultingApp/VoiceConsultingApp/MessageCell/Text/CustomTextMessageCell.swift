@@ -23,6 +23,7 @@ class CustomTextMessageCell: CustomMessageContentCell {
 
     messageLabel.attributedText = nil
     messageLabel.text = nil
+      
   }
 
   override func setupSubviews() {

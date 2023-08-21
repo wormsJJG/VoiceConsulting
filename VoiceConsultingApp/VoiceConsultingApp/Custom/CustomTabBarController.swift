@@ -87,6 +87,7 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
     
     func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
         
+        print(aMessages.count)
         for message in aMessages {
             
             convertMessage(in: message, completion: { [weak self] optionalMessage in
@@ -127,6 +128,7 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
             
             MessageStorage.shared.saveMessage(by: message.sender.senderId, message: message.toRealmMessage())
             ChatChannelStorage.shared.editUnReadMessageCount(uid: message.sender.senderId, count: 1, isIncrease: true)
+            UIApplication.shared.applicationIconBadgeNumber += 1
             ChattingListClient.shared.delegate?.didReceiveMessage(message)
             showLocalNotification(in: message)
             
@@ -138,13 +140,14 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
             chatChannel.uid = message.sender.senderId
             chatChannel.lastMessage = message.toRealmMessage()
             
-            fetchProfileImageUrlString(to: message.sender.senderId, completion: { profileImageUrlString in
+            fetchProfileImageUrlString(to: message.sender.senderId, completion: { [weak self] profileImageUrlString in
                 
                 chatChannel.profileUrlString = profileImageUrlString
                 ChatChannelStorage.shared.addChatChannel(chatChannel: chatChannel)
                 ChatChannelStorage.shared.editUnReadMessageCount(uid: message.sender.senderId, count: 1, isIncrease: true)
+                UIApplication.shared.applicationIconBadgeNumber += 1
                 ChattingListClient.shared.delegate?.didReceiveMessage(message)
-                self.showLocalNotification(in: message)
+                self?.showLocalNotification(in: message)
             })
         }
     }
@@ -154,6 +157,9 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
         if ChatChannelStorage.shared.isExistChannel(by: message.sender.senderId) { // 저장된 챗 채널이 있는가?
             
             MessageStorage.shared.saveMessage(by: message.sender.senderId, message: message.toRealmMessage())
+            ChatChannelStorage.shared.editUnReadMessageCount(uid: message.sender.senderId, count: 1, isIncrease: true)
+            UIApplication.shared.applicationIconBadgeNumber += 1
+            showLocalNotification(in: message)
         } else { // 없다
             
             let chatChannel = ChatChannel()
@@ -161,14 +167,15 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
             chatChannel.uid = message.sender.senderId
             chatChannel.lastMessage = message.toRealmMessage()
             
-            fetchProfileImageUrlString(to: message.sender.senderId, completion: { profileImageUrlString in
+            fetchProfileImageUrlString(to: message.sender.senderId, completion: { [weak self] profileImageUrlString in
                 
                 chatChannel.profileUrlString = profileImageUrlString
                 ChatChannelStorage.shared.addChatChannel(chatChannel: chatChannel)
+                ChatChannelStorage.shared.editUnReadMessageCount(uid: message.sender.senderId, count: 1, isIncrease: true)
+                UIApplication.shared.applicationIconBadgeNumber += 1
+                self?.showLocalNotification(in: message)
             })
         }
-        
-        showLocalNotification(in: message)
     }
     
     private func convertMessage(in agoraMessage: AgoraChatMessage, completion: @escaping ((Message?) -> Void)) {
@@ -181,6 +188,7 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
                   let senderName = convertApns["senderName"] as? String,
                   let message = convertApns["message"] as? String,
                   let data = getMessageBodyString(body: agoraMessage.swiftBody).data(using: .utf8) else { return }
+            
             let convertMessage = try JSONDecoder().decode(TextMessage.self, from: data)
             let sender = Sender(senderId: agoraMessage.from, displayName: senderName)
             var messageType: Message?
@@ -281,6 +289,7 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
         let content = UNMutableNotificationContent()
         content.title = message.sender.displayName
         content.body = message.content
+        content.userInfo = ["senderId": message.sender.senderId]
         
         let request = UNNotificationRequest(identifier: "agoraChat", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
