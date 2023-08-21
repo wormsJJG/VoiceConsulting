@@ -45,6 +45,7 @@ class ChatRoomVC: MessagesViewController {
     private lazy var customTextMessagesSizeCalculator = CustomTextLayoutSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     private lazy var transcationCompletedSizeCalculator = TransactionCompletedSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     private lazy var endConsultationSizeCalculator = EndConsultationSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
+    private lazy var customImageMessagesSizeCalculator = CustomImageLayoutSizeCalculator(layout: self.messagesCollectionView.messagesCollectionViewFlowLayout)
     
 // MARK: - Life Cycles
     override func viewDidLoad() {
@@ -237,6 +238,15 @@ extension ChatRoomVC: MessagesDataSource {
 
         return cell
     }
+    
+    func photoCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell? {
+        
+        let cell = messagesCollectionView.dequeueReusableCell(CustomImageMessageCell.self, for: indexPath)
+        
+        cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: customImageMessagesSizeCalculator)
+        
+        return cell
+    }
 }
 
 // MARK: - MessagesLayoutDelegate
@@ -416,6 +426,7 @@ extension ChatRoomVC: MessagesDisplayDelegate {
         messagesCollectionView.register(CustomTextMessageCell.self)
         messagesCollectionView.register(TransactionCompletedCell.self)
         messagesCollectionView.register(EndConsultationCell.self)
+        messagesCollectionView.register(CustomImageMessageCell.self)
     }
     // 말풍선의 배경 색상
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {

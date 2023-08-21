@@ -27,7 +27,7 @@ struct Message: MessageType {
             return .text(content)
         case .image:
             
-            return .custom(imageUrlString)
+            return .photo(ImageMediaItem(urlString: imageUrlString))
         case .requestTranscation:
             
             return .custom(systemMessageType)

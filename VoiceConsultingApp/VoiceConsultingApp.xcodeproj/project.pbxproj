@@ -172,6 +172,8 @@
 		358609EA2A20D89A000DF83B /* MessageButtonTouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358609E92A20D89A000DF83B /* MessageButtonTouchable.swift */; };
 		3588FD8C2A93599C006D6CD1 /* ChattingListClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588FD8B2A93599C006D6CD1 /* ChattingListClient.swift */; };
 		3588FD8E2A9359F0006D6CD1 /* ChattingListClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588FD8D2A9359F0006D6CD1 /* ChattingListClientDelegate.swift */; };
+		3588FD932A93AFD6006D6CD1 /* CustomImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588FD922A93AFD6006D6CD1 /* CustomImageMessageCell.swift */; };
+		3588FD952A93B52D006D6CD1 /* CustomImageLayoutSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588FD942A93B52D006D6CD1 /* CustomImageLayoutSizeCalculator.swift */; };
 		358EF07F2A24E706001324A6 /* UserTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF07E2A24E706001324A6 /* UserTypeView.swift */; };
 		358EF0812A25118E001324A6 /* ServiceCenterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF0802A25118E001324A6 /* ServiceCenterCell.swift */; };
 		358F42FB2A4435B3004BBBE0 /* BuyCoinHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F42FA2A4435B3004BBBE0 /* BuyCoinHistory.swift */; };
@@ -456,6 +458,8 @@
 		358609E92A20D89A000DF83B /* MessageButtonTouchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageButtonTouchable.swift; sourceTree = "<group>"; };
 		3588FD8B2A93599C006D6CD1 /* ChattingListClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListClient.swift; sourceTree = "<group>"; };
 		3588FD8D2A9359F0006D6CD1 /* ChattingListClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListClientDelegate.swift; sourceTree = "<group>"; };
+		3588FD922A93AFD6006D6CD1 /* CustomImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageMessageCell.swift; sourceTree = "<group>"; };
+		3588FD942A93B52D006D6CD1 /* CustomImageLayoutSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageLayoutSizeCalculator.swift; sourceTree = "<group>"; };
 		358EF07E2A24E706001324A6 /* UserTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeView.swift; sourceTree = "<group>"; };
 		358EF0802A25118E001324A6 /* ServiceCenterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCenterCell.swift; sourceTree = "<group>"; };
 		358F42FA2A4435B3004BBBE0 /* BuyCoinHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinHistory.swift; sourceTree = "<group>"; };
@@ -700,6 +704,7 @@
 		350C6DCB2A0D170000332581 /* MessageCell */ = {
 			isa = PBXGroup;
 			children = (
+				3588FD912A93AFB3006D6CD1 /* Image */,
 				35A63F652A132FB40058C92D /* EndConsultation  */,
 				35BC05312A12639600E312C8 /* TransactionCompleted */,
 				35289C652A0E198A00D2B3C5 /* Text */,
@@ -1060,6 +1065,15 @@
 				35A70CA32A926F5D003551F1 /* ConfigManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		3588FD912A93AFB3006D6CD1 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				3588FD922A93AFD6006D6CD1 /* CustomImageMessageCell.swift */,
+				3588FD942A93B52D006D6CD1 /* CustomImageLayoutSizeCalculator.swift */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		358F42F92A443277004BBBE0 /* Coin */ = {
@@ -1826,6 +1840,7 @@
 				359D326C29E5751D005BF86C /* BuyHistoryVC.swift in Sources */,
 				355CAE592A0A27E500C121BF /* Counselor.swift in Sources */,
 				3568DC872A498F4D00E767BC /* ReviewManager.swift in Sources */,
+				3588FD932A93AFD6006D6CD1 /* CustomImageMessageCell.swift in Sources */,
 				354664AF29E425EA0055375F /* ChattingListVC.swift in Sources */,
 				35AE84302A4C18E2007B2FAF /* ConsultingField.swift in Sources */,
 				3503B91D2A692B1D00E8751A /* InputCounselorInfoVC.swift in Sources */,
@@ -2000,6 +2015,7 @@
 				3504E2BC29E3B1B4006AEED6 /* MorePopularCell.swift in Sources */,
 				354F49662A1A785B00D71E3D /* CompanyData.swift in Sources */,
 				351793052A1746E9004EE7ED /* DetailIntrodutionCell.swift in Sources */,
+				3588FD952A93B52D006D6CD1 /* CustomImageLayoutSizeCalculator.swift in Sources */,
 				35D8E2412A5568CE0091EB6A /* AgoraError.swift in Sources */,
 				35EAEB2C29CAFDAA00AAE587 /* BaseViewModel.swift in Sources */,
 				357C78B22A407E0B00B1849D /* MorePopularVM.swift in Sources */,
