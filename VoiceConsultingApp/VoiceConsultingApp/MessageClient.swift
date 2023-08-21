@@ -11,7 +11,7 @@ class MessageClient {
     
     static let shared = MessageClient()
     var didEnterChatRoomUid: String?
-    weak var delegate: MessageReciveable?
+    weak var delegate: MessageReceiveable?
     
     func didEnterChatRoom(uid: String?) {
         

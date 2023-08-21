@@ -37,19 +37,12 @@ class ChatRoomVM: BaseViewModel{
         inputSubsribe()
     }
     
-//    deinit {
-//            
-//        guard let lastMessage = self.output.messageList.last,
-//              let channel = self.channel else { return }
-//            
-//        ChatChannelStorage.shared.editLastMessage(uid: channel.uid, lastMessage: lastMessage)
-//    }
-    
     private func inputSubsribe() {
         
         input.viewDidLoadTrigger
             .subscribe(onNext: { [weak self] uid in
                 
+                self?.initUnreadMessage()
                 self?.fetchMessageList(by: uid)
             })
             .disposed(by: self.disposeBag)
@@ -85,5 +78,13 @@ class ChatRoomVM: BaseViewModel{
                 }
             })
             .disposed(by: self.disposeBag)
+    }
+    
+    private func initUnreadMessage() {
+        
+        if let channel {
+            
+            ChatChannelStorage.shared.editUnReadMessageCount(uid: channel.uid, count: 0, isIncrease: false)
+        }
     }
 }

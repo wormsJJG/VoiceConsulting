@@ -118,4 +118,26 @@ class ChatChannelStorage {
             print(error)
         }
     }
+    
+    func editUnReadMessageCount(uid: String, count: Int, isIncrease: Bool) {
+        
+        let chatChannel = storage.objects(ChatChannel.self).filter("uid = '\(uid)'")
+        
+        do {
+            
+            try storage.write {
+                
+                if isIncrease {
+                    
+                    chatChannel.first?.unReadMessageCount += count
+                } else {
+                    
+                    chatChannel.first?.unReadMessageCount = count
+                }
+            }
+        } catch {
+            
+            print(error)
+        }
+    }
 }

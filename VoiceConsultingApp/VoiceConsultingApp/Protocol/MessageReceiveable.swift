@@ -8,7 +8,7 @@
 import Foundation
 import AgoraChat
 
-protocol MessageReciveable: AnyObject {
+protocol MessageReceiveable: AnyObject {
     
-    func didReciceMessage(message: Message)
+    func didReceiveMessage(message: Message)
 }

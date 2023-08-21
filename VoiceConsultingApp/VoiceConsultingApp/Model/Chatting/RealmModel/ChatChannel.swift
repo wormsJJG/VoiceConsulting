@@ -15,6 +15,7 @@ class ChatChannel: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var profileUrlString: String = ""
     @objc dynamic var lastMessage: RealmMessage? = nil
+    @objc dynamic var unReadMessageCount: Int = 0
     
     override class func primaryKey() -> String? {
         

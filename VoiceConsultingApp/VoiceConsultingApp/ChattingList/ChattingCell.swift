@@ -28,12 +28,13 @@ class ChattingCell: UITableViewCell {
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
         $0.text = "김이름 상담사"
         $0.textColor = ColorSet.mainText
+        $0.textAlignment = .left
     }
     
     lazy var content: UILabel = UILabel().then {
         
         $0.textColor = ColorSet.subTextColor
-        $0.text = "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용"
+        $0.text = "내용내용내용내용내용내용내용내용내용내용"
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 12)
         $0.numberOfLines = 2
     }
@@ -46,18 +47,31 @@ class ChattingCell: UITableViewCell {
         $0.numberOfLines = 1
     }
     
-    lazy var nameAndDate: UIStackView = UIStackView(arrangedSubviews: [name, date]).then {
+    private let isNewView: UIView = UIView().then {
+        
+        $0.backgroundColor = ColorSet.mainColor
+        $0.layer.cornerRadius = 3
+    }
+    
+    private lazy var nameAndisNewViewStackView: UIStackView = UIStackView(arrangedSubviews: [name, isNewView]).then {
+        
+        $0.axis = .horizontal
+        $0.spacing = 4
+        $0.alignment = .top
+    }
+    
+    lazy var topStackView: UIStackView = UIStackView(arrangedSubviews: [nameAndisNewViewStackView, date]).then {
         
         $0.axis = .horizontal
         $0.distribution = .equalSpacing
         $0.alignment = .center
     }
     
-    lazy var rightStack: UIStackView = UIStackView(arrangedSubviews: [nameAndDate, content]).then {
+    lazy var rightStack: UIStackView = UIStackView(arrangedSubviews: [topStackView, content]).then {
         
         $0.axis = .vertical
         $0.spacing = 8
-        $0.alignment = .leading
+        $0.distribution = .fill
     }
     
     lazy var allStack: UIStackView = UIStackView(arrangedSubviews: [thumnailImage, rightStack]).then {
@@ -95,8 +109,9 @@ class ChattingCell: UITableViewCell {
 
         }
         
-        self.nameAndDate.snp.makeConstraints { sv in
-            sv.right.equalTo(self.rightStack.snp.right)
+        isNewView.snp.makeConstraints {
+            
+            $0.width.height.equalTo(6)
         }
     }
     
@@ -121,9 +136,12 @@ class ChattingCell: UITableViewCell {
                 }
             }
         }
+        
         DispatchQueue.main.async { [weak self] in
             
+            let isNewMessage = channel.unReadMessageCount == 0
             self?.name.text = channel.name
+            self?.isNewView.isHidden = isNewMessage
             
             if let lastMessage = channel.lastMessage {
                 
@@ -134,7 +152,19 @@ class ChattingCell: UITableViewCell {
                     self?.content.text = self?.emptyContentText
                 } else {
                     
-                    self?.content.text = lastMessage.content
+                    if let uid = FirebaseAuthManager.shared.getUserUid() {
+                        
+                        if uid == lastMessage.senderId {
+                            
+                            self?.content.text = "나: \(lastMessage.content)"
+                        } else {
+                            
+                            self?.content.text = "\(lastMessage.displayName): \(lastMessage.content)"
+                        }
+                    } else {
+                        
+                        self?.content.text = lastMessage.content
+                    }
                 }
             } else {
                 

@@ -71,6 +71,11 @@ class ChatRoomVC: MessagesViewController {
         
         MessageClient.shared.didLeaveChatRoom()
     }
+    
+    deinit {
+        
+        MessageClient.shared.delegate = nil
+    }
 }
 // MARK: - Output Subscribe
 extension ChatRoomVC {
@@ -100,9 +105,9 @@ extension ChatRoomVC {
 }
 
 // MARK: - MessageClientDelegate
-extension ChatRoomVC: MessageReciveable {
+extension ChatRoomVC: MessageReceiveable {
     
-    func didReciceMessage(message: Message) {
+    func didReceiveMessage(message: Message) {
         
         viewModel.output.messageList.append(message)
         messagesCollectionView.reloadData()

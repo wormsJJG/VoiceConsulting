@@ -117,7 +117,7 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
             if message.sender.senderId == didEnterChatRoomUid { // 유저가 들어간 채팅방 uid와 보낸사람의 uid가 같은가?
                     
                 MessageStorage.shared.saveMessage(by: message.sender.senderId, message: message.toRealmMessage())
-                MessageClient.shared.delegate?.didReciceMessage(message: message)
+                MessageClient.shared.delegate?.didReceiveMessage(message: message)
                 
                 return
             }
@@ -126,6 +126,11 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
         if ChatChannelStorage.shared.isExistChannel(by: message.sender.senderId) { // 저장된 챗 채널이 있는가?
             
             MessageStorage.shared.saveMessage(by: message.sender.senderId, message: message.toRealmMessage())
+            ChatChannelStorage.shared.editUnReadMessageCount(uid: message.sender.senderId, count: 1, isIncrease: true)
+            ChattingListClient.shared.delegate?.didReceiveMessage(message)
+            showLocalNotification(in: message)
+            
+            return
         } else { // 없다
             
             let chatChannel = ChatChannel()
@@ -137,11 +142,11 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
                 
                 chatChannel.profileUrlString = profileImageUrlString
                 ChatChannelStorage.shared.addChatChannel(chatChannel: chatChannel)
+                ChatChannelStorage.shared.editUnReadMessageCount(uid: message.sender.senderId, count: 1, isIncrease: true)
+                ChattingListClient.shared.delegate?.didReceiveMessage(message)
+                self.showLocalNotification(in: message)
             })
         }
-        
-        MessageClient.shared.delegate?.didReciceMessage(message: message)
-        showLocalNotification(in: message)
     }
     
     private func didReceiveMessageBackground(message: Message) {
