@@ -139,8 +139,6 @@ extension ChatRoomVC {
 // MARK: - addAction
 extension ChatRoomVC {
     
-    
-    
     private func addAction() {
         
         headerview.backButton.rx.tap
@@ -149,6 +147,76 @@ extension ChatRoomVC {
                 self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: self.disposeBag)
+        
+        requestView.requestButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                
+                self?.sendRequestTranscation()
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+// MARK: - Send Function
+extension ChatRoomVC {
+    
+    //send버튼을 눌렀을떄
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        
+        let message = Message(content: text, sender: self.viewModel.sender, sentDate: Date(), messageId: nil)
+        
+        sendMessage(message: message)
+        inputBar.inputTextView.text.removeAll()
+    }
+    
+    private func sendMessage(message: Message) {
+        
+        let textMessage = TextMessage(message: message.content, typeMessage: 0)
+        let body = String(data: try! JSONEncoder().encode(textMessage), encoding: .utf8)!
+        let msg = AgoraChatMessage(
+            conversationId: "\(message.messageId)", from: FirebaseAuthManager.shared.getUserUid()!,
+            to: viewModel.channel!.uid, body: .text(content: body), ext: ["em_apns_ext": ["message": message.content, "senderName": Config.name, "typeMessage": 0] as [String : Any]])
+        
+        AgoraChatClient.shared.chatManager?.send(msg, progress: nil) { [weak self] agoraMessage , error  in
+            
+            if let error {
+                
+                
+            } else {
+                
+                self?.viewModel.input.saveMessageInRealm.onNext(message)
+                self?.viewModel.output.messageList.append(message)
+                self?.viewModel.output.messageList.sort()
+                
+                self?.messagesCollectionView.reloadData()
+                self?.messagesCollectionView.scrollToBottom(animated: true)
+            }
+        }
+    }
+    
+    private func sendRequestTranscation() {
+        
+        let message = Message(systemMessageType: SystemMessageType.requestTranscation, sender: self.currentSender(), sentDate: Date(), messageId: nil)
+        let textMessage = TextMessage(message: "결제 요청 메세지", typeMessage: SystemMessageType.requestTranscation.rawValue)
+        let body = String(data: try! JSONEncoder().encode(textMessage), encoding: .utf8)!
+        let msg = AgoraChatMessage(
+            conversationId: "\(message.messageId)", from: FirebaseAuthManager.shared.getUserUid()!,
+            to: viewModel.channel!.uid, body: .text(content: body), ext: ["em_apns_ext": ["message": message.content, "senderName": Config.name, "typeMessage": textMessage.typeMessage] as [String : Any]])
+        
+        AgoraChatClient.shared.chatManager?.send(msg, progress: nil) { [weak self] agoraMessage , error  in
+            
+            if let error {
+                
+                
+            } else {
+                
+                self?.viewModel.input.saveMessageInRealm.onNext(message)
+                self?.viewModel.output.messageList.append(message)
+                self?.viewModel.output.messageList.sort()
+                
+                self?.messagesCollectionView.reloadData()
+                self?.messagesCollectionView.scrollToBottom(animated: true)
+            }
+        }
     }
 }
 // MARK: - bindData
@@ -343,40 +411,6 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
         messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
         messageInputBar.inputTextView.font = UIFont(name: Fonts.NotoSansKR_Regular, size: 16)
         messageInputBar.inputTextView.textColor = ColorSet.mainText
-    }
-    
-    //send버튼을 눌렀을떄
-    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        
-        let message = Message(content: text, sender: self.viewModel.sender, sentDate: Date(), messageId: nil)
-        
-        sendMessage(message: message)
-        inputBar.inputTextView.text.removeAll()
-    }
-    
-    private func sendMessage(message: Message) {
-        
-        let textMessage = TextMessage(message: message.content, typeMessage: 0)
-        let body = String(data: try! JSONEncoder().encode(textMessage), encoding: .utf8)!
-        let msg = AgoraChatMessage(
-            conversationId: "test", from: FirebaseAuthManager.shared.getUserUid()!,
-            to: viewModel.channel!.uid, body: .text(content: body), ext: ["em_apns_ext": ["message": message.content, "senderName": Config.name, "typeMessage": 0] as [String : Any]])
-        
-        AgoraChatClient.shared.chatManager?.send(msg, progress: nil) { [weak self] agoraMessage , error  in
-            
-            if let error {
-                
-                
-            } else {
-                
-                self?.viewModel.input.saveMessageInRealm.onNext(message)
-                self?.viewModel.output.messageList.append(message)
-                self?.viewModel.output.messageList.sort()
-                
-                self?.messagesCollectionView.reloadData()
-                self?.messagesCollectionView.scrollToBottom(animated: true)
-            }
-        }
     }
 }
 
