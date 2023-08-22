@@ -168,6 +168,7 @@
 		357D4A202A2E1382000052D1 /* RequestPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */; };
 		357D84ED2A0A7196003DB1FC /* LiveCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */; };
 		35813D632A8BB05A00405920 /* ToggleChangeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35813D622A8BB05A00405920 /* ToggleChangeable.swift */; };
+		3584E7F02A94C392000E6265 /* ErrorPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584E7EF2A94C392000E6265 /* ErrorPopUp.swift */; };
 		358609E82A20D7A5000DF83B /* WriteReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358609E72A20D7A5000DF83B /* WriteReviewVC.swift */; };
 		358609EA2A20D89A000DF83B /* MessageButtonTouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358609E92A20D89A000DF83B /* MessageButtonTouchable.swift */; };
 		3588FD8C2A93599C006D6CD1 /* ChattingListClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588FD8B2A93599C006D6CD1 /* ChattingListClient.swift */; };
@@ -454,6 +455,7 @@
 		357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPaymentView.swift; sourceTree = "<group>"; };
 		357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCellVM.swift; sourceTree = "<group>"; };
 		35813D622A8BB05A00405920 /* ToggleChangeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleChangeable.swift; sourceTree = "<group>"; };
+		3584E7EF2A94C392000E6265 /* ErrorPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPopUp.swift; sourceTree = "<group>"; };
 		358609E72A20D7A5000DF83B /* WriteReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewVC.swift; sourceTree = "<group>"; };
 		358609E92A20D89A000DF83B /* MessageButtonTouchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageButtonTouchable.swift; sourceTree = "<group>"; };
 		3588FD8B2A93599C006D6CD1 /* ChattingListClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListClient.swift; sourceTree = "<group>"; };
@@ -1123,6 +1125,7 @@
 				357B25C12A8A693100E7C8A3 /* NoPassToSettlePopUp.swift */,
 				35EB1A7F2A8E4B5900080241 /* NoPassUserRegisterPopUp.swift */,
 				35585B9E2A8F86A100EF5E54 /* NoOnlineCounselorPopUp.swift */,
+				3584E7EF2A94C392000E6265 /* ErrorPopUp.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -1949,6 +1952,7 @@
 				356F7BDD2A07ADDF00C536D8 /* ReviewCell.swift in Sources */,
 				35EAEAF329CAF99500AAE587 /* AppDelegate.swift in Sources */,
 				35C29FF529ECE1C30018FE04 /* ChatRoomVC.swift in Sources */,
+				3584E7F02A94C392000E6265 /* ErrorPopUp.swift in Sources */,
 				35B15B812A1B0B30004345F3 /* HeartCounselorCell.swift in Sources */,
 				354F49252A1A663100D71E3D /* AlertV.swift in Sources */,
 				359638BF2A23954300808EA0 /* LogoutPopUpVC.swift in Sources */,

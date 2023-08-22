@@ -14,4 +14,29 @@ enum SystemMessageType: Int {
     case requestTranscation = 2
     case transactionCompleted = 3
     case endConsultation = 4
+    
+    var description: String {
+        
+        switch self {
+            
+        case .text:
+            
+            return ""
+        case .image:
+            
+            return "이미지"
+        case .requestTranscation:
+            
+            return "거래 요청 메세지"
+        case .transactionCompleted:
+            
+            return "거래 완료 메세지"
+        case .endConsultation:
+            
+            return "상담 종료 메세지"
+        default:
+            
+            return ""
+        }
+    }
 }

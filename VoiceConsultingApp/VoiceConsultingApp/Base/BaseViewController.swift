@@ -123,6 +123,7 @@ class BaseViewController: UIViewController {
     }
     
     func popVC() {
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -194,6 +195,17 @@ class BaseViewController: UIViewController {
         popUp.modalPresentationStyle = .overFullScreen
         popUp.modalTransitionStyle = .crossDissolve
         self.present(popUp, animated: true, completion: nil)
+    }
+    
+    func showErrorPopUp(errorString: String?) {
+        
+        let errorPopUp = ErrorPopUp()
+        errorPopUp.errorString = errorString
+        
+        errorPopUp.hidesBottomBarWhenPushed = true
+        errorPopUp.modalPresentationStyle = .overFullScreen
+        errorPopUp.modalTransitionStyle = .crossDissolve
+        self.present(errorPopUp, animated: true, completion: nil)
     }
     
     func moveVoiceRoom() {

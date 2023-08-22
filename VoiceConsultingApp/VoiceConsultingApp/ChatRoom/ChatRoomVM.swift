@@ -53,6 +53,9 @@ class ChatRoomVM: BaseViewModel{
                 
                 let channelUid = self!.channel!.uid
                 MessageStorage.shared.saveMessage(by: channelUid, message: message)
+                self?.output.messageList.append(message.toMessage())
+                self?.output.messageList.sort()
+                self?.output.reloadTrigger.onNext(())
             })
             .disposed(by: self.disposeBag)
     }

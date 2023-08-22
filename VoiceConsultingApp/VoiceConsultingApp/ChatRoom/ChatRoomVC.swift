@@ -85,11 +85,11 @@ extension ChatRoomVC {
     private func outputSubsribe() {
         
         viewModel.output.reloadTrigger
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 
                 self?.messagesCollectionView.reloadData()
+                self?.messagesCollectionView.scrollToLastItem(animated: true)
             })
             .disposed(by: self.disposeBag)
     }
@@ -110,16 +110,11 @@ extension ChatRoomVC {
 // MARK: - MessageClientDelegate
 extension ChatRoomVC: MessageReceiveable {
     
-    func didReceiveMessage(message: Message) {
+    func didReceiveMessage(message: Message) { //TabVC에서 메세지를 저장후 전달함으로 배열에 저장만 하고 리로드
         
         viewModel.output.messageList.append(message)
-        messagesCollectionView.reloadData()
-        messagesCollectionView.scrollToBottom(animated: true)
+        viewModel.output.reloadTrigger.onNext(())
     }
-}
-// MARK: - AgoraChatManagerDelegate
-extension ChatRoomVC: AgoraChatManagerDelegate {
-    
 }
 // MARK: - setDelegates
 extension ChatRoomVC {
@@ -151,7 +146,7 @@ extension ChatRoomVC {
         requestView.requestButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 
-                self?.sendRequestTranscation()
+                self?.sendRequestTranscationMessage()
             })
             .disposed(by: self.disposeBag)
     }
@@ -164,59 +159,82 @@ extension ChatRoomVC {
         
         let message = Message(content: text, sender: self.viewModel.sender, sentDate: Date(), messageId: nil)
         
-        sendMessage(message: message)
+        sendTextMessage(message: message)
         inputBar.inputTextView.text.removeAll()
     }
     
-    private func sendMessage(message: Message) {
+    private func sendTextMessage(message: Message) {
         
-        let textMessage = TextMessage(message: message.content, typeMessage: 0)
-        let body = String(data: try! JSONEncoder().encode(textMessage), encoding: .utf8)!
-        let msg = AgoraChatMessage(
-            conversationId: "\(message.messageId)", from: FirebaseAuthManager.shared.getUserUid()!,
-            to: viewModel.channel!.uid, body: .text(content: body), ext: ["em_apns_ext": ["message": message.content, "senderName": Config.name, "typeMessage": 0] as [String : Any]])
+        sendAgoraChat(message: message)
+    }
+    
+    private func sendRequestTranscationMessage() {
         
-        AgoraChatClient.shared.chatManager?.send(msg, progress: nil) { [weak self] agoraMessage , error  in
+        let message = Message(systemMessageType: SystemMessageType.requestTranscation, sender: self.currentSender(), sentDate: Date(), messageId: nil)
+        
+        sendAgoraChat(message: message)
+    }
+    
+    private func sendTransactionCompletedMessage() {
+        
+        let message = Message(systemMessageType: SystemMessageType.transactionCompleted, sender: self.currentSender(), sentDate: Date(), messageId: nil)
+        
+        sendAgoraChat(message: message)
+    }
+    
+    private func sendEndConsultationMessage() {
+        
+        let message = Message(systemMessageType: SystemMessageType.endConsultation, sender: self.currentSender(), sentDate: Date(), messageId: nil)
+        
+        sendAgoraChat(message: message)
+    }
+    
+    private func sendAgoraChat(message: Message) {
+        
+        AgoraChatClient.shared
+            .chatManager?
+            .send(message.toAgoraChatMessage(to: viewModel.channel!.uid),
+                  progress: nil) { [weak self] agoraMessage , error  in
             
             if let error {
                 
-                
+                self?.showErrorPopUp(errorString: error.errorDescription)
             } else {
                 
                 self?.viewModel.input.saveMessageInRealm.onNext(message)
-                self?.viewModel.output.messageList.append(message)
-                self?.viewModel.output.messageList.sort()
-                
-                self?.messagesCollectionView.reloadData()
-                self?.messagesCollectionView.scrollToBottom(animated: true)
             }
         }
     }
+}
+// MARK: - MessageButtonTouchable
+extension ChatRoomVC: MessageButtonTouchable {
     
-    private func sendRequestTranscation() {
-        
-        let message = Message(systemMessageType: SystemMessageType.requestTranscation, sender: self.currentSender(), sentDate: Date(), messageId: nil)
-        let textMessage = TextMessage(message: "결제 요청 메세지", typeMessage: SystemMessageType.requestTranscation.rawValue)
-        let body = String(data: try! JSONEncoder().encode(textMessage), encoding: .utf8)!
-        let msg = AgoraChatMessage(
-            conversationId: "\(message.messageId)", from: FirebaseAuthManager.shared.getUserUid()!,
-            to: viewModel.channel!.uid, body: .text(content: body), ext: ["em_apns_ext": ["message": message.content, "senderName": Config.name, "typeMessage": textMessage.typeMessage] as [String : Any]])
-        
-        AgoraChatClient.shared.chatManager?.send(msg, progress: nil) { [weak self] agoraMessage , error  in
+    func didTapButton(_ systemMessageType: SystemMessageType) {
+        switch systemMessageType {
             
-            if let error {
-                
-                
-            } else {
-                
-                self?.viewModel.input.saveMessageInRealm.onNext(message)
-                self?.viewModel.output.messageList.append(message)
-                self?.viewModel.output.messageList.sort()
-                
-                self?.messagesCollectionView.reloadData()
-                self?.messagesCollectionView.scrollToBottom(animated: true)
-            }
+        case .requestTranscation:
+            
+            print("거래 요청")
+        case .transactionCompleted:
+            
+            self.messageInputBar.endEditing(true)
+            self.moveVoiceRoom()
+        case .endConsultation:
+            
+            self.messageInputBar.endEditing(true)
+            self.moveWriteReviewVC()
+        default:
+            
+            return
         }
+    }
+}
+// MARK: - didTapHeartButton
+extension ChatRoomVC: HeartButtonDelegate {
+    
+    func didTapHeartButton(didTap: Bool) {
+        
+        print(didTap)
     }
 }
 // MARK: - bindData
@@ -230,15 +248,10 @@ extension ChatRoomVC {
         }
     }
 }
-// MARK: - didTapHeartButton
-extension ChatRoomVC: HeartButtonDelegate {
+// MARK: - AgoraChatManagerDelegate
+extension ChatRoomVC: AgoraChatManagerDelegate {
     
-    func didTapHeartButton(didTap: Bool) {
-        
-        print(didTap)
-    }
 }
-
 // MARK: - MessagesDataSource
 extension ChatRoomVC: MessagesDataSource {
     
@@ -265,6 +278,7 @@ extension ChatRoomVC: MessagesDataSource {
                 let cell = messagesCollectionView.dequeueReusableCell(RequestTransactionCell.self, for: indexPath)
                 
                 cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: requestTranscationSizeCalculator)
+                cell.systemMessageDelegate = self
                 
                 return cell
             case .transactionCompleted:
@@ -272,6 +286,7 @@ extension ChatRoomVC: MessagesDataSource {
                 let cell = messagesCollectionView.dequeueReusableCell(TransactionCompletedCell.self, for: indexPath)
                 
                 cell.configure(with: message, at: indexPath, in: messagesCollectionView, dataSource: self, and: transcationCompletedSizeCalculator)
+                cell.systemMessageDelegate = self
                 
                 return cell
             case .endConsultation:
@@ -413,40 +428,33 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
         messageInputBar.inputTextView.textColor = ColorSet.mainText
     }
 }
-
-extension ChatRoomVC: MessageButtonTouchable {
-    func didTapButton(_ systemMessageType: SystemMessageType) {
-        switch systemMessageType {
-            
-        case .requestTranscation:
-            
-            print("거래 요청")
-        case .transactionCompleted:
-            
-            self.messageInputBar.endEditing(true)
-            self.moveVoiceRoom()
-        case .endConsultation:
-            
-            self.messageInputBar.endEditing(true)
-            self.moveWriteReviewVC()
-        default:
-            
-            return
-        }
-    }
+// MARK: - MoveView Func
+extension ChatRoomVC {
     
     private func moveWriteReviewVC() {
+        
         let writeReviewVC = WriteReviewVC()
         writeReviewVC.hidesBottomBarWhenPushed = true
         
         self.navigationController?.pushViewController(writeReviewVC, animated: true)
     }
     
-    func moveVoiceRoom() {
+    private func moveVoiceRoom() {
         
         let voiceRoomVC = VoiceRoomVC()
         
         self.navigationController?.pushViewController(voiceRoomVC, animated: true)
+    }
+    
+    private func showErrorPopUp(errorString: String?) {
+        
+        let errorPopUp = ErrorPopUp()
+        errorPopUp.errorString = errorString
+        
+        errorPopUp.hidesBottomBarWhenPushed = true
+        errorPopUp.modalPresentationStyle = .overFullScreen
+        errorPopUp.modalTransitionStyle = .crossDissolve
+        self.present(errorPopUp, animated: true, completion: nil)
     }
 }
 // MARK: - MessagesDisplayDelegate

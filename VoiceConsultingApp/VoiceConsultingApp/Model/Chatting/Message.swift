@@ -108,8 +108,9 @@ struct Message: MessageType {
         }
         self.imageUrlString = ""
     }
-    
-    // MARK: - Healper
+}
+// MARK: - Healper
+extension Message {
     
     // Convert Message -> RealmMessage
     func toRealmMessage() -> RealmMessage {
@@ -145,6 +146,30 @@ struct Message: MessageType {
                                     messageId: messageId)
         
         return realmMessage
+    }
+    
+    func toAgoraChatMessage(to: String) -> AgoraChatMessage {
+        
+        var textMessage: TextMessage
+        
+        if systemMessageType == .text {
+            
+            textMessage = TextMessage(message: self.content, typeMessage: systemMessageType.rawValue)
+        } else {
+            
+            textMessage = TextMessage(message: systemMessageType.description, typeMessage: systemMessageType.rawValue)
+        }
+        
+        let body = String(data: try! JSONEncoder().encode(textMessage), encoding: .utf8)!
+        let msg = AgoraChatMessage(conversationId: "\(self.messageId)",
+                                   from: self.sender.senderId,
+                                   to: to,
+                                   body: .text(content: body),
+                                   ext: ["em_apns_ext": ["message": self.content,
+                                                         "senderName": sender.displayName,
+                                                         "typeMessage": self.systemMessageType.rawValue] as [String : Any]])
+        
+        return msg
     }
 }
 

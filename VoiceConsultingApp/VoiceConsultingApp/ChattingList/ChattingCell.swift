@@ -51,6 +51,7 @@ class ChattingCell: UITableViewCell {
         
         $0.backgroundColor = ColorSet.mainColor
         $0.layer.cornerRadius = 3
+        $0.isHidden = true
     }
     
     private lazy var nameAndisNewViewStackView: UIStackView = UIStackView(arrangedSubviews: [name, isNewView]).then {
