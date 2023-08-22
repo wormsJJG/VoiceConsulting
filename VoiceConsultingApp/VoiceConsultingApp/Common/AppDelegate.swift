@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure() // For Firebase
         UNUserNotificationCenter.current().delegate = self // Push Noti Delegate
         AgoraChatClient.shared.add(self, delegateQueue: nil)
-        PushManager.shared.registerForPushNotifications() // Push Noti
         AgoraPushManager.shared.initAgoraChatOptions() //AgoraPush
         CategoryManager.shared.initCategoryData()
         KakaoLoginService.shared.initSDK()

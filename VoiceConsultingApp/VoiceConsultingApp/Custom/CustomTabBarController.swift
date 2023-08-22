@@ -21,8 +21,15 @@ class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pushNotiAcess()
         self.view.backgroundColor = .white
         registerNotifications()
+    }
+    
+    // MARK: - Noti Access
+    private func pushNotiAcess() {
+            
+        PushManager.shared.registerForPushNotifications()
     }
 }
 

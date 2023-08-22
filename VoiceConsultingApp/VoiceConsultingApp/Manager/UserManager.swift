@@ -192,4 +192,28 @@ class UserManager {
             return Disposables.create()
         }
     }
+    
+    func editCoinCount(in coin: Int, isIncrease: Bool, completion: @escaping ((Error?) -> Void)) {
+        
+        if let uid = FirebaseAuthManager.shared.getUserUid() {
+            
+            if isIncrease {
+                
+                self.db.document(uid).updateData([FBUserFields.coin.rawValue: FieldValue.increment(Int64(coin))]) { error in
+                    
+                    completion(error)
+                }
+            } else {
+                
+                self.db.document(uid).updateData([FBUserFields.coin.rawValue: FieldValue.increment(Int64(-coin))]) { error in
+                    
+                    completion(error)
+                }
+            }
+            
+        } else {
+            
+            completion(AuthError.noCurrentUser)
+        }
+    }
 }

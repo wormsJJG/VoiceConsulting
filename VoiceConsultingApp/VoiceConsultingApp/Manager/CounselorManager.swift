@@ -297,6 +297,14 @@ class CounselorManager {
         }
     }
     
+    func increaseCoin(by uid: String, coinCount: Int,  completion: @escaping((Error?) -> Void)) {
+        
+        db.document(uid).updateData([CounselorField.coin.rawValue: FieldValue.increment(Int64(coinCount))]) { error in
+            
+            completion(error)
+        }
+    }
+    
     func changeIsOnline(in isOnline: Bool, completion: @escaping((Error?) -> Void)) {
         
         if let uid = FirebaseAuthManager.shared.getUserUid() {

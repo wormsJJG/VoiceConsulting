@@ -92,6 +92,26 @@ extension ChatRoomVC {
                 self?.messagesCollectionView.scrollToLastItem(animated: true)
             })
             .disposed(by: self.disposeBag)
+        
+        viewModel.output.errorTrigger
+            .subscribe(onNext: { [weak self] error in
+                
+                self?.showErrorPopUp(errorString: error.localizedDescription)
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.isSuccessTranscation
+            .subscribe(onNext: { [weak self] isSuccess in
+                
+                if isSuccess {
+                    
+                    self?.sendTransactionCompletedMessage()
+                } else {
+                    
+                    self?.showLackCoinPopUp()
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - Helper
@@ -157,7 +177,7 @@ extension ChatRoomVC {
     //send버튼을 눌렀을떄
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         
-        let message = Message(content: text, sender: self.viewModel.sender, sentDate: Date(), messageId: nil)
+        let message = Message(content: text, sender: self.currentSender(), sentDate: Date(), messageId: nil)
         
         sendTextMessage(message: message)
         inputBar.inputTextView.text.removeAll()
@@ -168,23 +188,52 @@ extension ChatRoomVC {
         sendAgoraChat(message: message)
     }
     
+    private func sendImageMessage(image: UIImage?) {
+        
+        FireStorageService.shared.uploadChattingImage(in: image)
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .subscribe(onNext: { [weak self] imageUrlString in
+                
+                print(Thread.isMainThread)
+                let message = Message(imageUrlString: imageUrlString,
+                                      sender: self!.currentSender(),
+                                      sentDate: Date(),
+                                      messageId: nil)
+                
+                self?.sendAgoraChat(message: message)
+            }, onError: { [weak self] error in
+                
+                self?.showErrorPopUp(errorString: error.localizedDescription)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
     private func sendRequestTranscationMessage() {
         
-        let message = Message(systemMessageType: SystemMessageType.requestTranscation, sender: self.currentSender(), sentDate: Date(), messageId: nil)
+        let message = Message(systemMessageType: SystemMessageType.requestTranscation,
+                              sender: self.currentSender(),
+                              sentDate: Date(),
+                              messageId: nil)
         
         sendAgoraChat(message: message)
     }
     
     private func sendTransactionCompletedMessage() {
         
-        let message = Message(systemMessageType: SystemMessageType.transactionCompleted, sender: self.currentSender(), sentDate: Date(), messageId: nil)
+        let message = Message(systemMessageType: SystemMessageType.transactionCompleted,
+                              sender: self.currentSender(),
+                              sentDate: Date(),
+                              messageId: nil)
         
         sendAgoraChat(message: message)
     }
     
     private func sendEndConsultationMessage() {
         
-        let message = Message(systemMessageType: SystemMessageType.endConsultation, sender: self.currentSender(), sentDate: Date(), messageId: nil)
+        let message = Message(systemMessageType: SystemMessageType.endConsultation,
+                              sender: self.currentSender(),
+                              sentDate: Date(),
+                              messageId: nil)
         
         sendAgoraChat(message: message)
     }
@@ -210,11 +259,13 @@ extension ChatRoomVC {
 extension ChatRoomVC: MessageButtonTouchable {
     
     func didTapButton(_ systemMessageType: SystemMessageType) {
+        
         switch systemMessageType {
             
         case .requestTranscation:
             
-            print("거래 요청")
+            self.messageInputBar.endEditing(true)
+            didTapRequestTranscationButton()
         case .transactionCompleted:
             
             self.messageInputBar.endEditing(true)
@@ -222,10 +273,36 @@ extension ChatRoomVC: MessageButtonTouchable {
         case .endConsultation:
             
             self.messageInputBar.endEditing(true)
-            self.moveWriteReviewVC()
+            self.didTapReviewButton()
         default:
             
             return
+        }
+    }
+    
+    private func didTapRequestTranscationButton() {
+        
+        if Config.isUser {
+            
+            self.showAnswerTransactionPopUp()
+        } else {
+            
+            let popUp = OneButtonNoActionPopUpVC()
+            popUp.popUpContent = "상담사는 결제가 불가능합니다."
+            showPopUp(popUp: popUp)
+        }
+    }
+    
+    private func didTapReviewButton() {
+        
+        if Config.isUser {
+            
+            self.moveWriteReviewVC()
+        } else {
+            
+            let popUp = OneButtonNoActionPopUpVC()
+            popUp.popUpContent = "상담사는 리뷰 작성이 불가능합니다."
+            showPopUp(popUp: popUp)
         }
     }
 }
@@ -245,6 +322,40 @@ extension ChatRoomVC {
         DispatchQueue.main.async { [weak self] in
                 
             self?.headerview.coinBlock.coinCount.text = String(Config.coin)
+        }
+    }
+}
+// MARK: - imagePicker
+extension ChatRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    private func presentImagePicker(isCamera: Bool) {
+        
+        let picker = UIImagePickerController()
+        
+        isCamera ? picker.sourceType == .photoLibrary : picker.sourceType == .camera
+        picker.allowsEditing = true // 편집 가능
+        picker.delegate = self
+        
+        self.present(picker, animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // 사진을 선택하지않고 취소한 경우
+        
+        self.dismiss(animated: true) { [weak self] () in // 창 닫기
+            
+            self?.showPopUp(popUp: CancelImagePickPopUp())
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // 사진을 선택한 경우
+        
+        self.dismiss(animated: true) { [weak self] () in // 창닫기
+            
+            let selectImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+            
+            self?.sendImageMessage(image: selectImage)
         }
     }
 }
@@ -383,7 +494,10 @@ extension ChatRoomVC: CustomInputViewDelegate {
     
     func didTapMenuButton(selectMenu: InputViewMenuType) {
         
-        print(selectMenu)
+        let isCamera = selectMenu == .camera
+        
+        self.view.endEditing(true)
+        self.presentImagePicker(isCamera: isCamera)
     }
 }
 // MARK: - InputBarAccessoryViewDelegate
@@ -455,6 +569,47 @@ extension ChatRoomVC {
         errorPopUp.modalPresentationStyle = .overFullScreen
         errorPopUp.modalTransitionStyle = .crossDissolve
         self.present(errorPopUp, animated: true, completion: nil)
+    }
+    
+    private func showPopUp(popUp: PopUpVC) {
+        
+        popUp.hidesBottomBarWhenPushed = true
+        popUp.modalPresentationStyle = .overFullScreen
+        popUp.modalTransitionStyle = .crossDissolve
+        self.present(popUp, animated: true, completion: nil)
+    }
+    
+    private func showAnswerTransactionPopUp() {
+        
+        let popUp = AnswerPopUp()
+        popUp.title = "결제 요청을 수락하시겠습니까?"
+        popUp.popUpContent = "수락하시면 보유 코인 100개가 차감됩니다."
+        popUp.setCallBack(didTapOkButtonCallBack: { [weak self] in
+            
+            self?.viewModel.input.didTapTranscationButton.onNext(())
+        })
+        
+        self.showPopUp(popUp: popUp)
+    }
+    
+    private func showLackCoinPopUp() {
+        
+        let popUp = LackCoinPopUp()
+        popUp.setCallBack(didTapOkButtonCallBack: { [weak self] in
+            
+            self?.moveCoinManagementVC()
+        })
+        
+        self.showPopUp(popUp: popUp)
+    }
+    
+    private func moveCoinManagementVC() {
+        
+        let coinManagementVC = CoinManagementVC()
+        coinManagementVC.hidesBottomBarWhenPushed = true
+        coinManagementVC.startIndex = 0
+        
+        self.navigationController?.pushViewController(coinManagementVC, animated: true)
     }
 }
 // MARK: - MessagesDisplayDelegate

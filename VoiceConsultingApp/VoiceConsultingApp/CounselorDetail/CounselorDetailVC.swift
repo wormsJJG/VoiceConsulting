@@ -424,20 +424,18 @@ extension CounselorDetailVC {
                     self?.viewModel.input.didTapConsultingButton.onNext((self?.viewModel.output.counselor!.uid)!)
                 } else {
                     
-                    self?.showPopUp()
+                    self?.showLimitPopUp()
                 }
             })
             .disposed(by: self.disposeBag)
     }
     
-    func showPopUp() {
+    func showLimitPopUp() {
         
         let popUp = OneButtonNoActionPopUpVC()
+        popUp.popUpContent = "상담사는 상담이 불가능합니다."
         
-        popUp.hidesBottomBarWhenPushed = true
-        popUp.modalPresentationStyle = .overFullScreen
-        popUp.modalTransitionStyle = .crossDissolve
-        self.present(popUp, animated: true, completion: nil)
+        self.showPopUp(popUp: popUp)
     }
 }
 // MARK: - didTapHeartButton

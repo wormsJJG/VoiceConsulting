@@ -14,12 +14,15 @@ class ChatRoomVM: BaseViewModel{
         
         let viewDidLoadTrigger: PublishSubject<String> = PublishSubject()
         let saveMessageInRealm: PublishSubject<Message> = PublishSubject()
+        let didTapTranscationButton: PublishSubject<Void> = PublishSubject()
     }
     
     struct Output {
         
         var reloadTrigger: PublishSubject<Void> = PublishSubject()
         var messageList: [Message] = []
+        let isSuccessTranscation: PublishSubject<Bool> = PublishSubject()
+        let errorTrigger: PublishSubject<Error> = PublishSubject()
     }
     
     var input: Input
@@ -58,6 +61,13 @@ class ChatRoomVM: BaseViewModel{
                 self?.output.reloadTrigger.onNext(())
             })
             .disposed(by: self.disposeBag)
+        
+        input.didTapTranscationButton
+            .subscribe(onNext: { [weak self] _ in
+                
+                self?.transcation()
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func fetchMessageList(by uid: String) {
@@ -89,6 +99,37 @@ class ChatRoomVM: BaseViewModel{
             
             UIApplication.shared.applicationIconBadgeNumber -= channel.unReadMessageCount
             ChatChannelStorage.shared.editUnReadMessageCount(uid: channel.uid, count: 0, isIncrease: false)
+        }
+    }
+    
+    // MARK: - Transcation
+    private func transcation() {
+        
+        if Config.coin >= 100 {
+            
+            UserManager.shared.editCoinCount(in: 100, isIncrease: false, completion: { [weak self] error in
+                
+                if let error {
+                    
+                    self?.output.errorTrigger.onNext(error)
+                } else {
+                    
+                    CounselorManager.shared.addCoin(in: 100, completion: { [weak self] error in
+                        
+                        if let error {
+                            
+                            self?.output.errorTrigger.onNext(error)
+                        } else {
+                            
+                            Config.coin -= 100
+                            self?.output.isSuccessTranscation.onNext(true)
+                        }
+                    })
+                }
+            })
+        } else {
+            
+            self.output.isSuccessTranscation.onNext(false)
         }
     }
 }

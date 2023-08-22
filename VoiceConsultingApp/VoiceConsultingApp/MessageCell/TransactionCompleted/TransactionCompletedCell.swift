@@ -49,7 +49,7 @@ class TransactionCompletedCell: CustomMessageContentCell {
         $0.textColor = ColorSet.subTextColor
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
         $0.numberOfLines = 2
-        $0.text = "결제금액: 100코인\n잔여코인: 0코인"
+        $0.text = "결제 금액: 100 코인\n환산 금액: 30,000원"
     }
     
     private let infoLabel: UILabel = UILabel().then {
