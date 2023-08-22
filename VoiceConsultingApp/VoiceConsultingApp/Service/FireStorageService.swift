@@ -99,7 +99,7 @@ class FireStorageService {
             
             if let uid = FirebaseAuthManager.shared.getUserUid() {
                 
-                let chattingImageRef = self.storageRef.child(uid).child(self.chattingChild)
+                let chattingImageRef = self.storageRef.child(uid).child(self.chattingChild).child(UUID().uuidString)
                 
                 if let image,
                    let imageJpegData = image.jpegData(compressionQuality: 0.1) {

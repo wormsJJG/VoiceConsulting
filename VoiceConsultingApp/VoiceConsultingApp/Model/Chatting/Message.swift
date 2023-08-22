@@ -155,6 +155,9 @@ extension Message {
         if systemMessageType == .text {
             
             textMessage = TextMessage(message: self.content, typeMessage: systemMessageType.rawValue)
+        } else if systemMessageType == .image {
+            
+            textMessage = TextMessage(message: self.imageUrlString, typeMessage: systemMessageType.rawValue)
         } else {
             
             textMessage = TextMessage(message: systemMessageType.description, typeMessage: systemMessageType.rawValue)

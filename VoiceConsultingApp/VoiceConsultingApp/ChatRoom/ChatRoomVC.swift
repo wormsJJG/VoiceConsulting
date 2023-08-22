@@ -89,7 +89,6 @@ extension ChatRoomVC {
             .subscribe(onNext: { [weak self] _ in
                 
                 self?.messagesCollectionView.reloadData()
-                self?.messagesCollectionView.scrollToLastItem(animated: true)
             })
             .disposed(by: self.disposeBag)
         

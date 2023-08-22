@@ -114,7 +114,7 @@ class ChatRoomVM: BaseViewModel{
                     self?.output.errorTrigger.onNext(error)
                 } else {
                     
-                    CounselorManager.shared.addCoin(in: 100, completion: { [weak self] error in
+                    CounselorManager.shared.increaseCoin(by: self!.channel!.uid, coinCount: 100, completion: { [weak self] error in
                         
                         if let error {
                             

@@ -202,18 +202,38 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
 
             switch convertMessage.typeMessage {
 
-            case 0:
+            case SystemMessageType.text.rawValue:
 
                 messageType = Message(content: convertMessage.message,
                                   sender: sender,
                                   sentDate: Date(),
                                   messageId: nil)
-            case 1:
+            case SystemMessageType.image.rawValue:
 
                 messageType = Message(imageUrlString: convertMessage.message,
                                   sender: sender,
                                   sentDate: Date(),
                                   messageId: nil)
+            case SystemMessageType.requestTranscation.rawValue:
+                
+                messageType = Message(systemMessageType: .requestTranscation,
+                                      sender: sender,
+                                      sentDate: Date(),
+                                      messageId: nil)
+                
+            case SystemMessageType.requestTranscation.rawValue:
+                
+                messageType = Message(systemMessageType: .transactionCompleted,
+                                      sender: sender,
+                                      sentDate: Date(),
+                                      messageId: nil)
+                
+            case SystemMessageType.requestTranscation.rawValue:
+                
+                messageType = Message(systemMessageType: .endConsultation,
+                                      sender: sender,
+                                      sentDate: Date(),
+                                      messageId: nil)
             default:
 
                 break
