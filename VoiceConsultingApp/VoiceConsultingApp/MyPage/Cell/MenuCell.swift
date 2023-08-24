@@ -62,8 +62,8 @@ class MenuCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        title.attributedText = nil
         title.text = nil
-        title.attributedText = .none
         title.textColor = ColorSet.mainText
         title.font = UIFont(name: Fonts.NotoSansKR_Regular, size: 16)
         toggle.isHidden = true
