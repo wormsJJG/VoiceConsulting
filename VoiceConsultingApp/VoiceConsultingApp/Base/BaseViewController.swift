@@ -43,6 +43,7 @@ class BaseViewController: UIViewController {
         
         let chatRoomVC = ChatRoomVC()
         chatRoomVC.setChatChannel(chatChannel)
+        chatRoomVC.hidesBottomBarWhenPushed = true
         
         self.navigationController?.pushViewController(chatRoomVC, animated: true)
     }

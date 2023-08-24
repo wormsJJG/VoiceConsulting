@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class LackCoinPopUp: PopUpVC {
 
@@ -23,7 +24,8 @@ class LackCoinPopUp: PopUpVC {
     
     func setCallBack(didTapOkButtonCallBack: @escaping (() -> Void)) {
         
-        doneButton.rx.tap
+        doneButton.rx
+            .tap
             .bind(onNext: { [weak self] _ in
                 
                 didTapOkButtonCallBack()

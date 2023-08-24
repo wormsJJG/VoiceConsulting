@@ -22,6 +22,7 @@ class CustomTabBarController: UITabBarController {
         super.viewDidLoad()
         
         pushNotiAcess()
+        AgoraManager.shared.setPushTemplate()
         self.view.backgroundColor = .white
         registerNotifications()
     }
@@ -124,7 +125,6 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
             
             if message.sender.senderId == didEnterChatRoomUid { // 유저가 들어간 채팅방 uid와 보낸사람의 uid가 같은가?
                     
-                MessageStorage.shared.saveMessage(by: message.sender.senderId, message: message.toRealmMessage())
                 MessageClient.shared.delegate?.didReceiveMessage(message: message)
                 
                 return
@@ -221,14 +221,14 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
                                       sentDate: Date(),
                                       messageId: nil)
                 
-            case SystemMessageType.requestTranscation.rawValue:
+            case SystemMessageType.transactionCompleted.rawValue:
                 
                 messageType = Message(systemMessageType: .transactionCompleted,
                                       sender: sender,
                                       sentDate: Date(),
                                       messageId: nil)
                 
-            case SystemMessageType.requestTranscation.rawValue:
+            case SystemMessageType.endConsultation.rawValue:
                 
                 messageType = Message(systemMessageType: .endConsultation,
                                       sender: sender,

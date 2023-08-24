@@ -47,6 +47,8 @@
 		350CA2242A18BCA500B1756C /* TapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350CA2232A18BCA500B1756C /* TapViewCell.swift */; };
 		350CA2272A19089500B1756C /* CategoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350CA2262A19089500B1756C /* CategoryTVCell.swift */; };
 		350CA2292A190A4B00B1756C /* CategoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350CA2282A190A4B00B1756C /* CategoryCVCell.swift */; };
+		351244592A964B7D00AA9AF6 /* IAPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351244582A964B7D00AA9AF6 /* IAPService.swift */; };
+		3512445B2A96500400AA9AF6 /* AgoraVoIpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3512445A2A96500400AA9AF6 /* AgoraVoIpService.swift */; };
 		351684E029E9521A00E0CF44 /* BuyCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */; };
 		351684E229E9621F00E0CF44 /* CoinInformationUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351684E129E9621F00E0CF44 /* CoinInformationUse.swift */; };
 		351793052A1746E9004EE7ED /* DetailIntrodutionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351793042A1746E9004EE7ED /* DetailIntrodutionCell.swift */; };
@@ -335,6 +337,8 @@
 		350CA2232A18BCA500B1756C /* TapViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapViewCell.swift; sourceTree = "<group>"; };
 		350CA2262A19089500B1756C /* CategoryTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVCell.swift; sourceTree = "<group>"; };
 		350CA2282A190A4B00B1756C /* CategoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCVCell.swift; sourceTree = "<group>"; };
+		351244582A964B7D00AA9AF6 /* IAPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPService.swift; sourceTree = "<group>"; };
+		3512445A2A96500400AA9AF6 /* AgoraVoIpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraVoIpService.swift; sourceTree = "<group>"; };
 		351684DF29E9521A00E0CF44 /* BuyCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinCell.swift; sourceTree = "<group>"; };
 		351684E129E9621F00E0CF44 /* CoinInformationUse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinInformationUse.swift; sourceTree = "<group>"; };
 		351793042A1746E9004EE7ED /* DetailIntrodutionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIntrodutionCell.swift; sourceTree = "<group>"; };
@@ -611,6 +615,8 @@
 				3500D2502A60F7E50070E264 /* AgoraTokenService.swift */,
 				35EF33ED2A7B925400DB6194 /* KakaoLoginService.swift */,
 				35390C602A80F2500066CF89 /* FireStorageService.swift */,
+				351244582A964B7D00AA9AF6 /* IAPService.swift */,
+				3512445A2A96500400AA9AF6 /* AgoraVoIpService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1869,11 +1875,13 @@
 				35BC05352A12640200E312C8 /* TransactionCompletedSizeCalculator.swift in Sources */,
 				35C5FA6D2A6E8E2A00815055 /* DeleteButtonTouchable.swift in Sources */,
 				35390C652A8102500066CF89 /* NoPassRegisterPopUp.swift in Sources */,
+				351244592A964B7D00AA9AF6 /* IAPService.swift in Sources */,
 				354664B929E43ADF0055375F /* BigCoinBlock.swift in Sources */,
 				35F9514B2A73DDBB0052261A /* RevenueManagementV.swift in Sources */,
 				35277D2529DA8ACD002A2A14 /* PopularCell.swift in Sources */,
 				3504E2A829E3A4F2006AEED6 /* PlainHeaderView.swift in Sources */,
 				357D4A1E2A2E0F77000052D1 /* MypageCounselorMenu.swift in Sources */,
+				3512445B2A96500400AA9AF6 /* AgoraVoIpService.swift in Sources */,
 				35C5FA6B2A6E83A400815055 /* PhotoCell.swift in Sources */,
 				3592A4452A77D02D00DF8F60 /* SettlementDetailVC.swift in Sources */,
 				357C78AE2A407A4A00B1849D /* Extension+Rx+ScrollView.swift in Sources */,
@@ -2227,6 +2235,7 @@
 				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "말해봐";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라에 접근하도록 허용버튼을 눌러주세요.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "전화상담을 위해 허용버튼을 눌러주세요.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진앨범에 접근하도록 허용버튼을 눌러주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2262,6 +2271,7 @@
 				INFOPLIST_FILE = VoiceConsultingApp/Common/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "말해봐";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라에 접근하도록 허용버튼을 눌러주세요.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "전화상담을 위해 허용버튼을 눌러주세요.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진앨범에 접근하도록 허용버튼을 눌러주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

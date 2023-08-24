@@ -95,7 +95,7 @@ class SettlementDetailCell: UITableViewCell {
         self.priceLabel.text = convertPriceToString(settlementDetail.price)
     }
     
-    func convertCreateAtToString(_ timestamp: Int) -> String {
+    private func convertCreateAtToString(_ timestamp: Int) -> String {
         
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         let dateFormatter = DateFormatter()
@@ -103,7 +103,7 @@ class SettlementDetailCell: UITableViewCell {
         return dateFormatter.string(from: date)
     }
     
-    func convertPriceToString(_ price: Int) -> String {
+    private func convertPriceToString(_ price: Int) -> String {
      
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal

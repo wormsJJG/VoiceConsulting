@@ -47,7 +47,7 @@ class ChattingListVM: BaseViewModel {
         ChatChannelStorage.shared.fetchChatChanelList()
             .subscribe(onNext: { [weak self] list in
                 
-                self?.output.channelList.onNext(list)
+                self?.output.channelList.onNext(list.sorted(by: { $0.lastMessage!.sentDate > $1.lastMessage!.sentDate}))
             })
             .disposed(by: self.disposeBag)
     }

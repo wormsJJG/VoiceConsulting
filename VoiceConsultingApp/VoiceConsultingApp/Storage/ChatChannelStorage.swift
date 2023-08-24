@@ -50,16 +50,15 @@ class ChatChannelStorage {
         
         let messageRoom = RealmMessageListByUid()
         messageRoom.uid = chatChannel.uid
+        
         if let lastMessage = chatChannel.lastMessage {
             
             messageRoom.messageList.append(chatChannel.lastMessage!)
-            
         } else {
             
             let sender = Sender(senderId: chatChannel.uid, displayName: chatChannel.name)
             chatChannel.lastMessage = RealmMessage(content: "", sender: sender, sentDate: Date(), messageId: nil)
         }
-        
         
         do {
             
@@ -87,7 +86,6 @@ class ChatChannelStorage {
             let sender = Sender(senderId: chatChannel.uid, displayName: chatChannel.name)
             chatChannel.lastMessage = RealmMessage(content: "", sender: sender, sentDate: Date(), messageId: nil)
         }
-        
         
         do {
             

@@ -19,7 +19,7 @@ class ChatRoomVM: BaseViewModel{
     
     struct Output {
         
-        var reloadTrigger: PublishSubject<Void> = PublishSubject()
+        let reloadTrigger: PublishSubject<Void> = PublishSubject()
         var messageList: [Message] = []
         let isSuccessTranscation: PublishSubject<Bool> = PublishSubject()
         let errorTrigger: PublishSubject<Error> = PublishSubject()
@@ -29,6 +29,7 @@ class ChatRoomVM: BaseViewModel{
     var output: Output
     var isCustomInputView: Bool = false
     var channel: ChatChannel?
+    var allMessageList: [Message] = []
     
     var sender = Sender(senderId: AgoraManager.shared.currentUser!, displayName: Config.name)
     private let disposeBag = DisposeBag()
@@ -80,7 +81,8 @@ class ChatRoomVM: BaseViewModel{
                     
                 case .next(let messageList):
                     
-                    self?.output.messageList = messageList
+                    self?.allMessageList = messageList
+                    self?.output.messageList = messageList.suffix(20)
                     self?.output.reloadTrigger.onNext(())
                 case .error(let error):
                     

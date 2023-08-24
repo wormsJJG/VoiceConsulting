@@ -80,4 +80,18 @@ class MessageStorage {
         
         return false
     }
+    
+    func fetchAllMessage() -> Observable<[RealmMessage]> {
+        
+        return Observable.create { event in
+            
+            let result = self.storage.objects(RealmMessage.self)
+            let isNoCurrentUserSendMessageList = result.filter { $0.senderId != FirebaseAuthManager.shared.getUserUid()! }.sorted(by: { $0.sentDate < $1.sentDate })
+            
+            event.onNext(isNoCurrentUserSendMessageList.suffix(20).reversed())
+            event.onCompleted()
+            
+            return Disposables.create()
+        }
+    }
 }

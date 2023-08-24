@@ -45,4 +45,17 @@ class AlertContentCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configureCell(in message: Message) {
+        
+        self.contentLabel.text = "\(message.sender.displayName): \(message.content)"
+        self.dateLabel.text = convertCreateAtToString(message.sentDate)
+    }
+    
+    private func convertCreateAtToString(_ date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        return dateFormatter.string(from: date)
+    }
 }

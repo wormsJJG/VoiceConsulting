@@ -97,16 +97,22 @@ class CounselorDetailVC: BaseViewController {
         chatChannel.name = counselor.info.name
         chatChannel.profileUrlString = counselor.info.profileImageUrl
         
-        ChatChannelStorage.shared.addChatChannelCompletion(chatChannel: chatChannel, completion: { [weak self] error in
+        if ChatChannelStorage.shared.isExistChannel(by: chatChannel.uid) {
             
-            if let error {
+            self.moveChatRoomVC(chatChannel)
+        } else {
+            
+            ChatChannelStorage.shared.addChatChannelCompletion(chatChannel: chatChannel, completion: { [weak self] error in
                 
-                print(error.localizedDescription)
-            } else {
-                
-                self?.moveChatRoomVC(chatChannel)
-            }
-        })
+                if let error {
+                    
+                    print(error.localizedDescription)
+                } else {
+                    
+                    self?.moveChatRoomVC(chatChannel)
+                }
+            })
+        }
     }
 }
 extension CounselorDetailVC: UIScrollViewDelegate {

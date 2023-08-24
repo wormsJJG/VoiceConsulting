@@ -17,7 +17,7 @@ class ChatRoomHeader: UIView {
     
     let counselorLabel: UILabel = UILabel().then {
         $0.textColor = ColorSet.mainText
-        $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)
+        $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 16)
         $0.text = "김이름 상담사"
     }
     

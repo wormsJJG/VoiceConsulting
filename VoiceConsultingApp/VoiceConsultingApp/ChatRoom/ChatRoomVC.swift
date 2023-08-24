@@ -35,6 +35,11 @@ class ChatRoomVC: MessagesViewController {
         $0.addTarget(self, action: #selector(didTapPlusButtonItem), for: .touchUpInside)
     }
     
+    private lazy var refreshControl: UIRefreshControl = UIRefreshControl().then {
+        
+        $0.tintColor = ColorSet.mainColor
+    }
+    
     // MARK: - Properties
     
     private let viewModel = ChatRoomVM()
@@ -51,14 +56,13 @@ class ChatRoomVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.scrollsToLastItemOnKeyboardBeginsEditing = true
         outputSubsribe()
-        viewModel.input.viewDidLoadTrigger.onNext(viewModel.channel!.uid)
         setDelegates()
         constraints()
         setMessageCollectionView()
         inputBarDesign()
         addAction()
+        viewModel.input.viewDidLoadTrigger.onNext(viewModel.channel!.uid)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,7 +92,8 @@ extension ChatRoomVC {
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 
-                self?.messagesCollectionView.reloadData()
+                self?.messagesCollectionView.reloadDataAndKeepOffset()
+                self?.messagesCollectionView.scrollToLastItem()
             })
             .disposed(by: self.disposeBag)
         
@@ -107,7 +112,10 @@ extension ChatRoomVC {
                     self?.sendTransactionCompletedMessage()
                 } else {
                     
-                    self?.showLackCoinPopUp()
+                    DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
+                        
+                        self?.showLackCoinPopUp()
+                    }
                 }
             })
             .disposed(by: self.disposeBag)
@@ -129,10 +137,9 @@ extension ChatRoomVC {
 // MARK: - MessageClientDelegate
 extension ChatRoomVC: MessageReceiveable {
     
-    func didReceiveMessage(message: Message) { //TabVC에서 메세지를 저장후 전달함으로 배열에 저장만 하고 리로드
+    func didReceiveMessage(message: Message) { //메세지가 오면 호출
         
-        viewModel.output.messageList.append(message)
-        viewModel.output.reloadTrigger.onNext(())
+        viewModel.input.saveMessageInRealm.onNext(message)
     }
 }
 // MARK: - setDelegates
@@ -193,7 +200,6 @@ extension ChatRoomVC {
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
             .subscribe(onNext: { [weak self] imageUrlString in
                 
-                print(Thread.isMainThread)
                 let message = Message(imageUrlString: imageUrlString,
                                       sender: self!.currentSender(),
                                       sentDate: Date(),
@@ -581,7 +587,7 @@ extension ChatRoomVC {
     private func showAnswerTransactionPopUp() {
         
         let popUp = AnswerPopUp()
-        popUp.title = "결제 요청을 수락하시겠습니까?"
+        popUp.popUpTitle = "결제 요청을 수락하시겠습니까?"
         popUp.popUpContent = "수락하시면 보유 코인 100개가 차감됩니다."
         popUp.setCallBack(didTapOkButtonCallBack: { [weak self] in
             
@@ -616,6 +622,8 @@ extension ChatRoomVC: MessagesDisplayDelegate {
     
     private func setMessageCollectionView() {
         
+        scrollsToLastItemOnKeyboardBeginsEditing = true // default false
+        maintainPositionOnKeyboardFrameChanged = true // default false
         self.messagesCollectionView.backgroundColor = ColorSet.chatRoomBack
         additionalSafeAreaInsets = UIEdgeInsets(top: 120, left: 0, bottom: 0, right: 0)
         messagesCollectionView.register(RequestTransactionCell.self)
@@ -713,16 +721,16 @@ extension ChatRoomVC {
     
     private func constraints() {
         
-        self.view.addSubview(headerview)
+        view.addSubview(headerview)
         
-        self.headerview.snp.makeConstraints {
+        headerview.snp.makeConstraints {
             
             $0.left.equalTo(self.view.snp.left)
             $0.top.equalTo(self.view.snp.top)
             $0.right.equalTo(self.view.snp.right)
         }
         
-        self.view.addSubview(requestView)
+        view.addSubview(requestView)
         
         requestView.snp.makeConstraints {
             
