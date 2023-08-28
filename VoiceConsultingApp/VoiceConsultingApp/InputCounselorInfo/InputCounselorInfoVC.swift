@@ -130,6 +130,7 @@ extension InputCounselorInfoVC {
             .tap
             .bind(onNext: { [weak self] _ in
                 
+                self?.playLoadAnimation()
                 self?.checkRegisterData()
             })
             .disposed(by: self.disposeBag)
@@ -146,6 +147,7 @@ extension InputCounselorInfoVC {
         
         if isNoPass {
             
+            self.stopAnimation()
             self.showPopUp(popUp: NoPassRegisterPopUp())
         } else {
             
@@ -264,9 +266,9 @@ extension InputCounselorInfoVC {
         
         for urlString in urlStringList {
             
-            self.viewModel.convertUrlStringToUIImage(in: urlString) { image in
+            self.viewModel.convertUrlStringToUIImage(in: urlString) { [weak self] image in
                 
-                self.viewModel.output.certificateImageList.append(image)
+                self?.viewModel.output.certificateImageList.append(image)
                 DispatchQueue.main.async { [weak self] in
                     
                     self?.inputCounselorInfoV.inputProfileImageList.reloadData()
@@ -316,6 +318,14 @@ extension InputCounselorInfoVC {
     
     private func outputSubscribe() {
         
+        viewModel.output.errorTrigger
+            .subscribe(onNext:{ [weak self] error in
+                
+                self?.stopAnimation()
+                self?.showErrorPopUp(errorString: error.localizedDescription)
+            })
+            .disposed(by: self.disposeBag)
+        
         viewModel.output.addAffiliationFieldEvent
             .bind(onNext: { [weak self] fieldCount in
                 
@@ -341,7 +351,7 @@ extension InputCounselorInfoVC {
             .disposed(by: self.disposeBag)
         
         viewModel.output.counselorData
-            .subscribe(on: MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] counselor in
                 
                 self?.inputCounselorInfoV.profileImageView.kf.setImage(with: URL(string: counselor.info.profileImageUrl))
@@ -357,6 +367,7 @@ extension InputCounselorInfoVC {
         viewModel.output.sucessEditTrigger
             .subscribe(onNext: { [weak self] _ in
                 
+                self?.stopAnimation()
                 self?.moveSplashVC()
             })
             .disposed(by: self.disposeBag)

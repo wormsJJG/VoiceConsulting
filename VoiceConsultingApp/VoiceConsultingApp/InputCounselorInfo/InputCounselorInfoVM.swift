@@ -25,6 +25,7 @@ class InputCounselorInfoVM: BaseViewModel {
         let counselorData: PublishSubject<Counselor> = PublishSubject()
         var beforeCounselor: Counselor?
         let sucessEditTrigger: PublishSubject<Void> = PublishSubject()
+        let errorTrigger: PublishSubject<Error> = PublishSubject()
     }
     
     var input: Input
@@ -86,7 +87,7 @@ class InputCounselorInfoVM: BaseViewModel {
                         self?.output.counselorData.onNext(counselor)
                     case .error(let error):
                         
-                        print(error.localizedDescription)
+                        self?.output.errorTrigger.onNext(error)
                     case .completed:
                         
                         print("completed")
@@ -169,7 +170,7 @@ class InputCounselorInfoVM: BaseViewModel {
                     self?.output.sucessEditTrigger.onNext(())
                 case .error(let error):
                     
-                    print(error.localizedDescription)
+                    self?.output.errorTrigger.onNext(error)
                 case .completed:
                     
                     print("completed")

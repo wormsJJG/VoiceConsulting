@@ -81,12 +81,11 @@ class ChatRoomVM: BaseViewModel{
                     
                 case .next(let messageList):
                     
-                    self?.allMessageList = messageList
-                    self?.output.messageList = messageList.suffix(20)
+                    self?.output.messageList = messageList
                     self?.output.reloadTrigger.onNext(())
                 case .error(let error):
                     
-                    print(error)
+                    self?.output.errorTrigger.onNext(error)
                 case .completed:
                     
                     print(#function)

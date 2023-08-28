@@ -138,4 +138,18 @@ class ChatChannelStorage {
             print(error)
         }
     }
+    
+    func fetchUnReadMessageCount(unReadMessageCount: @escaping (Int) -> Void) {
+        
+        var count: Int = 0
+        
+        let chatChannelList = storage.objects(ChatChannel.self)
+        
+        chatChannelList.map { $0.unReadMessageCount }.forEach {
+            
+            count += $0
+        }
+        
+        unReadMessageCount(count)
+    }
 }

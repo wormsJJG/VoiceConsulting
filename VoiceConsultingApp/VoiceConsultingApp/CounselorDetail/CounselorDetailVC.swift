@@ -66,6 +66,13 @@ class CounselorDetailVC: BaseViewController {
                 self?.didCompletedCheckIsOnline(isOnline)
             })
             .disposed(by: self.disposeBag)
+        
+        viewModel.output.errorTrigger
+            .subscribe(onNext:{ [weak self] error in
+                
+                self?.showErrorPopUp(errorString: error.localizedDescription)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     func setCounselorUid(uid: String) {
@@ -106,7 +113,7 @@ class CounselorDetailVC: BaseViewController {
                 
                 if let error {
                     
-                    print(error.localizedDescription)
+                    self?.showErrorPopUp(errorString: error.localizedDescription)
                 } else {
                     
                     self?.moveChatRoomVC(chatChannel)
