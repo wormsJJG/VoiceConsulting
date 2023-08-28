@@ -21,7 +21,9 @@ class CertificateContentCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         self.layer.cornerRadius = 10
+        self.clipsToBounds = true
         
         self.contentView.addSubview(certificateImage)
         

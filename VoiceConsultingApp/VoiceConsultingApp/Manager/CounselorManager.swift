@@ -50,26 +50,54 @@ class CounselorManager {
     }
     
     // MARK: - 상담사 가입
-    func registerCounselor(counselor: CounselorInfo) -> Observable<String> {
+    func registerCounselor(uid: String, counselor: CounselorInfo) -> Observable<Void> {
         Observable.create { event in
-            var ref: DocumentReference? = nil
-                
+            
             do {
-                ref = try self.db.addDocument(from: counselor) { error in
+                
+                try self.db.document(uid).setData(from: counselor, merge: true) { error in
+                    
                     if let error {
+                        
                         event.onError(error)
-                    } else {
-                        event.onNext(ref!.documentID)
-                        event.onCompleted()
                     }
+                    
+                    event.onNext(())
+                    event.onCompleted()
                 }
             } catch {
+                
                 event.onError(error)
             }
+            
             return Disposables.create()
         }
     }
-    
+    // MARK: - 상담사 정보 수정
+    func editCounselorData(counselor: Counselor) -> Observable<Void> {
+        
+        Observable.create { event in
+            
+            do {
+                
+                try self.db.document(counselor.uid).setData(from: counselor.info, merge: true) { error in
+                    
+                    if let error {
+                        
+                        event.onError(error)
+                    }
+                    
+                    event.onNext(())
+                    event.onCompleted()
+                }
+            } catch {
+                
+                event.onError(error)
+            }
+            
+            return Disposables.create()
+        }
+    }
     // MARK: - getOnlineCounselor
     func getOnlineCounselorList(with limit: Int) -> Observable<[Counselor]> {
         Observable.create { event in
@@ -240,21 +268,71 @@ class CounselorManager {
         
         db.document(counselorUid).updateData([CounselorField.heartCount.rawValue: FieldValue.increment(Int64(-1))])
     }
-    // MARK: - TestFunc
-    func createMockData() {
+    
+    func subCoin(in coinCount: Int, completion: @escaping((Error?) -> Void)) {
         
-        for i in 1...10 {
+        if let uid = FirebaseAuthManager.shared.getUserUid() {
             
-            var counselor = CounselorInfo(name: "정이름\(i)", categoryList: ["0", "3", "2", "1"], affiliationList: ["소속기관\(i)", "회사\(i)", "협회\(i)"], licenseImages: ["https://firebasestorage.googleapis.com/v0/b/voiceconsultingapp.appspot.com/o/uuwwn6u0xrhs4arnrhuolg3kkaj1%2Fintroduce%2F2desktop-wallpaper-new-cb-backgrounds-2018-picsart-cb-backgrounds-pic-background.jpg.jpg?alt=media&token=5c0f045d-ebc4-4001-a21f-c6e260d4a764", "https://firebasestorage.googleapis.com/v0/b/voiceconsultingapp.appspot.com/o/uuwwn6u0xrhs4arnrhuolg3kkaj1%2Fintroduce%2F3desktop-wallpaper-new-cb-backgrounds-2020-cb-background.jpg.jpg?alt=media&token=0247a1d1-b48a-4427-8297-d25430018f66", "https://firebasestorage.googleapis.com/v0/b/voiceconsultingapp.appspot.com/o/uuwwn6u0xrhs4arnrhuolg3kkaj1%2Fintroduce%2F4desktop-wallpaper-q-beautiful-beautiful-village-gallery-nature-background-nature-nature.jpg.jpg?alt=media&token=40fd7ce6-9218-4a69-858b-2db4d0955427"], profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/levelup-release-e1bce.appspot.com/o/UserProfileImages%2Fx4P1KbvTMdbnnFkXnwehyB8PO792?alt=media&token=1b7bf2fd-d572-4797-ab48-f47f15eaf34a", introduction: "안녕하세요 저는 정이름\(i) 상담사입니다.\n언제든 상담문의 주세요.\n 열심히 해드리겠습니다.\n안녕하세요 저는 정이름\(i) 상담사입니다.\n언제든 상담문의 주세요.\n 열심히 해드리겠습니다.\n안녕하세요 저는 정이름\(i) 상담사입니다.\n언제든 상담문의 주세요.\n 열심히 해드리겠습니다.\n안녕하세요 저는 정이름\(i) 상담사입니다.\n언제든 상담문의 주세요.\n 열심히 해드리겠습니다.", phoneNumber: "010-1234-1234")
-            counselor.isHidden = false
-            counselor.isOnline = true
-            registerCounselor(counselor: counselor)
-                .subscribe(onNext: { documentId in
-                    print(documentId)
-                }, onError: { error in
-                    print(error.localizedDescription)
-                })
-                .disposed(by: self.disposeBag)
+            db.document(uid).updateData([CounselorField.coin.rawValue: FieldValue.increment(Int64(-coinCount))]) { error in
+                
+                completion(error)
+            }
+        } else {
+            
+            completion(AuthError.noCurrentUser)
         }
     }
+    
+    func addCoin(in coinCount: Int, completion: @escaping((Error?) -> Void)) {
+        
+        if let uid = FirebaseAuthManager.shared.getUserUid() {
+            
+            db.document(uid).updateData([CounselorField.coin.rawValue: FieldValue.increment(Int64(coinCount))]) { error in
+                
+                completion(error)
+            }
+        } else {
+            
+            completion(AuthError.noCurrentUser)
+        }
+    }
+    
+    func increaseCoin(by uid: String, coinCount: Int,  completion: @escaping((Error?) -> Void)) {
+        
+        db.document(uid).updateData([CounselorField.coin.rawValue: FieldValue.increment(Int64(coinCount))]) { error in
+            
+            completion(error)
+        }
+    }
+    
+    func changeIsOnline(in isOnline: Bool, completion: @escaping((Error?) -> Void)) {
+        
+        if let uid = FirebaseAuthManager.shared.getUserUid() {
+            
+            db.document(uid).updateData([CounselorField.isOnline.rawValue: isOnline]) { error in
+                
+                completion(error)
+            }
+        } else {
+            
+            completion(AuthError.noCurrentUser)
+        }
+    }
+    // MARK: - TestFunc
+//    func createMockData() {
+//        
+//        for i in 1...10 {
+//            
+//            var counselor = CounselorInfo(name: "정이름\(i)", categoryList: ["0", "3", "2", "1"], affiliationList: ["소속기관\(i)", "회사\(i)", "협회\(i)"], licenseImages: ["https://firebasestorage.googleapis.com/v0/b/voiceconsultingapp.appspot.com/o/uuwwn6u0xrhs4arnrhuolg3kkaj1%2Fintroduce%2F2desktop-wallpaper-new-cb-backgrounds-2018-picsart-cb-backgrounds-pic-background.jpg.jpg?alt=media&token=5c0f045d-ebc4-4001-a21f-c6e260d4a764", "https://firebasestorage.googleapis.com/v0/b/voiceconsultingapp.appspot.com/o/uuwwn6u0xrhs4arnrhuolg3kkaj1%2Fintroduce%2F3desktop-wallpaper-new-cb-backgrounds-2020-cb-background.jpg.jpg?alt=media&token=0247a1d1-b48a-4427-8297-d25430018f66", "https://firebasestorage.googleapis.com/v0/b/voiceconsultingapp.appspot.com/o/uuwwn6u0xrhs4arnrhuolg3kkaj1%2Fintroduce%2F4desktop-wallpaper-q-beautiful-beautiful-village-gallery-nature-background-nature-nature.jpg.jpg?alt=media&token=40fd7ce6-9218-4a69-858b-2db4d0955427"], profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/levelup-release-e1bce.appspot.com/o/UserProfileImages%2Fx4P1KbvTMdbnnFkXnwehyB8PO792?alt=media&token=1b7bf2fd-d572-4797-ab48-f47f15eaf34a", introduction: "안녕하세요 저는 정이름\(i) 상담사입니다.\n언제든 상담문의 주세요.\n 열심히 해드리겠습니다.\n안녕하세요 저는 정이름\(i) 상담사입니다.\n언제든 상담문의 주세요.\n 열심히 해드리겠습니다.\n안녕하세요 저는 정이름\(i) 상담사입니다.\n언제든 상담문의 주세요.\n 열심히 해드리겠습니다.\n안녕하세요 저는 정이름\(i) 상담사입니다.\n언제든 상담문의 주세요.\n 열심히 해드리겠습니다.", phoneNumber: "010-1234-1234")
+//            counselor.isHidden = false
+//            counselor.isOnline = true
+//            registerCounselor(counselor: counselor)
+//                .subscribe(onNext: { documentId in
+//                    print(documentId)
+//                }, onError: { error in
+//                    print(error.localizedDescription)
+//                })
+//                .disposed(by: self.disposeBag)
+//        }
+//    }
 }

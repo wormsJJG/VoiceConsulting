@@ -13,6 +13,7 @@ enum CheckDataKey: String {
     case isInputInfo
     case isUser
     case name
+    case profileUrl
 }
 
 class CheckDataManager {
@@ -40,6 +41,11 @@ class CheckDataManager {
         userDefault.set(name, forKey: CheckDataKey.name.rawValue)
     }
     
+    func setProfileUrl(in profileUrl: String?) {
+        
+        userDefault.set(profileUrl, forKey: CheckDataKey.profileUrl.rawValue)
+    }
+    
     func getIsLogin() -> Bool {
         
         return userDefault.bool(forKey: CheckDataKey.isLogin.rawValue)
@@ -58,5 +64,10 @@ class CheckDataManager {
     func getName() -> String {
         
         return userDefault.string(forKey: CheckDataKey.name.rawValue) ?? "Name"
+    }
+    
+    func getProfileUrl() -> String? {
+        
+        return userDefault.string(forKey: CheckDataKey.profileUrl.rawValue)
     }
 }

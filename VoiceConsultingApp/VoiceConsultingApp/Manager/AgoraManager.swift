@@ -19,7 +19,7 @@ class AgoraManager {
     
     var currentUser: String? {
         
-        return AgoraChatClient.shared.currentUsername
+        return AgoraChatClient.shared().currentUsername
     }
         
     func initializeAgoraRTC() {
@@ -74,7 +74,7 @@ class AgoraManager {
         
         return Observable.create { event in
             
-            AgoraChatClient.shared
+            AgoraChatClient.shared()
                 .login(withUsername: userUid, password: AgoraConst.password.rawValue) { nickName, agoraChatError in
                 
                     if agoraChatError != nil {
@@ -94,7 +94,7 @@ class AgoraManager {
         
         return Observable.create { event in
             
-            AgoraChatClient.shared.logout(true) { agoraChatError in
+            AgoraChatClient.shared().logout(true) { agoraChatError in
                 
                 if let agoraChatError {
                     
@@ -107,5 +107,10 @@ class AgoraManager {
             
             return Disposables.create()
         }
+    }
+    
+    func setPushTemplate() {
+        
+        AgoraChatClient.shared().pushManager?.setPushTemplate("iOSApnsPush")
     }
 }

@@ -16,4 +16,5 @@ enum FBCollection: String {
     case review = "Review"
     case consulting = "Consulting"
     case favourite = "Favourite"
+    case settlement = "Settlement"
 }

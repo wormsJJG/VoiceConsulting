@@ -27,7 +27,7 @@ class BuyCoinV: UIView {
         $0.image = UIImage(named: AssetImage.coinIconFill)
     }
     
-    private lazy var coinCount: UILabel = UILabel().then {
+    lazy var coinCount: UILabel = UILabel().then {
         $0.text = "150000코인"
         $0.textColor = ColorSet.mainText
         $0.font = UIFont(name: Fonts.NotoSansKR_Bold, size: 16)

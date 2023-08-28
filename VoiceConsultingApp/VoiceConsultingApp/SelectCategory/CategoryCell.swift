@@ -64,13 +64,23 @@ class CategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        titleLabel.text = nil
+        contentLabel.text = nil
+        isChecked = false
+    }
+    
     func configure(category: CategoryType) {
+        
         self.titleLabel.text = category.categoryNameKr
         self.contentLabel.text = category.categoryDetailKr
-        self.layer.cornerRadius = 10
     }
     
     private func cellDesign() {
+        
+        self.layer.cornerRadius = 10
         self.layer.borderWidth = 1
         self.layer.borderColor = ColorSet.nonSelectColor?.cgColor
     }

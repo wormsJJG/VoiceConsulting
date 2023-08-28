@@ -22,7 +22,7 @@ class TermsV: UIView {
     private lazy var contentView: UIView = UIView()
     
     let termsLabel: UILabel = UILabel().then {
-        $0.text = TermsContent.termsOfUseContent
+        $0.text = CompanyData.termsOfUseContent
         $0.numberOfLines = 0
         $0.textColor = ColorSet.mainText
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 14)

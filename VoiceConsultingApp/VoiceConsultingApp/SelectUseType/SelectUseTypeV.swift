@@ -49,7 +49,7 @@ class SelectUseTypeV: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    lazy var nextButton: CompleteButton = CompleteButton().then {
+    lazy var nextButton: PlainButton = PlainButton().then {
         $0.titleText = "다음"
         $0.translatesAutoresizingMaskIntoConstraints = false
     }

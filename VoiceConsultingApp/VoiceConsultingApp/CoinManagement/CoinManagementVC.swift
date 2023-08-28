@@ -11,6 +11,7 @@ import RxCocoa
 import Tabman
 import Pageboy
 import SnapKit
+import StoreKit
 
 class CoinManagementVC: TabmanViewController {
     // MARK: - Load View

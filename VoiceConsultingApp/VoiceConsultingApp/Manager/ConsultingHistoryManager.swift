@@ -62,4 +62,51 @@ class ConsultingHistoryManager {
             return Disposables.create()
         }
     }
+    
+    func getConsultingHistoryForCounselor() -> Observable<ConsultingList> {
+        
+        return Observable.create { event in
+            
+            if let userUid = FirebaseAuthManager.shared.getUserUid() {
+                
+                self.db
+                    .whereField(ConsultingField.counselorId.rawValue,
+                                isEqualTo: userUid)
+                    .getDocuments() { querySnapshot, error in
+                        
+                        if let error {
+                            
+                            event.onError(error)
+                        }
+                        
+                        guard let snapshot = querySnapshot else {
+                            
+                            event.onError(FBError.nilSnapshot)
+                            return
+                        }
+                        
+                        var historyList: ConsultingList = []
+                        
+                        for document in snapshot.documents {
+                            
+                            do {
+                                
+                                let consultingHistory = try document.data(as: Consulting.self)
+                                historyList.append(consultingHistory)
+                            } catch {
+                                
+                                event.onError(error)
+                            }
+                        }
+                     
+                        event.onNext(historyList)
+                        event.onCompleted()
+                    }
+            } else {
+                
+                event.onError(AuthError.noCurrentUser)
+            }
+            return Disposables.create()
+        }
+    }
 }

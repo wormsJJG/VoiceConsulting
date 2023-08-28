@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+import Kingfisher
 
 class MyPageVC: BaseViewController {
     // MARK: - Load View
@@ -23,15 +24,18 @@ class MyPageVC: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        addTapAction()
+        
         bindTableView()
-        dataBind()
+        addTapAction()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         // 오픈소스 라이브러리를 갔다오면 바 히든이 풀려서 다시 해줌
         isHiddenNavigationBar()
+        viewModel.input.refreshTrigger.onNext(())
+        dataBind()
     }
 }
 // MARK: - bindData
@@ -39,10 +43,19 @@ class MyPageVC: BaseViewController {
 extension MyPageVC {
     
     private func dataBind() {
+        
         DispatchQueue.main.async {
+            
             self.myPageV.name.text = Config.name
-            //프로필 코드
-            //보유 코인
+            
+            if let profileUrlString = Config.profileUrlString {
+                
+                self.myPageV.profileImage.kf.setImage(with: URL(string: profileUrlString))
+            } else {
+                
+                self.myPageV.profileImage.backgroundColor = .gray
+            }
+            self.myPageV.coinBlock.coinCount.text = String(Config.coin)
         }
     }
 }
@@ -54,31 +67,69 @@ extension MyPageVC {
             .tapGesture()
             .when(.recognized)
             .bind(onNext: { [weak self] _ in
+                
                 self?.moveCoinManagementVC(start: 0)
             })
             .disposed(by: self.disposeBag)
         
         self.myPageV.header.alarmButton.rx.tap
             .bind(onNext: { [weak self] _ in
+                
                 self?.moveAlertVC()
             })
             .disposed(by: self.disposeBag)
+        
+        self.myPageV.header.editAccountButton
+            .rx
+            .tap
+            .bind(onNext: { [weak self] _ in
+                
+                self?.moveEditCounselorInfoVC()
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+
+extension MyPageVC: ToggleChangeable {
+    
+    func didChange(isOn: Bool, menuType: MypageCounselorMenu) {
+        
+        if menuType == .alarmOnOff {
+            
+        }
+        
+        if menuType == .isOnlineOnOff {
+            
+            CounselorManager.shared.changeIsOnline(in: isOn, completion: { [weak self] error in
+                
+                if let error {
+                    
+                    print(error.localizedDescription)
+                }
+            })
+        }
     }
 }
 // MARK: - Bind TableView
 extension MyPageVC: UITableViewDelegate {
     
     private func bindTableView() {
+        
         if Config.isUser {
+            
             bindUserTableView()
         } else {
+            
             bindCounselorTableView()
         }
     }
     // MARK: - User
     private func bindUserTableView() {
+        
         viewModel.output.userMenu.bind(to: self.myPageV.menuList.rx.items) { tableView, row, menu in
+            
             if menu == .callNumber {
+                
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCenterCell.cellID) as? ServiceCenterCell else {
                     
                     return UITableViewCell()
@@ -95,12 +146,18 @@ extension MyPageVC: UITableViewDelegate {
                 cell.configureUser(menuType: menu)
                 
                 if menu == MypageUserMenu.alarmOnOff {
+                    
                     UNUserNotificationCenter.current().getNotificationSettings { settings in
+                        
                         DispatchQueue.main.async {
+                            
                             switch settings.alertSetting {
+                                
                             case .enabled:
+                                
                                 cell.toggle.isOn = true
                             default:
+                                
                                 cell.toggle.isOn = false
                             }
                         }
@@ -116,24 +173,35 @@ extension MyPageVC: UITableViewDelegate {
         
         self.myPageV.menuList.rx.modelSelected(MypageUserMenu.self)
             .bind(onNext: { [weak self] menu in
+                
                 switch menu {
+                    
                 case .heartCounselor:
+                    
                     self?.moveHeartCounselorVC()
                 case .consultingHistory:
+                    
                     self?.moveCoinManagementVC(start: 2)
                 case .termsOfUse:
+                    
                     self?.moveTermsVC(type: .termsOfUse)
                 case .privacyPolicy:
+                    
                     self?.moveTermsVC(type: .privacyPolicy)
                 case .openSourceLib:
+                    
                     self?.moveOpenSourceLicense()
                 case .alarmOnOff:
+                    
                     print("알림")
                 case .logOut:
+                    
                     self?.showLogoutPopUp()
                 case .outOfService:
+                    
                     self?.showDeleteAccountPopUp()
                 case .callNumber:
+                    
                     print("callNumber")
                 }
             })
@@ -143,7 +211,9 @@ extension MyPageVC: UITableViewDelegate {
     private func bindCounselorTableView() {
         
         viewModel.output.counselorMenu.bind(to: self.myPageV.menuList.rx.items) { tableView, row, menu in
+            
             if menu == .callNumber {
+                
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCenterCell.cellID) as? ServiceCenterCell else {
                     
                     return UITableViewCell()
@@ -159,15 +229,37 @@ extension MyPageVC: UITableViewDelegate {
                 
                 cell.configureCounselor(menuType: menu)
                 if menu == MypageCounselorMenu.alarmOnOff {
+                    
+                    cell.toggleDelegate = self
                     UNUserNotificationCenter.current().getNotificationSettings { settings in
                         DispatchQueue.main.async {
+                            
                             switch settings.alertSetting {
+                                
                             case .enabled:
+                                
                                 cell.toggle.isOn = true
                             default:
+                                
                                 cell.toggle.isOn = false
                             }
                         }
+                    }
+                }
+                
+                if menu == MypageCounselorMenu.isOnlineOnOff {
+                    
+                    cell.toggleDelegate = self
+                    if let uid = FirebaseAuthManager.shared.getUserUid() {
+                        
+                        CounselorManager.shared.getCounselor(in: uid)
+                            .map { $0.info.isOnline }
+                            .subscribe(on: MainScheduler.instance)
+                            .subscribe(onNext: { isOnline in
+                                
+                                cell.toggle.isOn = isOnline
+                            })
+                            .disposed(by: self.disposeBag)
                     }
                 }
                 return cell
@@ -184,9 +276,13 @@ extension MyPageVC: UITableViewDelegate {
                 switch menu {
                 
                 case .showProfile:
-                    print("프로필 보기")
+                    
+                    if let counselorUid = FirebaseAuthManager.shared.getUserUid() {
+                        
+                        self?.moveCounselorDetailVC(in: counselorUid)
+                    }
                 case .revenueManagement:
-                    print("수익관리")
+                    self?.moveRevenueManagementVC()
                 case .termsOfUse:
                     self?.moveTermsVC(type: .termsOfUse)
                 case .privacyPolicy:

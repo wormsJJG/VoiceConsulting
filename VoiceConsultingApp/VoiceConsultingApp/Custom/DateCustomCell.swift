@@ -9,7 +9,9 @@ import UIKit
 import MessageKit
 
 final class DateMessageSizeCalculator: MessageSizeCalculator {
-    override func messageContainerSize(for _: MessageType, at _: IndexPath) -> CGSize {
+    
+    override func messageContainerSize(for message: MessageType) -> CGSize {
+        
         return CGSize(width: 124, height: 24)
     }
 }

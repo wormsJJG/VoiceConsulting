@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import AgoraRtcKit
 
 class VoiceRoomVC: BaseViewController {
     
     // MARK: - Load View
     private let voiceRoomV = VoiceRoomV()
+    let rtcKit: AgoraRtcEngineKit = AgoraRtcEngineKit()
     
     override func loadView() {
         super.loadView()
@@ -18,8 +20,16 @@ class VoiceRoomVC: BaseViewController {
         self.view = voiceRoomV
     }
 
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+}
+
+extension VoiceRoomVC {
+    
+    private func test() {
+        
     }
 }

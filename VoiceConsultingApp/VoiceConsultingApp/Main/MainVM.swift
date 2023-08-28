@@ -26,6 +26,7 @@ class MainVM: BaseViewModel {
     
     init(input: Input = Input(),
          output: Output = Output()) {
+        
         self.input = input
         self.output = output
     }

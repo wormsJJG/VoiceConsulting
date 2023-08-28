@@ -22,9 +22,9 @@ class TermsVC: BaseViewController {
         didSet {
             self.termsV.header.headerType = type
             if type == .privacyPolicy {
-                self.termsV.termsLabel.text = TermsContent.privacyPolivy
+                self.termsV.termsLabel.text = CompanyData.privacyPolivy
             } else {
-                self.termsV.termsLabel.text = TermsContent.termsOfUseContent
+                self.termsV.termsLabel.text = CompanyData.termsOfUseContent
             }
         }
     }

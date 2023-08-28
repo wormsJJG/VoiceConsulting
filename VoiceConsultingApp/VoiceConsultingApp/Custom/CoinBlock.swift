@@ -10,6 +10,7 @@ import Then
 import SnapKit
 
 class CoinBlock: UIView {
+    
     var isFill: Bool = false {
         didSet {
             if isFill {
@@ -28,7 +29,7 @@ class CoinBlock: UIView {
     }
     
     lazy var coinCount: UILabel = UILabel().then {
-        $0.text = "1000"
+        $0.text = String(Config.coin)
         $0.font = UIFont(name: Fonts.Inter_Bold, size: 16)
         $0.textColor = .white
         $0.translatesAutoresizingMaskIntoConstraints = false

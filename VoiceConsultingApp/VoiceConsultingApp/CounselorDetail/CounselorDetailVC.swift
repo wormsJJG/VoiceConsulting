@@ -59,11 +59,60 @@ class CounselorDetailVC: BaseViewController {
                 self?.counselorDetailV.header.heartButton.isHeart = isHeart
             })
             .disposed(by: self.disposeBag)
+        
+        viewModel.output.completedCheckIsOnline
+            .bind(onNext: { [weak self] isOnline in
+                
+                self?.didCompletedCheckIsOnline(isOnline)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     func setCounselorUid(uid: String) {
         
         viewModel.input.getDataTrigger.onNext(uid)
+    }
+    
+    private func didCompletedCheckIsOnline(_ isOnline: Bool) {
+        
+        if isOnline {
+            
+        } else {
+            
+            let noOnlineCounselorPopUp = NoOnlineCounselorPopUp()
+            noOnlineCounselorPopUp.setCallBack(didTapOkButtonCallBack: { [weak self] in
+                
+                self?.addChatChannel()
+            })
+            
+            showPopUp(popUp: noOnlineCounselorPopUp)
+        }
+    }
+    
+    private func addChatChannel() {
+        
+        guard let counselor = viewModel.output.counselor else { return }
+        let chatChannel = ChatChannel()
+        chatChannel.uid = counselor.uid
+        chatChannel.name = counselor.info.name
+        chatChannel.profileUrlString = counselor.info.profileImageUrl
+        
+        if ChatChannelStorage.shared.isExistChannel(by: chatChannel.uid) {
+            
+            self.moveChatRoomVC(chatChannel)
+        } else {
+            
+            ChatChannelStorage.shared.addChatChannelCompletion(chatChannel: chatChannel, completion: { [weak self] error in
+                
+                if let error {
+                    
+                    print(error.localizedDescription)
+                } else {
+                    
+                    self?.moveChatRoomVC(chatChannel)
+                }
+            })
+        }
     }
 }
 extension CounselorDetailVC: UIScrollViewDelegate {
@@ -377,22 +426,22 @@ extension CounselorDetailVC {
             .bind(onNext: { [weak self] _ in
                 
                 if Config.isUser {
-                    print("상담하기")
+                    
+                    self?.viewModel.input.didTapConsultingButton.onNext((self?.viewModel.output.counselor!.uid)!)
                 } else {
-                    self?.showPopUp()
+                    
+                    self?.showLimitPopUp()
                 }
             })
             .disposed(by: self.disposeBag)
     }
     
-    func showPopUp() {
+    func showLimitPopUp() {
         
         let popUp = OneButtonNoActionPopUpVC()
+        popUp.popUpContent = "상담사는 상담이 불가능합니다."
         
-        popUp.hidesBottomBarWhenPushed = true
-        popUp.modalPresentationStyle = .overFullScreen
-        popUp.modalTransitionStyle = .crossDissolve
-        self.present(popUp, animated: true, completion: nil)
+        self.showPopUp(popUp: popUp)
     }
 }
 // MARK: - didTapHeartButton

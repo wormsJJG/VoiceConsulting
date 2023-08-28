@@ -11,5 +11,6 @@ enum FBUserFields: String {
     case name
     case isUser
     case categoryList
+    case coin
 }
 

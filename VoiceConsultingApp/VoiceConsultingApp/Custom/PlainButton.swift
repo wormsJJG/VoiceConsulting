@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CompleteButton: UIButton {
+class PlainButton: UIButton {
     var titleText: String?
     
     override init(frame: CGRect) {

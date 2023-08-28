@@ -39,12 +39,14 @@ class SelectUseTypeVM: BaseViewModel {
     private func inputSubscribe() {
         input.selectUseType
             .subscribe(onNext: { [weak self] _ in
+                
                 self?.output.isNextButtonEnable.accept(true)
             })
             .disposed(by: self.disposeBag)
         
         input.didTapNextButton
             .subscribe(onNext: { [weak self] isUser in
+                
                 self?.setCheckDataIsUser(in: isUser)
             })
             .disposed(by: self.disposeBag)
@@ -52,7 +54,7 @@ class SelectUseTypeVM: BaseViewModel {
     
     private func setCheckDataIsUser(in isUser: Bool) {
         
-        CheckDataManager.shared.setIsUser(in: isUser)
+        UserRegisterData.isUser = isUser
         self.output.isCompletedUseType.onNext(isUser)
     }
 }

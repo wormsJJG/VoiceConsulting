@@ -33,6 +33,7 @@ class PlainTextField: UITextField {
         clipsToBounds = true
         heightAnchor.constraint(equalToConstant: 48).isActive = true
         addLeftPadding(in: 16)
+        addRightPadding(in: 16)
         returnKeyType = .done
     }
     

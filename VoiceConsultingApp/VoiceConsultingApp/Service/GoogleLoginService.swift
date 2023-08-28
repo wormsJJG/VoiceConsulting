@@ -10,8 +10,8 @@ import RxSwift
 import GoogleSignIn
 import FirebaseAuth
 
-class GoogleSignInManager {
-    static let shared = GoogleSignInManager()
+class GoogleLoginService {
+    static let shared = GoogleLoginService()
     
     func signIn(viewController: UIViewController) -> Observable<AuthDataResult?> {
         return Observable.create { event in

@@ -171,4 +171,49 @@ class UserManager {
             return Disposables.create()
         }
     }
+    
+    func fetchUserData(in uid: String) -> Observable<User> {
+        
+        return Observable.create { event in
+            
+            let docRef = self.db.document(uid)
+            
+            docRef.getDocument(as: User.self, completion: { result in
+                
+                switch result {
+
+                case .success(let user):
+                    event.onNext(user)
+                    event.onCompleted()
+                case .failure(let error):
+                    event.onError(error)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func editCoinCount(in coin: Int, isIncrease: Bool, completion: @escaping ((Error?) -> Void)) {
+        
+        if let uid = FirebaseAuthManager.shared.getUserUid() {
+            
+            if isIncrease {
+                
+                self.db.document(uid).updateData([FBUserFields.coin.rawValue: FieldValue.increment(Int64(coin))]) { error in
+                    
+                    completion(error)
+                }
+            } else {
+                
+                self.db.document(uid).updateData([FBUserFields.coin.rawValue: FieldValue.increment(Int64(-coin))]) { error in
+                    
+                    completion(error)
+                }
+            }
+            
+        } else {
+            
+            completion(AuthError.noCurrentUser)
+        }
+    }
 }

@@ -28,7 +28,7 @@ class CustomLayoutSizeCalculator: CellSizeCalculator {
     var cellDateLabelHorizontalPadding: CGFloat = 24
     var cellDateLabelBottomPadding: CGFloat = 8
     var cellMessageContainerDateSpacing: CGFloat = 6
-    var cellProfileHorizontialSpacing: CGFloat = 20 //왼쪽 벽과 프로필 간격
+    var cellProfileHorizontialSpacing: CGFloat = 10 //왼쪽 벽과 프로필 간격
     var profileMessageContainerSpacing: CGFloat = 10 //프로필과 메세지 컨테이너 간격
 
   var messagesLayout: MessagesCollectionViewFlowLayout {

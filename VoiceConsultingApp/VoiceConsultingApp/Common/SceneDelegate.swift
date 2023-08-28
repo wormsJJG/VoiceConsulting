@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleSignIn
+import AgoraChat
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -19,6 +20,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let cordinator = Cordinator(window: self.window!)
         
         cordinator.start()
+    }
+    
+    func changeRootVC(vc: UIViewController) {
+        
+        guard let window = self.window else { return }
+        window.rootViewController = vc
+        
+        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil, completion: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -34,11 +43,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-
+        
+        AgoraChatClient.shared().applicationWillEnterForeground(UIApplication.shared)
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
 
+        AgoraChatClient.shared().applicationDidEnterBackground(UIApplication.shared)
     }
 }
 

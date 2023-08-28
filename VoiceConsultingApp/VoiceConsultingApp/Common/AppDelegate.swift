@@ -18,10 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure() // For Firebase
-        PushManager.shared.registerForPushNotifications() // Push Noti
         UNUserNotificationCenter.current().delegate = self // Push Noti Delegate
+        AgoraChatClient.shared.add(self, delegateQueue: nil)
         AgoraPushManager.shared.initAgoraChatOptions() //AgoraPush
         CategoryManager.shared.initCategoryData()
+        KakaoLoginService.shared.initSDK()
         
         return true
     }
@@ -32,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         handled = GIDSignIn.sharedInstance.handle(url)
         
-        if handled {
+        if handled && KakaoLoginService.shared.handleOpenUrl(url: url) {
             return true
         }
         
@@ -48,11 +49,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         
     }
+}
+
+// MARK: - Push Noti
+extension AppDelegate: UNUserNotificationCenterDelegate, AgoraChatClientDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
+        
         AgoraPushManager.shared.registerForRemoteNotifications(deviceToken: deviceToken)
         print("Device Token: \(token)")
     }
@@ -61,15 +67,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("Failed to register: \(error)")
     }
-}
-// MARK: - Push Noti
-extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    // foreground 상태
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print(notification.request.identifier)
-        completionHandler([.alert, .sound])
+        
+        AgoraChatClient.shared().application(UIApplication.shared, didReceiveRemoteNotification: notification.request.content.userInfo)
+        
+        completionHandler([.alert, .sound, .badge])
+    }
+    
+    // background
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+//        AgoraChatClient.shared().application(application, didReceiveRemoteNotification: userInfo)
+        
+        print(userInfo)
+        completionHandler(.newData)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print(response.notification.request.identifier)
+        
+        print(response.notification.request.content.userInfo)
+        completionHandler()
     }
 }

@@ -22,7 +22,7 @@ class BigCoinBlock: UIView {
     }
     
     lazy var coinCount: UILabel = UILabel().then {
-        $0.text = "150,000"
+        $0.text = String(Config.coin)
         $0.font = UIFont(name: Fonts.Inter_Bold, size: 20)
         $0.textColor = .white
     }

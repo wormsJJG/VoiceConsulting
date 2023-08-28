@@ -7,6 +7,7 @@
 
 import UIKit
 import AcknowList
+import AgoraChat
 
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
@@ -14,6 +15,18 @@ class BaseViewController: UIViewController {
         
         self.view.backgroundColor = .white
         isHiddenNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        
     }
     // MARK: - Util
     
@@ -25,6 +38,15 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     // MARK: - MoveView
+    
+    func moveChatRoomVC(_ chatChannel: ChatChannel) {
+        
+        let chatRoomVC = ChatRoomVC()
+        chatRoomVC.setChatChannel(chatChannel)
+        chatRoomVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(chatRoomVC, animated: true)
+    }
     
     func moveSplashVC() {
         let splashVC = SplashVC()
@@ -40,35 +62,56 @@ class BaseViewController: UIViewController {
     }
     
     func moveMain() {
-        let mainVC = CustomTabBarController()
         
-        self.navigationController?.pushViewController(mainVC, animated: true)
+        let mainVC = UINavigationController(rootViewController: CustomTabBarController())
+        
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: mainVC)
     }
     
     func moveLoginVC() {
-        let loginVC = LoginVC()
         
-        self.navigationController?.pushViewController(loginVC, animated: true)
+        let loginVC = UINavigationController(rootViewController: LoginVC())
+        
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: loginVC)
     }
     
     func moveSelectCategoryVC() {
+        
         let selectCategoryVC = SelectCategoryVC()
         
         self.navigationController?.pushViewController(selectCategoryVC, animated: true)
     }
     
-    func moveSelectUseTypeVC() {
-        let selectUseTypeVC = SelectUseTypeVC()
+    func moveInputUserInfoVC() {
         
-        self.navigationController?.pushViewController(selectUseTypeVC, animated: true)
+        let inputUserInfoVC = InputUserInfoVC()
+        
+        self.navigationController?.pushViewController(inputUserInfoVC, animated: true)
+    }
+    
+    func moveSelectUseTypeVC() {
+        
+        let selectUseTypeVC = UINavigationController(rootViewController: SelectUseTypeVC())
+        
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: selectUseTypeVC)
     }
     
     func moveCoinManagementVC(start: Int) {
+        
         let coinManagementVC = CoinManagementVC()
         coinManagementVC.hidesBottomBarWhenPushed = true
         coinManagementVC.startIndex = start
         
         self.navigationController?.pushViewController(coinManagementVC, animated: true)
+    }
+    
+    func moveEditCounselorInfoVC() {
+        
+        let inputCounselorInfo = InputCounselorInfoVC()
+        inputCounselorInfo.isEditInfo()
+        inputCounselorInfo.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(inputCounselorInfo, animated: true)
     }
     
     func moveCounselorDetailVC(in counselorUid: String) {
@@ -81,7 +124,16 @@ class BaseViewController: UIViewController {
     }
     
     func popVC() {
+        
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func moveRevenueManagementVC() {
+        
+        let revenueManagementVC = RevenueManagementVC()
+        revenueManagementVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(revenueManagementVC, animated: true)
     }
     
     func moveChatRommVC() {
@@ -138,11 +190,37 @@ class BaseViewController: UIViewController {
         self.present(popUp, animated: true, completion: nil)
     }
     
+    func showPopUp(popUp: PopUpVC) {
+        
+        popUp.hidesBottomBarWhenPushed = true
+        popUp.modalPresentationStyle = .overFullScreen
+        popUp.modalTransitionStyle = .crossDissolve
+        self.present(popUp, animated: true, completion: nil)
+    }
+    
+    func showErrorPopUp(errorString: String?) {
+        
+        let errorPopUp = ErrorPopUp()
+        errorPopUp.errorString = errorString
+        
+        errorPopUp.hidesBottomBarWhenPushed = true
+        errorPopUp.modalPresentationStyle = .overFullScreen
+        errorPopUp.modalTransitionStyle = .crossDissolve
+        self.present(errorPopUp, animated: true, completion: nil)
+    }
+    
     func moveVoiceRoom() {
         
         let voiceRoomVC = VoiceRoomVC()
         
         self.navigationController?.pushViewController(voiceRoomVC, animated: true)
+    }
+    
+    func moveToSettleVC() {
+        
+        let toSettleVC = ToSettleVC()
+        
+        self.navigationController?.pushViewController(toSettleVC, animated: true)
     }
     
     // MARK: - KeyBoard
@@ -172,5 +250,55 @@ class BaseViewController: UIViewController {
                 }
             }
         }
+    }
+}
+
+extension BaseViewController: AgoraChatManagerDelegate, AgoraChatClientDelegate {
+    
+    private func registerNotifications() {
+        self.unregisterNotifications()
+        AgoraChatClient.shared().add(self, delegateQueue: nil)
+        AgoraChatClient.shared().chatManager?.add(self, delegateQueue: nil)
+    }
+    
+    private func unregisterNotifications() {
+        AgoraChatClient.shared().removeDelegate(self)
+        AgoraChatClient.shared().chatManager?.remove(self)
+    }
+    
+    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
+        
+        for message in aMessages {
+            
+            let state = UIApplication.shared.applicationState
+            switch state {
+                
+            case .inactive, .active:
+                
+                showLocalNotification(in: message)
+            case .background:
+                
+                showLocalNotification(in: message)
+            default:
+                
+                break
+            }
+        }
+    }
+    
+    private func showLocalNotification(in message: AgoraChatMessage) {
+        
+        guard let ext = message.ext,
+              let apnsItem = ext["em_apns_ext"],
+              let convertApns = apnsItem as? [String: Any],
+              let senderName = convertApns["senderName"] as? String,
+              let message = convertApns["message"] as? String else { return }
+        
+        let content = UNMutableNotificationContent()
+        content.title = senderName
+        content.body = message
+        
+        let request = UNNotificationRequest(identifier: "agoraChat", content: content, trigger: .none)
+        UNUserNotificationCenter.current().add(request)
     }
 }

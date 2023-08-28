@@ -22,6 +22,7 @@ class LoginVM: BaseViewModel {
     var input: Input
     var output: Output
     private let disposeBag = DisposeBag()
+    var currentNonce: String?
     
     init(input: Input = Input(),
          output: Output = Output()) {

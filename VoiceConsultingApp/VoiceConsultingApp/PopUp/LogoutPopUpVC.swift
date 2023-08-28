@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class LogoutPopUpVC: PopUpVC {
+    
+    private let disposeBag = DisposeBag()
     
     override func setPopUp() {
         super.setPopUp()
@@ -20,12 +23,17 @@ class LogoutPopUpVC: PopUpVC {
     
     @objc private func logout() {
         FirebaseAuthManager.shared.logout()
-        moveLoginVC()
+        AgoraManager.shared.logout()
+            .subscribe(onNext: { [weak self] _ in
+                
+                self?.moveLoginVC()
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func moveLoginVC() {
-        let loginVC = LoginVC()
+        let loginVC = UINavigationController(rootViewController: LoginVC()) 
         
-        self.navigationController?.pushViewController(loginVC, animated: true)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: loginVC)
     }
 }

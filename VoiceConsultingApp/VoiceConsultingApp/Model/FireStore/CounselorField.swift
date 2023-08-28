@@ -20,4 +20,5 @@ enum CounselorField: String {
     case isOnline
     case licenseImages
     case platform
+    case coin
 }

@@ -21,7 +21,7 @@ class ServiceCenterBlock: UIView {
     }
     
     private lazy var phoneNumber: UILabel = UILabel().then {
-        $0.text = "010-1234-1234"
+        $0.text = CompanyData.ServiceCenterPhoneNumber
         $0.textColor = ColorSet.subTextColor
         $0.font = UIFont(name: Fonts.Inter_Medium, size: 16)
     }

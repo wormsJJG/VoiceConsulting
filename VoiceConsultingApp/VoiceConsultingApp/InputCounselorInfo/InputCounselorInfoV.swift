@@ -18,6 +18,7 @@ class InputCounselorInfoV: UIView {
     }
     
     lazy var scrollView: UIScrollView = UIScrollView().then {
+        
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .white
     }
@@ -179,6 +180,7 @@ class InputCounselorInfoV: UIView {
     }
     
     lazy var inputIntroduceField: UITextView = UITextView().then {
+         
         $0.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         $0.textColor = ColorSet.subTextColor2
         $0.text = "상세 소개를 작성해주세요"
@@ -208,7 +210,7 @@ class InputCounselorInfoV: UIView {
         $0.spacing = 40
     }
     
-    let nextButton: CompleteButton = CompleteButton().then {
+    let nextButton: PlainButton = PlainButton().then {
         
         $0.titleText = "다음"
     }

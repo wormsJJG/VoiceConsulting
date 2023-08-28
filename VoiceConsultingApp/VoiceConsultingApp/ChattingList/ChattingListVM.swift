@@ -10,21 +10,45 @@ import RxCocoa
 import RxSwift
 
 class ChattingListVM: BaseViewModel {
+    
     struct Input {
         
+        let fetchChattingListTrigger: PublishSubject<Void> = PublishSubject()
     }
     
     struct Output {
         
+        let channelList: PublishSubject<[ChatChannel]> = PublishSubject()
     }
     
     var input: Input
     var output: Output
-    var chatList = Observable.just(["", "", "", "", ""])
+    private let disposeBag = DisposeBag()
     
     init(input: Input = Input(),
          output: Output = Output()) {
         self.input = input
         self.output = output
+        inputSubscribe()
+    }
+    
+    private func inputSubscribe() {
+        
+        input.fetchChattingListTrigger
+            .bind(onNext: { [weak self] _ in
+                
+                self?.fetchChatChannelList()
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func fetchChatChannelList() {
+        
+        ChatChannelStorage.shared.fetchChatChanelList()
+            .subscribe(onNext: { [weak self] list in
+                
+                self?.output.channelList.onNext(list.sorted(by: { $0.lastMessage!.sentDate > $1.lastMessage!.sentDate}))
+            })
+            .disposed(by: self.disposeBag)
     }
 }

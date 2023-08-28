@@ -30,7 +30,7 @@ class SelectCategoryV: UIView {
         $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.cellID)
     }
     
-    lazy var completeButton: CompleteButton = CompleteButton().then {
+    lazy var completeButton: PlainButton = PlainButton().then {
         $0.titleText = "완료하기"
     }
     

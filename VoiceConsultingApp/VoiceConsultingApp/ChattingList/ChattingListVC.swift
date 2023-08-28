@@ -9,11 +9,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+import Kingfisher
 
 class ChattingListVC: BaseViewController {
     // MARK: - Load View
     private let chattingListV = ChattingListV()
+    
     override func loadView() {
+        
         self.view = chattingListV
     }
     // MARK: - Properties
@@ -22,11 +25,29 @@ class ChattingListVC: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ChattingListClient.shared.delegate = self
         addCoinBlockTapAction()
         bindTableView()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        viewModel.input.fetchChattingListTrigger.onNext(())
+        bindData()
+    }
+}
+// MARK: - Bind Data
+extension ChattingListVC {
+    
+    private func bindData() {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.chattingListV.header.profileImage.kf.setImage(with: URL(string: Config.profileUrlString ?? ""))
+            self?.chattingListV.header.coinBlock.coinCount.text = String(Config.coin)
+        }
     }
 }
 // MARK: - Touch Action
@@ -49,19 +70,27 @@ extension ChattingListVC: UICollectionViewDelegate {
         self.chattingListV.chattingList.rx.setDelegate(self)
             .disposed(by: self.disposeBag)
         
-        self.viewModel.chatList
-            .bind(to: self.chattingListV.chattingList.rx.items(cellIdentifier: ChattingCell.cellID, cellType: ChattingCell.self)) { index, chat, cell in
+        self.viewModel.output.channelList
+            .bind(to: self.chattingListV.chattingList.rx.items(cellIdentifier: ChattingCell.cellID, cellType: ChattingCell.self)) { index, channel, cell in
                 
-                
+                cell.configureCell(in: channel)
             }
             .disposed(by: self.disposeBag)
         
-        self.chattingListV.chattingList.rx.modelSelected(String.self)
-            .bind(onNext: { selectItem in
-                print(selectItem)
-                self.moveChatRommVC()
+        self.chattingListV.chattingList.rx.modelSelected(ChatChannel.self)
+            .bind(onNext: { [weak self] chatChannel in
+                
+                self?.moveChatRoomVC(chatChannel)
             })
             .disposed(by: self.disposeBag)
+    }
+}
+
+// MARK: - MessageClient
+extension ChattingListVC: ChattingListClientDelegate {
+    
+    func didReceiveMessage(_ message: Message) {
         
+        viewModel.input.fetchChattingListTrigger.onNext(())
     }
 }
