@@ -145,11 +145,17 @@ class ChatChannelStorage {
         
         let chatChannelList = storage.objects(ChatChannel.self)
         
-        chatChannelList.map { $0.unReadMessageCount }.forEach {
+        if chatChannelList.isEmpty {
             
-            count += $0
+            unReadMessageCount(count)
+        } else {
+            
+            chatChannelList.map { $0.unReadMessageCount }.forEach {
+                
+                count += $0
+            }
+            
+            unReadMessageCount(count)
         }
-        
-        unReadMessageCount(count)
     }
 }

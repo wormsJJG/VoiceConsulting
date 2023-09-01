@@ -109,4 +109,27 @@ class ConsultingHistoryManager {
             return Disposables.create()
         }
     }
+    
+    func writeConsultingHistory(userId: String, counselorId: String, completion: @escaping((Error?) -> Void)) {
+    
+        let consulting = Consulting(userId: userId,
+                                    counselorId: counselorId)
+        
+        do {
+            
+            try self.db.addDocument(from: consulting) { error in
+                
+                if let error {
+                    
+                    completion(error)
+                } else {
+                    
+                    completion(nil)
+                }
+            }
+        } catch {
+            
+            completion(error)
+        }
+    }
 }

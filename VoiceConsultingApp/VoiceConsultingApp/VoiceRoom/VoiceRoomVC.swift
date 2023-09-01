@@ -12,7 +12,7 @@ class VoiceRoomVC: BaseViewController {
     
     // MARK: - Load View
     private let voiceRoomV = VoiceRoomV()
-    let rtcKit: AgoraRtcEngineKit = AgoraRtcEngineKit()
+    var rtcKit: AgoraRtcEngineKit!
     
     override func loadView() {
         super.loadView()
@@ -24,12 +24,34 @@ class VoiceRoomVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let config = AgoraRtcEngineConfig()
+        config.appId = AgoraConst.appID.rawValue
+        
+        rtcKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
     }
 }
 
-extension VoiceRoomVC {
+extension VoiceRoomVC: AgoraRtcEngineDelegate {
     
-    private func test() {
+    private func joinChannel() {
         
+        let mediaOption = AgoraRtcChannelMediaOptions()
+        mediaOption.clientRoleType = .broadcaster
+        AgoraTokenService.shared.getAgoraAppToken(completion: { [weak self] error, token in
+            
+            if let error {
+                
+                print(error)
+            } else {
+                
+                let result = self?.rtcKit.joinChannel(byToken: token,
+                                                      channelId: FirebaseAuthManager.shared.getUserUid()!,
+                                                      uid: 0,
+                                                      mediaOptions: mediaOption,
+                                                      joinSuccess: { (channel, uid, elapsed) in })
+                
+                print(result)
+            }
+        })
     }
 }

@@ -30,6 +30,7 @@ class CounselorDetailVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        playLoadAnimation()
         outputSubscribe()
         setDelegates()
         addAction()
@@ -50,6 +51,7 @@ class CounselorDetailVC: BaseViewController {
                     
                 self?.counselorDetailV.header.counselorLabel.text = self?.viewModel.output.counselor!.info.name
                 self?.counselorDetailV.infoList.reloadData()
+                self?.stopAnimation()
             })
             .disposed(by: self.disposeBag)
         
@@ -70,6 +72,7 @@ class CounselorDetailVC: BaseViewController {
         viewModel.output.errorTrigger
             .subscribe(onNext:{ [weak self] error in
                 
+                self?.stopAnimation()
                 self?.showErrorPopUp(errorString: error.localizedDescription)
             })
             .disposed(by: self.disposeBag)
@@ -92,6 +95,7 @@ class CounselorDetailVC: BaseViewController {
                 self?.addChatChannel()
             })
             
+            self.stopAnimation()
             showPopUp(popUp: noOnlineCounselorPopUp)
         }
     }
@@ -434,6 +438,7 @@ extension CounselorDetailVC {
                 
                 if Config.isUser {
                     
+                    self?.playLoadAnimation()
                     self?.viewModel.input.didTapConsultingButton.onNext((self?.viewModel.output.counselor!.uid)!)
                 } else {
                     

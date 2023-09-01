@@ -123,7 +123,10 @@ class ChatRoomVM: BaseViewModel{
                         } else {
                             
                             Config.coin -= 100
-                            self?.output.isSuccessTranscation.onNext(true)
+                            ConsultingHistoryManager.shared.writeConsultingHistory(userId: self!.sender.senderId, counselorId: self!.channel!.uid, completion: { error in
+                                
+                                self?.output.isSuccessTranscation.onNext(true)
+                            })
                         }
                     })
                 }

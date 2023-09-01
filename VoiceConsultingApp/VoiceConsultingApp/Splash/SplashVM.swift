@@ -21,6 +21,7 @@ class SplashVM: BaseViewModel {
         let pushMainVCTrigger: PublishSubject<Void> = PublishSubject()
         let isNoLogin: PublishSubject<Void> = PublishSubject()
         let pushSelectUseTypeVCTrigger: PublishSubject<Void> = PublishSubject()
+        let errorTrigger: PublishSubject<Error> = PublishSubject()
     }
     
     var input: Input
@@ -76,7 +77,7 @@ class SplashVM: BaseViewModel {
                 }
             case .error(let error):
                 
-                print(error.localizedDescription)
+                self?.output.errorTrigger.onNext(error)
             case .completed:
                 
                 print("completed")
@@ -102,7 +103,7 @@ class SplashVM: BaseViewModel {
                     self?.agoraLogin()
                 case .error(let error):
                     
-                    print(error.localizedDescription)
+                    self?.output.errorTrigger.onNext(error)
                 case .completed:
                     
                     print("completed")
@@ -130,7 +131,7 @@ class SplashVM: BaseViewModel {
                         self?.agoraLogin()
                     case .error(let error):
                         
-                        print(error.localizedDescription)
+                        self?.output.errorTrigger.onNext(error)
                     case .completed:
                         
                         print("completed")
@@ -156,7 +157,7 @@ class SplashVM: BaseViewModel {
                             self?.output.pushMainVCTrigger.onNext(())
                         case .error(let error):
                             
-                            print(error.localizedDescription)
+                            self?.output.errorTrigger.onNext(error)
                         case .completed:
                             
                             print("completed")

@@ -248,6 +248,7 @@
 		35C5FA6D2A6E8E2A00815055 /* DeleteButtonTouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5FA6C2A6E8E2A00815055 /* DeleteButtonTouchable.swift */; };
 		35CAB92C2A03AD6A00FB4AB9 /* AgoraPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */; };
 		35CC324A2A5ABBA000D0E7C2 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CC32492A5ABBA000D0E7C2 /* Extension+String.swift */; };
+		35CE27AF2AA16730007EB74C /* VoiceCallClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CE27AE2AA16730007EB74C /* VoiceCallClient.swift */; };
 		35D0A0702A78FE2300C529DC /* ToSettleV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D0A06F2A78FE2300C529DC /* ToSettleV.swift */; };
 		35D0A0722A78FF0B00C529DC /* ToSettleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D0A0712A78FF0B00C529DC /* ToSettleVC.swift */; };
 		35D216AB2A443AD30072A1E6 /* BuyCoinField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */; };
@@ -540,6 +541,7 @@
 		35C5FA6C2A6E8E2A00815055 /* DeleteButtonTouchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButtonTouchable.swift; sourceTree = "<group>"; };
 		35CAB92B2A03AD6A00FB4AB9 /* AgoraPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraPushManager.swift; sourceTree = "<group>"; };
 		35CC32492A5ABBA000D0E7C2 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		35CE27AE2AA16730007EB74C /* VoiceCallClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallClient.swift; sourceTree = "<group>"; };
 		35D0A06F2A78FE2300C529DC /* ToSettleV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToSettleV.swift; sourceTree = "<group>"; };
 		35D0A0712A78FF0B00C529DC /* ToSettleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToSettleVC.swift; sourceTree = "<group>"; };
 		35D216AA2A443AD30072A1E6 /* BuyCoinField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoinField.swift; sourceTree = "<group>"; };
@@ -1246,6 +1248,7 @@
 			children = (
 				35A70CA82A9272D9003551F1 /* MessageClient.swift */,
 				3588FD8B2A93599C006D6CD1 /* ChattingListClient.swift */,
+				35CE27AE2AA16730007EB74C /* VoiceCallClient.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -1898,6 +1901,7 @@
 				3592A4452A77D02D00DF8F60 /* SettlementDetailVC.swift in Sources */,
 				357C78AE2A407A4A00B1849D /* Extension+Rx+ScrollView.swift in Sources */,
 				3509AAC52A86669500A0AE0F /* ChatChannelManager.swift in Sources */,
+				35CE27AF2AA16730007EB74C /* VoiceCallClient.swift in Sources */,
 				35BB114D2A8D1F4F006CA4A5 /* RealmMessageListByUid.swift in Sources */,
 				35A70CA42A926F5D003551F1 /* ConfigManager.swift in Sources */,
 				35EAEB2929CAFD4A00AAE587 /* BaseViewController.swift in Sources */,

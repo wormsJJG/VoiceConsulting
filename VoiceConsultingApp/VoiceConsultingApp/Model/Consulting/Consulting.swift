@@ -17,4 +17,15 @@ struct Consulting: Codable {
     var duration: Int
     var updateAt: Int
     var userId: String
+    
+    init(userId: String, counselorId: String) {
+        
+        let nowTimeInterval = Int(Date().timeIntervalSince1970 * 1000)
+        self.callerId = userId
+        self.counselorId = counselorId
+        self.createAt = nowTimeInterval
+        self.duration = 0
+        self.updateAt = nowTimeInterval
+        self.userId = userId
+    }
 }
