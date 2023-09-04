@@ -35,8 +35,6 @@
 		3509AAC52A86669500A0AE0F /* ChatChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509AAC42A86669500A0AE0F /* ChatChannelManager.swift */; };
 		3509F82D29D5755800AD880C /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509F82C29D5755800AD880C /* ColorSet.swift */; };
 		350AFE182A3ADB2300FF3514 /* Extension+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AFE172A3ADB2300FF3514 /* Extension+UICollectionView.swift */; };
-		350AFE1A2A3AEA6C00FF3514 /* PopularCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AFE192A3AEA6C00FF3514 /* PopularCellVM.swift */; };
-		350AFE1C2A3AFDB100FF3514 /* FitWellCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AFE1B2A3AFDB100FF3514 /* FitWellCellVM.swift */; };
 		350AFE1E2A3B057C00FF3514 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AFE1D2A3B057C00FF3514 /* CategoryManager.swift */; };
 		350AFE202A3B063800FF3514 /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AFE1F2A3B063800FF3514 /* CategoryType.swift */; };
 		350AFE222A3B10F400FF3514 /* CategoryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AFE212A3B10F400FF3514 /* CategoryField.swift */; };
@@ -168,7 +166,6 @@
 		357D4A1C2A2E0D98000052D1 /* OneButtonNoActionPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1B2A2E0D98000052D1 /* OneButtonNoActionPopUpVC.swift */; };
 		357D4A1E2A2E0F77000052D1 /* MypageCounselorMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1D2A2E0F77000052D1 /* MypageCounselorMenu.swift */; };
 		357D4A202A2E1382000052D1 /* RequestPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */; };
-		357D84ED2A0A7196003DB1FC /* LiveCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */; };
 		35813D632A8BB05A00405920 /* ToggleChangeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35813D622A8BB05A00405920 /* ToggleChangeable.swift */; };
 		3584E7F02A94C392000E6265 /* ErrorPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584E7EF2A94C392000E6265 /* ErrorPopUp.swift */; };
 		3584E7F22A95059C000E6265 /* LackCoinPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584E7F12A95059C000E6265 /* LackCoinPopUp.swift */; };
@@ -329,8 +326,6 @@
 		3509AAC42A86669500A0AE0F /* ChatChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatChannelManager.swift; sourceTree = "<group>"; };
 		3509F82C29D5755800AD880C /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		350AFE172A3ADB2300FF3514 /* Extension+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionView.swift"; sourceTree = "<group>"; };
-		350AFE192A3AEA6C00FF3514 /* PopularCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCellVM.swift; sourceTree = "<group>"; };
-		350AFE1B2A3AFDB100FF3514 /* FitWellCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitWellCellVM.swift; sourceTree = "<group>"; };
 		350AFE1D2A3B057C00FF3514 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		350AFE1F2A3B063800FF3514 /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		350AFE212A3B10F400FF3514 /* CategoryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryField.swift; sourceTree = "<group>"; };
@@ -463,7 +458,6 @@
 		357D4A1B2A2E0D98000052D1 /* OneButtonNoActionPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneButtonNoActionPopUpVC.swift; sourceTree = "<group>"; };
 		357D4A1D2A2E0F77000052D1 /* MypageCounselorMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageCounselorMenu.swift; sourceTree = "<group>"; };
 		357D4A1F2A2E1382000052D1 /* RequestPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPaymentView.swift; sourceTree = "<group>"; };
-		357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCellVM.swift; sourceTree = "<group>"; };
 		35813D622A8BB05A00405920 /* ToggleChangeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleChangeable.swift; sourceTree = "<group>"; };
 		3584E7EF2A94C392000E6265 /* ErrorPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPopUp.swift; sourceTree = "<group>"; };
 		3584E7F12A95059C000E6265 /* LackCoinPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LackCoinPopUp.swift; sourceTree = "<group>"; };
@@ -892,16 +886,6 @@
 				3598EA542AA5C441002BC8CD /* RefreshButtonDelegate.swift */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		354B73CE2A0BBBDF00651EF9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				357D84EC2A0A7196003DB1FC /* LiveCellVM.swift */,
-				350AFE192A3AEA6C00FF3514 /* PopularCellVM.swift */,
-				350AFE1B2A3AFDB100FF3514 /* FitWellCellVM.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		354F49232A1A661C00D71E3D /* Alert */ = {
@@ -1387,7 +1371,6 @@
 		35DECCB529DBCD7400DE5BE3 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				354B73CE2A0BBBDF00651EF9 /* ViewModel */,
 				35277D2029DA8A95002A2A14 /* BannerCell.swift */,
 				35277D2229DA8AB9002A2A14 /* LiveCell.swift */,
 				35277D2429DA8ACD002A2A14 /* PopularCell.swift */,
@@ -1936,7 +1919,6 @@
 				35585B9F2A8F86A100EF5E54 /* NoOnlineCounselorPopUp.swift in Sources */,
 				3523AF8B2A09055300D51B8A /* CounselorInfo.swift in Sources */,
 				35EB1A802A8E4B5900080241 /* NoPassUserRegisterPopUp.swift in Sources */,
-				350AFE1C2A3AFDB100FF3514 /* FitWellCellVM.swift in Sources */,
 				35726F322A05F556008E28D0 /* CounselorManager.swift in Sources */,
 				35DECCB829DBD26800DE5BE3 /* LiveCounselorCell.swift in Sources */,
 				35B15B832A1B0D2D004345F3 /* HeartCounselorVC.swift in Sources */,
@@ -1955,7 +1937,6 @@
 				353347D92A88E4DE00547FE1 /* SettlementDetail.swift in Sources */,
 				354664B329E42C1A0055375F /* CustomTabBarController.swift in Sources */,
 				3566899A2A2F773300022487 /* UserManager.swift in Sources */,
-				350AFE1A2A3AEA6C00FF3514 /* PopularCellVM.swift in Sources */,
 				35E976F52A307544004F658D /* FBUserFields.swift in Sources */,
 				350CA2222A18BC8100B1756C /* ProfileCell.swift in Sources */,
 				3570FE2B2A26415700A9A9C1 /* CustomInputView.swift in Sources */,
@@ -2007,7 +1988,6 @@
 				35BC05332A1263F400E312C8 /* TransactionCompletedCell.swift in Sources */,
 				35277D1829DA6BC9002A2A14 /* MainHeaderView.swift in Sources */,
 				357810682A0E401500AE8EC8 /* PaddingLabel.swift in Sources */,
-				357D84ED2A0A7196003DB1FC /* LiveCellVM.swift in Sources */,
 				35B15B892A1B1DBE004345F3 /* BaseButton.swift in Sources */,
 				35EF33EE2A7B925400DB6194 /* KakaoLoginService.swift in Sources */,
 				354609F929D70DF300FC5ABB /* LoginVM.swift in Sources */,
