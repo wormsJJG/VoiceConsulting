@@ -27,7 +27,6 @@ class FitWellCellVM: BaseViewModel {
         
         self.input = input
         self.output = output
-        getFitWellCounselorList()
     }
 }
 

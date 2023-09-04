@@ -89,6 +89,14 @@ extension MainVC: MoreButtonTouchable {
         }
     }
 }
+
+extension MainVC: RefreshButtonDelegate {
+    
+    func didTapRefreshButton() {
+        
+        viewModel.input.refreshLiveCounselorTrigger.onNext(())
+    }
+}
 // MARK: - Bind TableView
 extension MainVC: UITableViewDelegate {
     private func bindTableView() {
@@ -98,9 +106,10 @@ extension MainVC: UITableViewDelegate {
         self.mainV.mainList.rowHeight = UITableView.automaticDimension
         self.mainV.mainList.estimatedRowHeight = UITableView.automaticDimension
         
-        self.viewModel.sectionTitleList
-            .bind(to: self.mainV.mainList.rx.items) { [weak self] tableView, row, section in
-                switch section {
+        self.viewModel.output.mainSectionList
+            .bind(to: self.mainV.mainList.rx.items) { [weak self] tableView, row, sectionModel in
+
+                switch sectionModel.sectionType {
                     
                 case .banner:
                     guard let bannerCell = tableView.dequeueReusableCell(withIdentifier: BannerCell.cellID) as? BannerCell else {
@@ -117,9 +126,11 @@ extension MainVC: UITableViewDelegate {
                         return UITableViewCell()
                     }
                     
-                    liveCounselorCell.header.sectionTitle.text = section.sectionTitle
+                    liveCounselorCell.header.sectionTitle.text = sectionModel.sectionType.sectionTitle
+                    liveCounselorCell.onNextLiveCounselor(in: sectionModel.sectionItems)
                     liveCounselorCell.cellTouchDelegate = self
                     liveCounselorCell.moreButtonTouchDelegate = self
+                    liveCounselorCell.refreshButtonDelegate = self
                     
                     return liveCounselorCell
                     
@@ -129,11 +140,10 @@ extension MainVC: UITableViewDelegate {
                         
                         return UITableViewCell()
                     }
-                    popularCell.header.sectionTitle.text = section.sectionTitle
+                    popularCell.header.sectionTitle.text = sectionModel.sectionType.sectionTitle
                     popularCell.cellTouchDelegate = self
                     popularCell.moreButtonTouchDelegate = self
-                    
-                    
+                    popularCell.onNextPopularCounselor(in: sectionModel.sectionItems)
                     
                     return popularCell
                     
@@ -144,9 +154,10 @@ extension MainVC: UITableViewDelegate {
                         return UITableViewCell()
                     }
                     
-                    fitWellCounselorCell.header.sectionTitle.text = section.sectionTitle
+                    fitWellCounselorCell.header.sectionTitle.text = sectionModel.sectionType.sectionTitle
                     fitWellCounselorCell.cellTouchDelegate = self
                     fitWellCounselorCell.moreButtonTouchDelegate = self
+                    fitWellCounselorCell.onNextFitWellCounselor(in: sectionModel.sectionItems)
                     
                     return fitWellCounselorCell
                 }

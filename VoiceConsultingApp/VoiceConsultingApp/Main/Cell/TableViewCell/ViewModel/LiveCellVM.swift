@@ -23,10 +23,10 @@ class LiveCellVM: BaseViewModel {
     private let disposeBag = DisposeBag()
     
     init(input: Input = Input(), output: Output = Output()) {
+        
         self.input = input
         self.output = output
         inputSubscribe()
-        getOnlineCounselorList()
     }
     
     private func inputSubscribe() {
@@ -38,7 +38,9 @@ class LiveCellVM: BaseViewModel {
     }
     
     func getOnlineCounselorList() {
+        
         CounselorManager.shared.getOnlineCounselorList(with: 10)
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
             .subscribe({ [weak self] event in
                 
                 switch event {

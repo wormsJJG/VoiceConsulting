@@ -12,10 +12,10 @@ class VoiceCallClient {
     
     var agoraEngine: AgoraRtcEngineKit!
     
-    init {
-        
-//        let config = AgoraRtcEngineConfig()
-//        AgoraRtcEngineDelegate
-//        agoraEngine = AgoraRtcEngineKit.sharedEngine(with: <#T##AgoraRtcEngineConfig#>, delegate: <#T##AgoraRtcEngineDelegate?#>)
-    }
+//    init {
+//
+////        let config = AgoraRtcEngineConfig()
+////        AgoraRtcEngineDelegate
+////        agoraEngine = AgoraRtcEngineKit.sharedEngine(with: <#T##AgoraRtcEngineConfig#>, delegate: <#T##AgoraRtcEngineDelegate?#>)
+//    }
 }

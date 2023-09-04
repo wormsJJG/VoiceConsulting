@@ -7,14 +7,17 @@
 
 import Foundation
 
-enum MainListSection: CaseIterable {
+enum MainSectionType: CaseIterable {
+    
     case banner //배너
     case liveCounselor //현재 상담 가능한
     case popularCounselor //인기많은
     case fitWellCounselor //잘 어울리는 상담사
     
     var sectionTitle: String {
+        
         switch self {
+            
         case .banner:
             return "사진이 들어가야함"
         case .liveCounselor:
@@ -27,7 +30,9 @@ enum MainListSection: CaseIterable {
     }
     
     var row: Int {
+        
         switch self {
+            
         case .banner:
             return 0
         case .liveCounselor:

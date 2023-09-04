@@ -32,21 +32,18 @@ class PopularCell: UITableViewCell {
         return list
     }()
     // MARK: - Properties
-    private let viewModel = PopularCellVM()
+    private let popularCounselorList: PublishSubject<[Counselor]> = PublishSubject()
     private let disposeBag = DisposeBag()
     weak var cellTouchDelegate: CellTouchable?
     weak var moreButtonTouchDelegate: MoreButtonTouchable?
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.selectionStyle = .none
         constraint()
         dataBind()
-        header.moreButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                self?.moreButtonTouchDelegate?.didTouchMoreButton(.popular)
-            })
-            .disposed(by: self.disposeBag)
+        addAction()
     }
     
     required init?(coder: NSCoder) {
@@ -55,6 +52,15 @@ class PopularCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    private func addAction() {
+        
+        header.moreButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.moreButtonTouchDelegate?.didTouchMoreButton(.popular)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func constraint() {
@@ -76,11 +82,16 @@ class PopularCell: UITableViewCell {
             list.bottom.equalTo(self.contentView.snp.bottom).offset(-10)
         }
     }
+    // MARK: - data
+    func onNextPopularCounselor(in counselorList: [Counselor]) {
+        
+        popularCounselorList.onNext(counselorList)
+    }
 }
 // MARK: - CollectionView
 extension PopularCell: UICollectionViewDelegate {
     private func dataBind() {
-        self.viewModel.output.popularCounselorList
+        popularCounselorList
             .bind(to: counselorList.rx.items(cellIdentifier: PopularCounselorCell.cellID, cellType: PopularCounselorCell.self)) { index, counselor, cell in
                 
                 cell.configureCell(in: counselor.info)

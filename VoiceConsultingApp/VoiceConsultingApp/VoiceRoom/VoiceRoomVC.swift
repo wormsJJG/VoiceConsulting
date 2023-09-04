@@ -28,6 +28,8 @@ class VoiceRoomVC: BaseViewController {
         config.appId = AgoraConst.appID.rawValue
         
         rtcKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
+        
+        joinChannel()
     }
 }
 
@@ -43,7 +45,7 @@ extension VoiceRoomVC: AgoraRtcEngineDelegate {
                 
                 print(error)
             } else {
-                
+    
                 let result = self?.rtcKit.joinChannel(byToken: token,
                                                       channelId: FirebaseAuthManager.shared.getUserUid()!,
                                                       uid: 0,
@@ -53,5 +55,15 @@ extension VoiceRoomVC: AgoraRtcEngineDelegate {
                 print(result)
             }
         })
+    }
+    
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {
+        
+        print(uid)
+    }
+    
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {
+        
+        print(channel)
     }
 }

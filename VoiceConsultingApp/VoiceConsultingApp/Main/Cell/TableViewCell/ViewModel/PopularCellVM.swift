@@ -27,7 +27,6 @@ class PopularCellVM: BaseViewModel {
         
         self.input = input
         self.output = output
-        getPopularCounselorList()
     }
 }
 
