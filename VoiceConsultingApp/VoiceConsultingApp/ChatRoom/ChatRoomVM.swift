@@ -15,6 +15,7 @@ class ChatRoomVM: BaseViewModel{
         let viewDidLoadTrigger: PublishSubject<String> = PublishSubject()
         let saveMessageInRealm: PublishSubject<Message> = PublishSubject()
         let didTapTranscationButton: PublishSubject<Void> = PublishSubject()
+        let reportTrigger: PublishSubject<Void> = PublishSubject()
     }
     
     struct Output {
@@ -23,6 +24,7 @@ class ChatRoomVM: BaseViewModel{
         var messageList: [Message] = []
         let isSuccessTranscation: PublishSubject<Bool> = PublishSubject()
         let errorTrigger: PublishSubject<Error> = PublishSubject()
+        let isSuccessReport: PublishSubject<Void> = PublishSubject()
     }
     
     var input: Input
@@ -67,6 +69,13 @@ class ChatRoomVM: BaseViewModel{
             .subscribe(onNext: { [weak self] _ in
                 
                 self?.transcation()
+            })
+            .disposed(by: self.disposeBag)
+        
+        input.reportTrigger
+            .subscribe(onNext: { [weak self] _ in
+                
+                self?.report()
             })
             .disposed(by: self.disposeBag)
     }
@@ -135,5 +144,19 @@ class ChatRoomVM: BaseViewModel{
             
             self.output.isSuccessTranscation.onNext(false)
         }
+    }
+    
+    private func report() {
+        
+        ReportManager.shared.report(reporter: sender.senderId, target: channel!.uid, completion: { [weak self] error in
+            
+            if let error {
+                
+                self?.output.errorTrigger.onNext(error)
+            } else {
+                
+                self?.output.isSuccessReport.onNext(())
+            }
+        })
     }
 }

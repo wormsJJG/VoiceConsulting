@@ -194,6 +194,8 @@
 		359638C32A23A3D900808EA0 /* DeleteAccountPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359638C22A23A3D900808EA0 /* DeleteAccountPopUpVC.swift */; };
 		3598EA532AA5BDBF002BC8CD /* MainSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598EA522AA5BDBF002BC8CD /* MainSectionModel.swift */; };
 		3598EA552AA5C441002BC8CD /* RefreshButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598EA542AA5C441002BC8CD /* RefreshButtonDelegate.swift */; };
+		3598EA582AA6EE14002BC8CD /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598EA572AA6EE14002BC8CD /* Report.swift */; };
+		3598EA5A2AA6EE98002BC8CD /* ReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598EA592AA6EE98002BC8CD /* ReportManager.swift */; };
 		359933C929D07A520098A0FC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933C829D07A520098A0FC /* MainVC.swift */; };
 		359933CB29D07A690098A0FC /* MainV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933CA29D07A690098A0FC /* MainV.swift */; };
 		359933CD29D07A750098A0FC /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359933CC29D07A750098A0FC /* MainVM.swift */; };
@@ -486,6 +488,8 @@
 		359638C22A23A3D900808EA0 /* DeleteAccountPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountPopUpVC.swift; sourceTree = "<group>"; };
 		3598EA522AA5BDBF002BC8CD /* MainSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionModel.swift; sourceTree = "<group>"; };
 		3598EA542AA5C441002BC8CD /* RefreshButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshButtonDelegate.swift; sourceTree = "<group>"; };
+		3598EA572AA6EE14002BC8CD /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		3598EA592AA6EE98002BC8CD /* ReportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportManager.swift; sourceTree = "<group>"; };
 		359933C829D07A520098A0FC /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		359933CA29D07A690098A0FC /* MainV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainV.swift; sourceTree = "<group>"; };
 		359933CC29D07A750098A0FC /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
@@ -1068,6 +1072,7 @@
 				3509AAC42A86669500A0AE0F /* ChatChannelManager.swift */,
 				353347DC2A88E58900547FE1 /* SettlementManager.swift */,
 				35A70CA32A926F5D003551F1 /* ConfigManager.swift */,
+				3598EA592AA6EE98002BC8CD /* ReportManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1141,6 +1146,14 @@
 				3584E7F32A9508AC000E6265 /* AnswerPopUp.swift */,
 			);
 			path = PopUp;
+			sourceTree = "<group>";
+		};
+		3598EA562AA6EC0D002BC8CD /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				3598EA572AA6EE14002BC8CD /* Report.swift */,
+			);
+			path = Report;
 			sourceTree = "<group>";
 		};
 		359933C729D07A270098A0FC /* Main */ = {
@@ -1312,6 +1325,7 @@
 		35C29FF629ECF1BC0018FE04 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3598EA562AA6EC0D002BC8CD /* Report */,
 				353347D72A88E4D000547FE1 /* SettlementDetail */,
 				35086BF52A652FD900739C12 /* CheckData */,
 				35D8E23F2A5568BF0091EB6A /* Agora */,
@@ -1870,6 +1884,7 @@
 				35BB114F2A8D23C7006CA4A5 /* RealmError.swift in Sources */,
 				35EB1A7A2A8E30AD00080241 /* InputUserInfoV.swift in Sources */,
 				358F42FB2A4435B3004BBBE0 /* BuyCoinHistory.swift in Sources */,
+				3598EA582AA6EE14002BC8CD /* Report.swift in Sources */,
 				35EB1A7E2A8E35D300080241 /* InputUserInfoVM.swift in Sources */,
 				35364FDB2A029D7D00C4BC8D /* PushManager.swift in Sources */,
 				35BC511929D1950F00BEA034 /* SelectUseTypeV.swift in Sources */,
@@ -1965,6 +1980,7 @@
 				35A63F692A132FE30058C92D /* EndConsultationSizeCalculator.swift in Sources */,
 				350C6DCA2A0CF68D00332581 /* RequestTransactionCell.swift in Sources */,
 				356F7BCD2A07770100C536D8 /* InfoSectionHeader.swift in Sources */,
+				3598EA5A2AA6EE98002BC8CD /* ReportManager.swift in Sources */,
 				35C29FFD29ECF2A20018FE04 /* Message.swift in Sources */,
 				35308FB629E50784008FB343 /* ChattingListHeader.swift in Sources */,
 				356F7BDD2A07ADDF00C536D8 /* ReviewCell.swift in Sources */,

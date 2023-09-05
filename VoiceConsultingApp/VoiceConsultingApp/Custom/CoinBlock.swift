@@ -22,7 +22,7 @@ class CoinBlock: UIView {
             }
         }
     }
-    
+
     private lazy var coinImage: UIImageView = UIImageView().then {
         $0.image = UIImage(named: AssetImage.coinIcon)
         $0.translatesAutoresizingMaskIntoConstraints = false

@@ -15,6 +15,7 @@ import Then
 import AgoraChat
 import RealmSwift
 import Kingfisher
+import Toast_Swift
 
 class ChatRoomVC: MessagesViewController {
     // MARK: - View Components
@@ -62,6 +63,7 @@ class ChatRoomVC: MessagesViewController {
         setMessageCollectionView()
         inputBarDesign()
         addAction()
+        configureMenuButton()
         viewModel.input.viewDidLoadTrigger.onNext(viewModel.channel!.uid)
     }
     
@@ -117,6 +119,14 @@ extension ChatRoomVC {
                         self?.showLackCoinPopUp()
                     }
                 }
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.isSuccessReport
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                
+                self?.view.makeToast("신고가 완료되었습니다.")
             })
             .disposed(by: self.disposeBag)
     }
@@ -330,6 +340,44 @@ extension ChatRoomVC {
         }
     }
 }
+// MARK: - Configure MenuButton
+extension ChatRoomVC {
+    
+    private func configureMenuButton() {
+        
+        let deleteChatChannel = UIAction(title: "채팅방 나가기", handler: { [weak self] _ in
+            
+            self?.deleteChatChannel()
+        })
+        let report = UIAction(title: "신고하기", handler: { [weak self] _ in
+            
+            self?.report()
+        })
+        
+        let menu = UIMenu(options: .displayInline, children: [deleteChatChannel, report])
+        
+        headerView.menuButton.menu = menu
+    }
+    
+    private func deleteChatChannel() {
+        
+        ChatChannelStorage.shared.deleteChannelAndMessageRoom(uid: viewModel.channel!.uid, completion: { [weak self] error in
+            
+            if let error {
+                
+                self?.showErrorPopUp(errorString: error.localizedDescription)
+            } else {
+                
+                self?.navigationController?.popViewController(animated: true)
+            }
+        })
+    }
+    
+    private func report() {
+  
+        viewModel.input.reportTrigger.onNext(())
+    }
+}
 // MARK: - imagePicker
 extension ChatRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -337,7 +385,24 @@ extension ChatRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         
         let picker = UIImagePickerController()
         
-        isCamera ? picker.sourceType == .photoLibrary : picker.sourceType == .camera
+        if isCamera {
+            
+            picker.sourceType = .camera
+        } else {
+            let deleteChatChannel = UIAction(title: "채팅방 나가기", handler: { [weak self] _ in
+                
+                self?.deleteChatChannel()
+            })
+            let report = UIAction(title: "신고하기", handler: { [weak self] _ in
+                
+                self?.report()
+            })
+            
+            let menu = UIMenu(options: .displayInline, children: [deleteChatChannel, report])
+            
+            headerView.menuButton.menu = menu
+            picker.sourceType = .photoLibrary
+        }
         picker.allowsEditing = true // 편집 가능
         picker.delegate = self
         
