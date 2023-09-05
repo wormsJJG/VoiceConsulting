@@ -18,7 +18,7 @@ class CounselorDetailHeader: UIView {
     let counselorLabel: UILabel = UILabel().then {
         $0.textColor = ColorSet.mainText
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 16)
-        $0.text = "김이름 상담사"
+        $0.text = ""
     }
     
     private lazy var leftStackView: UIStackView = UIStackView(arrangedSubviews: [backButton, counselorLabel]).then {

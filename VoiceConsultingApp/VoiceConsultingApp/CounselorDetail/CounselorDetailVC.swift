@@ -30,6 +30,7 @@ class CounselorDetailVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        playLoadAnimation()
         outputSubscribe()
         setDelegates()
         addAction()
@@ -50,6 +51,7 @@ class CounselorDetailVC: BaseViewController {
                     
                 self?.counselorDetailV.header.counselorLabel.text = self?.viewModel.output.counselor!.info.name
                 self?.counselorDetailV.infoList.reloadData()
+                self?.stopAnimation()
             })
             .disposed(by: self.disposeBag)
         
@@ -64,6 +66,14 @@ class CounselorDetailVC: BaseViewController {
             .bind(onNext: { [weak self] isOnline in
                 
                 self?.didCompletedCheckIsOnline(isOnline)
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.errorTrigger
+            .subscribe(onNext:{ [weak self] error in
+                
+                self?.stopAnimation()
+                self?.showErrorPopUp(errorString: error.localizedDescription)
             })
             .disposed(by: self.disposeBag)
     }
@@ -85,6 +95,7 @@ class CounselorDetailVC: BaseViewController {
                 self?.addChatChannel()
             })
             
+            self.stopAnimation()
             showPopUp(popUp: noOnlineCounselorPopUp)
         }
     }
@@ -106,7 +117,7 @@ class CounselorDetailVC: BaseViewController {
                 
                 if let error {
                     
-                    print(error.localizedDescription)
+                    self?.showErrorPopUp(errorString: error.localizedDescription)
                 } else {
                     
                     self?.moveChatRoomVC(chatChannel)
@@ -427,6 +438,7 @@ extension CounselorDetailVC {
                 
                 if Config.isUser {
                     
+                    self?.playLoadAnimation()
                     self?.viewModel.input.didTapConsultingButton.onNext((self?.viewModel.output.counselor!.uid)!)
                 } else {
                     

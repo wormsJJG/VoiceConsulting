@@ -44,22 +44,16 @@ class PopUpVC: UIViewController {
         $0.distribution = .fill
     }
     
-    var cancelButton: UIButton = UIButton().then {
-        $0.setTitle("취소", for: .normal)
-        $0.setTitleColor(ColorSet.subTextColor, for: .normal)
-        $0.titleLabel?.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 16)
-        $0.backgroundColor = ColorSet.line
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 10
+    var cancelButton: PlainButton = PlainButton().then {
+        
+        $0.titleText = "취소"
+        $0.titleTextColor = ColorSet.subTextColor
+        $0.buttonBackgroundColor = ColorSet.line
     }
     
-    var doneButton: UIButton = UIButton().then {
-        $0.setTitle("네", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 16)
-        $0.backgroundColor = ColorSet.mainColor
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 10
+    var doneButton: PlainButton = PlainButton().then {
+        
+        $0.titleText = "네"
     }
     
     lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [cancelButton, doneButton]).then {

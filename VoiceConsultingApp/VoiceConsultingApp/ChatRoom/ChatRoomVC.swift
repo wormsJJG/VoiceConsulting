@@ -15,10 +15,11 @@ import Then
 import AgoraChat
 import RealmSwift
 import Kingfisher
+import Toast_Swift
 
 class ChatRoomVC: MessagesViewController {
     // MARK: - View Components
-    private let headerview = ChatRoomHeader().then {
+    private let headerView = ChatRoomHeader().then {
         
         $0.coinBlock.isHidden = !Config.isUser
         $0.heartButton.isHidden = !Config.isUser
@@ -56,12 +57,13 @@ class ChatRoomVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        outputSubsribe()
+        outputSubscribe()
         setDelegates()
         constraints()
         setMessageCollectionView()
         inputBarDesign()
         addAction()
+        configureMenuButton()
         viewModel.input.viewDidLoadTrigger.onNext(viewModel.channel!.uid)
     }
     
@@ -86,7 +88,7 @@ class ChatRoomVC: MessagesViewController {
 // MARK: - Output Subscribe
 extension ChatRoomVC {
     
-    private func outputSubsribe() {
+    private func outputSubscribe() {
         
         viewModel.output.reloadTrigger
             .observe(on: MainScheduler.instance)
@@ -119,6 +121,31 @@ extension ChatRoomVC {
                 }
             })
             .disposed(by: self.disposeBag)
+        
+        viewModel.output.isSuccessReport
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                
+                self?.view.makeToast("신고가 완료되었습니다.")
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.isSuccessHeart
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isHeart in
+                
+                self?.headerView.heartButton.isHeart = isHeart
+                self?.view.makeToast("찜하기가 완료되었습니다.")
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.isHeartCounselor
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isHeart in
+                
+                self?.headerView.heartButton.isHeart = isHeart
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - Helper
@@ -129,7 +156,7 @@ extension ChatRoomVC {
         self.viewModel.channel = chatChannel
         DispatchQueue.main.async { [weak self] in
             
-            self?.headerview.counselorLabel.text = chatChannel.name
+            self?.headerView.counselorLabel.text = chatChannel.name
         }
     }
 }
@@ -140,6 +167,12 @@ extension ChatRoomVC: MessageReceiveable {
     func didReceiveMessage(message: Message) { //메세지가 오면 호출
         
         viewModel.input.saveMessageInRealm.onNext(message)
+        
+        if message.systemMessageType == .transactionCompleted && Config.isUser == false {
+            
+            self.view.makeToast("결제가 완료되어 코인이 적립되었습니다.")
+            Config.coin += 100
+        }
     }
 }
 // MARK: - setDelegates
@@ -153,7 +186,7 @@ extension ChatRoomVC {
         messagesCollectionView.messagesDisplayDelegate = self
         AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
         messageInputBar.delegate = self
-        headerview.heartButton.delegate = self
+        headerView.heartButton.delegate = self
         customInputView.delegate = self
     }
 }
@@ -162,7 +195,7 @@ extension ChatRoomVC {
     
     private func addAction() {
         
-        headerview.backButton.rx.tap
+        headerView.backButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 
                 self?.navigationController?.popViewController(animated: true)
@@ -316,7 +349,7 @@ extension ChatRoomVC: HeartButtonDelegate {
     
     func didTapHeartButton(didTap: Bool) {
         
-        print(didTap)
+        viewModel.input.didTapHeartButton.onNext(didTap)
     }
 }
 // MARK: - bindData
@@ -326,8 +359,46 @@ extension ChatRoomVC {
         
         DispatchQueue.main.async { [weak self] in
                 
-            self?.headerview.coinBlock.coinCount.text = String(Config.coin)
+            self?.headerView.coinBlock.coinCount.text = String(Config.coin)
         }
+    }
+}
+// MARK: - Configure MenuButton
+extension ChatRoomVC {
+    
+    private func configureMenuButton() {
+        
+        let deleteChatChannel = UIAction(title: "채팅방 나가기", handler: { [weak self] _ in
+            
+            self?.deleteChatChannel()
+        })
+        let report = UIAction(title: "신고하기", handler: { [weak self] _ in
+            
+            self?.report()
+        })
+        
+        let menu = UIMenu(options: .displayInline, children: [deleteChatChannel, report])
+        
+        headerView.menuButton.menu = menu
+    }
+    
+    private func deleteChatChannel() {
+        
+        ChatChannelStorage.shared.deleteChannelAndMessageRoom(uid: viewModel.channel!.uid, completion: { [weak self] error in
+            
+            if let error {
+                
+                self?.showErrorPopUp(errorString: error.localizedDescription)
+            } else {
+                
+                self?.navigationController?.popViewController(animated: true)
+            }
+        })
+    }
+    
+    private func report() {
+  
+        viewModel.input.reportTrigger.onNext(())
     }
 }
 // MARK: - imagePicker
@@ -337,7 +408,24 @@ extension ChatRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         
         let picker = UIImagePickerController()
         
-        isCamera ? picker.sourceType == .photoLibrary : picker.sourceType == .camera
+        if isCamera {
+            
+            picker.sourceType = .camera
+        } else {
+            let deleteChatChannel = UIAction(title: "채팅방 나가기", handler: { [weak self] _ in
+                
+                self?.deleteChatChannel()
+            })
+            let report = UIAction(title: "신고하기", handler: { [weak self] _ in
+                
+                self?.report()
+            })
+            
+            let menu = UIMenu(options: .displayInline, children: [deleteChatChannel, report])
+            
+            headerView.menuButton.menu = menu
+            picker.sourceType = .photoLibrary
+        }
         picker.allowsEditing = true // 편집 가능
         picker.delegate = self
         
@@ -542,7 +630,7 @@ extension ChatRoomVC: InputBarAccessoryViewDelegate {
         messageInputBar.inputTextView.placeholder = "메세지를 입력하세요"
         messageInputBar.inputTextView.placeholderLabel.font = UIFont(name: Fonts.NotoSansKR_Regular, size: 16)
         messageInputBar.inputTextView.placeholderTextColor = ColorSet.date
-        messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
+        messageInputBar.inputTextView.textContainerInset = .init(top: 10, left: 16, bottom: 10, right: 16)
         messageInputBar.inputTextView.font = UIFont(name: Fonts.NotoSansKR_Regular, size: 16)
         messageInputBar.inputTextView.textColor = ColorSet.mainText
     }
@@ -721,9 +809,9 @@ extension ChatRoomVC {
     
     private func constraints() {
         
-        view.addSubview(headerview)
+        view.addSubview(headerView)
         
-        headerview.snp.makeConstraints {
+        headerView.snp.makeConstraints {
             
             $0.left.equalTo(self.view.snp.left)
             $0.top.equalTo(self.view.snp.top)
@@ -736,7 +824,7 @@ extension ChatRoomVC {
             
             $0.height.equalTo(66)
             $0.left.equalTo(self.view.snp.left)
-            $0.top.equalTo(self.headerview.snp.bottom)
+            $0.top.equalTo(self.headerView.snp.bottom)
             $0.right.equalTo(self.view.snp.right)
         }
     }

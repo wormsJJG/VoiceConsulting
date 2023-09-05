@@ -12,13 +12,16 @@ import RxCocoa
 class SelectCategoryVM: BaseViewModel {
     
     struct Input {
+        
         var userSelectCategoryList: [String] = []
         var didTapCompleteButton: PublishSubject<Void> = PublishSubject()
     }
     
     struct Output {
+        
         let categoryList: PublishSubject<[CategoryType]> = PublishSubject()
         let completion: PublishSubject<Error?> = PublishSubject()
+        let fetchDataComplation: PublishSubject<Error?> = PublishSubject()
     }
     
     var input: Input
@@ -27,6 +30,7 @@ class SelectCategoryVM: BaseViewModel {
     
     init(input: Input = Input(),
          output: Output = Output()) {
+        
         self.input = input
         self.output = output
         inputSubscribe()
@@ -34,6 +38,7 @@ class SelectCategoryVM: BaseViewModel {
     }
     
     private func inputSubscribe() {
+        
         self.input.didTapCompleteButton
             .filter { !self.input.userSelectCategoryList.isEmpty }
             .bind(onNext: { [weak self] _ in
@@ -53,9 +58,10 @@ class SelectCategoryVM: BaseViewModel {
                 case .next(let categoryList):
                     
                     self?.output.categoryList.onNext(categoryList)
+                    self?.output.fetchDataComplation.onNext(nil)
                 case .error(let error):
                     
-                    print(error)
+                    self?.output.fetchDataComplation.onNext(error)
                 case .completed:
                     
                     print("onCompleted")

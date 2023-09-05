@@ -21,6 +21,7 @@ class SplashVM: BaseViewModel {
         let pushMainVCTrigger: PublishSubject<Void> = PublishSubject()
         let isNoLogin: PublishSubject<Void> = PublishSubject()
         let pushSelectUseTypeVCTrigger: PublishSubject<Void> = PublishSubject()
+        let errorTrigger: PublishSubject<Error> = PublishSubject()
     }
     
     var input: Input
@@ -30,6 +31,7 @@ class SplashVM: BaseViewModel {
     init(input: Input = Input(), output: Output = Output()) {
         self.input = input
         self.output = output
+        
         inputSubscribe()
     }
     
@@ -37,6 +39,7 @@ class SplashVM: BaseViewModel {
     private func inputSubscribe() {
         input.isEnterUser
             .subscribe(onNext: { [weak self] _ in
+                self?.initBadgeCount()
                 // 로그인 검사
                 if let uid = FirebaseAuthManager.shared.getUserUid() {
                     
@@ -74,7 +77,7 @@ class SplashVM: BaseViewModel {
                 }
             case .error(let error):
                 
-                print(error.localizedDescription)
+                self?.output.errorTrigger.onNext(error)
             case .completed:
                 
                 print("completed")
@@ -100,7 +103,7 @@ class SplashVM: BaseViewModel {
                     self?.agoraLogin()
                 case .error(let error):
                     
-                    print(error.localizedDescription)
+                    self?.output.errorTrigger.onNext(error)
                 case .completed:
                     
                     print("completed")
@@ -128,7 +131,7 @@ class SplashVM: BaseViewModel {
                         self?.agoraLogin()
                     case .error(let error):
                         
-                        print(error.localizedDescription)
+                        self?.output.errorTrigger.onNext(error)
                     case .completed:
                         
                         print("completed")
@@ -154,7 +157,7 @@ class SplashVM: BaseViewModel {
                             self?.output.pushMainVCTrigger.onNext(())
                         case .error(let error):
                             
-                            print(error.localizedDescription)
+                            self?.output.errorTrigger.onNext(error)
                         case .completed:
                             
                             print("completed")
@@ -169,5 +172,13 @@ class SplashVM: BaseViewModel {
             
             self.output.pushMainVCTrigger.onNext(())
         }
+    }
+    
+    private func initBadgeCount() {
+        
+        ChatChannelStorage.shared.fetchUnReadMessageCount(unReadMessageCount: { count in
+            
+            UIApplication.shared.applicationIconBadgeNumber = count
+        })
     }
 }

@@ -138,4 +138,43 @@ class ChatChannelStorage {
             print(error)
         }
     }
+    
+    func fetchUnReadMessageCount(unReadMessageCount: @escaping (Int) -> Void) {
+        
+        var count: Int = 0
+        
+        let chatChannelList = storage.objects(ChatChannel.self)
+        
+        if chatChannelList.isEmpty {
+            
+            unReadMessageCount(count)
+        } else {
+            
+            chatChannelList.map { $0.unReadMessageCount }.forEach {
+                
+                count += $0
+            }
+            
+            unReadMessageCount(count)
+        }
+    }
+    
+    func deleteChannelAndMessageRoom(uid: String, completion: @escaping((Error?) -> Void)) {
+        
+        let channel = storage.objects(ChatChannel.self).filter("uid = '\(uid)'")
+        let messageRoom = storage.objects(RealmMessageListByUid.self).filter("uid == '\(uid)'")
+        
+        do {
+            
+            try storage.write {
+                
+                storage.delete(channel)
+                storage.delete(messageRoom)
+                completion(nil)
+            }
+        } catch {
+            
+            completion(error)
+        }
+    }
 }

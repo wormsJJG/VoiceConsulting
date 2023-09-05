@@ -12,12 +12,9 @@ import SnapKit
 class CounselorDetailV: UIView {
     let header: CounselorDetailHeader = CounselorDetailHeader()
     
-    let startConsultButton: UIButton = UIButton().then {
-        $0.backgroundColor = ColorSet.mainColor
-        $0.setTitle("상담하기", for: .normal)
-        $0.titleLabel?.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 16)
-        $0.setTitleColor(.white, for: .normal)
-        $0.layer.cornerRadius = 10
+    let startConsultButton: PlainButton = PlainButton().then {
+        
+        $0.titleText = "상담하기"
     }
     
     let stikyTapView: CustomTabBar = CustomTabBar().then {

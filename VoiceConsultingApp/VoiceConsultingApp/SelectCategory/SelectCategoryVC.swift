@@ -22,6 +22,8 @@ class SelectCategoryVC: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        playLoadAnimation()
         bindCategoryList()
         bindOutput()
         addCompleteButtonAction()
@@ -29,6 +31,7 @@ class SelectCategoryVC: BaseViewController {
 }
 // MARK: - CategoryList Bind, Cell FlowLayout
 extension SelectCategoryVC: UICollectionViewDelegateFlowLayout {
+    
     private func bindCategoryList() {
         
         selectCategoryV.categoryList.rx.setDelegate(self)
@@ -85,6 +88,7 @@ extension SelectCategoryVC {
             .bind(onNext: { [weak self] _ in
                 
                 self?.viewModel.input.didTapCompleteButton.onNext(())
+                self?.playLoadAnimation()
             })
             .disposed(by: self.disposeBag)
     }
@@ -97,12 +101,26 @@ extension SelectCategoryVC {
         self.viewModel.output.completion
             .bind(onNext: { [weak self] error in
                 
+                self?.stopAnimation()
+                
                 if let error {
                     
-                    print(error.localizedDescription)
+                    self?.showErrorPopUp(errorString: error.localizedDescription)
                 } else {
                     
                     self?.moveMain()
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.viewModel.output.fetchDataComplation
+            .bind(onNext: { [weak self] error in
+                
+                self?.stopAnimation()
+                
+                if let error {
+                    
+                    self?.showErrorPopUp(errorString: error.localizedDescription)
                 }
             })
             .disposed(by: self.disposeBag)

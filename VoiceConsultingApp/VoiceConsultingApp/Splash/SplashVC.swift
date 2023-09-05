@@ -31,24 +31,31 @@ class SplashVC: BaseViewController {
 extension SplashVC {
     // 유저 검증 (로그인이 되어있는지 안되어 있는지 검증)
     private func outputSubscrbe() {
-        self.viewModel.output.pushMainVCTrigger
+        viewModel.output.pushMainVCTrigger
             .bind(onNext: { [weak self] isLogin in
                 
                 self?.moveMain()
             })
             .disposed(by: self.disposeBag)
         
-        self.viewModel.output.isNoLogin
+        viewModel.output.isNoLogin
             .bind(onNext: { [weak self] _ in
                 
                 self?.moveLoginVC()
             })
             .disposed(by: self.disposeBag)
         
-        self.viewModel.output.pushSelectUseTypeVCTrigger
+        viewModel.output.pushSelectUseTypeVCTrigger
             .bind(onNext: { [weak self] _ in
                 
                 self?.moveSelectUseTypeVC()
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.errorTrigger
+            .subscribe(onNext: { [weak self] error in
+                
+                self?.showErrorPopUp(errorString: error.localizedDescription)
             })
             .disposed(by: self.disposeBag)
     }

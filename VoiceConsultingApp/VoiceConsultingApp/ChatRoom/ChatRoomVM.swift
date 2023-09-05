@@ -15,6 +15,8 @@ class ChatRoomVM: BaseViewModel{
         let viewDidLoadTrigger: PublishSubject<String> = PublishSubject()
         let saveMessageInRealm: PublishSubject<Message> = PublishSubject()
         let didTapTranscationButton: PublishSubject<Void> = PublishSubject()
+        let reportTrigger: PublishSubject<Void> = PublishSubject()
+        let didTapHeartButton: PublishSubject<Bool> = PublishSubject()
     }
     
     struct Output {
@@ -23,6 +25,9 @@ class ChatRoomVM: BaseViewModel{
         var messageList: [Message] = []
         let isSuccessTranscation: PublishSubject<Bool> = PublishSubject()
         let errorTrigger: PublishSubject<Error> = PublishSubject()
+        let isSuccessReport: PublishSubject<Void> = PublishSubject()
+        let isSuccessHeart: PublishSubject<Bool> = PublishSubject()
+        let isHeartCounselor: PublishSubject<Bool> = PublishSubject()
     }
     
     var input: Input
@@ -48,6 +53,7 @@ class ChatRoomVM: BaseViewModel{
                 
                 self?.initUnreadMessage()
                 self?.fetchMessageList(by: uid)
+                self?.checkCounselorHeart(in: uid)
             })
             .disposed(by: self.disposeBag)
         
@@ -69,6 +75,13 @@ class ChatRoomVM: BaseViewModel{
                 self?.transcation()
             })
             .disposed(by: self.disposeBag)
+        
+        input.reportTrigger
+            .subscribe(onNext: { [weak self] _ in
+                
+                self?.report()
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func fetchMessageList(by uid: String) {
@@ -81,12 +94,11 @@ class ChatRoomVM: BaseViewModel{
                     
                 case .next(let messageList):
                     
-                    self?.allMessageList = messageList
-                    self?.output.messageList = messageList.suffix(20)
+                    self?.output.messageList = messageList
                     self?.output.reloadTrigger.onNext(())
                 case .error(let error):
                     
-                    print(error)
+                    self?.output.errorTrigger.onNext(error)
                 case .completed:
                     
                     print(#function)
@@ -124,7 +136,10 @@ class ChatRoomVM: BaseViewModel{
                         } else {
                             
                             Config.coin -= 100
-                            self?.output.isSuccessTranscation.onNext(true)
+                            ConsultingHistoryManager.shared.writeConsultingHistory(userId: self!.sender.senderId, counselorId: self!.channel!.uid, completion: { error in
+                                
+                                self?.output.isSuccessTranscation.onNext(true)
+                            })
                         }
                     })
                 }
@@ -133,5 +148,69 @@ class ChatRoomVM: BaseViewModel{
             
             self.output.isSuccessTranscation.onNext(false)
         }
+    }
+    
+    private func report() {
+        
+        ReportManager.shared.report(reporter: sender.senderId, target: channel!.uid, completion: { [weak self] error in
+            
+            if let error {
+                
+                self?.output.errorTrigger.onNext(error)
+            } else {
+                
+                self?.output.isSuccessReport.onNext(())
+            }
+        })
+    }
+    
+    private func heartCounselor(isHeart: Bool) {
+        
+        FavouriteManager.shared.addFavouriteCounselor(isHeart: isHeart, counselorUid: channel!.uid)
+            .subscribe({ [weak self] event in
+                
+                let counselorUid = self!.channel!.uid
+                switch event {
+                    
+                case .next(let isHeart):
+                    
+                    self?.output.isSuccessHeart.onNext(isHeart)
+                    if isHeart {
+                        
+                        CounselorManager.shared.increaseHeart(in: counselorUid)
+                    } else {
+                        
+                        CounselorManager.shared.decreaseHeart(in: counselorUid)
+                    }
+                case .error(let error):
+                    
+                    self?.output.errorTrigger.onNext(error)
+                case .completed:
+                    
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func checkCounselorHeart(in counselorUid: String) {
+        
+        FavouriteManager.shared.checkIsFavorite(in: counselorUid)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let isHeart):
+                    
+                    self?.output.isHeartCounselor.onNext(isHeart)
+                case .error(let error):
+                    
+                    self?.output.errorTrigger.onNext(error)
+                case .completed:
+                    
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }

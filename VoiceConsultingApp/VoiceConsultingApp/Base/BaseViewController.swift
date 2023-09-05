@@ -7,37 +7,75 @@
 
 import UIKit
 import AcknowList
-import AgoraChat
+import Lottie
+import Then
+import SnapKit
 
 class BaseViewController: UIViewController {
+    
+    private let animationView = LottieAnimationView(name: "LoadingAnimation")
+    
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
         isHiddenNavigationBar()
+        animationViewConfigure()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    // MARK: - Configure
+    private func animationViewConfigure() {
         
+        animationView.contentMode = .scaleAspectFit
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.loopMode = .loop
+        animationView.isHidden = true
+        animationView.layer.zPosition = 999
         
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        view.addSubview(animationView)
         
-        
+        animationView.snp.makeConstraints {
+            
+            $0.edges.equalToSuperview()
+        }
     }
     // MARK: - Util
-    
     func isHiddenBackButton() {
+        
         self.navigationItem.hidesBackButton = true
     }
     
     func isHiddenNavigationBar() {
+        
         self.navigationController?.navigationBar.isHidden = true
     }
-    // MARK: - MoveView
+    
+    func didStopTouch() {
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    
+    func didBeginTouch() {
+        
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
+    
+    func playLoadAnimation() {
+        
+        self.animationView.isHidden = false
+        self.animationView.play()
+        didStopTouch()
+    }
+    
+    func stopAnimation() {
+        
+        self.animationView.isHidden = true
+        self.animationView.stop()
+        didBeginTouch()
+    }
+}
+// MARK: - MoveView
+extension BaseViewController {
     
     func moveChatRoomVC(_ chatChannel: ChatChannel) {
         
@@ -45,7 +83,10 @@ class BaseViewController: UIViewController {
         chatRoomVC.setChatChannel(chatChannel)
         chatRoomVC.hidesBottomBarWhenPushed = true
         
-        self.navigationController?.pushViewController(chatRoomVC, animated: true)
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
+            
+            self.navigationController?.pushViewController(chatRoomVC, animated: true)
+        }
     }
     
     func moveSplashVC() {
@@ -222,8 +263,11 @@ class BaseViewController: UIViewController {
         
         self.navigationController?.pushViewController(toSettleVC, animated: true)
     }
-    
-    // MARK: - KeyBoard
+}
+
+// MARK: - Keyboard Noti
+extension BaseViewController {
+
     func setKeyboardObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -250,55 +294,5 @@ class BaseViewController: UIViewController {
                 }
             }
         }
-    }
-}
-
-extension BaseViewController: AgoraChatManagerDelegate, AgoraChatClientDelegate {
-    
-    private func registerNotifications() {
-        self.unregisterNotifications()
-        AgoraChatClient.shared().add(self, delegateQueue: nil)
-        AgoraChatClient.shared().chatManager?.add(self, delegateQueue: nil)
-    }
-    
-    private func unregisterNotifications() {
-        AgoraChatClient.shared().removeDelegate(self)
-        AgoraChatClient.shared().chatManager?.remove(self)
-    }
-    
-    func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
-        
-        for message in aMessages {
-            
-            let state = UIApplication.shared.applicationState
-            switch state {
-                
-            case .inactive, .active:
-                
-                showLocalNotification(in: message)
-            case .background:
-                
-                showLocalNotification(in: message)
-            default:
-                
-                break
-            }
-        }
-    }
-    
-    private func showLocalNotification(in message: AgoraChatMessage) {
-        
-        guard let ext = message.ext,
-              let apnsItem = ext["em_apns_ext"],
-              let convertApns = apnsItem as? [String: Any],
-              let senderName = convertApns["senderName"] as? String,
-              let message = convertApns["message"] as? String else { return }
-        
-        let content = UNMutableNotificationContent()
-        content.title = senderName
-        content.body = message
-        
-        let request = UNNotificationRequest(identifier: "agoraChat", content: content, trigger: .none)
-        UNUserNotificationCenter.current().add(request)
     }
 }

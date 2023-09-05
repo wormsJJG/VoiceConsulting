@@ -38,13 +38,15 @@ class LiveCell: UITableViewCell {
         $0.numberOfLines = 2
     }
     // MARK: - Properties
-    private let viewModel = LiveCellVM()
+    private let onlineCounselorList: PublishSubject<[Counselor]> = PublishSubject()
     private let disposeBag = DisposeBag()
     weak var cellTouchDelegate: CellTouchable?
     weak var moreButtonTouchDelegate: MoreButtonTouchable?
+    weak var refreshButtonDelegate: RefreshButtonDelegate?
     // MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.selectionStyle = .none
         constraint()
         bindCollectionView()
@@ -78,6 +80,11 @@ class LiveCell: UITableViewCell {
             list.bottom.equalTo(self.contentView.snp.bottom).offset(-10)
         }
     }
+    // MARK: - data
+    func onNextLiveCounselor(in counselorList: [Counselor]) {
+        
+        onlineCounselorList.onNext(counselorList)
+    }
 }
 // MARK: - ButtonTap
 extension LiveCell {
@@ -92,15 +99,17 @@ extension LiveCell {
         self.header.refreshButton.rx.tap
             .bind(onNext: { [weak self] _ in
                 
-                self?.viewModel.input.refreshTrigger.onNext(())
+                self?.refreshButtonDelegate?.didTapRefreshButton()
             })
             .disposed(by: self.disposeBag)
     }
 }
 // MARK: - Data bind
 extension LiveCell: UICollectionViewDelegate {
+    
     private func bindCollectionView() {
-        self.viewModel.output.onlineCounselorList
+        
+        onlineCounselorList
             .map { $0.isEmpty }
             .bind(onNext: { [weak self] isNoData in
                 
@@ -114,7 +123,7 @@ extension LiveCell: UICollectionViewDelegate {
             })
             .disposed(by: self.disposeBag)
         
-        self.viewModel.output.onlineCounselorList
+        onlineCounselorList
             .bind(to: counselorList.rx.items(cellIdentifier: LiveCounselorCell.cellID, cellType: LiveCounselorCell.self)) { index, counselor, cell in
                 
                 cell.configureCell(in: counselor.info)

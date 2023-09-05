@@ -33,21 +33,18 @@ class FitWellCell: UITableViewCell {
     }()
     
     // MARK: - Properties
-    private let viewModel = FitWellCellVM()
+    private let fitWellCounselorList: PublishSubject<[Counselor]> = PublishSubject()
     weak var cellTouchDelegate: CellTouchable?
     weak var moreButtonTouchDelegate: MoreButtonTouchable?
     private let disposeBag = DisposeBag()
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.selectionStyle = .none
         constraint()
         dataBind()
-        header.moreButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                self?.moreButtonTouchDelegate?.didTouchMoreButton(.fitWell)
-            })
-            .disposed(by: self.disposeBag)
+        addAction()
     }
     
     required init?(coder: NSCoder) {
@@ -56,6 +53,15 @@ class FitWellCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    private func addAction() {
+        
+        header.moreButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.moreButtonTouchDelegate?.didTouchMoreButton(.fitWell)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func constraint() {
@@ -78,8 +84,14 @@ class FitWellCell: UITableViewCell {
         }
     }
     
+    // MARK: - data
+    func onNextFitWellCounselor(in counselorList: [Counselor]) {
+        
+        fitWellCounselorList.onNext(counselorList)
+    }
+    
     private func dataBind() {
-        self.viewModel.output.fitWellCounselorList
+        fitWellCounselorList
             .bind(to: counselorList.rx.items(cellIdentifier: FitWellCounselorCell.cellID, cellType: FitWellCounselorCell.self)) { index, counselor, cell in
                 
                 cell.configureCell(in: counselor.info)

@@ -16,6 +16,7 @@ class AgoraPushManager: NSObject, AgoraChatManagerDelegate, AgoraChatClientDeleg
         
         let options = AgoraChatOptions(appkey: AgoraConst.appKey.rawValue)
         options.apnsCertName = AgoraConst.apnsCertName.rawValue
+        options.isAutoLogin = true
         
         AgoraChatClient.shared().initializeSDK(with: options)
     }
@@ -30,17 +31,6 @@ class AgoraPushManager: NSObject, AgoraChatManagerDelegate, AgoraChatClientDeleg
             } else {
                 
                 print("\(deviceToken)")
-            }
-        }
-    }
-    
-    func pushManagerSetting() {
-        
-        AgoraChatClient.shared().pushManager?.setPreferredNotificationLanguage("KR") { error in
-            
-            if let error {
-                
-                print(error.errorDescription)
             }
         }
     }

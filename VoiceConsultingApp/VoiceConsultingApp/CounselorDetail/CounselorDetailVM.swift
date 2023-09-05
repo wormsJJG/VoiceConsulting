@@ -12,17 +12,20 @@ import RxCocoa
 class CounselorDetailVM: BaseViewModel {
     
     struct Input {
+        
         let getDataTrigger: PublishSubject<String> = PublishSubject()
         let didTapConsultingButton: PublishSubject<String> = PublishSubject()
     }
     
     struct Output {
+        
         let reloadTrigger: PublishSubject<Void> = PublishSubject()
         let section = CounselorInfoSection.allCases
         var counselor: Counselor?
         var reviewList: ReviewList?
         let isHeartCounselor: PublishSubject<Bool> = PublishSubject()
         let completedCheckIsOnline: PublishSubject<Bool> = PublishSubject()
+        let errorTrigger: PublishSubject<Error> = PublishSubject()
     }
     
     var input: Input
@@ -70,7 +73,7 @@ class CounselorDetailVM: BaseViewModel {
                     self?.checkCounselorHeart(in: counselor.uid)
                 case .error(let error):
                     
-                    print(error)
+                    self?.output.errorTrigger.onNext(error)
                 case .completed:
                     
                     print(#function)
@@ -92,7 +95,7 @@ class CounselorDetailVM: BaseViewModel {
                     self?.output.reloadTrigger.onNext(())
                 case .error(let error):
                     
-                    print(error)
+                    self?.output.errorTrigger.onNext(error)
                 case .completed:
                     print(#function)
                 }
@@ -112,7 +115,7 @@ class CounselorDetailVM: BaseViewModel {
                     self?.output.isHeartCounselor.onNext(isHeart)
                 case .error(let error):
                     
-                    print(error.localizedDescription)
+                    self?.output.errorTrigger.onNext(error)
                 case .completed:
                     
                     print(#function)
@@ -142,7 +145,7 @@ class CounselorDetailVM: BaseViewModel {
                         }
                     case .error(let error):
                         
-                        print(error.localizedDescription)
+                        self?.output.errorTrigger.onNext(error)
                     case .completed:
                         
                         print(#function)
@@ -159,9 +162,9 @@ class CounselorDetailVM: BaseViewModel {
             .subscribe(onNext: { [weak self] isOnline in
                 
                 self?.output.completedCheckIsOnline.onNext(isOnline)
-            }, onError: { error in
+            }, onError: { [weak self] error in
                 
-                print(error.localizedDescription)
+                self?.output.errorTrigger.onNext(error)
             })
             .disposed(by: self.disposeBag)
     }

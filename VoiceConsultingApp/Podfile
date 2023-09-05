@@ -34,7 +34,8 @@ pod 'Cosmos'
 pod 'RealmSwift'
 pod 'GoogleSignIn'
 pod 'MessageKit'
-
+pod 'lottie-ios'
+ 
   target 'VoiceConsultingAppTests' do
     inherit! :search_paths
     # Pods for testing

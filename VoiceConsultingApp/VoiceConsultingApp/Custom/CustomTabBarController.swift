@@ -161,6 +161,16 @@ extension CustomTabBarController: AgoraChatManagerDelegate, AgoraChatClientDeleg
     
     private func didReceiveMessageBackground(message: Message) {
         
+        if let didEnterChatRoomUid = MessageClient.shared.didEnterChatRoomUid { // 유저가 채팅방에 들어가있는가?
+            
+            if message.sender.senderId == didEnterChatRoomUid { // 유저가 들어간 채팅방 uid와 보낸사람의 uid가 같은가?
+                    
+                MessageClient.shared.delegate?.didReceiveMessage(message: message)
+                showLocalNotification(in: message)
+                return
+            }
+        }
+        
         if ChatChannelStorage.shared.isExistChannel(by: message.sender.senderId) { // 저장된 챗 채널이 있는가?
             
             MessageStorage.shared.saveMessage(by: message.sender.senderId, message: message.toRealmMessage())
