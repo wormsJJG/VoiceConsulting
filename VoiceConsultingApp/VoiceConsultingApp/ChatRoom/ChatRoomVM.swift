@@ -16,6 +16,7 @@ class ChatRoomVM: BaseViewModel{
         let saveMessageInRealm: PublishSubject<Message> = PublishSubject()
         let didTapTranscationButton: PublishSubject<Void> = PublishSubject()
         let reportTrigger: PublishSubject<Void> = PublishSubject()
+        let didTapHeartButton: PublishSubject<Bool> = PublishSubject()
     }
     
     struct Output {
@@ -25,6 +26,8 @@ class ChatRoomVM: BaseViewModel{
         let isSuccessTranscation: PublishSubject<Bool> = PublishSubject()
         let errorTrigger: PublishSubject<Error> = PublishSubject()
         let isSuccessReport: PublishSubject<Void> = PublishSubject()
+        let isSuccessHeart: PublishSubject<Bool> = PublishSubject()
+        let isHeartCounselor: PublishSubject<Bool> = PublishSubject()
     }
     
     var input: Input
@@ -50,6 +53,7 @@ class ChatRoomVM: BaseViewModel{
                 
                 self?.initUnreadMessage()
                 self?.fetchMessageList(by: uid)
+                self?.checkCounselorHeart(in: uid)
             })
             .disposed(by: self.disposeBag)
         
@@ -158,5 +162,55 @@ class ChatRoomVM: BaseViewModel{
                 self?.output.isSuccessReport.onNext(())
             }
         })
+    }
+    
+    private func heartCounselor(isHeart: Bool) {
+        
+        FavouriteManager.shared.addFavouriteCounselor(isHeart: isHeart, counselorUid: channel!.uid)
+            .subscribe({ [weak self] event in
+                
+                let counselorUid = self!.channel!.uid
+                switch event {
+                    
+                case .next(let isHeart):
+                    
+                    self?.output.isSuccessHeart.onNext(isHeart)
+                    if isHeart {
+                        
+                        CounselorManager.shared.increaseHeart(in: counselorUid)
+                    } else {
+                        
+                        CounselorManager.shared.decreaseHeart(in: counselorUid)
+                    }
+                case .error(let error):
+                    
+                    self?.output.errorTrigger.onNext(error)
+                case .completed:
+                    
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func checkCounselorHeart(in counselorUid: String) {
+        
+        FavouriteManager.shared.checkIsFavorite(in: counselorUid)
+            .subscribe({ [weak self] event in
+                
+                switch event {
+                    
+                case .next(let isHeart):
+                    
+                    self?.output.isHeartCounselor.onNext(isHeart)
+                case .error(let error):
+                    
+                    self?.output.errorTrigger.onNext(error)
+                case .completed:
+                    
+                    print(#function)
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }

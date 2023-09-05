@@ -129,6 +129,23 @@ extension ChatRoomVC {
                 self?.view.makeToast("신고가 완료되었습니다.")
             })
             .disposed(by: self.disposeBag)
+        
+        viewModel.output.isSuccessHeart
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isHeart in
+                
+                self?.headerView.heartButton.isHeart = isHeart
+                self?.view.makeToast("찜하기가 완료되었습니다.")
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.isHeartCounselor
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isHeart in
+                
+                self?.headerView.heartButton.isHeart = isHeart
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - Helper
@@ -326,7 +343,7 @@ extension ChatRoomVC: HeartButtonDelegate {
     
     func didTapHeartButton(didTap: Bool) {
         
-        print(didTap)
+        viewModel.input.didTapHeartButton.onNext(didTap)
     }
 }
 // MARK: - bindData
