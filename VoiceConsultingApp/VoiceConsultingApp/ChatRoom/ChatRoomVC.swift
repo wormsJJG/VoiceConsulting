@@ -167,6 +167,12 @@ extension ChatRoomVC: MessageReceiveable {
     func didReceiveMessage(message: Message) { //메세지가 오면 호출
         
         viewModel.input.saveMessageInRealm.onNext(message)
+        
+        if message.systemMessageType == .transactionCompleted && Config.isUser == false {
+            
+            self.view.makeToast("결제가 완료되어 코인이 적립되었습니다.")
+            Config.coin += 100
+        }
     }
 }
 // MARK: - setDelegates
