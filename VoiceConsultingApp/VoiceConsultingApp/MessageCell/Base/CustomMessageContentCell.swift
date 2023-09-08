@@ -14,7 +14,7 @@ class CustomMessageContentCell: MessageCollectionViewCell {
     weak var delegate: MessageCellDelegate?
     // MARK: - View
     var profileView = AvatarView().then {
-        $0.image = UIImage(named: AssetImage.thumnail)
+        $0.image = UIImage(named: AssetImage.defaultProfileImage)
     }
     
     var messageContainerView: MessageContainerView = MessageContainerView().then {
@@ -54,7 +54,7 @@ class CustomMessageContentCell: MessageCollectionViewCell {
         cellTopLabel.attributedText = nil
         cellDateLabel.text = nil
         cellDateLabel.attributedText = nil
-        profileView.image = nil
+        profileView.image = UIImage(named: AssetImage.defaultProfileImage)
         profileView.isHidden = false
     }
     // MARK: - setupSubviews()

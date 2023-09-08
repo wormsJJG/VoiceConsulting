@@ -34,9 +34,6 @@ enum SystemMessageType: Int {
         case .endConsultation:
             
             return "상담 종료 메세지"
-        default:
-            
-            return ""
         }
     }
 }

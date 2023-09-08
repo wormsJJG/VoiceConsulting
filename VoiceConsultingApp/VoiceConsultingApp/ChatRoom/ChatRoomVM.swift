@@ -82,6 +82,13 @@ class ChatRoomVM: BaseViewModel{
                 self?.report()
             })
             .disposed(by: self.disposeBag)
+        
+        input.didTapHeartButton
+            .subscribe(onNext: { [weak self] isHeart in
+                
+                self?.heartCounselor(isHeart: isHeart)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func fetchMessageList(by uid: String) {
@@ -135,9 +142,9 @@ class ChatRoomVM: BaseViewModel{
                             self?.output.errorTrigger.onNext(error)
                         } else {
                             
-                            Config.coin -= 100
                             ConsultingHistoryManager.shared.writeConsultingHistory(userId: self!.sender.senderId, counselorId: self!.channel!.uid, completion: { error in
                                 
+                                Config.coin -= 100
                                 self?.output.isSuccessTranscation.onNext(true)
                             })
                         }

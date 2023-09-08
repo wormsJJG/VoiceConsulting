@@ -126,7 +126,7 @@ class UseHistoryCell: UITableViewCell {
     
     private func convertCreateAtToString(_ timestamp: Int) -> String {
         
-        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp / 1000))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         return dateFormatter.string(from: date)

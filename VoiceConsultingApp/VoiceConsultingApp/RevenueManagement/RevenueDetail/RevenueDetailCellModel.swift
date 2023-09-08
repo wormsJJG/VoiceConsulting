@@ -15,7 +15,7 @@ struct RevenueDetailCellModel {
     
     func convertCreateAtToString() -> String {
         
-        let date = Date(timeIntervalSince1970: TimeInterval(consultingDetail.createAt))
+        let date = Date(timeIntervalSince1970: TimeInterval(consultingDetail.createAt / 1000))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
         dateFormatter.timeZone = TimeZone.autoupdatingCurrent

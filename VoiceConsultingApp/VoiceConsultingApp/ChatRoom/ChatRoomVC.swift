@@ -168,6 +168,7 @@ extension ChatRoomVC: MessageReceiveable {
         
         viewModel.input.saveMessageInRealm.onNext(message)
         
+        // 탭바 컨트롤러로 옮겨야할 로직 2023-09-05 정 재근
         if message.systemMessageType == .transactionCompleted && Config.isUser == false {
             
             self.view.makeToast("결제가 완료되어 코인이 적립되었습니다.")
@@ -377,9 +378,10 @@ extension ChatRoomVC {
             self?.report()
         })
         
-        let menu = UIMenu(options: .displayInline, children: [deleteChatChannel, report])
+        let menu = UIMenu(title: "메뉴", options: .displayInline, children: [deleteChatChannel, report])
         
         headerView.menuButton.menu = menu
+        
     }
     
     private func deleteChatChannel() {
@@ -412,18 +414,7 @@ extension ChatRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDel
             
             picker.sourceType = .camera
         } else {
-            let deleteChatChannel = UIAction(title: "채팅방 나가기", handler: { [weak self] _ in
-                
-                self?.deleteChatChannel()
-            })
-            let report = UIAction(title: "신고하기", handler: { [weak self] _ in
-                
-                self?.report()
-            })
             
-            let menu = UIMenu(options: .displayInline, children: [deleteChatChannel, report])
-            
-            headerView.menuButton.menu = menu
             picker.sourceType = .photoLibrary
         }
         picker.allowsEditing = true // 편집 가능

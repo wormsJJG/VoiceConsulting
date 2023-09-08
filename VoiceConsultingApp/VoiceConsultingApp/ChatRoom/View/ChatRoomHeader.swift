@@ -34,6 +34,7 @@ class ChatRoomHeader: UIView {
     let heartButton: HeartButton = HeartButton()
     
     let menuButton: BaseButton = BaseButton().then {
+        
         $0.setImage(UIImage(named: AssetImage.menu), for: .normal)
     }
     

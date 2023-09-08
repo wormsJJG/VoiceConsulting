@@ -1325,6 +1325,8 @@
 		35C29FF629ECF1BC0018FE04 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				359F7FC029FD589C00274108 /* NotificationName.swift */,
+				3598EA522AA5BDBF002BC8CD /* MainSectionModel.swift */,
 				3598EA562AA6EC0D002BC8CD /* Report */,
 				353347D72A88E4D000547FE1 /* SettlementDetail */,
 				35086BF52A652FD900739C12 /* CheckData */,
@@ -1337,9 +1339,7 @@
 				358F42F92A443277004BBBE0 /* Coin */,
 				3523AF8C2A09078200D51B8A /* FireStore */,
 				3523AF892A0904DA00D51B8A /* Counselor */,
-				359F7FC029FD589C00274108 /* NotificationName.swift */,
 				35C29FF929ECF2390018FE04 /* Chatting */,
-				3598EA522AA5BDBF002BC8CD /* MainSectionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1428,6 +1428,7 @@
 		35EAEAF129CAF99500AAE587 /* VoiceConsultingApp */ = {
 			isa = PBXGroup;
 			children = (
+				35364FD82A029C5900C4BC8D /* VoiceConsultingApp.entitlements */,
 				359509FD2A9C816500C4BA1A /* LottieResource */,
 				35A70CA72A9272BA003551F1 /* Client */,
 				35EB1A782A8E309100080241 /* InputUserInfo */,
@@ -1449,7 +1450,6 @@
 				356F7BE62A07E48700C536D8 /* WiteReview */,
 				356F7BE32A07E43E00C536D8 /* VoiceRoom */,
 				35364FD92A029D6A00C4BC8D /* Notification */,
-				35364FD82A029C5900C4BC8D /* VoiceConsultingApp.entitlements */,
 				359F7FB829FD4B3400274108 /* CounselorDetail */,
 				357D584529FA0AC000ACFD51 /* Manager */,
 				35C29FF629ECF1BC0018FE04 /* Model */,
