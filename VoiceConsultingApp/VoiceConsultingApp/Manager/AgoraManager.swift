@@ -109,6 +109,11 @@ class AgoraManager {
         }
     }
     
+    func exitAgoraAccount() {
+        
+        AgoraChatClient.shared
+    }
+    
     func setPushTemplate() {
         
         AgoraChatClient.shared().pushManager?.setPushTemplate("iOSApnsPush")

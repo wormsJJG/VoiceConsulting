@@ -50,28 +50,16 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    func didStopTouch() {
-        
-        UIApplication.shared.beginIgnoringInteractionEvents()
-    }
-    
-    func didBeginTouch() {
-        
-        UIApplication.shared.endIgnoringInteractionEvents()
-    }
-    
     func playLoadAnimation() {
         
         self.animationView.isHidden = false
         self.animationView.play()
-        didStopTouch()
     }
     
     func stopAnimation() {
         
         self.animationView.isHidden = true
         self.animationView.stop()
-        didBeginTouch()
     }
 }
 // MARK: - MoveView

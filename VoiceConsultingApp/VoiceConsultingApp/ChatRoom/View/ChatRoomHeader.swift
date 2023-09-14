@@ -12,33 +12,40 @@ import SnapKit
 class ChatRoomHeader: UIView {
     
     let backButton: BaseButton = BaseButton().then {
+        
         $0.setImage(UIImage(named: AssetImage.backButton), for: .normal)
     }
     
     let counselorLabel: UILabel = UILabel().then {
+        
         $0.textColor = ColorSet.mainText
         $0.font = UIFont(name: Fonts.NotoSansKR_Medium, size: 16)
         $0.text = "김이름 상담사"
     }
     
     private lazy var leftStackView: UIStackView = UIStackView(arrangedSubviews: [backButton, counselorLabel]).then {
+        
         $0.axis = .horizontal
         $0.spacing = 16
         $0.alignment = .center
     }
     
     let coinBlock: CoinBlock = CoinBlock().then {
+        
         $0.isFill = true
     }
     
     let heartButton: HeartButton = HeartButton()
     
-    let menuButton: BaseButton = BaseButton().then {
+    let menuButton: BaseButton = BaseButton(type: .system).then {
         
         $0.setImage(UIImage(named: AssetImage.menu), for: .normal)
+        $0.tintColor = ColorSet.mainText
+        $0.showsMenuAsPrimaryAction = true
     }
     
     private lazy var rightStackView: UIStackView = UIStackView(arrangedSubviews: [coinBlock, heartButton, menuButton]).then {
+        
         $0.axis = .horizontal
         $0.spacing = 20
         $0.alignment = .center
@@ -46,6 +53,7 @@ class ChatRoomHeader: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         self.backgroundColor = .white
         constraint()
     }
@@ -58,9 +66,11 @@ class ChatRoomHeader: UIView {
         var statusHeight: CGFloat = 0.0
         
         if #available(iOS 13.0, *) {
+            
             let window = UIApplication.shared.windows.first
             statusHeight = window?.safeAreaInsets.top ?? 0
         } else if #available(iOS 11.0, *) {
+            
             let window = UIApplication.shared.keyWindow
             statusHeight = window?.safeAreaInsets.top ?? 0
         }

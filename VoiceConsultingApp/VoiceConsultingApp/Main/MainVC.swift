@@ -25,6 +25,8 @@ class MainVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        playLoadAnimation()
+        outputSubscrive()
         bindTableView()
         addCoinBlockTapAction()
     }
@@ -33,7 +35,6 @@ class MainVC: BaseViewController {
         super.viewWillAppear(animated)
         
         dataBind()
-        mainV.mainList.reloadData()
     }
 }
 // MARK: - dataBind
@@ -46,15 +47,28 @@ extension MainVC {
             self?.mainV.headerView.coinBlock.coinCount.text = String(Config.coin)
         }
     }
+    
+    private func outputSubscrive() {
+        
+        viewModel.output.mainSectionList
+            .filter { $0.count > 0 }
+            .bind(onNext: { [weak self] _ in
+                
+                self?.stopAnimation()
+            })
+            .disposed(by: self.disposeBag)
+    }
 }
 // MARK: - Touch Action
 extension MainVC {
     
     private func addCoinBlockTapAction() {
+        
         self.mainV.headerView.coinBlock.rx
             .tapGesture()
             .when(.recognized)
             .bind(onNext: { [weak self] _ in
+                
                 self?.moveCoinManagementVC(start: 0)
             })
             .disposed(by: self.disposeBag)
@@ -62,6 +76,7 @@ extension MainVC {
 }
 
 extension MainVC: CellTouchable {
+    
     func didTouchCell(_ model: Counselor) {
         
         self.moveCounselorDetailVC(in: model.uid)
@@ -69,8 +84,11 @@ extension MainVC: CellTouchable {
 }
 
 extension MainVC: MoreButtonTouchable {
+    
     func didTouchMoreButton(_ moreType: MoreType) {
+        
         switch moreType {
+            
         case .live:
             let moreLiveVC = MoreLiveVC()
             moreLiveVC.hidesBottomBarWhenPushed = true
@@ -99,7 +117,9 @@ extension MainVC: RefreshButtonDelegate {
 }
 // MARK: - Bind TableView
 extension MainVC: UITableViewDelegate {
+    
     private func bindTableView() {
+        
         self.mainV.mainList.rx.setDelegate(self)
             .disposed(by: self.disposeBag)
         

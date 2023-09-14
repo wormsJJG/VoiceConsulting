@@ -381,7 +381,6 @@ extension ChatRoomVC {
         let menu = UIMenu(title: "메뉴", options: .displayInline, children: [deleteChatChannel, report])
         
         headerView.menuButton.menu = menu
-        
     }
     
     private func deleteChatChannel() {

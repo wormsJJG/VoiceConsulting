@@ -50,8 +50,6 @@ class MainVM: BaseViewModel {
     
     private func fetchMainSectionList() {
         
-        
-        
         let zip = Observable.zip(liveCounselor, popularCounselor, fitWellCounselor)
         
         zip
