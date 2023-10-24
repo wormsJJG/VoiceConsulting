@@ -597,38 +597,38 @@ PODS:
     - abseil/base/config
     - abseil/meta/type_traits
   - AcknowList (3.0.1)
-  - Agora_Chat_iOS (1.1.0)
-  - AgoraRtcEngine_iOS (4.2.2):
-    - AgoraRtcEngine_iOS/AIAEC (= 4.2.2)
-    - AgoraRtcEngine_iOS/AINS (= 4.2.2)
-    - AgoraRtcEngine_iOS/AudioBeauty (= 4.2.2)
-    - AgoraRtcEngine_iOS/ClearVision (= 4.2.2)
-    - AgoraRtcEngine_iOS/ContentInspect (= 4.2.2)
-    - AgoraRtcEngine_iOS/DRM (= 4.2.2)
-    - AgoraRtcEngine_iOS/FaceDetection (= 4.2.2)
-    - AgoraRtcEngine_iOS/ReplayKit (= 4.2.2)
-    - AgoraRtcEngine_iOS/RtcBasic (= 4.2.2)
-    - AgoraRtcEngine_iOS/SpatialAudio (= 4.2.2)
-    - AgoraRtcEngine_iOS/VideoCodecDec (= 4.2.2)
-    - AgoraRtcEngine_iOS/VideoCodecEnc (= 4.2.2)
-    - AgoraRtcEngine_iOS/VirtualBackground (= 4.2.2)
-    - AgoraRtcEngine_iOS/VQA (= 4.2.2)
-  - AgoraRtcEngine_iOS/AIAEC (4.2.2)
-  - AgoraRtcEngine_iOS/AINS (4.2.2)
-  - AgoraRtcEngine_iOS/AudioBeauty (4.2.2)
-  - AgoraRtcEngine_iOS/ClearVision (4.2.2)
-  - AgoraRtcEngine_iOS/ContentInspect (4.2.2)
-  - AgoraRtcEngine_iOS/DRM (4.2.2)
-  - AgoraRtcEngine_iOS/FaceDetection (4.2.2)
-  - AgoraRtcEngine_iOS/ReplayKit (4.2.2)
-  - AgoraRtcEngine_iOS/RtcBasic (4.2.2)
-  - AgoraRtcEngine_iOS/SpatialAudio (4.2.2)
-  - AgoraRtcEngine_iOS/VideoCodecDec (4.2.2)
-  - AgoraRtcEngine_iOS/VideoCodecEnc (4.2.2)
-  - AgoraRtcEngine_iOS/VirtualBackground (4.2.2)
-  - AgoraRtcEngine_iOS/VQA (4.2.2)
-  - AgoraRtm_iOS (2.1.4)
-  - Alamofire (5.7.1)
+  - Agora_Chat_iOS (1.2.0)
+  - AgoraRtcEngine_iOS (4.2.3):
+    - AgoraRtcEngine_iOS/AIAEC (= 4.2.3)
+    - AgoraRtcEngine_iOS/AINS (= 4.2.3)
+    - AgoraRtcEngine_iOS/AudioBeauty (= 4.2.3)
+    - AgoraRtcEngine_iOS/ClearVision (= 4.2.3)
+    - AgoraRtcEngine_iOS/ContentInspect (= 4.2.3)
+    - AgoraRtcEngine_iOS/DRM (= 4.2.3)
+    - AgoraRtcEngine_iOS/FaceDetection (= 4.2.3)
+    - AgoraRtcEngine_iOS/ReplayKit (= 4.2.3)
+    - AgoraRtcEngine_iOS/RtcBasic (= 4.2.3)
+    - AgoraRtcEngine_iOS/SpatialAudio (= 4.2.3)
+    - AgoraRtcEngine_iOS/VideoCodecDec (= 4.2.3)
+    - AgoraRtcEngine_iOS/VideoCodecEnc (= 4.2.3)
+    - AgoraRtcEngine_iOS/VirtualBackground (= 4.2.3)
+    - AgoraRtcEngine_iOS/VQA (= 4.2.3)
+  - AgoraRtcEngine_iOS/AIAEC (4.2.3)
+  - AgoraRtcEngine_iOS/AINS (4.2.3)
+  - AgoraRtcEngine_iOS/AudioBeauty (4.2.3)
+  - AgoraRtcEngine_iOS/ClearVision (4.2.3)
+  - AgoraRtcEngine_iOS/ContentInspect (4.2.3)
+  - AgoraRtcEngine_iOS/DRM (4.2.3)
+  - AgoraRtcEngine_iOS/FaceDetection (4.2.3)
+  - AgoraRtcEngine_iOS/ReplayKit (4.2.3)
+  - AgoraRtcEngine_iOS/RtcBasic (4.2.3)
+  - AgoraRtcEngine_iOS/SpatialAudio (4.2.3)
+  - AgoraRtcEngine_iOS/VideoCodecDec (4.2.3)
+  - AgoraRtcEngine_iOS/VideoCodecEnc (4.2.3)
+  - AgoraRtcEngine_iOS/VirtualBackground (4.2.3)
+  - AgoraRtcEngine_iOS/VQA (4.2.3)
+  - AgoraRtm_iOS (2.1.7)
+  - Alamofire (5.8.0)
   - AppAuth (1.6.2):
     - AppAuth/Core (= 1.6.2)
     - AppAuth/ExternalUserAgent (= 1.6.2)
@@ -642,27 +642,27 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.24)
   - BoringSSL-GRPC/Interface (0.0.24)
   - Cosmos (23.0.0)
-  - Firebase/CoreOnly (10.14.0):
-    - FirebaseCore (= 10.14.0)
-  - Firebase/Functions (10.14.0):
+  - Firebase/CoreOnly (10.16.0):
+    - FirebaseCore (= 10.16.0)
+  - Firebase/Functions (10.16.0):
     - Firebase/CoreOnly
-    - FirebaseFunctions (~> 10.14.0)
-  - FirebaseABTesting (10.14.0):
+    - FirebaseFunctions (~> 10.16.0)
+  - FirebaseABTesting (10.16.0):
     - FirebaseCore (~> 10.0)
-  - FirebaseAppCheckInterop (10.14.0)
+  - FirebaseAppCheckInterop (10.16.0)
   - FirebaseAuth (10.0.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (~> 2.1)
-  - FirebaseAuthInterop (10.14.0)
-  - FirebaseCore (10.14.0):
+  - FirebaseAuthInterop (10.16.0)
+  - FirebaseCore (10.16.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreExtension (10.14.0):
+  - FirebaseCoreExtension (10.16.0):
     - FirebaseCore (~> 10.0)
-  - FirebaseCoreInternal (10.14.0):
+  - FirebaseCoreInternal (10.16.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
   - FirebaseFirestore (10.0.0):
     - abseil/algorithm (~> 1.20211102.0)
@@ -682,7 +682,7 @@ PODS:
     - FirebaseCoreExtension (~> 10.0)
     - FirebaseFirestore (~> 10.0)
     - FirebaseSharedSwift (~> 10.0)
-  - FirebaseFunctions (10.14.0):
+  - FirebaseFunctions (10.16.0):
     - FirebaseAppCheckInterop (~> 10.10)
     - FirebaseAuthInterop (~> 10.0)
     - FirebaseCore (~> 10.0)
@@ -690,7 +690,7 @@ PODS:
     - FirebaseMessagingInterop (~> 10.0)
     - FirebaseSharedSwift (~> 10.0)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
-  - FirebaseInstallations (10.14.0):
+  - FirebaseInstallations (10.16.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
@@ -704,14 +704,14 @@ PODS:
     - GoogleUtilities/Reachability (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseMessagingInterop (10.14.0)
+  - FirebaseMessagingInterop (10.16.0)
   - FirebaseRemoteConfig (10.0.0):
     - FirebaseABTesting (~> 10.0)
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseSharedSwift (10.14.0)
+  - FirebaseSharedSwift (10.16.0)
   - FirebaseStorage (10.0.0):
     - FirebaseAppCheckInterop (~> 10.0)
     - FirebaseAuthInterop (~> 10.0)
@@ -801,17 +801,17 @@ PODS:
   - InputBarAccessoryView (5.5.0):
     - InputBarAccessoryView/Core (= 5.5.0)
   - InputBarAccessoryView/Core (5.5.0)
-  - KakaoSDKAuth (2.16.0):
-    - KakaoSDKCommon (= 2.16.0)
-  - KakaoSDKCommon (2.16.0):
-    - KakaoSDKCommon/Common (= 2.16.0)
-    - KakaoSDKCommon/Network (= 2.16.0)
-  - KakaoSDKCommon/Common (2.16.0)
-  - KakaoSDKCommon/Network (2.16.0):
+  - KakaoSDKAuth (2.18.1):
+    - KakaoSDKCommon (= 2.18.1)
+  - KakaoSDKCommon (2.18.1):
+    - KakaoSDKCommon/Common (= 2.18.1)
+    - KakaoSDKCommon/Network (= 2.18.1)
+  - KakaoSDKCommon/Common (2.18.1)
+  - KakaoSDKCommon/Network (2.18.1):
     - Alamofire (~> 5.1)
-    - KakaoSDKCommon/Common (= 2.16.0)
-  - KakaoSDKUser (2.16.0):
-    - KakaoSDKAuth (= 2.16.0)
+    - KakaoSDKCommon/Common (= 2.18.1)
+  - KakaoSDKUser (2.18.1):
+    - KakaoSDKAuth (= 2.18.1)
   - Kingfisher (7.9.1)
   - leveldb-library (1.22.2)
   - Libuv-gRPC (0.0.10):
@@ -820,7 +820,7 @@ PODS:
   - Libuv-gRPC/Implementation (0.0.10):
     - Libuv-gRPC/Interface (= 0.0.10)
   - Libuv-gRPC/Interface (0.0.10)
-  - lottie-ios (4.2.0)
+  - lottie-ios (4.3.3)
   - MessageKit (3.8.0):
     - InputBarAccessoryView (~> 5.5.0)
   - nanopb (2.30909.0):
@@ -830,20 +830,20 @@ PODS:
   - nanopb/encode (2.30909.0)
   - Pageboy (4.0.2)
   - PromisesObjC (2.3.1)
-  - Realm (10.42.0):
-    - Realm/Headers (= 10.42.0)
-  - Realm/Headers (10.42.0)
-  - RealmSwift (10.42.0):
-    - Realm (= 10.42.0)
-  - RxCocoa (6.5.0):
-    - RxRelay (= 6.5.0)
-    - RxSwift (= 6.5.0)
+  - Realm (10.43.1):
+    - Realm/Headers (= 10.43.1)
+  - Realm/Headers (10.43.1)
+  - RealmSwift (10.43.1):
+    - Realm (= 10.43.1)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
   - RxGesture (4.0.4):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - RxRelay (6.5.0):
-    - RxSwift (= 6.5.0)
-  - RxSwift (6.5.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
   - SnapKit (5.6.0)
   - Tabman (3.0.2):
     - Pageboy (~> 4.0.2)
@@ -941,29 +941,29 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
   AcknowList: 1aca788e5f1fae79d671c9c48d83ef21027232c0
-  Agora_Chat_iOS: 78b181ded388278e88d40e256a4fc659e62c3115
-  AgoraRtcEngine_iOS: c510de329cd905daff3f01fa4c872ea6d5eaee23
-  AgoraRtm_iOS: 11b767ee81a7202dcf09e045cd2d359b5abbc965
-  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  Agora_Chat_iOS: e11aa75b290e5e8a6b90c1c73642ac1172a71b97
+  AgoraRtcEngine_iOS: eb0a7e87dbc9e818b267d413b48f76a57959e6f4
+  AgoraRtm_iOS: cd26cf8a377a79934864d37e184866dbd1430eaf
+  Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
-  Firebase: 6c1bf3f534bc422d52af2e41fe0d50bf08b6b773
-  FirebaseABTesting: e1535073fac4ff55c7537a6e041155c72d9e6906
-  FirebaseAppCheckInterop: c87f1d5421c852413dd936b2b2340b21e62501a0
+  Firebase: 25899099b77d255a636e3579c3d9dce10ec150d5
+  FirebaseABTesting: 03f0a8b88cf618350527f2c6a2234e29b9c65064
+  FirebaseAppCheckInterop: 82358cff9f33452dd44259e88eea5e562500b1cb
   FirebaseAuth: 493382cf533cc45e2862b00e9aa4cfe4c98daf71
-  FirebaseAuthInterop: 23be77be1ca68e4bd15214f403f807a6ca70d7e0
-  FirebaseCore: 6fc17ac9f03509d51c131298aacb3ee5698b4f02
-  FirebaseCoreExtension: 976638051b1a46b503afce7ec80277f9161f2040
-  FirebaseCoreInternal: d558159ee6cc4b823c2296ecc193de9f6d9a5bb3
+  FirebaseAuthInterop: b79fab8ce80e685145eee5f973d9ad5210e19d44
+  FirebaseCore: 65a801af84cca84361ef9eac3fd868656968a53b
+  FirebaseCoreExtension: 2dbc745b337eb99d2026a7a309ae037bd873f45e
+  FirebaseCoreInternal: 26233f705cc4531236818a07ac84d20c333e505a
   FirebaseFirestore: 5007583f3db2129de8e87f18ee63f4c86f07e7a3
   FirebaseFirestoreSwift: a67b697245c5f6e721612fc86e1f26384c90ddcf
-  FirebaseFunctions: 27438b6b4592e9327a343e85ee093ad0f5398bcf
-  FirebaseInstallations: f672b1eda64e6381c21d424a2f680a943fd83f3b
+  FirebaseFunctions: f7c3a837beb8d747a1949b167fb18d219f281c7c
+  FirebaseInstallations: b822f91a61f7d1ba763e5ccc9d4f2e6f2ed3b3ee
   FirebaseMessaging: 8916bf5edb1dbfac74665a181e4d1ab3a78a08a2
-  FirebaseMessagingInterop: 5f5ed52481b3956190bf9df2c231d1c72ad14f8d
+  FirebaseMessagingInterop: 9399279d03dfdd931c5e90358263d6a16a539a7b
   FirebaseRemoteConfig: e4431ddba74ddf705e2aabd7d356a23d5b802853
-  FirebaseSharedSwift: 0eec812f08b6ec9e03196fc27635739781513028
+  FirebaseSharedSwift: 82b618801ddd76ea2ab54c5746bcd48854272232
   FirebaseStorage: 8b0b0630e11b9f3e4a479a26cfccb70ec790ec50
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
@@ -973,23 +973,23 @@ SPEC CHECKSUMS:
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
-  KakaoSDKAuth: 1b85ed7c41b0517bfd1fc9dc46c292c75b8cb610
-  KakaoSDKCommon: d6579aa2e9d963d74e13d741cbf1cce48b8b0c17
-  KakaoSDKUser: 427e5b3884abd19ee6d9a7bd6e3f3029eb2968b8
+  KakaoSDKAuth: 303975500e97d5e20ddbf0acff9b332b545a1f3c
+  KakaoSDKCommon: e8928c15b6239f74ea4b48a772dbbf7a5dd79134
+  KakaoSDKUser: 0c285d9837fa0cbf7713934a6e1f79c15678903d
   Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
-  lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
+  lottie-ios: 25e7b2675dad5c3ddad369ac9baab03560c5bfdd
   MessageKit: a1ba0c69ebead94029867853eb44dd05b9b3f453
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   Pageboy: 34ff11e8d1041b81769d5bcde9b19a0cb7218bd9
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
-  Realm: 490aad28f1360e58fc22256d5d686d3a36525346
-  RealmSwift: f6a9b56d747bbdd7931de1835896c5f024b6898a
-  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  Realm: d97b438de77459e443bd2c8ad5ca0f95107aee4b
+  RealmSwift: 6be3f27a7fd3f5cc8f99f4b187cc4e7150299e32
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
-  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
-  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Tabman: 6326ec3a792da1c2a6e79c7eddb56af7b591c9d6
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
@@ -997,4 +997,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 0abd6a83f35d24065f58493c3aa7e18e8a1ac02f
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.13.0

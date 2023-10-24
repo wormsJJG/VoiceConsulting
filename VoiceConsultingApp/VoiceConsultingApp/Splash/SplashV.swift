@@ -11,19 +11,20 @@ import SnapKit
 
 class SplashV: UIView {
     // MARK: - UI Component
-    let label: UILabel = UILabel().then {
-        $0.textColor = .blue
-        $0.text = "로고"
+    let logoImageView: UIImageView = UIImageView().then {
+        
+        $0.image = UIImage(named: AssetImage.logoImage)
     }
     
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.label.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(label)
-        self.label.snp.makeConstraints { l in
-            l.centerX.equalTo(self.snp.centerX)
-            l.centerY.equalTo(self.snp.centerY)
+        
+        self.addSubview(logoImageView)
+        self.logoImageView.snp.makeConstraints { imageView in
+            
+            imageView.centerX.equalTo(self.snp.centerX)
+            imageView.centerY.equalTo(self.snp.centerY)
         }
     }
     
